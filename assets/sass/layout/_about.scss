@@ -1,0 +1,84 @@
+.architecture-about {
+  background: var(--secendary-color);
+  &__wrapper {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+  }
+
+  &__visual-column {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    max-width: 300px;
+    width: 100%;
+  }
+  &__tag {
+    color: var(--white-color);
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    position: relative;
+    &::after {
+      position: absolute;
+      content: "";
+      width: 35px;
+      height: 2px;
+      background: var(--white-color);
+      left: 104px;
+      top: 50%;
+    }
+  }
+  &__content-column {
+    max-width: 751px;
+  }
+  &__graphics {
+    position: relative;
+  }
+  &__award-card {
+    position: absolute;
+    bottom: -95px;
+    left: 137px;
+  }
+  &--title {
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--white-color);
+    text-transform: capitalize;
+    margin-bottom: 50px;
+  }
+  &__description {
+    font-size: 16px;
+    color: var(--white-color);
+    margin-bottom: 40px;
+    font-weight: 500;
+    margin-top: 50px;
+  }
+  &__social-proof {
+    display: flex;
+    gap: 20px;
+    .stats-text {
+      font-size: 16px;
+      color: var(--white-color);
+      font-weight: 500;
+    }
+  }
+}
+.avatars {
+  display: flex;
+  max-width: 176px;
+  width: 100%;
+
+  img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 2px solid var(--Bg-dark);
+    object-fit: cover;
+    margin-left: -15px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}

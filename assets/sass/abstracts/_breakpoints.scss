@@ -1,0 +1,58 @@
+@use "sass:map";
+
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  xxxl: 1600px,
+  xxxxl: 1700px,
+  xxxxxl: 1920px,
+);
+
+@mixin respond($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    $size: map.get($breakpoints, $breakpoint);
+
+    @media (max-width: $size) {
+      @content;
+    }
+  }
+}
+
+@mixin respond-min($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    $size: map.get($breakpoints, $breakpoint);
+
+    @media (min-width: $size) {
+      @content;
+    }
+  }
+}
+
+$heading-max-widths: (
+  397: 397px,
+  444: 444px,
+  457: 457px,
+  462: 462px,
+  508: 508px,
+  534: 534px,
+  584: 584px,
+  588: 588px,
+  627: 627px,
+  645: 645px,
+  652: 652px,
+  690: 690px,
+  763: 763px,
+);
+
+@mixin section-heading-width($widths) {
+  @each $name, $size in $widths {
+    &--w-#{$name} {
+      .section-heading__title {
+        max-width: min(100%, #{$size});
+      }
+    }
+  }
+}

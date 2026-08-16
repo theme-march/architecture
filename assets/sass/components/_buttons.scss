@@ -1,0 +1,57 @@
+/*--------------------------------------------------------------
+  6. Buttons
+----------------------------------------------------------------*/
+@use "../abstracts" as *;
+// Define variables based on the image colors
+$btn-orange: #df5c24; // Matches the image background
+$btn-white: #ffffff;
+
+.primary-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: $btn-orange;
+  color: $btn-white;
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: none;
+  padding: 5px 5px 5px 22px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  .text {
+    margin-right: 25px;
+    letter-spacing: 0.5px;
+  }
+
+  .icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $btn-white;
+    color: $btn-orange;
+    width: 47px;
+    height: 47px;
+
+    svg {
+      width: 22px;
+      height: 22px;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  &:hover {
+    background-color: $btn-white;
+
+    .icon-wrapper {
+      svg {
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}

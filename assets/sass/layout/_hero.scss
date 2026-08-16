@@ -1,0 +1,122 @@
+/*--------------------------------------------------------------
+  19. Hero
+----------------------------------------------------------------*/
+
+@use "../abstracts" as *;
+
+.hero-architecture {
+  position: relative;
+  &__wrapper {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  &__img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  &__content {
+    margin-top: -84px;
+    position: absolute;
+    max-width: 903px;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 15px;
+  }
+  &__subtitle {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--white-color);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  &__title {
+    font-size: clamp(32px, 15vw, 65px);
+    font-weight: 500;
+    font-variation-settings:
+      "wght" 500,
+      "opsz" 85;
+    transform-origin: left;
+    display: inline-block;
+    letter-spacing: 1px;
+    transition: transform 0.3s ease;
+    white-space: nowrap;
+    color: var(--white-color);
+    margin-bottom: 15px;
+  }
+  &__datedesp {
+    color: var(--white-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 100px;
+    .desp {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 30px;
+      color: var(--white-color);
+    }
+  }
+  &--bottom-text {
+    position: absolute;
+    bottom: 0;
+    z-index: 11;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &__title {
+      font-size: clamp(32px, 15vw, 266px);
+      font-weight: 400;
+      color: var(--white-color);
+      text-transform: uppercase;
+      background: linear-gradient(
+        180deg,
+        rgba(210, 96, 26, 0.75) 0%,
+        rgba(153, 153, 153, 0.06) 100%
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}
+
+.hero-architecture__img {
+  transition:
+    transform 2s ease,
+    opacity 1.2s ease;
+  // transform: scale(1.2);
+  opacity: 1;
+}
+
+.swiper-slide-active {
+  .hero-architecture__img {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .hero-architecture {
+    &__title {
+      white-space: wrap;
+    }
+    &__datedesp {
+      flex-wrap: wrap;
+      gap: 30px;
+      width: 70%;
+    }
+  }
+}

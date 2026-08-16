@@ -1,0 +1,725 @@
+/*--------------------------------------------------------------
+  18. Footer
+----------------------------------------------------------------*/
+@use "../abstracts" as *;
+.footer {
+  padding: 0 20px 20px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 0 0 30px 30px;
+  @include respond(sm) {
+    padding: 0 15px 15px;
+  }
+  &__rapper {
+    display: flex;
+    gap: 15px;
+
+    @include respond(xxxl) {
+      max-width: 100%;
+      flex-direction: column;
+    }
+  }
+  &__newsletter {
+    background: var(--white-color);
+    padding: 60px;
+    max-width: 680px;
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    .footer-avatar {
+      position: absolute;
+      right: 15px;
+      top: 33px;
+      width: 180px;
+      height: 180px;
+      @include respond(lg) {
+        opacity: 0.2;
+      }
+    }
+
+    @include respond(xxxxl) {
+      max-width: 500px;
+    }
+    @include respond(xxxl) {
+      max-width: 100%;
+      gap: 60px;
+    }
+
+    @include respond(lg) {
+      padding: 30px;
+    }
+    @include respond(sm) {
+      padding: 15px;
+    }
+  }
+
+  &__subscribe-title {
+    font-size: 20px;
+    padding-bottom: 10px;
+  }
+  &__subscribe-text {
+    font-size: 14px;
+    padding-bottom: 30px;
+  }
+
+  // RIGHT CONTENT
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1;
+  }
+
+  &__columns {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    background-color: var(--white-color);
+    padding: 60px;
+    border-radius: 10px;
+    overflow: hidden;
+    @include respond(lg) {
+      padding: 30px;
+      flex-wrap: wrap;
+    }
+    @include respond(sm) {
+      padding: 15px;
+    }
+  }
+
+  &__col {
+    &-title {
+      font-size: 24px;
+      line-height: 34px;
+      position: relative;
+      &-divider {
+        width: 198px;
+        height: 3px;
+        background-color: var(--border-color);
+        margin-bottom: 30px;
+        &::after {
+          content: "";
+          display: block;
+          width: 80px;
+          height: 3px;
+          background-color: var(--primary-color);
+          margin-top: 10px;
+        }
+      }
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        font-size: 16px;
+        margin-bottom: 20px;
+        color: var(--body-color);
+        font-family: var(--body-font-family);
+        i {
+          color: var(--primary-color);
+          margin-right: 10px;
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  &__hours {
+    li {
+      display: flex;
+      justify-content: space-between;
+      gap: 35px;
+    }
+  }
+
+  // BOTTOM AREA
+  &__bottom {
+    background-color: var(--white-color);
+    padding: 45px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+    @include respond(lg) {
+      padding: 30px;
+      flex-direction: column;
+      gap: 30px;
+    }
+    @include respond(sm) {
+      padding: 15px;
+    }
+  }
+
+  &__social {
+    display: flex;
+    gap: 10px;
+
+    a {
+      width: 35px;
+      height: 35px;
+      background: var(--secendary-color);
+      color: var(--white-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 14px;
+      &:hover {
+        background-color: var(--primary-color);
+        color: var(--white-color);
+      }
+    }
+  }
+
+  &__copyright {
+    text-align: right;
+
+    p {
+      font-size: 16px;
+      margin-bottom: 5px;
+      color: var(--black-color);
+      a {
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+    }
+    @include respond(lg) {
+      text-align: center;
+    }
+  }
+
+  &__links {
+    display: flex;
+    gap: 15px;
+
+    a {
+      font-size: 16px;
+      color: var(--black-color);
+      text-decoration: none;
+
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
+  }
+}
+
+.subscribe-form {
+  display: flex;
+  align-items: center;
+  background: var(--secendary-color);
+  border-radius: 40px;
+  max-width: 490px;
+  width: 100%;
+  overflow: hidden;
+
+  input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 20px 30px;
+    font-size: 16px;
+    color: var(--white-color);
+    font-weight: 600;
+    font-family: var(--body-font-family);
+    width: 100%;
+    &::placeholder {
+      color: var(--white-color);
+    }
+    @include respond(lg) {
+      padding: 20px 15px;
+    }
+  }
+
+  button {
+    border: none;
+    padding: 24px 37px;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white-color);
+    cursor: pointer;
+    text-transform: uppercase;
+    background: var(--primary-color);
+    transition: all 0.3s ease;
+    @include respond(lg) {
+      padding: 8px 10px;
+      margin-right: 10px;
+    }
+  }
+}
+
+.footer {
+  &--style-two {
+    background-color: var(--secendary-color);
+    color: var(--white-color);
+    position: relative;
+    overflow: hidden;
+
+    /* =========================
+       TOP AREA
+    ========================= */
+    &__top {
+      margin-bottom: 80px;
+      @include respond(lg) {
+        margin-bottom: 60px;
+      }
+    }
+    &__top-content {
+      display: flex;
+      gap: 60px;
+      justify-content: space-between;
+      @include respond(lg) {
+        flex-wrap: wrap;
+      }
+    }
+
+    &__about-content {
+      max-width: 338px;
+      width: 100%;
+      @include respond(lg) {
+        max-width: 100%;
+      }
+    }
+    &__link-category {
+      display: flex;
+      justify-content: space-between;
+      gap: 60px;
+      width: 100%;
+      max-width: 796px;
+      @include respond(lg) {
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+    }
+    &__title {
+      color: var(--white-color);
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 50px;
+      position: relative;
+
+      &::after {
+        position: absolute;
+        content: "";
+        width: 22px;
+        height: 2px;
+        background-color: var(--primary-color);
+        display: block;
+        bottom: -20px;
+        left: 0;
+      }
+      &::before {
+        position: absolute;
+        content: "";
+        width: 63px;
+        height: 2px;
+        background-color: var(--white-color);
+        display: block;
+        margin-top: 20px;
+        bottom: -20px;
+        left: 30px;
+      }
+    }
+
+    &__desc {
+      font-size: 16px;
+      line-height: 26px;
+      margin-bottom: 30px;
+      color: var(--white-color);
+    }
+
+    /* =========================
+       SOCIAL
+    ========================= */
+    &__social {
+      display: flex;
+      gap: 10px;
+    }
+
+    &__social-link {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white-color);
+      font-size: 14px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: 1px solid var(--white-color);
+
+      &:hover {
+        border: 1px solid var(--primary-color);
+        color: var(--white-color);
+        background-color: var(--primary-color);
+      }
+    }
+
+    /* =========================
+       LIST
+    ========================= */
+    &__list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    &__list-item {
+      margin-bottom: 24px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &__list-link {
+      font-size: 16px;
+      color: var(--white-color);
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+      font-family: var(--body-font-family);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      &:hover {
+        color: var(--primary-color);
+        transform: translateX(5px);
+      }
+    }
+
+    /* =========================
+       CTA SECTION
+    ========================= */
+    &__cta {
+      background: var(--primary-color);
+      border-radius: 10px;
+      padding: 35px 50px;
+      &--two {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+      @include respond(xl) {
+        padding: 30px;
+      }
+      @include respond(md) {
+        padding: 20px 15px;
+      }
+    }
+
+    &__logo {
+      img {
+        max-width: 220px;
+        height: auto;
+        @include respond(xl) {
+          max-width: 175px;
+        }
+        @include respond(sm) {
+          max-width: 145px;
+        }
+      }
+    }
+
+    &__contact {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      &.style2 {
+        flex-wrap: wrap;
+        gap: 60px;
+        @include respond(xl) {
+          width: 100%;
+          gap: 30px;
+        }
+      }
+    }
+
+    &__contact-item {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      i {
+        font-size: 55px;
+        color: var(--white-color);
+        @include respond(xl) {
+          font-size: 35px;
+        }
+        @include respond(md) {
+          font-size: 28px;
+        }
+      }
+      &--divider {
+        width: 1px;
+        height: 60px;
+        background-color: var(--white-color);
+        opacity: 0.3;
+        @include respond(md) {
+          display: none;
+        }
+      }
+    }
+
+    &__contact-label {
+      display: block;
+      font-size: 16px;
+      color: var(--white-color);
+      margin-bottom: 5px;
+      font-family: var(--body-font-family);
+    }
+
+    &__contact-text {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--white-color);
+      margin: 0;
+      @include respond(lg) {
+        font-size: 22px;
+      }
+      @include respond(md) {
+        font-size: 20px;
+      }
+    }
+
+    /* =========================
+       BOTTOM AREA
+    ========================= */
+    &__bottom {
+      padding: 40px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      @include respond(md) {
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+    }
+
+    &__copyright {
+      font-size: 16px;
+      margin: 0;
+      color: var(--white-color);
+      .brand-name {
+        color: var(--primary-color);
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+          color: var(--white-color);
+        }
+      }
+    }
+
+    &__links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    &__link {
+      font-size: 16px;
+      color: var(--white-color);
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
+  }
+}
+
+.medical-footer {
+  position: relative;
+  background-color: transparent;
+  border-radius: 30px 30px 0 0;
+  overflow: hidden;
+  .footer--style-two {
+    &__logo-wapper {
+      @include respond(lg) {
+        width: 100%;
+        gap: 30px !important;
+        flex-direction: row !important;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+    }
+    &__bottom {
+      @include respond(lg) {
+        flex-wrap: wrap;
+        gap: 30px;
+        padding: 25px !important;
+      }
+    }
+    &__contact {
+      &-item--divider {
+        @include respond(lg) {
+          display: none;
+        }
+      }
+      @include respond(lg) {
+        flex-wrap: wrap;
+        gap: 30px;
+      }
+    }
+    &__widget--open-time {
+      @include respond(md) {
+        width: 100%;
+      }
+    }
+    &__about-content {
+      @include respond(xl) {
+        max-width: 650px;
+      }
+    }
+    &__top-content {
+      @include respond(xl) {
+        flex-wrap: wrap;
+      }
+    }
+    &__desc {
+      @include respond(xl) {
+        margin: 0;
+      }
+    }
+
+    &__link-category {
+      @include respond(xl) {
+        max-width: 100%;
+        flex-wrap: wrap;
+      }
+      @include respond(sm) {
+        gap: 30px;
+      }
+    }
+
+    &__cta {
+      border-radius: 10px 10px 0 0;
+      background: transparent;
+      padding: 0 0 40px;
+    }
+    &__bottom {
+      background-color: var(--white-color);
+      align-items: flex-end;
+    }
+    &__copyright {
+      color: var(--black-color);
+      @include respond(lg) {
+        max-width: 320px;
+        width: 100%;
+        line-height: 27px;
+      }
+      @include respond(md) {
+        width: 100%;
+      }
+    }
+    &__links {
+      color: var(--black-color);
+    }
+    &__link {
+      color: var(--black-color);
+    }
+    &__bottom {
+      border-radius: 10px 10px 0 0;
+      padding: 40px;
+    }
+    &__copyright-link {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      @include respond(lg) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+      @include respond(md) {
+        flex-wrap: wrap;
+      }
+    }
+    &__title::after {
+      background-color: var(--black-color);
+    }
+    &__logo-wapper {
+      display: flex;
+      flex-direction: column;
+      gap: 45px;
+      .footer-logo {
+        display: inline-block;
+        @include respond(md) {
+          max-width: 150px;
+        }
+      }
+      .social-btns {
+        &__wapper {
+          display: flex;
+          @include respond(lg) {
+            width: 100%;
+            justify-content: space-between;
+          }
+          .social-btn {
+            @include respond(sm) {
+              font-size: 14px;
+              padding: 4px 8px;
+              line-height: 28px;
+            }
+          }
+        }
+      }
+    }
+    &__newsletter {
+      display: flex;
+      max-width: 363px;
+      margin-bottom: 20px;
+      @include respond(xl) {
+        max-width: 100%;
+      }
+      .newsletter-input {
+        max-width: 307px;
+        width: 100%;
+        border: 1px solid var(--white-color);
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 16px;
+        padding: 20px 20px;
+        border-radius: 10px;
+        outline: none;
+        background: var(--white-color);
+        @include respond(xl) {
+          max-width: 100%;
+        }
+        &__btn {
+          max-width: 56px;
+          background-color: var(--black-color);
+          border-radius: 10px;
+          padding: 20px 21px;
+          i {
+            transform: rotate(300deg);
+            font-size: 18px;
+          }
+        }
+        &:focus {
+          border: 1px solid var(--white-color);
+          outline: none;
+        }
+      }
+    }
+  }
+}

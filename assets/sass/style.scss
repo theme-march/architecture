@@ -1,0 +1,73 @@
+/* 
+|......................................................................
+| Template Name: Madies
+| Author: Thememarch
+| Version: 1.0.0
+|--------------------------------------------------------------------------
+| TABLE OF CONTENTS:
+|--------------------------------------------------------------------------
+| 1. Basic Color Variable
+| 2. Typography
+| 3. General
+| 4. Spacing
+| 5. Preloader Content
+| 6. Buttons
+| 7. Accordion
+| 8. Pagination
+| 9. Slider
+| 10. Section Heading
+| 11. Avatar
+| 12. Custom Input
+| 13. Breadcrumbs
+| 14. Map
+| 15. Scrollup
+| 16. Video Modal
+| 17. Header
+| 18. Footer
+| 19. Hero
+| 20. Process
+| 21. About
+| 22. Team
+| 23. Pricing Plan
+| 24. Testimonial
+| 25. Comments Form
+| 26. Before After Slider
+| 27. Blog
+| 28. Service
+| 29. Doctor
+| 30. Partner
+| 31. Funfact
+| 32. Articles
+| 33. CTA
+| 34. Schedule Calendar
+| 35. Contact Us
+| 36. Book Appointment
+| 37. Error Content
+|......................................................................
+*/
+
+// @use "abstracts" as *;
+
+@use "base/typography";
+@use "base/general";
+@use "base/spacing";
+
+@use "components/preloader-content";
+@use "components/buttons";
+@use "components/accordion";
+@use "components/pagination";
+@use "components/slider";
+@use "components/section-heading";
+@use "components/avatar";
+@use "components/custom-input";
+@use "components/breadcrumbs";
+@use "components/map";
+@use "components/scrollup";
+@use "components/video-modal";
+
+@use "layout/header";
+@use "layout/footer";
+@use "layout/hero";
+@use "layout/about";
+@use "layout/funfact";
+@use "layout/architect-portfolio";

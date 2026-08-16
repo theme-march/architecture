@@ -1,0 +1,21 @@
+/*--------------------------------------------------------------
+  14. Map
+----------------------------------------------------------------*/
+
+@use "../abstracts" as *;
+
+.ak-google-map {
+  height: 530px;
+  @include respond(lg) {
+    height: 400px;
+  }
+  @include respond(md) {
+    height: 350px;
+  }
+}
+.ak-google-map iframe {
+  height: 100%;
+  width: 100%;
+  display: block;
+  border: none;
+}
