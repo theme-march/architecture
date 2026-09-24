@@ -280,14 +280,3 @@
     font-size: 42px;
   }
 }
-
-// .ak-dentist-dental {
-//   padding: 20px;
-// }
-
-.ak-dentist-dental {
-  padding: 0 20px;
-  @include respond(md) {
-    padding: 0 15px;
-  }
-}

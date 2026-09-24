@@ -2,26 +2,24 @@
   6. Buttons
 ----------------------------------------------------------------*/
 @use "../abstracts" as *;
-// Define variables based on the image colors
-$btn-orange: #df5c24; // Matches the image background
-$btn-white: #ffffff;
 
 .primary-btn {
   display: inline-flex;
   align-items: center;
-  background-color: $btn-orange;
-  color: $btn-white;
-  font-family: "Arial", sans-serif;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  font-family: var(--heading-font-family);
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
+  line-height: 22px;
   text-transform: uppercase;
   border: none;
-  padding: 5px 5px 5px 22px;
+  padding: 5px 5px 5px 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 
   .text {
-    margin-right: 25px;
+    margin-right: 20px;
     letter-spacing: 0.5px;
   }
 
@@ -29,8 +27,7 @@ $btn-white: #ffffff;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: $btn-white;
-    color: $btn-orange;
+    background-color: var(--white-color);
     width: 47px;
     height: 47px;
 
@@ -38,15 +35,91 @@ $btn-white: #ffffff;
       width: 22px;
       height: 22px;
       transition: transform 0.3s ease;
+
+      path {
+        fill: var(--primary-color);
+        transition: fill 0.3s ease;
+      }
     }
   }
 
   &:hover {
-    background-color: $btn-white;
+    background-color: var(--white-color);
+    color: var(--primary-color);
 
     .icon-wrapper {
+      background-color: var(--primary-color);
+      color: var(--white-color);
       svg {
         transform: translateX(4px);
+        path {
+          fill: var(--white-color);
+        }
+      }
+    }
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.outline-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: transparent;
+  color: var(--white-color);
+  font-family: var(--heading-font-family);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  text-transform: uppercase;
+  border: 1px solid var(--white-color);
+  padding: 5px 5px 5px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  .text {
+    margin-right: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white-color);
+    color: var(--secendary-color);
+    width: 47px;
+    height: 47px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    svg {
+      width: 22px;
+      height: 22px;
+      transition: transform 0.3s ease;
+
+      path {
+        fill: var(--primary-color);
+        transition: fill 0.3s ease;
+      }
+    }
+  }
+
+  &:hover {
+    background-color: var(--white-color);
+    color: var(--secendary-color);
+
+    .icon-wrapper {
+      background-color: var(--secendary-color);
+      color: var(--white-color);
+
+      svg {
+        transform: translateX(4px);
+
+        path {
+          fill: var(--white-color);
+        }
       }
     }
   }

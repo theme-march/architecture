@@ -1,6 +1,6 @@
 /* 
 |......................................................................
-| Template Name: Madies
+| Template Name: Akest
 | Author: Thememarch
 | Version: 1.0.0
 |--------------------------------------------------------------------------
@@ -11,38 +11,7 @@
 | 3. General
 | 4. Spacing
 | 5. Preloader Content
-| 6. Buttons
-| 7. Accordion
-| 8. Pagination
-| 9. Slider
-| 10. Section Heading
-| 11. Avatar
-| 12. Custom Input
-| 13. Breadcrumbs
-| 14. Map
-| 15. Scrollup
-| 16. Video Modal
-| 17. Header
-| 18. Footer
-| 19. Hero
-| 20. Process
-| 21. About
-| 22. Team
-| 23. Pricing Plan
-| 24. Testimonial
-| 25. Comments Form
-| 26. Before After Slider
-| 27. Blog
-| 28. Service
-| 29. Doctor
-| 30. Partner
-| 31. Funfact
-| 32. Articles
-| 33. CTA
-| 34. Schedule Calendar
-| 35. Contact Us
-| 36. Book Appointment
-| 37. Error Content
+
 |......................................................................
 */
 
@@ -71,3 +40,6 @@
 @use "layout/about";
 @use "layout/funfact";
 @use "layout/architect-portfolio";
+@use "layout/hero-interior";
+@use "layout/begin-a-brief";
+@use "layout/about-us";
