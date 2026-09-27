@@ -29,7 +29,7 @@ About Us
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 70px;
+    gap: 150px;
     flex-shrink: 0;
 
     @include respond(lg) {
@@ -60,17 +60,17 @@ About Us
   }
 
   &__right {
-    max-width: 680px;
+    max-width: 760px;
     width: 100%;
   }
 
   &__title {
     font-family: var(--heading-font-family);
-    font-size: 40px;
+    font-size: 36px;
     font-weight: 600;
-    line-height: 1.25;
+    line-height: 46px;
     color: var(--heading-color);
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 
     @include respond(lg) {
       font-size: 32px;
@@ -84,19 +84,15 @@ About Us
   &__description {
     font-family: var(--body-font-family);
     font-size: 16px;
-    font-weight: 400;
-    line-height: 1.6;
+    font-weight: 500;
+    line-height: 26px;
     color: var(--body-color);
   }
 
   &__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-
-    @include respond(xl) {
-      gap: 16px;
-    }
+    gap: 15px;
 
     @include respond(lg) {
       grid-template-columns: repeat(2, 1fr);
@@ -112,8 +108,7 @@ About Us
   &__card {
     position: relative;
     background-color: var(--white-color);
-    padding: 40px 35px 35px 35px;
-    min-height: 290px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -122,16 +117,16 @@ About Us
 
     &:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 12px 32px rgba(var(--black-color), 0.06);
     }
   }
 
   &__card-icon {
     position: absolute;
-    top: 35px;
-    right: 35px;
-    width: 48px;
-    height: 48px;
+    top: 30px;
+    right: 40px;
+    width: 60px;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,12 +140,12 @@ About Us
 
   &__card-circle {
     position: absolute;
-    bottom: -60px;
-    right: -60px;
-    width: 170px;
-    height: 170px;
+    bottom: -30px;
+    right: -30px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
-    border: 22px solid var(--smoke-bg-color-one);
+    border: 15px solid var(--smoke-bg-color-one);
     pointer-events: none;
     z-index: 1;
   }
@@ -159,11 +154,12 @@ About Us
     position: relative;
     z-index: 2;
     font-family: var(--heading-font-family);
-    font-size: 52px;
+    font-size: 50px;
     font-weight: 600;
-    line-height: 1.1;
+    line-height: 57px;
     color: var(--heading-color);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    margin-top: 220px;
 
     @include respond(lg) {
       font-size: 42px;
@@ -174,7 +170,7 @@ About Us
     position: relative;
     z-index: 2;
     font-family: var(--heading-font-family);
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     color: var(--body-color);
   }

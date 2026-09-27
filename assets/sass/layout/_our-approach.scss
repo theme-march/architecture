@@ -1,0 +1,90 @@
+/*--------------------------------------------------------------
+  Our Approach
+----------------------------------------------------------------*/
+@use "../abstracts" as *;
+
+.our-approach {
+  position: relative;
+  overflow: hidden;
+  margin: 0 15px 15px;
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+  }
+
+  &__heading {
+    margin-bottom: 140px;
+
+    .section-heading__title {
+      max-width: 800px;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 0 15px;
+
+    @include respond(lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond(md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__card {
+    background: color-mix(in srgb, var(--white-color), transparent 85%);
+    border: 1px solid color-mix(in srgb, var(--white-color), transparent 82%);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    padding: 40px;
+  }
+
+  &__card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+
+  &__card-title {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    color: var(--white-color);
+  }
+
+  &__card-slashes {
+    font-family: var(--heading-font-family);
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: var(--white-color);
+    flex-shrink: 0;
+  }
+
+  &__card-slash--muted {
+    opacity: 0.2;
+  }
+
+  &__card-desc {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 26px;
+    color: var(--white-color);
+  }
+}

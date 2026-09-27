@@ -1,0 +1,129 @@
+/*--------------------------------------------------------------
+  Service
+----------------------------------------------------------------*/
+@use "../abstracts" as *;
+
+.service {
+  background-color: var(--smoke-bg-color-one);
+  margin: 0 15px 15px 15px;
+}
+
+.service__item {
+  border-top: 1px solid var(--border-color);
+
+  &:last-child {
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  &--active {
+    background-color: var(--white-color);
+    border-top: none;
+    border-bottom: none;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    + .service__item {
+      border-top: none;
+    }
+
+    .service__item-header {
+      padding: 40px 40px 30px 40px;
+    }
+    .service__item-body {
+      padding: 10px 40px 40px 130px;
+    }
+  }
+}
+
+.service__item-header {
+  display: flex;
+  align-items: center;
+  gap: 65px;
+  padding: 40px 40px 30px 60px;
+  cursor: pointer;
+}
+
+.service__item-number {
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--body-color);
+  flex-shrink: 0;
+}
+
+.service__item-title {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 36px;
+  flex: 1;
+}
+
+.service__item-icon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+.service__item-icon--open  { display: block; }
+.service__item-icon--close { display: none; }
+
+.service__item--active .service__item-icon--open  { display: none; }
+.service__item--active .service__item-icon--close { display: block; }
+
+.service__item-body {
+  display: none;
+  padding-bottom: 30px;
+}
+
+.service__item--active .service__item-body {
+  display: flex;
+  gap: 80px;
+
+  @include respond(md) {
+    flex-direction: column;
+  }
+}
+
+.service__item-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.service__item-desc {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  color: var(--body-color);
+}
+
+.service__item-tags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.service__item-tag {
+  font-family: var(--heading-font-family);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--heading-color);
+  border: 1px solid var(--border-color);
+  padding: 10px 16px;
+}
+
+.service__item-image {
+  width: 100%;
+  max-width: 470px;
+  height: auto;
+  object-fit: cover;
+  flex-shrink: 0;
+
+  @include respond(md) {
+    width: 100%;
+    height: 220px;
+  }
+}

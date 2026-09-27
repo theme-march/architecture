@@ -18,16 +18,16 @@
     font-size: 18px;
     font-weight: 600;
     text-transform: uppercase;
-    position: relative;
-    &::after {
-      position: absolute;
-      content: "";
-      width: 35px;
-      height: 2px;
-      background: var(--white-color);
-      left: 104px;
-      top: 50%;
-    }
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  &__tag-line {
+    display: inline-block;
+    width: 35px;
+    height: 2px;
+    background: var(--white-color);
+    flex-shrink: 0;
   }
   &__content-column {
     max-width: 751px;
