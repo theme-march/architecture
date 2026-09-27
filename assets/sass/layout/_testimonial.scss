@@ -1,0 +1,179 @@
+/*--------------------------------------------------------------
+  Testimonial
+----------------------------------------------------------------*/
+@use "../abstracts" as *;
+
+.testimonial {
+  background-color: var(--smoke-bg-color-one);
+  margin: 0 15px 15px 15px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 50px;
+
+    @include respond(lg) {
+      gap: 40px;
+    }
+  }
+
+  &__heading-wrap {
+    flex: 1;
+    
+    .section-heading {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      margin-bottom: 0;
+    }
+  }
+
+  &__content {
+    flex: 1.2;
+    margin-top: 50px;
+  }
+
+  &__quote {
+    font-family: var(--heading-font-family);
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 36px;
+    color: var(--heading-color);
+    margin-bottom: 30px;
+
+    @include respond(md) {
+      font-size: 20px;
+      line-height: 30px;
+    }
+  }
+
+  &__author-wrap {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  &__author-info {
+    flex-shrink: 0;
+  }
+
+  &__author-name {
+    font-family: var(--heading-font-family);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    color: var(--heading-color);
+    margin-bottom: 5px;
+  }
+
+  &__author-role {
+    font-family: var(--body-font-family);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--body-color);
+  }
+
+  &__divider-line {
+    flex: 1;
+    height: 1px;
+    background-color: var(--border-color);
+  }
+
+  &__dots-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    background-color: var(--white-color);
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+
+    span {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background-color: var(--body-color);
+      border-radius: 1px;
+      transition: all 0.3s ease;
+
+      &.testimonial__dot--active {
+        width: 10px;
+        height: 10px;
+        background-color: var(--heading-color);
+      }
+    }
+  }
+
+  &__clients-row-1 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 15px;
+
+    @include respond(lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond(sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__clients-row-2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+
+    .testimonial__client-card:first-child {
+      grid-column-start: 2;
+
+      @include respond(lg) {
+        grid-column-start: auto;
+      }
+    }
+
+    @include respond(lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond(sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__client-card {
+    background-color: var(--white-color);
+    min-height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    text-align: center;
+
+    &--text {
+      background-color: transparent;
+      padding: 20px;
+    }
+  }
+
+  &__client-text {
+    font-family: var(--heading-font-family);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    line-height: 26px;
+    color: var(--heading-color);
+    text-transform: uppercase;
+  }
+
+  &__client-logo {
+    max-width: 160px;
+    max-height: 50px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+}
