@@ -4,74 +4,22 @@
   background-color: var(--smoke-bg-color-one);
   margin: 0 15px 15px;
 
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 30px;
-
-    @include respond(md) {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 20px;
-    }
-  }
-
-  &__header-left {
-    .section-heading__subtitle {
-      margin-bottom: 12px;
-    }
-  }
-
-  &__title {
-    font-size: 50px;
-    font-weight: 500;
-    line-height: 57px;
-    color: var(--heading-color);
-
-    @include respond(lg) {
-      font-size: 42px;
-      line-height: 50px;
-    }
-
-    @include respond(md) {
-      font-size: 36px;
-      line-height: 44px;
-    }
-
-    @include respond(sm) {
-      font-size: 28px;
-      line-height: 36px;
-    }
-  }
-
   &__grid {
     display: grid;
     grid-template-columns: 1fr 1.35fr;
-    gap: 30px;
+    gap: 15px;
 
     @include respond(lg) {
       grid-template-columns: 1fr;
-      gap: 24px;
     }
   }
 
-  // Left Column - Featured Card
   &__featured-card {
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    min-height: 540px;
-
-    @include respond(lg) {
-      min-height: 460px;
-    }
-
-    @include respond(sm) {
-      min-height: 380px;
-    }
   }
 
   &__featured-img {
@@ -103,49 +51,45 @@
   &__featured-content {
     position: relative;
     z-index: 3;
-    padding: 40px;
+    padding: 30px 80px 20px 30px;
 
-    @include respond(sm) {
-      padding: 24px 20px;
+    @include respond(md) {
+      padding: 20px 50px 10px 20px;
     }
 
     .blog__author {
-      color: color-mix(in srgb, var(--white-color), transparent 30%);
-      margin-bottom: 12px;
+      color: var(--white-color);
+      margin-bottom: 10px;
+      font-size: 18px;
+      font-weight: 500;
     }
 
     .blog__meta {
-      border-top-color: color-mix(in srgb, var(--white-color), transparent 75%);
+      border-top-color: color-mix(in srgb, var(--white-color), transparent 80%);
     }
 
     .blog__date {
-      color: color-mix(in srgb, var(--white-color), transparent 30%);
+      color: var(--white-color);
     }
   }
 
   &__featured-title {
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 600;
     line-height: 36px;
     color: var(--white-color);
-    margin-bottom: 24px;
+    margin-bottom: 10px;
 
-    @include respond(sm) {
+    @include respond(md) {
       font-size: 22px;
       line-height: 30px;
-      margin-bottom: 18px;
     }
   }
 
-  // Right Column - Stacked Cards
   &__list {
     display: flex;
     flex-direction: column;
-    gap: 30px;
-
-    @include respond(lg) {
-      gap: 24px;
-    }
+    gap: 15px;
   }
 
   &__card {
@@ -160,7 +104,7 @@
   }
 
   &__card-img-wrap {
-    flex: 0 0 45%;
+    flex: 0 0 48%;
     overflow: hidden;
     position: relative;
 
@@ -184,7 +128,7 @@
 
   &__card-content {
     flex: 1;
-    padding: 35px 40px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -200,17 +144,16 @@
 
   &__author {
     display: block;
-    font-family: var(--body-font-family);
-    font-size: 15px;
-    font-weight: 400;
+    font-size: 18px;
+    font-weight: 500;
     color: var(--body-color);
-    margin-bottom: 12px;
+    margin-bottom: 20px;
   }
 
   &__card-title {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 600;
-    line-height: 32px;
+    line-height: 36px;
     color: var(--heading-color);
 
     @include respond(md) {
@@ -219,26 +162,23 @@
     }
   }
 
-  // Shared Meta row (Category + Date)
   &__meta {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 18px;
+    padding-top: 20px;
     border-top: 1px solid var(--border-color);
   }
 
   &__category {
     font-family: var(--body-font-family);
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 500;
     color: var(--primary-color);
   }
 
   &__date {
-    font-family: var(--body-font-family);
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--body-color);
+    font-size: 16px;
+    font-weight: 500;
   }
 }

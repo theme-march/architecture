@@ -1,0 +1,139 @@
+/*--------------------------------------------------------------
+  Vision To Structure
+----------------------------------------------------------------*/
+
+@use "../abstracts" as *;
+
+.vision-to-structure {
+  .section-heading__subtitle{
+    margin-bottom: 0;
+  }
+  .section-heading__subtitle-text {
+    color: var(--heading-color);
+  }
+
+  .section-heading__subtitle-line {
+    background-color: var(--heading-color);
+  }
+
+  &__inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__composition {
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  &__text-stack {
+    display: flex;
+    gap: 60px;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-width: 0;
+
+    .vision-to-structure__text-line:nth-child(1) {
+      padding-left: 100px;
+    }
+
+    .vision-to-structure__text-line:nth-child(2) {
+      padding-left: 240px;
+    }
+
+    .vision-to-structure__text-line:nth-child(3) {
+      padding-left: 0;
+    }
+
+    .vision-to-structure__text-line:nth-child(4) {
+      padding-left: 345px;
+    }
+  }
+
+  &__text-line {
+    display: inline-block;
+    font-family: var(--heading-font-family);
+    font-size: 120px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100px;
+    letter-spacing: -1.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    position: relative;
+    cursor: pointer;
+    transition: color 0.3s ease, z-index 0.3s ease;
+
+    &--normal {
+      color: color-mix(in srgb, var(--heading-color), transparent 85%);
+      z-index: 0;
+
+      &:hover {
+        color: var(--heading-color);
+        z-index: 3;
+      }
+    }
+
+    &--active {
+      color: var(--heading-color);
+      z-index: 3;
+      &:hover {
+        z-index: 0;
+      }
+    }
+  }
+
+  &__image-wrap {
+    flex: 0 0 420px;
+    max-width: 420px;
+    align-self: flex-start;
+    z-index: 2;
+    &:hover {
+        z-index: 10;
+      }
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  @include respond(xl) {
+    &__image-wrap {
+      flex: 0 0 380px;
+      max-width: 380px;
+    }
+  }
+
+  @include respond(lg) {
+    &__image-wrap {
+      flex: 0 0 300px;
+      max-width: 300px;
+    }
+  }
+
+  @include respond(md) {
+    &__composition {
+      flex-direction: column;
+    }
+
+    &__image-wrap {
+      flex: 0 0 auto;
+      max-width: 100%;
+      width: 100%;
+      margin-top: 32px;
+    }
+  }
+
+  @include respond(sm) {
+    &__text-line {
+      font-size: clamp(32px, 8vw, 48px);
+    }
+  }
+}
