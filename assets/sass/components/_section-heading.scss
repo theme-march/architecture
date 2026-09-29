@@ -82,4 +82,18 @@
       color: var(--white-color);
     }
   }
+
+  &--dark {
+    .section-heading__subtitle-line {
+      background-color: var(--heading-color);
+    }
+
+    .section-heading__subtitle-text {
+      color: var(--heading-color);
+    }
+
+    .section-heading__title {
+      color: var(--heading-color);
+    }
+  }
 }
