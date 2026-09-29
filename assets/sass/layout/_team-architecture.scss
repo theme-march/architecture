@@ -1,0 +1,218 @@
+@use "../abstracts" as *;
+
+.team-architecture {
+  .section-heading {
+    &__title {
+      font-weight: 600;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+
+    @include respond(lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond(sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+    position: relative;
+    border-right: 1px solid var(--border-color);
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+      border-right: none;
+    }
+
+    @include respond(lg) {
+      padding: 40px 20px;
+
+      &:first-child {
+        padding-left: 20px;
+      }
+
+      &:last-child {
+        padding-right: 20px;
+      }
+
+      &:nth-child(2) {
+        border-right: none;
+      }
+
+      &:nth-child(3) {
+        border-top: 1px solid var(--border-color);
+      }
+
+      &:nth-child(4) {
+        border-top: 1px solid var(--border-color);
+        border-right: none;
+      }
+    }
+
+    @include respond(sm) {
+      padding: 40px 15px;
+      border-right: none;
+
+      &:first-child {
+        padding-left: 15px;
+      }
+
+      &:last-child {
+        padding-right: 15px;
+      }
+
+      &:not(:first-child) {
+        border-top: 1px solid var(--border-color);
+      }
+    }
+  }
+
+  &__image-wrap {
+    width: 255px;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+
+    @include respond(md) {
+      width: 200px;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  &__name {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 32px;
+    margin-bottom: 10px;
+  }
+
+  &__designation {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 26px;
+    color: var(--body-color);
+    margin-bottom: 20px;
+  }
+
+  &__action {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+  }
+
+  &__toggle-btn {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--smoke-bg-color-one);
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+
+    &:hover {
+      background-color: var(--primary-color);
+
+      .team-architecture__toggle-icon {
+        filter: brightness(0) invert(1);
+      }
+    }
+  }
+
+  &__toggle-icon {
+    width: 10px;
+    height: 10px;
+    display: block;
+    transition: filter 0.3s ease;
+  }
+
+  &__socials {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.85);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.85);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+  }
+
+  &__social-link {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--smoke-bg-color-one);
+    color: var(--primary-color);
+    font-size: 13px;
+    border-radius: 2px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+
+    &:hover {
+      background-color: var(--primary-color);
+      color: var(--white-color);
+      transform: translateY(-2px);
+    }
+
+    &--active {
+      background-color: var(--primary-color);
+      color: var(--white-color);
+    }
+  }
+
+  /* Active state when plus icon is clicked */
+  &__item.is-active {
+    .team-architecture__toggle-btn {
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.5);
+      pointer-events: none;
+    }
+
+    .team-architecture__socials {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+      pointer-events: auto;
+    }
+  }
+}

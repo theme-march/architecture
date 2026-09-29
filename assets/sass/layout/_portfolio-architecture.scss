@@ -1,22 +1,10 @@
-﻿@use "../abstracts" as *;
+@use "../abstracts" as *;
 
 .portfolio-architecture {
-  padding: 80px 30px;
-
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 50px;
-    gap: 30px;
-  }
-
-  &__header-left {
-    max-width: 600px;
-  }
-
-  &__header-right {
-    flex-shrink: 0;
+  padding: 0 30px;
+  
+  .section-heading__title {
+    font-weight: 600;
   }
 
   &__list {
@@ -25,9 +13,11 @@
   }
 
   &__item {
-    border-top: 1px solid var(--border-color);
-    padding-top: 28px;
-    margin-bottom: 50px;
+    padding: 40px 0 0;
+
+    &:first-child {
+      border-top: 1px solid var(--border-color);
+    }
 
     &:last-child {
       margin-bottom: 0;
@@ -38,27 +28,29 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 22px;
+    margin-bottom: 40px;
     gap: 20px;
   }
 
   &__item-title {
-    margin-bottom: 0;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 36px;
+    padding-top: 10px;
   }
 
   &__item-tags {
     display: flex;
     align-items: center;
-    gap: 24px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    gap: 10px;
   }
 
   &__item-tag {
-    font-size: 14px;
-    color: var(--body-color);
-    line-height: 1.5;
+    padding: 14px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    border: 1px solid var(--border-color);
+    color: var(--heading-color);
   }
 
   &__image-wrap {
@@ -98,23 +90,40 @@
   }
 
   &__item-meta {
-    text-align: center;
-    font-size: 13px;
-    color: var(--body-color);
-    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
     margin-bottom: 0;
-    letter-spacing: 0.3px;
+  }
+
+  &__item-meta-line {
+    flex: 1;
+    height: 1px;
+    background-color: var(--border-color);
+  }
+
+  &__item-meta-text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 24px;
+    white-space: nowrap;
+  }
+
+  &__item-meta-label {
+    font-weight: 500;
+    color: var(--heading-color);
+    margin-right: 6px;
+  }
+
+  &__item-meta-value {
+    color: var(--body-color);
+    font-weight: 500;
   }
 
   @include respond(md) {
     padding: 60px 20px;
-
-    &__header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 24px;
-      margin-bottom: 40px;
-    }
 
     &__item {
       padding-top: 20px;
@@ -135,6 +144,16 @@
 
     &__image {
       height: 380px;
+    }
+
+    &__item-meta {
+      gap: 15px;
+    }
+
+    &__item-meta-text {
+      white-space: normal;
+      text-align: center;
+      font-size: 14px;
     }
   }
 
