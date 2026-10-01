@@ -4,7 +4,6 @@
   background-color: var(--smoke-bg-color-one);
 
   .section-heading {
-    margin-bottom: 50px;
 
     &__title {
       font-weight: 600;
@@ -14,18 +13,15 @@
   &__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    column-gap: 20px;
-    row-gap: 40px;
+    gap: 30px;
     align-items: start;
 
     @include respond(lg) {
       grid-template-columns: repeat(2, 1fr);
-      row-gap: 30px;
     }
 
     @include respond(sm) {
       grid-template-columns: 1fr;
-      row-gap: 30px;
     }
   }
 
@@ -37,11 +33,7 @@
   &__img-wrap {
     width: 100%;
     overflow: hidden;
-    aspect-ratio: 4 / 3;
 
-    &--featured {
-      aspect-ratio: 3 / 4;
-    }
   }
 
   &__img {
@@ -57,19 +49,20 @@
   }
 
   &__content {
-    padding-top: 18px;
+    padding-top: 20px;
   }
 
   &__meta {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
+    gap: 15px;
+    margin-bottom: 5px;
   }
 
   &__category {
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 26px;
     color: var(--body-color);
   }
 
@@ -80,28 +73,27 @@
   }
 
   &__date {
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 26px;
     color: var(--body-color);
   }
 
   &__title {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 600;
-    line-height: 1.35;
+    line-height: 32px;
     color: var(--heading-color);
-    margin: 0;
-
     a {
+      font-size: inherit;
+      line-height: inherit;
       color: inherit;
       text-decoration: none;
       transition: color 0.3s ease;
-
       &:hover {
         color: var(--primary-color);
       }
     }
-
     @include respond(md) {
       font-size: 18px;
     }

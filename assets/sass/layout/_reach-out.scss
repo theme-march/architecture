@@ -1,0 +1,107 @@
+@use "../abstracts" as *;
+
+.reach-out {
+  background-color: var(--smoke-bg-color-one);
+  position: relative;
+
+  &__heading {
+    margin-bottom: 40px;
+    align-items: flex-end;
+
+    .section-heading__title {
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 46px;
+    }
+
+    @include respond(lg) {
+      align-items: flex-start;
+      gap: 30px;
+    }
+  }
+
+  &__contact-card {
+    position: relative;
+    z-index: 2;
+    background-color: var(--white-color);
+    flex-shrink: 0;
+    margin-bottom: -299px;
+    box-shadow: 0px 10px 40px color-mix(in srgb, var(--black-color), transparent 92%);
+
+    @include respond(lg) {
+      margin-bottom: -100px;
+    }
+
+    @include respond(md) {
+      margin-bottom: 0;
+      width: 100%;
+    }
+  }
+
+  &__contact-btn {
+    width: 100%;
+    justify-content: space-between;
+    text-decoration: none;
+    padding: 5px 20px 5px 40px;
+    font-weight: 500;
+
+    .icon-wrapper {
+      background-color: transparent;
+    }
+  }
+
+  &__arrow-icon {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  &__contact-list {
+    list-style: none;
+    padding: 40px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__contact-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    background-color: color-mix(in srgb, var(--primary-color), transparent 90%);
+    border-radius: 4px;
+    color: var(--primary-color);
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  &__contact-text {
+    font-size: 16px;
+    line-height: 26px;
+    color: var(--body-color);
+    font-weight: 500;
+  }
+
+  &__img-wrap {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  &__img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+}
