@@ -1,0 +1,230 @@
+@use "../abstracts" as *;
+
+/*--------------------------------------------------------------
+  Service Construction Section
+----------------------------------------------------------------*/
+.service-construction {
+  display: flex;
+  align-items: stretch;
+  background-color: var(--title-color);
+  position: relative;
+
+  @include respond(lg) {
+    flex-direction: column;
+  }
+
+  &__watermark-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 80px;
+    flex-shrink: 0;
+    overflow: hidden;
+
+    @include respond(lg) {
+      width: 100%;
+      height: 60px;
+    }
+  }
+
+  &__watermark {
+    font-family: var(--body-font-family);
+    color: var(--white-color);
+    text-transform: uppercase;
+    font-size: 130px;
+    font-weight: 700;
+    opacity: 0.1;
+    white-space: nowrap;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    user-select: none;
+    line-height: 0.8;
+
+    @include respond(lg) {
+      writing-mode: horizontal-tb;
+      transform: none;
+      font-size: 60px;
+    }
+  }
+
+  &__divider {
+    display: block;
+    width: 1px;
+    align-self: stretch;
+    background-color: color-mix(in srgb, var(--white-color), transparent 80%);
+    flex-shrink: 0;
+
+    @include respond(lg) {
+      width: 100%;
+      height: 1px;
+      align-self: auto;
+    }
+  }
+
+  &__container {
+    flex: 1;
+    padding-left: 90px;
+    padding-right: 350px;
+
+    @include respond(xxl) {
+      padding-right: 180px;
+      padding-left: 60px;
+    }
+
+    @include respond(xl) {
+      padding-right: 80px;
+      padding-left: 40px;
+    }
+
+    @include respond(lg) {
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+  }
+
+  &__row {
+    display: flex;
+    gap: 30px;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100%;
+
+    @include respond(lg) {
+      flex-direction: column;
+    }
+  }
+
+  &__content-col {
+    flex: 1;
+    align-self: stretch;
+    padding-top: 110px;
+    padding-bottom: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @include respond(lg) {
+      padding-top: 60px;
+      padding-bottom: 40px;
+      gap: 40px;
+    }
+  }
+
+  &__number {
+    display: block;
+    font-size: 100px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--white-color);
+    margin-bottom: 50px;
+    opacity: 0.1;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    list-style: none;
+  }
+
+  &__list-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    color: color-mix(in srgb, var(--white-color), transparent 80%);
+    font-family: var(--heading-font-family);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+
+    &--active {
+      color: var(--white-color);
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+    }
+  }
+
+  &__list-dash {
+    display: inline-block;
+    width: 9px;
+    height: 2px;
+    background-color: color-mix(in srgb, var(--white-color), transparent 80%);
+    flex-shrink: 0;
+
+    &--active {
+      width: 19px;
+      height: 2px;
+      background-color: var(--white-color);
+    }
+  }
+
+  &__list-label {
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  &__title {
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 36px;
+    color: var(--white-color);
+    margin-bottom: 20px;
+  }
+
+  &__desc {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 26px;
+    color: var(--white-color);
+    margin-bottom: 30px;
+    max-width: 535px;
+  }
+
+  &__images-col {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    flex-shrink: 0;
+    background-color: var(--black-color);
+    padding: 30px 30px 0 30px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    @include respond(lg) {
+      max-width: 100%;
+      padding: 30px 20px 0 20px;
+    }
+  }
+
+  &__img-track {
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+
+    &:first-child {
+      height: auto;
+    }
+
+    &:last-child {
+      height: 100%;
+      max-height: 250px;
+      object-position: top;
+
+      @include respond(md) {
+        max-height: 180px;
+      }
+    }
+  }
+}
