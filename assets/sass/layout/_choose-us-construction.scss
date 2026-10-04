@@ -1,0 +1,248 @@
+@use "../abstracts" as *;
+
+/*--------------------------------------------------------------
+  Choose Us Construction Section
+----------------------------------------------------------------*/
+.choose-us-construction {
+  position: relative;
+  background-color: var(--heading-color-two);
+  overflow: visible;
+
+  &__bg-element {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+
+    @include respond(lg) {
+      display: none;
+    }
+  }
+
+  &__image-side {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 44%;
+    height: 100%;
+    z-index: 2;
+
+    @include respond(lg) {
+      position: relative;
+      width: 100%;
+      height: 450px;
+      margin-top: 40px;
+    }
+
+    @include respond(sm) {
+      height: 320px;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &__circle-badge {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+
+    @include respond(lg) {
+      left: 50%;
+      top: 0;
+      transform: translate(-50%, -50%);
+      width: 110px;
+      height: 110px;
+    }
+  }
+
+  &__circle-svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: rotate 18s linear infinite;
+  }
+
+  &__circle-text {
+    fill: var(--white-color);
+    font-family: var(--heading-font-family);
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+  }
+
+  &__circle-logo {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--white-color);
+    padding: 36px 30px;
+  }
+
+  &__circle-icon {
+    width: 100%;
+    max-width: 60px;
+    height: auto;
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 60px;
+  }
+
+  &__content {
+    width: 43%;
+
+    @include respond(lg) {
+      width: 100%;
+    }
+  }
+
+  &__heading {
+    margin-bottom: 50px;
+
+    .section-heading__title {
+      color: var(--white-color);
+    }
+  }
+
+  &__features {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  &__feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+
+    &--active {
+      .choose-us-construction__feature-bar {
+        background-color: var(--primary-color);
+      }
+    }
+  }
+
+  &__feature-bar {
+    display: block;
+    width: 3px;
+    align-self: stretch;
+    background-color: color-mix(in srgb, var(--white-color), transparent 85%);
+    flex-shrink: 0;
+    border-radius: 2px;
+  }
+
+  &__feature-body {
+    flex: 1;
+  }
+
+  &__feature-title {
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 36px;
+    color: var(--white-color);
+    margin-bottom: 10px;
+  }
+
+  &__feature-desc {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 26px;
+    color: var(--white-color);
+    margin: 0;
+  }
+
+  &__cta-wrap {
+    position: relative;
+    z-index: 5;
+    transform: translateY(50%);
+    
+  }
+
+  &__cta {
+    position: relative;
+    overflow: hidden;
+    padding: 50px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    @include respond(md) {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 30px;
+      gap: 20px;
+    }
+  }
+
+  &__cta-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  &__cta-title {
+    position: relative;
+    z-index: 1;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 46px;
+    color: var(--white-color);
+    margin: 0;
+
+    @include respond(md) {
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+
+  &__cta-btn {
+    position: relative;
+    z-index: 1;
+    background-color: var(--white-color);
+    color: var(--heading-color);
+    flex-shrink: 0;
+
+    .icon-wrapper {
+      background-color: var(--heading-color);
+      color: var(--white-color);
+
+      svg path {
+        stroke: var(--white-color);
+      }
+    }
+
+    &:hover {
+      background-color: var(--heading-color);
+      color: var(--white-color);
+
+      .icon-wrapper {
+        background-color: var(--primary-color);
+      }
+    }
+  }
+}

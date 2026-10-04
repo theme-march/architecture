@@ -1,0 +1,212 @@
+@use "../abstracts" as *;
+
+/*--------------------------------------------------------------
+  Portfolio Construction Section
+----------------------------------------------------------------*/
+.portfolio-construction {
+  padding: 0 120px;
+  background-color: var(--white-color);
+
+  @include respond(xxl) {
+    padding: 0 60px;
+  }
+
+  @include respond(xl) {
+    padding: 0 40px;
+  }
+
+  @include respond(lg) {
+    padding: 0 20px;
+  }
+
+  @include respond(md) {
+    padding: 0 15px;
+  }
+
+  &__inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+
+    @include respond(lg) {
+      flex-wrap: wrap;
+      align-items: stretch;
+    }
+  }
+
+  &__group--1 {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr 1.1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    flex: 3;
+    align-self: flex-end;
+
+    @include respond(lg) {
+      flex: 1 1 100%;
+      align-self: auto;
+    }
+
+    @include respond(sm) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__group--2 {
+    flex: 2;
+    align-self: stretch;
+    display: flex;
+
+    @include respond(lg) {
+      flex: 1 1 calc(50% - 10px);
+      align-self: auto;
+    }
+
+    @include respond(sm) {
+      flex: 1 1 100%;
+    }
+  }
+
+  &__group--3 {
+    flex: 2.45;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    align-self: stretch;
+
+    @include respond(lg) {
+      flex: 1 1 calc(50% - 10px);
+      align-self: auto;
+    }
+
+    @include respond(sm) {
+      flex: 1 1 100%;
+    }
+  }
+
+  &__group--4 {
+    flex: 1.1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-self: flex-end;
+
+    @include respond(lg) {
+      flex: 1 1 100%;
+      flex-direction: row;
+      justify-content: center;
+      align-self: auto;
+    }
+
+    @include respond(sm) {
+      flex-direction: column;
+    }
+  }
+
+  &__item {
+    overflow: hidden;
+
+    &--1 {
+      grid-column: 1 / 3;
+      grid-row: 1;
+      aspect-ratio: 342 / 334;
+
+      @include respond(sm) {
+        grid-column: 1 / 3;
+      }
+    }
+
+    &--2 {
+      grid-column: 2;
+      grid-row: 2;
+      aspect-ratio: 220 / 212;
+
+      @include respond(sm) {
+        grid-column: 1;
+      }
+    }
+
+    &--3 {
+      grid-column: 3;
+      grid-row: 1;
+      align-self: flex-end;
+      aspect-ratio: 220 / 212;
+
+      @include respond(sm) {
+        grid-column: 2;
+        grid-row: 2;
+      }
+    }
+
+    &--4 {
+      grid-column: 3;
+      grid-row: 2;
+      aspect-ratio: 220 / 212;
+
+      @include respond(sm) {
+        grid-column: 1 / 3;
+        grid-row: 3;
+      }
+    }
+
+    &--5 {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 404 / 650;
+
+      @include respond(lg) {
+        aspect-ratio: auto;
+        min-height: 420px;
+      }
+    }
+
+    &--6 {
+      grid-column: 1;
+      grid-row: 1;
+      aspect-ratio: 220 / 212;
+    }
+
+    &--7 {
+      grid-column: 2;
+      grid-row: 1;
+      aspect-ratio: 220 / 212;
+    }
+
+    &--8 {
+      grid-column: 1 / 3;
+      grid-row: 2;
+      aspect-ratio: 450 / 432;
+    }
+
+    &--9 {
+      aspect-ratio: 220 / 250;
+
+      @include respond(lg) {
+        flex: 1;
+      }
+    }
+
+    &--10 {
+      aspect-ratio: 220 / 250;
+
+      @include respond(lg) {
+        flex: 1;
+      }
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+
+    &:hover {
+      transform: scale(1.04);
+    }
+  }
+}
