@@ -1,0 +1,149 @@
+@use "../abstracts" as *;
+
+/*--------------------------------------------------------------
+  Common Banner Component
+----------------------------------------------------------------*/
+
+.common-banner {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: 640px;
+
+  @include respond(xl) {
+    min-height: 520px;
+  }
+
+  @include respond(lg) {
+    min-height: 460px;
+  }
+
+  @include respond(md) {
+    min-height: 400px;
+  }
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 0.91;
+    background: linear-gradient(
+      90deg,
+      #020202 6.61%,
+      rgba(18, 18, 18, 0.9) 35.05%,
+      rgba(0, 0, 0, 0.2) 91.09%
+    );
+    z-index: 2;
+  }
+
+  &__element {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 4;
+    width: 100%;
+    padding-left: 100px;
+    padding-right: 30px;
+    transform: translateY(70px);
+
+    @include respond(xxl) {
+      padding-left: 50px;
+    }
+
+    @include respond(lg) {
+      padding-left: 30px;
+      transform: translateY(50px);
+    }
+
+    @include respond(md) {
+      padding-left: 20px;
+      padding-right: 20px;
+      transform: translateY(20px);
+    }
+  }
+
+  &__content {
+    max-width: 880px;
+  }
+
+  &__title {
+    color: var(--white-color);
+    font-size: 50px;
+    font-weight: 600;
+    line-height: 57px;
+
+    @include respond(xl) {
+      font-size: 48px;
+    }
+
+    @include respond(lg) {
+      font-size: 40px;
+    }
+
+    @include respond(md) {
+      font-size: 32px;
+    }
+
+    @include respond(sm) {
+      font-size: 26px;
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+  Common Breadcrumb
+----------------------------------------------------------------*/
+
+.common-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  font-family: var(--heading-font-family);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  @include respond(sm) {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  &__link {
+    color: var(--white-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+
+  &__separator {
+    color: var(--primary-color);
+    font-weight: 700;
+  }
+
+  &__current {
+    color: var(--primary-color);
+  }
+}

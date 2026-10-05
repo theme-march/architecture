@@ -1,0 +1,246 @@
+@use "../abstracts" as *;
+
+/*--------------------------------------------------------------
+  Pricing Construction Section
+----------------------------------------------------------------*/
+
+.pricing-construction {
+  position: relative;
+  background-color: var(--white-color);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+
+    @include respond(lg) {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+      margin-inline: auto;
+      gap: 50px;
+    }
+  }
+
+  &__card {
+    background-color: var(--smoke-bg-color-one);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-top: 0;
+  }
+
+  &__plan-tab {
+    background-color: var(--white-color);
+    padding: 16px 48px;
+    text-align: center;
+    align-self: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+  }
+
+  &__plan-name {
+    color: var(--primary-color);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+    text-transform: capitalize;
+  }
+
+  &__price-area {
+    padding: 36px 40px 24px;
+    text-align: center;
+
+    @include respond(sm) {
+      padding: 28px 20px 20px;
+    }
+  }
+
+  &__period {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--body-color);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  &__price {
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  &__currency {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--heading-color);
+    margin-right: 2px;
+    margin-top: 8px;
+    line-height: 1;
+  }
+
+  &__amount {
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--heading-color);
+    line-height: 1;
+
+    @include respond(md) {
+      font-size: 52px;
+    }
+  }
+
+  &__features {
+    list-style: none;
+    padding: 0 40px;
+    margin: 0 0 36px;
+    flex-grow: 1;
+
+    @include respond(sm) {
+      padding: 0 20px;
+      margin-bottom: 28px;
+    }
+  }
+
+  &__feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &--inactive {
+      .pricing-construction__check {
+        filter: grayscale(1) opacity(0.7);
+      }
+      .pricing-construction__feature-text {
+        color: var(--body-color);
+      }
+    }
+  }
+
+  &__check {
+    width: 18px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  &__feature-text {
+    font-size: 15px;
+    color: var(--body-color);
+    line-height: 1.5;
+  }
+
+  &__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px 32px;
+
+    @include respond(sm) {
+      padding: 0 20px 24px;
+    }
+  }
+
+  &__save {
+    font-size: 18px;
+    color: var(--heading-color);
+    margin: 0;
+  }
+
+  &__save-label {
+    color: var(--primary-color);
+    font-weight: 600;
+  }
+
+  &__save-amount {
+    font-weight: 700;
+    color: var(--heading-color);
+  }
+
+  &__stars {
+    color: var(--primary-color);
+    font-size: 16px;
+    line-height: 1;
+    display: flex;
+    gap: 4px;
+  }
+
+  &__star {
+    display: inline-block;
+  }
+
+  &__cta {
+    background-color: var(--title-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 30px 20px 24px;
+    margin-top: auto;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+
+    &--featured {
+      background-color: var(--primary-color);
+
+      .pricing-construction__cta-icon {
+        background-color: var(--primary-color);
+        border: 4px solid var(--white-color);
+      }
+    }
+  }
+
+  &__cta-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: var(--title-color);
+    border: 4px solid var(--white-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -26px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-sizing: content-box;
+    transition: transform 0.3s ease;
+
+    img {
+      width: 20px;
+      height: 16px;
+      display: block;
+    }
+  }
+
+  &__cta-label {
+    color: var(--white-color);
+    font-family: var(--heading-font-family);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: block;
+    margin-top: 10px;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      color: var(--white-color);
+    }
+  }
+
+  &__cta:hover {
+    .pricing-construction__cta-icon {
+      transform: translateX(-50%) scale(1.08);
+    }
+  }
+}

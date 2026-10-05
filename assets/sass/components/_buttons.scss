@@ -76,7 +76,9 @@
     color: var(--secendary-color);
     width: 47px;
     height: 47px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
 
     svg {
       width: 22px;
@@ -131,7 +133,10 @@
   cursor: pointer;
   border: none;
   text-decoration: none;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
 
   &:hover {
     background-color: var(--primary-color);
@@ -202,3 +207,58 @@
     transform: scale(0.98);
   }
 }
+
+.play-story-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--white-color);
+  padding: 10px 24px 10px 10px;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    flex-shrink: 0;
+    margin-right: 18px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+
+    svg {
+      width: 16px;
+      height: 18px;
+      margin-left: 3px; // Optical balance for play triangle
+      fill: var(--white-color);
+    }
+  }
+
+  &__label {
+    font-family: var(--heading-font-family);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    color: var(--title-color);
+    letter-spacing: -0.2px;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px color-mix(in srgb, var(--black-color), transparent 85%);
+
+    .play-story-btn__icon {
+      transform: scale(1.06);
+    }
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+

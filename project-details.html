@@ -20,12 +20,324 @@
 
 <body>
 
+    <!-- Start Topbar -->
+    <div class="construction-topbar" id="constructionTopbar">
+      <div class="construction-topbar__inner">
+        <div class="construction-topbar__left">
+          <span class="construction-topbar__item">
+            <i class="fa-solid fa-location-dot construction-topbar__icon"></i>
+            <span>4517 Washington Ave Kentucky</span>
+          </span>
+          <span class="construction-topbar__divider">|</span>
+          <span class="construction-topbar__item">
+            <i class="fa-solid fa-envelope construction-topbar__icon"></i>
+            <a href="mailto:Info@Example.Com">Info@Example.Com</a>
+          </span>
+        </div>
+        <div class="construction-topbar__right">
+          <a
+            href="#"
+            class="construction-topbar__social-link"
+            aria-label="Facebook"
+          >
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a
+            href="#"
+            class="construction-topbar__social-link"
+            aria-label="Twitter"
+          >
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+          <a
+            href="#"
+            class="construction-topbar__social-link"
+            aria-label="Instagram"
+          >
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a
+            href="#"
+            class="construction-topbar__social-link"
+            aria-label="Behance"
+          >
+            <i class="fa-brands fa-behance"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- End Topbar -->
 
-    <!-- Start Header Section -->
+    <!-- Start Header -->
+    <header
+      class="header-construction header-construction--below-topbar"
+      id="constructionHeader"
+    >
+      <div class="header-construction__inner">
+        <div class="header-construction__logo">
+          <a href="index.html">
+            <img
+              src="assets/img/logo.svg"
+              alt="Akest"
+              class="header-construction__logo-img"
+            />
+          </a>
+        </div>
 
-    <!-- End Header Section -->
+        <div class="tm-main-header-center">
+          <div class="tm-nav tm-medium">
+            <ul class="tm-nav_list">
+              <li class="menu-item-has-children">
+                <a href="index.html">Home +</a>
+                <ul>
+                  <li>
+                    <a href="index.html">Interior Design</a>
+                  </li>
+                  <li>
+                    <a href="architecture.html">Architecture</a>
+                  </li>
+                  <li>
+                    <a href="construction.html">Construction</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="about-us.html">About</a>
+              </li>
+              <li class="menu-item-has-children">
+                <a href="service.html">Services +</a>
+                <ul>
+                  <li>
+                    <a href="service.html">Services</a>
+                  </li>
+                  <li>
+                    <a href="service-details.html">Services Details</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item-has-children">
+                <a href="project.html">Pages +</a>
+                <ul>
+                  <li>
+                    <a href="project.html">Projects</a>
+                  </li>
+                  <li>
+                    <a href="project-details.html">Project Details</a>
+                  </li>
+                  <li>
+                    <a href="team.html">Our Team</a>
+                  </li>
+                  <li>
+                    <a href="team-details.html">Team Details</a>
+                  </li>
+                  <li>
+                    <a href="pricing.html">Pricing</a>
+                  </li>
+                  <li>
+                    <a href="faq.html">FAQ</a>
+                  </li>
+                  <li>
+                    <a href="blog.html">Blog</a>
+                  </li>
+                  <li>
+                    <a href="blog-standard.html">Blog Standard</a>
+                  </li>
+                  <li>
+                    <a href="blog-details.html">Blog Details</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="contact.html">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
 
+        <div class="header-construction__actions">
+          <button class="primary-btn">
+            <span class="text">Get a quite</span>
+            <span class="icon-wrapper">
+              <svg
+                width="15"
+                height="13"
+                viewBox="0 0 15 13"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.6875 6.8125L8.6875 11.8125C8.3125 12.2188 7.65625 12.2188 7.28125 11.8125C6.875 11.4375 6.875 10.7812 7.28125 10.4062L10.5625 7.09375H1C0.4375 7.09375 0 6.65625 0 6.09375C0 5.5625 0.4375 5.09375 1 5.09375H10.5625L7.28125 1.8125C6.875 1.4375 6.875 0.78125 7.28125 0.40625C7.65625 0 8.3125 0 8.6875 0.40625L13.6875 5.40625C14.0938 5.78125 14.0938 6.4375 13.6875 6.8125Z"
+                  fill="#DF5A21"
+                />
+              </svg>
+            </span>
+          </button>
+          <button
+            class="header-construction__toggle"
+            id="constructionNavToggle"
+            aria-label="Toggle navigation"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- End Header -->
 
+    <!-- Start Common Banner Section -->
+    <section class="common-banner">
+      <img
+        class="common-banner__bg"
+        src="assets/img/bg/banner-bg.png"
+        alt="Banner Background"
+      />
+      <div class="common-banner__overlay"></div>
+      <img
+        class="common-banner__element"
+        src="assets/img/bg/bg-element.png"
+        alt=""
+      />
+
+      <div class="common-banner__inner">
+        <div class="common-banner__content">
+          <nav class="common-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html" class="common-breadcrumb__link">HOME</a>
+            <span class="common-breadcrumb__separator">//</span>
+            <span class="common-breadcrumb__current">PROJECT DETAILS</span>
+          </nav>
+          <h1 class="common-banner__title">
+            Elegant And Functional Interior Spaces Designed Around Your Vision
+          </h1>
+        </div>
+      </div>
+    </section>
+    <!-- End Common Banner Section -->
+
+    <!-- Start Project Details Section -->
+    <section class="project-details">
+      <div class="container">
+        <div class="project-details__hero">
+          <img
+            class="project-details__main-img"
+            src="assets/img/project-details/main-project-details.png"
+            alt="Elegant Interior Design Project"
+          />
+          <div class="project-details__card-wrap">
+            <div class="project-details__card">
+              <h2 class="project-details__card-title">Elegant Interior Design Project</h2>
+              <p class="project-details__card-desc">
+                Transforming ordinary spaces into stylish, functional, and comfortable environments that reflect our clients'
+                personality and lifestyle. Every detail is carefully planned to create a harmonious and inspiring interior experience.
+              </p>
+
+              <div class="project-details__meta-grid">
+                <div class="project-details__meta-col">
+                  <div class="project-details__meta-item">
+                    <span class="project-details__meta-label">Category</span>
+                    <span class="project-details__meta-value">Interior</span>
+                  </div>
+                  <div class="project-details__meta-item">
+                    <span class="project-details__meta-label">Client</span>
+                    <span class="project-details__meta-value">Jofra Archer</span>
+                  </div>
+                </div>
+
+                <div class="project-details__meta-col">
+                  <div class="project-details__meta-item">
+                    <span class="project-details__meta-label">Start Date</span>
+                    <span class="project-details__meta-value">01-06-2025</span>
+                  </div>
+                  <div class="project-details__meta-item">
+                    <span class="project-details__meta-label">End Date</span>
+                    <span class="project-details__meta-value">01-06-2025</span>
+                  </div>
+                </div>
+
+                <div class="project-details__meta-col">
+                  <div class="project-details__meta-item">
+                    <span class="project-details__meta-label">Website</span>
+                    <a href="https://www.Akest.com" target="_blank" rel="noopener noreferrer" class="project-details__meta-value project-details__meta-value--link">www.Akest.com</a>
+                  </div>
+                  <div class="project-details__meta-item">
+                    <span class="project-details__meta-label">Rating</span>
+                    <span class="project-details__meta-stars">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="project-details__desc">
+          At our interior design studio, we are dedicated to creating beautiful, functional, and personalized spaces for residential and commercial clients. From concept development to final styling, we combine creativity, innovation, and attention to detail to bring your vision to life. with superior quality workmanship, meticulous planning, and efficient project management value and satisfaction for our clients.
+        </p>
+        <p class="project-details__desc">
+          Every interior project begins with understanding your needs, preferences, and lifestyle. Our experienced designers carefully assess the space, develop customized design concepts, select materials and furnishings, and ensure every element works together seamlessly to create a cohesive environment considerations, reviews layout plans, and thoroughly discusses your goals, preferences
+        </p>
+
+        <div class="project-details__gallery">
+          <div class="project-details__gallery-item">
+            <img
+              class="project-details__gallery-img"
+              src="assets/img/project-details/sub-project-details-1.png"
+              alt="Project View 1"
+            />
+          </div>
+          <div class="project-details__gallery-item">
+            <img
+              class="project-details__gallery-img"
+              src="assets/img/project-details/sub-project-details-2.png"
+              alt="Project View 2"
+            />
+          </div>
+          <div class="project-details__gallery-item">
+            <img
+              class="project-details__gallery-img"
+              src="assets/img/project-details/sub-project-details-3.png"
+              alt="Project View 3"
+            />
+          </div>
+        </div>
+
+        <p class="project-details__desc">
+          We specialize in space planning, furniture selection, lighting design, color consultation, custom décor solutions, and complete interior transformations. By blending aesthetics with functionality, we create interiors that are both visually stunning and highly practical. adapt to unique site kind conditions, and meet long-term durability and performance requirements. By combining cutting-edge technology with expert engineering, we ensure that every structure is built to last while maximizing efficiency, safety, and sustainability.
+        </p>
+
+        <div class="project-details__benefits">
+          <h2 class="project-details__section-title">Benefits Of Project</h2>
+          <p class="project-details__desc">
+            Our team collaborates closely with you to design interiors that enhance comfort, functionality, and visual appeal while reflecting your unique style., we assess site conditions, schedule, and budget to create a practical plan.
+          </p>
+
+          <ul class="project-details__list">
+            <li class="project-details__list-item">
+              <img class="project-details__list-icon" src="assets/img/icon/list-icon.svg" alt="" />
+              Creating elegant and functional spaces tailored to your lifestyle.
+            </li>
+            <li class="project-details__list-item">
+              <img class="project-details__list-icon" src="assets/img/icon/list-icon.svg" alt="" />
+              Maximizing space efficiency through smart planning and design.
+            </li>
+            <li class="project-details__list-item">
+              <img class="project-details__list-icon" src="assets/img/icon/list-icon.svg" alt="" />
+              Delivering high-quality materials, furnishings, and finishing details.
+            </li>
+            <li class="project-details__list-item">
+              <img class="project-details__list-icon" src="assets/img/icon/list-icon.svg" alt="" />
+              Enhancing comfort, aesthetics, and long-term value of your property.
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+    <!-- End Project Details Section -->
 
     <!-- Start Footer Section -->
     <footer class="footer-dark">
