@@ -94,14 +94,14 @@
 
   &:hover {
     background-color: var(--white-color);
-    color: var(--secendary-color);
+    color: var(--title-color);
 
     .icon-wrapper {
-      background-color: var(--secendary-color);
+      background-color: var(--primary-color);
       color: var(--white-color);
 
       svg {
-        transform: translateX(4px);
+        transform: translateX(3px);
 
         path {
           fill: var(--white-color);

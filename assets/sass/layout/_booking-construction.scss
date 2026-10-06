@@ -7,7 +7,6 @@
 .booking-construction {
   position: relative;
   overflow: hidden;
-  min-height: 520px;
   display: flex;
   align-items: center;
   padding: 100px 0;
@@ -37,12 +36,12 @@
 
   &__card {
     background-color: var(--white-color);
-    padding: 56px 48px;
-    max-width: 480px;
+    padding: 60px;
+    max-width: 535px;
 
     @include respond(lg) {
       max-width: 100%;
-      padding: 48px 36px;
+      padding: 40px;
     }
 
     @include respond(sm) {
@@ -52,14 +51,13 @@
 
   &__title {
     font-size: 36px;
-    font-weight: 700;
-    line-height: 1.25;
-    color: var(--heading-color);
-    margin-bottom: 24px;
-    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 46px;
+    margin-bottom: 90px;
 
-    @include respond(md) {
+    @include respond(lg) {
       font-size: 28px;
+      margin-bottom: 60px;
     }
   }
 
