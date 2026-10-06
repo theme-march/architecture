@@ -149,10 +149,9 @@
       $(".tm-side_header").removeClass("active");
     });
 
-    // Menu text split animation
-    $(".tm-animo_links > li > a").each(function () {
-      let text = $(this).html().split("").join("</span><span>");
-      $(this).html(`<span class="tm-animo_text"><span>${text}</span></span>`);
+    // Construction Mobile toggle
+    $("#constructionNavToggle, .header-construction__toggle").on("click", function () {
+      $(this).closest(".header-construction").find(".tm-nav_list").slideToggle();
     });
   }
   /*--------------------------------------------------------------
