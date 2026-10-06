@@ -723,20 +723,5 @@
     <script src="assets/js/plugins/sticky-sidebar.js"></script>
 
     <script src="assets/js/main.js"></script>
-
-    <script>
-      document
-        .querySelectorAll(".service__item-header")
-        .forEach(function (header) {
-          header.addEventListener("click", function () {
-            var item = this.closest(".service__item");
-            var isActive = item.classList.contains("service__item--active");
-            document.querySelectorAll(".service__item").forEach(function (el) {
-              el.classList.remove("service__item--active");
-            });
-            if (!isActive) item.classList.add("service__item--active");
-          });
-        });
-    </script>
   </body>
 </html>
