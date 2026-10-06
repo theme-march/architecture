@@ -727,68 +727,6 @@
     <script src="assets/js/plugins/sticky-sidebar.js"></script>
     <script src="assets/js/main.js"></script>
 
-    <!-- Topbar & Header Scroll Behavior Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const header = document.getElementById('constructionHeader');
-            const topbar = document.getElementById('constructionTopbar');
-            const navToggle = document.getElementById('constructionNavToggle');
-            const navClose = document.getElementById('constructionNavClose');
-            const nav = document.getElementById('constructionNav');
-
-            function handleScroll() {
-                const scrollY = window.scrollY;
-                if (scrollY > 90) {
-                    if (header && !header.classList.contains('scrolled')) {
-                        header.classList.add('scrolled');
-                        header.classList.remove('header-construction--below-topbar');
-                    }
-                    if (topbar && !topbar.classList.contains('topbar-hidden')) {
-                        topbar.classList.add('topbar-hidden');
-                    }
-                } else if (scrollY < 30) {
-                    if (header && header.classList.contains('scrolled')) {
-                        header.classList.remove('scrolled');
-                        header.classList.add('header-construction--below-topbar');
-                    }
-                    if (topbar && topbar.classList.contains('topbar-hidden')) {
-                        topbar.classList.remove('topbar-hidden');
-                    }
-                }
-            }
-
-            window.addEventListener('scroll', handleScroll, { passive: true });
-            handleScroll();
-
-            // Mobile Navigation Toggle
-            if (navToggle && nav) {
-                navToggle.addEventListener('click', function () {
-                    nav.classList.add('is-active');
-                });
-            }
-
-            if (navClose && nav) {
-                navClose.addEventListener('click', function () {
-                    nav.classList.remove('is-active');
-                });
-            }
-
-            // Mobile dropdown toggle on touch devices
-            const navItemsWithChildren = document.querySelectorAll('.header-construction__nav-item');
-            navItemsWithChildren.forEach(item => {
-                const link = item.querySelector('.header-construction__nav-link');
-                const dropdown = item.querySelector('.header-construction__dropdown');
-                if (dropdown && link && window.innerWidth <= 991) {
-                    link.addEventListener('click', function (e) {
-                        if (dropdown) {
-                            e.preventDefault();
-                            dropdown.classList.toggle('is-open');
-                        }
-                    });
-                }
-            });
-        });
-    </script>
 
 </body>
 

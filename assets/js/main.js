@@ -61,6 +61,7 @@
   $(function () {
     mainNav();
     stickyHeader();
+    constructionStickyHeader();
     dynamicBackground();
     swiperInit();
     sidebarStickySidebar();
@@ -185,8 +186,48 @@
   }
 
   /*--------------------------------------------------------------
-  4. Dynamic Background
-  -------------------------------------------------------------*/
+  Construction Sticky Header
+  --------------------------------------------------------------*/
+  function constructionStickyHeader() {
+    var $constructionHeader = $(".header-construction");
+    var $topbar = $("#constructionTopbar");
+
+    if (!$constructionHeader.length) return;
+
+    var headerHeight = $constructionHeader.outerHeight() + 30;
+    var lastScrollTop = 0;
+
+    $window.scroll(function () {
+      var windowTop = $window.scrollTop();
+
+      if (windowTop > headerHeight) {
+        $constructionHeader.addClass("scrolled");
+        $constructionHeader.removeClass("header-construction--below-topbar");
+        $topbar.addClass("topbar-hidden");
+      } else {
+        $constructionHeader.removeClass("scrolled tm-gescout_sticky tm-gescout_show");
+        $constructionHeader.addClass("header-construction--below-topbar");
+        $topbar.removeClass("topbar-hidden");
+      }
+
+      if (windowTop >= headerHeight) {
+        $constructionHeader.addClass("tm-gescout_sticky");
+      } else {
+        $constructionHeader.removeClass("tm-gescout_sticky tm-gescout_show");
+      }
+
+      if ($constructionHeader.hasClass("tm-gescout_sticky")) {
+        if (windowTop < lastScrollTop) {
+          $constructionHeader.addClass("tm-gescout_show");
+        } else {
+          $constructionHeader.removeClass("tm-gescout_show");
+        }
+      }
+
+      lastScrollTop = windowTop;
+    });
+  }
+
   function dynamicBackground() {
     $("[data-src]").each(function () {
       var src = $(this).attr("data-src");

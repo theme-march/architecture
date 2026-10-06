@@ -942,8 +942,20 @@
     }
   }
 
-  &.scrolled {
+  // Added when scrolled past header height — hides above viewport
+  &.tm-gescout_sticky {
+    top: -150px;
+    background-color: var(--black-color);
+    box-shadow: 0 4px 25px color-mix(in srgb, var(--black-color), transparent 50%);
+  }
+
+  // Added when scrolling UP — slides header back into view
+  &.tm-gescout_show {
     top: 0 !important;
+  }
+
+  // Legacy scrolled class kept for topbar hide logic compatibility
+  &.scrolled {
     background-color: var(--black-color);
     box-shadow: 0 4px 25px color-mix(in srgb, var(--black-color), transparent 50%);
   }
