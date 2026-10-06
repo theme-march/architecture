@@ -21,10 +21,307 @@
 <body>
 
 
-    <!-- Start Header Section -->
+    <!-- Start Topbar -->
+    <div class="construction-topbar" id="constructionTopbar">
+      <div class="construction-topbar__inner">
+        <div class="construction-topbar__left">
+          <span class="construction-topbar__item">
+            <i class="fa-solid fa-location-dot construction-topbar__icon"></i>
+            <span>4517 Washington Ave Kentucky</span>
+          </span>
+          <span class="construction-topbar__divider">|</span>
+          <span class="construction-topbar__item">
+            <i class="fa-solid fa-envelope construction-topbar__icon"></i>
+            <a href="mailto:Info@Example.Com">Info@Example.Com</a>
+          </span>
+        </div>
+        <div class="construction-topbar__right">
+          <a
+            href="#"
+            class="construction-topbar__social-link"
+            aria-label="Facebook"
+          >
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a
+            href="#"
+            class="construction-topbar__social-link"
+            aria-label="Twitter"
+          >
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+          <a
+            href="#"
+            class="construction-topbar__social-link"
+            aria-label="Instagram"
+          >
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a
+            href="#"
+            class="construction-topbar__social-link"
+            aria-label="Behance"
+          >
+            <i class="fa-brands fa-behance"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- End Topbar -->
 
-    <!-- End Header Section -->
+    <!-- Start Header -->
+    <header
+      class="header-construction header-construction--below-topbar"
+      id="constructionHeader"
+    >
+      <div class="header-construction__inner">
+        <div class="header-construction__logo">
+          <a href="index.html">
+            <img
+              src="assets/img/logo.svg"
+              alt="Akest"
+              class="header-construction__logo-img"
+            />
+          </a>
+        </div>
 
+        <div class="tm-main-header-center">
+          <div class="tm-nav tm-medium">
+            <ul class="tm-nav_list">
+              <li class="menu-item-has-children">
+                <a href="index.html">Home +</a>
+                <ul>
+                  <li>
+                    <a href="index.html">Interior Design</a>
+                  </li>
+                  <li>
+                    <a href="architecture.html">Architecture</a>
+                  </li>
+                  <li>
+                    <a href="construction.html">Construction</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="about-us.html">About</a>
+              </li>
+              <li class="menu-item-has-children">
+                <a href="service.html">Services +</a>
+                <ul>
+                  <li>
+                    <a href="service.html">Services</a>
+                  </li>
+                  <li>
+                    <a href="service-details.html">Services Details</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item-has-children">
+                <a href="project.html">Pages +</a>
+                <ul>
+                  <li>
+                    <a href="project.html">Projects</a>
+                  </li>
+                  <li>
+                    <a href="project-details.html">Project Details</a>
+                  </li>
+                  <li>
+                    <a href="team.html">Our Team</a>
+                  </li>
+                  <li>
+                    <a href="team-details.html">Team Details</a>
+                  </li>
+                  <li>
+                    <a href="pricing.html">Pricing</a>
+                  </li>
+                  <li>
+                    <a href="faq.html">FAQ</a>
+                  </li>
+                  <li>
+                    <a href="blog.html">Blog</a>
+                  </li>
+                  <li>
+                    <a href="blog-standard.html">Blog Standard</a>
+                  </li>
+                  <li>
+                    <a href="blog-details.html">Blog Details</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="contact.html">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="header-construction__actions">
+          <button class="primary-btn">
+            <span class="text">Get a quite</span>
+            <span class="icon-wrapper">
+              <svg
+                width="15"
+                height="13"
+                viewBox="0 0 15 13"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.6875 6.8125L8.6875 11.8125C8.3125 12.2188 7.65625 12.2188 7.28125 11.8125C6.875 11.4375 6.875 10.7812 7.28125 10.4062L10.5625 7.09375H1C0.4375 7.09375 0 6.65625 0 6.09375C0 5.5625 0.4375 5.09375 1 5.09375H10.5625L7.28125 1.8125C6.875 1.4375 6.875 0.78125 7.28125 0.40625C7.65625 0 8.3125 0 8.6875 0.40625L13.6875 5.40625C14.0938 5.78125 14.0938 6.4375 13.6875 6.8125Z"
+                  fill="#DF5A21"
+                />
+              </svg>
+            </span>
+          </button>
+          <button
+            class="header-construction__toggle"
+            id="constructionNavToggle"
+            aria-label="Toggle navigation"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- Start Common Banner Section -->
+    <section class="common-banner">
+      <img
+        class="common-banner__bg"
+        src="assets/img/bg/banner-bg.png"
+        alt="Banner Background"
+      />
+      <div class="common-banner__overlay"></div>
+      <img
+        class="common-banner__element"
+        src="assets/img/bg/bg-element.png"
+        alt=""
+      />
+
+      <div class="common-banner__inner">
+        <div class="common-banner__content">
+          <nav class="common-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html" class="common-breadcrumb__link">HOME</a>
+            <span class="common-breadcrumb__separator">//</span>
+            <span class="common-breadcrumb__current">SERVICES</span>
+          </nav>
+          <h1 class="common-banner__title">
+            Elegant And Functional Interior Spaces Designed Around Your Vision
+          </h1>
+        </div>
+      </div>
+    </section>
+    <!-- End Common Banner Section -->
+
+    <!-- Start Service Section -->
+    <section class="service">
+        <div class="ak-height-120 ak-height-lg-60"></div>
+        <div class="container">
+            <div class="section-heading section-heading--center">
+                <div class="section-heading__subtitle">
+                    <span class="section-heading__subtitle-line"></span>
+                    <span class="section-heading__subtitle-text">OUR SERVICES</span>
+                    <span class="section-heading__subtitle-line"></span>
+                </div>
+                <h2 class="section-heading__title">Design Solution Made For Living</h2>
+            </div>
+            <div class="service__list">
+                <div class="service__item service__item--active">
+                    <div class="service__item-header">
+                        <span class="service__item-number">01/</span>
+                        <h3 class="service__item-title">Residential Interiors</h3>
+                        <img class="service__item-icon service__item-icon--open" src="assets/img/icon/active-accordion.svg" alt="Expand" />
+                        <img class="service__item-icon service__item-icon--close" src="assets/img/icon/accordion.svg" alt="Collapse" />
+                    </div>
+                    <div class="service__item-body">
+                        <div class="service__item-content">
+                            <p class="service__item-desc">Transforming interiors with creative design solutions, premium finishes, and thoughtfully crafted spaces tailored to your lifestyle.</p>
+                            <div class="service__item-tags">
+                                <span class="service__item-tag">Residential</span>
+                                <span class="service__item-tag">Minimalist</span>
+                            </div>
+                        </div>
+                        <img class="service__item-image" src="assets/img/service/service.png" alt="Residential Interiors" />
+                    </div>
+                </div>
+                <div class="service__item">
+                    <div class="service__item-header">
+                        <span class="service__item-number">02/</span>
+                        <h3 class="service__item-title">Commercial Interiors</h3>
+                        <img class="service__item-icon service__item-icon--open" src="assets/img/icon/active-accordion.svg" alt="Expand" />
+                        <img class="service__item-icon service__item-icon--close" src="assets/img/icon/accordion.svg" alt="Collapse" />
+                    </div>
+                    <div class="service__item-body">
+                        <div class="service__item-content">
+                            <p class="service__item-desc">Creating inspiring commercial spaces that blend functionality with sophisticated design to elevate your business environment.</p>
+                            <div class="service__item-tags">
+                                <span class="service__item-tag">Commercial</span>
+                                <span class="service__item-tag">Modern</span>
+                            </div>
+                        </div>
+                        <img class="service__item-image" src="assets/img/service/service.png" alt="Commercial Interiors" />
+                    </div>
+                </div>
+                <div class="service__item">
+                    <div class="service__item-header">
+                        <span class="service__item-number">03/</span>
+                        <h3 class="service__item-title">Space Planning</h3>
+                        <img class="service__item-icon service__item-icon--open" src="assets/img/icon/active-accordion.svg" alt="Expand" />
+                        <img class="service__item-icon service__item-icon--close" src="assets/img/icon/accordion.svg" alt="Collapse" />
+                    </div>
+                    <div class="service__item-body">
+                        <div class="service__item-content">
+                            <p class="service__item-desc">Optimizing every square foot with thoughtful space planning that maximizes flow, function, and aesthetic appeal.</p>
+                            <div class="service__item-tags">
+                                <span class="service__item-tag">Planning</span>
+                                <span class="service__item-tag">Layout</span>
+                            </div>
+                        </div>
+                        <img class="service__item-image" src="assets/img/service/service.png" alt="Space Planning" />
+                    </div>
+                </div>
+                <div class="service__item">
+                    <div class="service__item-header">
+                        <span class="service__item-number">04/</span>
+                        <h3 class="service__item-title">Custom Furniture Design</h3>
+                        <img class="service__item-icon service__item-icon--open" src="assets/img/icon/active-accordion.svg" alt="Expand" />
+                        <img class="service__item-icon service__item-icon--close" src="assets/img/icon/accordion.svg" alt="Collapse" />
+                    </div>
+                    <div class="service__item-body">
+                        <div class="service__item-content">
+                            <p class="service__item-desc">Designing bespoke furniture pieces that perfectly complement your space and reflect your personal style.</p>
+                            <div class="service__item-tags">
+                                <span class="service__item-tag">Custom</span>
+                                <span class="service__item-tag">Bespoke</span>
+                            </div>
+                        </div>
+                        <img class="service__item-image" src="assets/img/service/service.png" alt="Custom Furniture Design" />
+                    </div>
+                </div>
+                <div class="service__item">
+                    <div class="service__item-header">
+                        <span class="service__item-number">05/</span>
+                        <h3 class="service__item-title">3D Visualization</h3>
+                        <img class="service__item-icon service__item-icon--open" src="assets/img/icon/active-accordion.svg" alt="Expand" />
+                        <img class="service__item-icon service__item-icon--close" src="assets/img/icon/accordion.svg" alt="Collapse" />
+                    </div>
+                    <div class="service__item-body">
+                        <div class="service__item-content">
+                            <p class="service__item-desc">Bringing your design vision to life with photorealistic 3D renderings before a single piece of furniture is moved.</p>
+                            <div class="service__item-tags">
+                                <span class="service__item-tag">3D</span>
+                                <span class="service__item-tag">Visualization</span>
+                            </div>
+                        </div>
+                        <img class="service__item-image" src="assets/img/service/service.png" alt="3D Visualization" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ak-height-120 ak-height-lg-60"></div>
+    </section>
+    <!-- End Service Section -->
 
 
     <!-- Start Footer Section -->

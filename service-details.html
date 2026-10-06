@@ -20,14 +20,410 @@
 
 <body>
 
+    <!-- Start Topbar -->
+    <div class="construction-topbar" id="constructionTopbar">
+      <div class="construction-topbar__inner">
+        <div class="construction-topbar__left">
+          <span class="construction-topbar__item">
+            <i class="fa-solid fa-location-dot construction-topbar__icon"></i>
+            <span>4517 Washington Ave Kentucky</span>
+          </span>
+          <span class="construction-topbar__divider">|</span>
+          <span class="construction-topbar__item">
+            <i class="fa-solid fa-envelope construction-topbar__icon"></i>
+            <a href="mailto:Info@Example.Com">Info@Example.Com</a>
+          </span>
+        </div>
+        <div class="construction-topbar__right">
+          <a
+            href="#"
+            class="construction-topbar__social-link"
+            aria-label="Facebook"
+          >
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a
+            href="#"
+            class="construction-topbar__social-link"
+            aria-label="Twitter"
+          >
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+          <a
+            href="#"
+            class="construction-topbar__social-link"
+            aria-label="Instagram"
+          >
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a
+            href="#"
+            class="construction-topbar__social-link"
+            aria-label="Behance"
+          >
+            <i class="fa-brands fa-behance"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- End Topbar -->
 
-    <!-- Start Header Section -->
+    <!-- Start Header -->
+    <header
+      class="header-construction header-construction--below-topbar"
+      id="constructionHeader"
+    >
+      <div class="header-construction__inner">
+        <div class="header-construction__logo">
+          <a href="index.html">
+            <img
+              src="assets/img/logo.svg"
+              alt="Akest"
+              class="header-construction__logo-img"
+            />
+          </a>
+        </div>
 
-    <!-- End Header Section -->
+        <div class="tm-main-header-center">
+          <div class="tm-nav tm-medium">
+            <ul class="tm-nav_list">
+              <li class="menu-item-has-children">
+                <a href="index.html">Home +</a>
+                <ul>
+                  <li>
+                    <a href="index.html">Interior Design</a>
+                  </li>
+                  <li>
+                    <a href="architecture.html">Architecture</a>
+                  </li>
+                  <li>
+                    <a href="construction.html">Construction</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="about-us.html">About</a>
+              </li>
+              <li class="menu-item-has-children">
+                <a href="service.html">Services +</a>
+                <ul>
+                  <li>
+                    <a href="service.html">Services</a>
+                  </li>
+                  <li>
+                    <a href="service-details.html">Services Details</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item-has-children">
+                <a href="project.html">Pages +</a>
+                <ul>
+                  <li>
+                    <a href="project.html">Projects</a>
+                  </li>
+                  <li>
+                    <a href="project-details.html">Project Details</a>
+                  </li>
+                  <li>
+                    <a href="team.html">Our Team</a>
+                  </li>
+                  <li>
+                    <a href="team-details.html">Team Details</a>
+                  </li>
+                  <li>
+                    <a href="pricing.html">Pricing</a>
+                  </li>
+                  <li>
+                    <a href="faq.html">FAQ</a>
+                  </li>
+                  <li>
+                    <a href="blog.html">Blog</a>
+                  </li>
+                  <li>
+                    <a href="blog-standard.html">Blog Standard</a>
+                  </li>
+                  <li>
+                    <a href="blog-details.html">Blog Details</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="contact.html">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="header-construction__actions">
+          <button class="primary-btn">
+            <span class="text">Get a quite</span>
+            <span class="icon-wrapper">
+              <svg
+                width="15"
+                height="13"
+                viewBox="0 0 15 13"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.6875 6.8125L8.6875 11.8125C8.3125 12.2188 7.65625 12.2188 7.28125 11.8125C6.875 11.4375 6.875 10.7812 7.28125 10.4062L10.5625 7.09375H1C0.4375 7.09375 0 6.65625 0 6.09375C0 5.5625 0.4375 5.09375 1 5.09375H10.5625L7.28125 1.8125C6.875 1.4375 6.875 0.78125 7.28125 0.40625C7.65625 0 8.3125 0 8.6875 0.40625L13.6875 5.40625C14.0938 5.78125 14.0938 6.4375 13.6875 6.8125Z"
+                  fill="#DF5A21"
+                />
+              </svg>
+            </span>
+          </button>
+          <button
+            class="header-construction__toggle"
+            id="constructionNavToggle"
+            aria-label="Toggle navigation"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- Start Common Banner Section -->
+    <section class="common-banner">
+      <img
+        class="common-banner__bg"
+        src="assets/img/bg/banner-bg.png"
+        alt="Banner Background"
+      />
+      <div class="common-banner__overlay"></div>
+      <img
+        class="common-banner__element"
+        src="assets/img/bg/bg-element.png"
+        alt=""
+      />
+
+      <div class="common-banner__inner">
+        <div class="common-banner__content">
+          <nav class="common-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html" class="common-breadcrumb__link">HOME</a>
+            <span class="common-breadcrumb__separator">//</span>
+            <span class="common-breadcrumb__current">SERVICES DETAILS</span>
+          </nav>
+          <h1 class="common-banner__title">
+            Elegant And Functional Interior Spaces Designed Around Your Vision
+          </h1>
+        </div>
+      </div>
+    </section>
+    <!-- End Common Banner Section -->
+
+    <!-- Start Service Details Section -->
+    <section class="service-details">
+      <div class="container">
+        <div class="service-details__row">
+
+          <!-- ── Content Column ──────────────────────────── -->
+          <div class="service-details__content-col">
+
+            <!-- Main image -->
+            <img
+              class="service-details__main-img"
+              src="assets/img/blog/main-blog-details.png"
+              alt="Complete Interior Design Solutions"
+            />
+
+            <!-- Title -->
+            <h2 class="service-details__title">Complete Interior Design Solutions</h2>
+            <span class="service-details__title-underline">
+              <img
+                class="service-details__title-underline-img"
+                src="assets/img/icon/under-title-line.svg"
+                alt=""
+              />
+            </span>
+
+            <p class="service-details__desc">
+              We create stylish, functional, and personalized interior spaces that reflect your lifestyle and vision.
+              From concept development to final execution, our team focuses on aesthetics, comfort, and practicality
+              to deliver exceptional interiors, site layout plans, environmental considerations, and technical
+              requirements to ensure the project is feasible, efficient, and aligned with the client's goals from
+              the very beginning.
+            </p>
+            <p class="service-details__desc">
+              Our interior design process includes space planning, material selection, furniture layouts, lighting
+              design, color coordination, and décor styling to ensure every detail enhances the overall experience.
+            </p>
+
+            <!-- Sub-section -->
+            <h3 class="service-details__sub-title">Services We Offer</h3>
+            <p class="service-details__sub-desc">
+              We provide comprehensive interior design services for residential and commercial spaces, transforming
+              ordinary environments into inspiring and functional interiors. This includes evaluating factors such
+              as land structure, layout plans, and overall project feasibility.
+            </p>
+
+            <!-- Feature list (2 columns) -->
+            <ul class="service-details__list">
+              <li class="service-details__list-item">
+                <img class="service-details__list-icon" src="assets/img/icon/list-icon.svg" alt="" />
+                Residential Interior Design
+              </li>
+              <li class="service-details__list-item">
+                <img class="service-details__list-icon" src="assets/img/icon/list-icon.svg" alt="" />
+                Furniture &amp; Décor Selection
+              </li>
+              <li class="service-details__list-item">
+                <img class="service-details__list-icon" src="assets/img/icon/list-icon.svg" alt="" />
+                Commercial Interior Design
+              </li>
+              <li class="service-details__list-item">
+                <img class="service-details__list-icon" src="assets/img/icon/list-icon.svg" alt="" />
+                Lighting Design Solutions
+              </li>
+              <li class="service-details__list-item">
+                <img class="service-details__list-icon" src="assets/img/icon/list-icon.svg" alt="" />
+                Space Planning &amp; Layout Design
+              </li>
+            </ul>
+
+            <!-- Sub images -->
+            <div class="service-details__sub-images">
+              <img
+                class="service-details__sub-img"
+                src="assets/img/blog/sub-blog-details-1.png"
+                alt="Interior space 1"
+              />
+              <img
+                class="service-details__sub-img"
+                src="assets/img/blog/sub-blog-details-2.png"
+                alt="Interior space 2"
+              />
+            </div>
+
+            <!-- Why Choose us sub-section -->
+            <h3 class="service-details__sub-title">Why Choose Consits?</h3>
+            <p class="service-details__sub-desc">
+              Our interior design team combines creativity, innovation, and attention to detail to craft spaces
+              that are both beautiful and practical. We work closely with clients to bring their ideas to life
+              while ensuring quality and functionality.
+            </p>
+
+            <ul class="service-details__list">
+              <li class="service-details__list-item">
+                <img class="service-details__list-icon" src="assets/img/icon/list-icon.svg" alt="" />
+                Creative and customized design solutions.
+              </li>
+              <li class="service-details__list-item">
+                <img class="service-details__list-icon" src="assets/img/icon/list-icon.svg" alt="" />
+                Premium materials and modern design concepts.
+              </li>
+              <li class="service-details__list-item">
+                <img class="service-details__list-icon" src="assets/img/icon/list-icon.svg" alt="" />
+                Efficient project management and timely delivery.
+              </li>
+            </ul>
+
+          </div>
+          <!-- End Content Column -->
+
+          <!-- ── Sidebar Column ──────────────────────────── -->
+          <div class="service-details__sidebar-col">
+            <aside class="sidebar">
+
+              <!-- Category Widget -->
+              <div class="sidebar__widget">
+                <h3 class="sidebar__widget-title">Category</h3>
+                <span class="sidebar__title-underline">
+                  <img
+                    class="sidebar__title-underline-img"
+                    src="assets/img/icon/under-title-line.svg"
+                    alt=""
+                  />
+                </span>
+                <ul class="sidebar__category-list">
+                  <li class="sidebar__category-item">
+                    <a href="service-details.html" class="sidebar__category-link">
+                      <span>Residential Interiors</span>
+                      <span class="sidebar__category-arrow">
+                        <i class="fa-solid fa-arrow-right sidebar__category-arrow-icon"></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="sidebar__category-item">
+                    <a href="service-details.html" class="sidebar__category-link">
+                      <span>Commercial Interiors</span>
+                      <span class="sidebar__category-arrow">
+                        <i class="fa-solid fa-arrow-right sidebar__category-arrow-icon"></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="sidebar__category-item">
+                    <a href="service-details.html" class="sidebar__category-link">
+                      <span>Space Planning</span>
+                      <span class="sidebar__category-arrow">
+                        <i class="fa-solid fa-arrow-right sidebar__category-arrow-icon"></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="sidebar__category-item">
+                    <a href="service-details.html" class="sidebar__category-link">
+                      <span>Lighting Solutions</span>
+                      <span class="sidebar__category-arrow">
+                        <i class="fa-solid fa-arrow-right sidebar__category-arrow-icon"></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="sidebar__category-item">
+                    <a href="service-details.html" class="sidebar__category-link">
+                      <span>Furniture Design</span>
+                      <span class="sidebar__category-arrow">
+                        <i class="fa-solid fa-arrow-right sidebar__category-arrow-icon"></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="sidebar__category-item">
+                    <a href="service-details.html" class="sidebar__category-link">
+                      <span>Interior Renovation</span>
+                      <span class="sidebar__category-arrow">
+                        <i class="fa-solid fa-arrow-right sidebar__category-arrow-icon"></i>
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <!-- End Category Widget -->
+
+              <!-- Newsletter Widget -->
+              <div class="sidebar__newsletter">
+                <h3 class="sidebar__newsletter-title">Get Updates</h3>
+                <span class="sidebar__newsletter-underline">
+                  <img
+                    class="sidebar__newsletter-underline-img"
+                    src="assets/img/icon/under-title-line.svg"
+                    alt=""
+                  />
+                </span>
+                <p class="sidebar__newsletter-text">
+                  Subscribe email and get recent news and updates or offers.
+                </p>
+                <form class="sidebar__newsletter-form" action="#" method="post">
+                  <input
+                    type="email"
+                    class="sidebar__newsletter-input"
+                    placeholder="Email address..."
+                    required
+                  />
+                  <button type="submit" class="sidebar__newsletter-btn">Join Now</button>
+                </form>
+              </div>
+              <!-- End Newsletter Widget -->
+
+            </aside>
+          </div>
+          <!-- End Sidebar Column -->
+
+        </div>
+      </div>
+    </section>
+    <!-- End Service Details Section -->
 
 
-
-    <!-- Start Footer Section -->
     <footer class="footer-dark">
         <span class="footer-dark__watermark">AKEST</span>
         <div class="ak-height-120 ak-height-lg-60"></div>

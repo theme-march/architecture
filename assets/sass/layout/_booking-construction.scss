@@ -1,0 +1,76 @@
+@use "../abstracts" as *;
+
+/*--------------------------------------------------------------
+  Booking Construction Section
+----------------------------------------------------------------*/
+
+.booking-construction {
+  position: relative;
+  overflow: hidden;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  padding: 100px 0;
+
+  @include respond(lg) {
+    padding: 80px 0;
+    min-height: unset;
+  }
+
+  @include respond(md) {
+    padding: 60px 0;
+  }
+
+  &__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  &__card {
+    background-color: var(--white-color);
+    padding: 56px 48px;
+    max-width: 480px;
+
+    @include respond(lg) {
+      max-width: 100%;
+      padding: 48px 36px;
+    }
+
+    @include respond(sm) {
+      padding: 40px 24px;
+    }
+  }
+
+  &__title {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--heading-color);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+
+    @include respond(md) {
+      font-size: 28px;
+    }
+  }
+
+  &__desc {
+    font-size: 15px;
+    color: var(--body-color);
+    line-height: 1.7;
+    margin-bottom: 36px;
+
+    @include respond(sm) {
+      margin-bottom: 28px;
+    }
+  }
+}

@@ -20,12 +20,284 @@
 
 <body>
 
+    <!-- Start Topbar -->
+    <div class="construction-topbar" id="constructionTopbar">
+      <div class="construction-topbar__inner">
+        <div class="construction-topbar__left">
+          <span class="construction-topbar__item">
+            <i class="fa-solid fa-location-dot construction-topbar__icon"></i>
+            <span>4517 Washington Ave Kentucky</span>
+          </span>
+          <span class="construction-topbar__divider">|</span>
+          <span class="construction-topbar__item">
+            <i class="fa-solid fa-envelope construction-topbar__icon"></i>
+            <a href="mailto:Info@Example.Com">Info@Example.Com</a>
+          </span>
+        </div>
+        <div class="construction-topbar__right">
+          <a
+            href="#"
+            class="construction-topbar__social-link"
+            aria-label="Facebook"
+          >
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a
+            href="#"
+            class="construction-topbar__social-link"
+            aria-label="Twitter"
+          >
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+          <a
+            href="#"
+            class="construction-topbar__social-link"
+            aria-label="Instagram"
+          >
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a
+            href="#"
+            class="construction-topbar__social-link"
+            aria-label="Behance"
+          >
+            <i class="fa-brands fa-behance"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- End Topbar -->
 
-    <!-- Start Header Section -->
+    <!-- Start Header -->
+    <header
+      class="header-construction header-construction--below-topbar"
+      id="constructionHeader"
+    >
+      <div class="header-construction__inner">
+        <div class="header-construction__logo">
+          <a href="index.html">
+            <img
+              src="assets/img/logo.svg"
+              alt="Akest"
+              class="header-construction__logo-img"
+            />
+          </a>
+        </div>
 
-    <!-- End Header Section -->
+        <div class="tm-main-header-center">
+          <div class="tm-nav tm-medium">
+            <ul class="tm-nav_list">
+              <li class="menu-item-has-children">
+                <a href="index.html">Home +</a>
+                <ul>
+                  <li>
+                    <a href="index.html">Interior Design</a>
+                  </li>
+                  <li>
+                    <a href="architecture.html">Architecture</a>
+                  </li>
+                  <li>
+                    <a href="construction.html">Construction</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="about-us.html">About</a>
+              </li>
+              <li class="menu-item-has-children">
+                <a href="service.html">Services +</a>
+                <ul>
+                  <li>
+                    <a href="service.html">Services</a>
+                  </li>
+                  <li>
+                    <a href="service-details.html">Services Details</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item-has-children">
+                <a href="project.html">Pages +</a>
+                <ul>
+                  <li>
+                    <a href="project.html">Projects</a>
+                  </li>
+                  <li>
+                    <a href="project-details.html">Project Details</a>
+                  </li>
+                  <li>
+                    <a href="team.html">Our Team</a>
+                  </li>
+                  <li>
+                    <a href="team-details.html">Team Details</a>
+                  </li>
+                  <li>
+                    <a href="pricing.html">Pricing</a>
+                  </li>
+                  <li>
+                    <a href="faq.html">FAQ</a>
+                  </li>
+                  <li>
+                    <a href="blog.html">Blog</a>
+                  </li>
+                  <li>
+                    <a href="blog-standard.html">Blog Standard</a>
+                  </li>
+                  <li>
+                    <a href="blog-details.html">Blog Details</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="contact.html">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
 
+        <div class="header-construction__actions">
+          <button class="primary-btn">
+            <span class="text">Get a quite</span>
+            <span class="icon-wrapper">
+              <svg
+                width="15"
+                height="13"
+                viewBox="0 0 15 13"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.6875 6.8125L8.6875 11.8125C8.3125 12.2188 7.65625 12.2188 7.28125 11.8125C6.875 11.4375 6.875 10.7812 7.28125 10.4062L10.5625 7.09375H1C0.4375 7.09375 0 6.65625 0 6.09375C0 5.5625 0.4375 5.09375 1 5.09375H10.5625L7.28125 1.8125C6.875 1.4375 6.875 0.78125 7.28125 0.40625C7.65625 0 8.3125 0 8.6875 0.40625L13.6875 5.40625C14.0938 5.78125 14.0938 6.4375 13.6875 6.8125Z"
+                  fill="#DF5A21"
+                />
+              </svg>
+            </span>
+          </button>
+          <button
+            class="header-construction__toggle"
+            id="constructionNavToggle"
+            aria-label="Toggle navigation"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- End Header -->
 
+    <!-- Start Common Banner Section -->
+    <section class="common-banner">
+      <img
+        class="common-banner__bg"
+        src="assets/img/bg/banner-bg.png"
+        alt="Banner Background"
+      />
+      <div class="common-banner__overlay"></div>
+      <img
+        class="common-banner__element"
+        src="assets/img/bg/bg-element.png"
+        alt=""
+      />
+
+      <div class="common-banner__inner">
+        <div class="common-banner__content">
+          <nav class="common-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html" class="common-breadcrumb__link">HOME</a>
+            <span class="common-breadcrumb__separator">//</span>
+            <span class="common-breadcrumb__current">PROJECT</span>
+          </nav>
+          <h1 class="common-banner__title">
+            Elegant And Functional Interior Spaces Designed Around Your Vision
+          </h1>
+        </div>
+      </div>
+    </section>
+    <!-- End Common Banner Section -->
+
+    <!-- Start Portfolio Section -->
+    <section class="portfolio">
+        <div class="ak-height-120 ak-height-lg-60"></div>
+        <div class="container">
+            <div class="portfolio__grid">
+                <div class="portfolio__item">
+                    <img class="portfolio__item-img" src="assets/img/portfolio/portfolio-1.png" alt="Living Room Design" />
+                    <div class="portfolio__item-overlay">
+                        <img class="portfolio__item-corner portfolio__item-corner--top-left" src="assets/img/icon/top-left-overlay.svg" alt="overlay" />
+                        <img class="portfolio__item-corner portfolio__item-corner--bottom-right" src="assets/img/icon/bottom-right-overlay.svg" alt="overlay" />
+                        <div class="portfolio__item-info">
+                            <div>
+                                <h3 class="portfolio__item-title">Open Planning Plan</h3>
+                                <span class="portfolio__item-category">Interior Planning</span>
+                            </div>
+                            <span class="portfolio__item-year">2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio__item">
+                    <img class="portfolio__item-img" src="assets/img/portfolio/portfolio-2.png" alt="Entrance Hall Design" />
+                    <div class="portfolio__item-overlay">
+                        <img class="portfolio__item-corner portfolio__item-corner--top-left" src="assets/img/icon/top-left-overlay.svg" alt="overlay" />
+                        <img class="portfolio__item-corner portfolio__item-corner--bottom-right" src="assets/img/icon/bottom-right-overlay.svg" alt="overlay" />
+                        <div class="portfolio__item-info">
+                            <div>
+                                <h3 class="portfolio__item-title">Modern Entrance Hall</h3>
+                                <span class="portfolio__item-category">Interior Design</span>
+                            </div>
+                            <span class="portfolio__item-year">2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio__item portfolio__item--wide">
+                    <img class="portfolio__item-img" src="assets/img/portfolio/portfolio-3.png" alt="Open Plan Living Space" />
+                    <div class="portfolio__item-overlay">
+                        <img class="portfolio__item-corner portfolio__item-corner--top-left" src="assets/img/icon/top-left-overlay.svg" alt="overlay" />
+                        <img class="portfolio__item-corner portfolio__item-corner--bottom-right" src="assets/img/icon/bottom-right-overlay.svg" alt="overlay" />
+                        <div class="portfolio__item-info">
+                            <div>
+                                <h3 class="portfolio__item-title">Contemporary Living Space</h3>
+                                <span class="portfolio__item-category">Residential Design</span>
+                            </div>
+                            <span class="portfolio__item-year">2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio__item">
+                    <img class="portfolio__item-img" src="assets/img/portfolio/portfolio-4.png" alt="Home Office Design" />
+                    <div class="portfolio__item-overlay">
+                        <img class="portfolio__item-corner portfolio__item-corner--top-left" src="assets/img/icon/top-left-overlay.svg" alt="overlay" />
+                        <img class="portfolio__item-corner portfolio__item-corner--bottom-right" src="assets/img/icon/bottom-right-overlay.svg" alt="overlay" />
+                        <div class="portfolio__item-info">
+                            <div>
+                                <h3 class="portfolio__item-title">Executive Home Office</h3>
+                                <span class="portfolio__item-category">Workspace Design</span>
+                            </div>
+                            <span class="portfolio__item-year">2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio__item">
+                    <img class="portfolio__item-img" src="assets/img/portfolio/portfolio-5.png" alt="Luxury Living Room" />
+                    <div class="portfolio__item-overlay">
+                        <img class="portfolio__item-corner portfolio__item-corner--top-left" src="assets/img/icon/top-left-overlay.svg" alt="overlay" />
+                        <img class="portfolio__item-corner portfolio__item-corner--bottom-right" src="assets/img/icon/bottom-right-overlay.svg" alt="overlay" />
+                        <div class="portfolio__item-info">
+                            <div>
+                                <h3 class="portfolio__item-title">Luxury Mountain Retreat</h3>
+                                <span class="portfolio__item-category">Luxury Design</span>
+                            </div>
+                            <span class="portfolio__item-year">2024</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="ak-height-120 ak-height-lg-60"></div>
+    </section>
+    <!-- End Portfolio Section -->
 
     <!-- Start Footer Section -->
     <footer class="footer-dark">

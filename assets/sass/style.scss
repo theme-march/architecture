@@ -33,6 +33,8 @@
 @use "components/map";
 @use "components/scrollup";
 @use "components/video-modal";
+@use "components/common-banner";
+@use "components/sidebar";
 
 @use "layout/header";
 @use "layout/footer";
@@ -62,3 +64,10 @@
 @use "layout/portfolio-construction";
 @use "layout/choose-us-construction";
 @use "layout/team-construction";
+@use "layout/faq-construction";
+@use "layout/pricing-construction";
+@use "layout/booking-construction";
+@use "layout/blog-construction";
+@use "layout/service-details";
+@use "layout/project-details";
+
