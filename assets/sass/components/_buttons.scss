@@ -212,45 +212,61 @@
   display: inline-flex;
   align-items: center;
   background-color: var(--white-color);
-  padding: 10px 24px 10px 10px;
+  padding: 10px 40px 10px 30px;
   cursor: pointer;
   border: none;
   text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 
   &__icon {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background-color: var(--primary-color);
     flex-shrink: 0;
-    margin-right: 18px;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    margin-right: 10px;
+    z-index: 1;
+    transition:
+      transform 0.3s ease,
+      background-color 0.3s ease;
 
     svg {
-      width: 16px;
-      height: 18px;
-      margin-left: 3px; // Optical balance for play triangle
+      width: 14px;
+      margin-left: 3px;
       fill: var(--white-color);
     }
   }
 
+  &__ripple {
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    opacity: 0.8;
+    animation: play-btn-ripple 2s ease-out infinite;
+    pointer-events: none;
+    z-index: -1;
+  }
+
   &__label {
     font-family: var(--heading-font-family);
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 24px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
     color: var(--title-color);
-    letter-spacing: -0.2px;
     white-space: nowrap;
   }
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px color-mix(in srgb, var(--black-color), transparent 85%);
+    box-shadow: 0 10px 25px
+      color-mix(in srgb, var(--black-color), transparent 85%);
 
     .play-story-btn__icon {
       transform: scale(1.06);
@@ -262,3 +278,13 @@
   }
 }
 
+@keyframes play-btn-ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.75);
+    opacity: 0;
+  }
+}

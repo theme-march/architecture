@@ -10,6 +10,7 @@
 
   &__row {
     display: flex;
+    align-items: stretch;
     padding-left: 40px;
     padding-right: 40px;
     gap: 30px;
@@ -25,8 +26,8 @@
   &__image-col {
     position: relative;
     width: 44%;
-    min-height: 100%;
     display: flex;
+    flex-direction: column;
 
     @include respond(lg) {
       width: 100%;
@@ -40,28 +41,25 @@
 
   &__image {
     width: 100%;
-    height: 100%;
+    flex: 1;
     object-fit: cover;
     display: block;
+    min-height: 0;
   }
 
   &__story-badge {
     position: absolute;
-    left: 40px;
-    bottom: 30px;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
     z-index: 2;
-
-    @include respond(sm) {
-      left: 20px;
-      bottom: 20px;
-    }
   }
 
   &__content-col {
     position: relative;
     width: 56%;
     background-color: var(--title-color);
-    padding: 70px 60px 70px 60px;
+    padding: 120px 60px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -73,7 +71,7 @@
 
     @include respond(lg) {
       width: 100%;
-      padding: 50px 30px;
+      padding: 60px 30px;
     }
 
     @include respond(sm) {
@@ -81,17 +79,11 @@
     }
 
     .section-heading {
-      margin-bottom: 35px;
+      margin-bottom: 50px;
       position: relative;
-      z-index: 2;
-
-      &__subtitle-text {
-        letter-spacing: 1.5px;
-      }
 
       &__title {
-        font-weight: 700;
-        letter-spacing: -0.5px;
+        font-weight: 600;
       }
     }
   }
@@ -114,25 +106,32 @@
 
   &__accordion {
     position: relative;
-    z-index: 2;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    max-width: 680px;
+    gap: 30px;
+    max-width: 700px;
     width: 100%;
   }
 
   &__item {
     background-color: var(--white-color);
-    border: none;
+    border: 2px dashed var(--primary-color);
     transition: box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
 
     &--active {
-      box-shadow: 0 8px 24px color-mix(in srgb, var(--black-color), transparent 75%);
+      padding: 8px;
+      .faq-construction__content-wrap {
+        margin-top: 10px;
+      }
 
       .faq-construction__trigger-icon {
         background-color: var(--primary-color);
         color: var(--white-color);
+        width: 48px;
+        border-radius: 12px;
       }
 
       .faq-construction__body {
@@ -141,32 +140,36 @@
     }
   }
 
+  &__trigger-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease;
+    border-right: 1px solid var(--border-color);
+    cursor: pointer;
+
+    @include respond(sm) {
+      width: 48px;
+    }
+  }
+
+  &__content-wrap {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
   &__trigger {
     width: 100%;
     display: flex;
-    align-items: stretch;
+    align-items: center;
     background: none;
     border: none;
     padding: 0;
     text-align: left;
     cursor: pointer;
-  }
-
-  &__trigger-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 54px;
-    min-height: 54px;
-    background-color: color-mix(in srgb, var(--title-color), transparent 96%);
-    border-right: 1px solid var(--border-color);
-    flex-shrink: 0;
-    transition: background-color 0.3s ease;
-
-    @include respond(sm) {
-      width: 48px;
-      min-height: 48px;
-    }
   }
 
   &__icon {
@@ -188,27 +191,24 @@
   }
 
   &__question {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 24px;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
     color: var(--heading-color);
-    letter-spacing: -0.2px;
-    margin: 0;
   }
 
   &__body {
     display: none;
-    padding: 0 24px 20px 78px;
+    padding: 0 24px 20px 24px;
 
     @include respond(sm) {
-      padding: 0 16px 16px 64px;
+      padding: 0 16px 16px 16px;
     }
   }
 
   &__answer {
-    font-size: 15px;
-    line-height: 24px;
-    color: var(--body-color);
-    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 26px;
   }
 }

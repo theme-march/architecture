@@ -67,8 +67,7 @@
     sidebarStickySidebar();
     modalVideo();
     scrollUp();
-    workingProcessAccordion();
-    buttonBlurAnimation();
+    serviceAccordion();
   });
 
   $window.on("scroll", function () {
@@ -312,31 +311,45 @@
     }
   }
 
+
   /*--------------------------------------------------------------
-  8. Button Blur Animation
+  8. Hero Animation
   --------------------------------------------------------------*/
 
   /*--------------------------------------------------------------
-  9. Hero Animation
-  --------------------------------------------------------------*/
-
-  /*--------------------------------------------------------------
-  10. Title Animation
+  9. Title Animation
   --------------------------------------------------------------*/
 
 
   /*--------------------------------------------------------------
-  11. Cta Animation
+  10. Cta Animation
   --------------------------------------------------------------*/
 
   /*--------------------------------------------------------------
-  12. Funfact Counter
+  11. Funfact Counter
   --------------------------------------------------------------*/
 
 
   /*--------------------------------------------------------------
-    13. Sticky Sidebar 
+  12. Sticky Sidebar 
   --------------------------------------------------------------*/
+  function sidebarStickySidebar() {
+    // sticky sidebar logic
+  }
+
+  /*--------------------------------------------------------------
+  13. Service Accordion
+  --------------------------------------------------------------*/
+  function serviceAccordion() {
+    $document.on("click", ".service__item-header", function () {
+      var $item = $(this).closest(".service__item");
+      var isActive = $item.hasClass("service__item--active");
+      $(".service__item").removeClass("service__item--active");
+      if (!isActive) {
+        $item.addClass("service__item--active");
+      }
+    });
+  }
 
 
 })(jQuery);
