@@ -2,3 +2,80 @@
   8. Pagination
 ----------------------------------------------------------------*/
 @use "../abstracts" as *;
+
+.ak-pagination {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid var(--primary-color);
+    background-color: var(--smoke-bg-color-one);
+    color: var(--heading-color);
+    font-family: var(--display-font-family-two);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    &--active {
+      background-color: var(--primary-color);
+      color: var(--white-color);
+      &:hover {
+        color: var(--white-color)
+      }
+    }
+
+    &:hover:not(.ak-pagination__item--active) {
+      background-color: var(--primary-color);
+      color: var(--white-color);
+    }
+  }
+
+  &__arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    &--prev,
+    &--next {
+      border: 1px solid var(--primary-color);
+      background-color: var(--smoke-bg-color-one);
+      color: var(--primary-color);
+
+      &:hover {
+        background-color: var(--primary-color);
+        color: var(--white-color);
+
+        .ak-pagination__arrow-icon {
+          filter: brightness(0) invert(1);
+        }
+      }
+    }
+
+    &--next {
+      .ak-pagination__arrow-icon {
+        transform: rotate(180deg);
+      }
+    }
+
+    &-icon {
+      width: 16px;
+      height: 14px;
+      display: block;
+      transition: filter 0.3s ease, transform 0.3s ease;
+    }
+  }
+}

@@ -1000,7 +1000,7 @@ kbd {
   display: inline-flex;
   align-items: center;
   background-color: var(--white-color);
-  padding: 10px 40px 10px 30px;
+  padding: 20px 30px;
   cursor: pointer;
   border: none;
   text-decoration: none;
@@ -1016,7 +1016,7 @@ kbd {
   border-radius: 50%;
   background-color: var(--primary-color);
   flex-shrink: 0;
-  margin-right: 10px;
+  margin-right: 15px;
   z-index: 1;
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
@@ -1070,6 +1070,71 @@ kbd {
 /*--------------------------------------------------------------
   8. Pagination
 ----------------------------------------------------------------*/
+.ak-pagination {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.ak-pagination__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid var(--primary-color);
+  background-color: var(--smoke-bg-color-one);
+  color: var(--heading-color);
+  font-family: var(--display-font-family-two);
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.ak-pagination__item--active {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+.ak-pagination__item--active:hover {
+  color: var(--white-color);
+}
+.ak-pagination__item:hover:not(.ak-pagination__item--active) {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+.ak-pagination__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 16px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.ak-pagination__arrow--prev, .ak-pagination__arrow--next {
+  border: 1px solid var(--primary-color);
+  background-color: var(--smoke-bg-color-one);
+  color: var(--primary-color);
+}
+.ak-pagination__arrow--prev:hover, .ak-pagination__arrow--next:hover {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+.ak-pagination__arrow--prev:hover .ak-pagination__arrow-icon, .ak-pagination__arrow--next:hover .ak-pagination__arrow-icon {
+  filter: brightness(0) invert(1);
+}
+.ak-pagination__arrow--next .ak-pagination__arrow-icon {
+  transform: rotate(180deg);
+}
+.ak-pagination__arrow-icon {
+  width: 16px;
+  height: 14px;
+  display: block;
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
 /*--------------------------------------------------------------
   9. Slider
 ----------------------------------------------------------------*/
@@ -8349,4 +8414,365 @@ About Us
   width: 20px;
   height: 20px;
   flex-shrink: 0;
+}
+
+/*--------------------------------------------------------------
+  Team Details Section
+----------------------------------------------------------------*/
+.team-details-section__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+}
+@media (max-width: 992px) {
+  .team-details-section__row {
+    flex-direction: column-reverse;
+  }
+}
+.team-details-section__details-col {
+  width: 66.666667%;
+  background-color: var(--smoke-bg-color-one);
+  padding: 40px;
+}
+@media (max-width: 992px) {
+  .team-details-section__details-col {
+    width: 100%;
+  }
+}
+.team-details-section__sidebar-col {
+  width: 33.333333%;
+}
+@media (max-width: 992px) {
+  .team-details-section__sidebar-col {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+}
+.team-details-section__heading {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 46px;
+  margin-bottom: 15px;
+}
+@media (max-width: 768px) {
+  .team-details-section__heading {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+}
+.team-details-section__desc {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  margin-bottom: 20px;
+}
+.team-details-section__desc:last-of-type {
+  margin-bottom: 0;
+}
+.team-details-section__block {
+  margin-bottom: 20px;
+}
+.team-details-section__block:last-child {
+  margin-bottom: 0;
+}
+.team-details-section__checklist {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.team-details-section__check-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+@media (max-width: 576px) {
+  .team-details-section__check-item {
+    font-size: 15px;
+    align-items: flex-start;
+  }
+}
+.team-details-section__check-icon {
+  color: var(--primary-color);
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.team-details-section__skills-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.team-details-section__skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.team-details-section__skill-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.team-details-section__skill-title, .team-details-section__skill-percent {
+  font-size: 16px;
+  font-weight: 500;
+}
+.team-details-section__skill-bar {
+  width: 100%;
+  height: 10px;
+  background-color: var(--white-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 20px;
+  padding: 5px 3px;
+  display: flex;
+  align-items: center;
+}
+.team-details-section__skill-progress {
+  height: 6px;
+  background-color: var(--primary-color);
+  border-radius: 20px;
+  transition: width 1s ease-in-out;
+}
+.team-details-section__form {
+  margin-top: 15px;
+}
+.team-details-section__form-row {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+@media (max-width: 576px) {
+  .team-details-section__form-row {
+    flex-direction: column;
+    gap: 25px;
+  }
+}
+.team-details-section__form-group {
+  flex: 1;
+  margin-bottom: 25px;
+}
+.team-details-section__form-group--half {
+  margin-bottom: 0;
+}
+.team-details-section__input, .team-details-section__textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  padding: 15px 0;
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  color: var(--heading-color);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+.team-details-section__input::-moz-placeholder, .team-details-section__textarea::-moz-placeholder {
+  color: var(--heading-color);
+  opacity: 0.8;
+}
+.team-details-section__input::placeholder, .team-details-section__textarea::placeholder {
+  color: var(--heading-color);
+  opacity: 0.8;
+}
+.team-details-section__input:focus, .team-details-section__textarea:focus {
+  border-bottom-color: var(--primary-color);
+}
+.team-details-section__textarea {
+  resize: none;
+  min-height: 120px;
+  display: block;
+}
+.team-details-section__submit-btn {
+  padding: 20px 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.team-details-section__btn-icon {
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+.team-details-section__submit-btn:hover .team-details-section__btn-icon {
+  transform: translateX(4px);
+}
+.team-details-section__card {
+  background-color: var(--smoke-bg-color-one);
+  padding: 30px;
+}
+.team-details-section__member-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.team-details-section__card-body {
+  padding-top: 30px;
+}
+.team-details-section__member-name {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 46px;
+}
+@media (max-width: 576px) {
+  .team-details-section__member-name {
+    font-size: 26px;
+  }
+}
+.team-details-section__member-role {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--body-color);
+  margin-bottom: 0;
+}
+.team-details-section__divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 20px 0;
+}
+.team-details-section__meta-list {
+  display: flex;
+  flex-direction: column;
+}
+.team-details-section__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.team-details-section__meta-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--heading-color);
+}
+.team-details-section__meta-value {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+}
+.team-details-section__social-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--heading-color);
+  margin-bottom: 15px;
+}
+.team-details-section__socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.team-details-section__social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: var(--heading-color);
+  border: 1px solid var(--border-color);
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.team-details-section__social-link:hover {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+/*--------------------------------------------------------------
+  FAQ Section
+----------------------------------------------------------------*/
+.faq-section__wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.faq-section__list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.faq-section__pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+@media (max-width: 768px) {
+  .faq-section__pagination {
+    margin-top: 40px;
+  }
+}
+
+.faq-item {
+  background-color: var(--smoke-bg-color-one);
+  border: 1px solid var(--border-color);
+}
+.faq-item__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;
+  cursor: pointer;
+  gap: 20px;
+}
+@media (max-width: 768px) {
+  .faq-item__header {
+    padding: 18px 20px;
+  }
+}
+.faq-item__question {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 26px;
+}
+@media (max-width: 768px) {
+  .faq-item__question {
+    font-size: 16px;
+  }
+}
+.faq-item__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: var(--heading-color);
+  color: var(--primary-color);
+  font-size: 16px;
+  flex-shrink: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.faq-item__body {
+  background-color: var(--heading-color);
+  padding: 25px;
+}
+@media (max-width: 768px) {
+  .faq-item__body {
+    padding: 20px;
+  }
+}
+.faq-item__answer {
+  color: var(--white-color);
+  font-size: 16px;
+  font-weight: 400;
+}
+.faq-item--active .faq-item__header {
+  background-color: var(--primary-color);
+}
+.faq-item--active .faq-item__question {
+  color: var(--white-color);
+}
+.faq-item--active .faq-item__icon {
+  background-color: var(--white-color);
 }/*# sourceMappingURL=style.css.map */
