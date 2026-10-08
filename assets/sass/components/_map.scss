@@ -5,7 +5,7 @@
 @use "../abstracts" as *;
 
 .ak-google-map {
-  height: 530px;
+  height: 740px;
   @include respond(lg) {
     height: 400px;
   }

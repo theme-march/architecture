@@ -1,0 +1,299 @@
+@use "../abstracts" as *;
+
+/*--------------------------------------------------------------
+  Contact Section
+----------------------------------------------------------------*/
+
+.contact-section {
+  &__cards {
+    display: flex;
+    gap: 30px;
+
+    @include respond(lg) {
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+  }
+
+  &__card {
+    position: relative;
+    overflow: hidden;
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 30px;
+    background-color: var(--smoke-bg-color-one);
+    transition: all 0.3s ease;
+
+    @include respond(lg) {
+      flex: 0 0 calc(50% - 12px);
+    }
+
+    @include respond(md) {
+      flex: 0 0 100%;
+    }
+
+    &-watermark {
+      position: absolute;
+      right: 70px;
+      bottom: -25px;
+      width: 100%;
+      max-width: 120px;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 0;
+      filter: brightness(0);
+    }
+
+    &-icon-wrap {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px solid var(--primary-color);
+      background-color: var(--white-color);
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    &-icon {
+      width: 40px;
+      height: 40px;
+      display: block;
+    }
+
+    &-body {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+    }
+
+    &-title {
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 36px;
+      margin-bottom: 15px;
+      color: var(--heading-color);
+    }
+
+    &-text {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 26px;
+    }
+
+    &:hover {
+      background-color: var(--primary-color);
+
+      .contact-section__card-title {
+        color: var(--white-color);
+      }
+
+      .contact-section__card-text {
+        color: var(--white-color);
+      }
+
+      .contact-section__card-icon-wrap {
+        border-color: var(--black-color);
+        background-color: var(--black-color);
+
+        .contact-section__card-icon {
+          filter: brightness(0) invert(1);
+        }
+      }
+
+      .contact-section__card-watermark {
+        opacity: 0.1;
+        filter: brightness(0) invert(1);
+      }
+    }
+  }
+
+  &__field-wrap {
+    position: relative;
+    z-index: 2;
+    margin-bottom: -120px;
+  }
+
+  &__field {
+    position: relative;
+    background-color: var(--smoke-bg-color-one);
+    box-shadow: 0px 10px 40px
+      color-mix(in srgb, var(--black-color), transparent 96%);
+    padding: 100px 80px;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 0;
+
+    @include respond(lg) {
+      padding: 50px 40px 60px;
+    }
+
+    @include respond(md) {
+      padding: 40px 20px 50px;
+    }
+  }
+
+  &__pill {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--black-color);
+    color: var(--white-color);
+    padding: 12px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
+  &__pill-icon {
+    width: 20px;
+    height: 20px;
+    display: block;
+    object-fit: contain;
+  }
+
+  &__pill-text {
+    font-family: var(--heading-font-family);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    line-height: 1;
+  }
+
+  &__form-title {
+    position: relative;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 57px;
+    color: var(--heading-color);
+    margin-bottom: 50px;
+
+    @include respond(lg) {
+      font-size: 38px;
+    }
+
+    @include respond(md) {
+      font-size: 30px;
+      margin-bottom: 30px;
+    }
+
+    @include respond(sm) {
+      font-size: 24px;
+    }
+  }
+
+  &__form {
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  &__form-row {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+
+    @include respond(md) {
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+  }
+
+  &__input-wrap {
+    position: relative;
+    flex: 1;
+
+    &--full {
+      margin-bottom: 40px;
+
+      @include respond(md) {
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  &__input {
+    width: 100%;
+    padding: 20px 30px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background-color: var(--white-color);
+    font-family: var(--body-font-family);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--heading-color);
+    outline: none;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      border-color: var(--primary-color);
+    }
+
+    &::placeholder {
+      color: var(--heading-color-three);
+    }
+  }
+
+  &__select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    color: var(--heading-color-three);
+    font-size: 16px;
+    font-weight: 500;
+
+    &:focus {
+      color: var(--heading-color);
+    }
+
+    option {
+      color: var(--heading-color);
+    }
+  }
+
+  &__textarea {
+    height: 140px;
+    resize: none;
+  }
+
+  &__input-icon {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--heading-color-three);
+    font-size: 14px;
+    pointer-events: none;
+  }
+
+  &__form-footer {
+    text-align: center;
+  }
+
+  &__submit-btn {
+    border: none;
+    cursor: pointer;
+    padding: 22px 50px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    font-family: var(--heading-font-family);
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: var(--heading-color);
+    }
+  }
+}
