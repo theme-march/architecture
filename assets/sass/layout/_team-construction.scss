@@ -2,6 +2,37 @@
 
 .team-construction {
   position: relative;
+  overflow: hidden;
+
+  &__element-top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    pointer-events: none;
+    z-index: 0;
+
+    @include respond(md) {
+      max-width: 250px;
+    }
+  }
+
+  &__element-bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 0;
+
+    @include respond(md) {
+      max-width: 250px;
+    }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
   .section-heading__title{
     font-weight: 600;
   }

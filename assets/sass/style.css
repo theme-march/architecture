@@ -34,7 +34,7 @@
   --white-color: #ffffff;
   --black-color: #000000;
   --primary-color: #df5a21;
-  --title-color: #020202;
+  --title-color: #111111;
   --secondary-color: #27323a;
   --smoke-bg-color-one: #fff7f3;
   --smoke-bg-color-two: #fffbee;
@@ -847,15 +847,16 @@ kbd {
   height: 47px;
 }
 .primary-btn .icon-wrapper svg {
-  width: 22px;
-  height: 22px;
+  width: 16px;
+  height: 16px;
   transition: transform 0.3s ease;
 }
 .primary-btn .icon-wrapper svg path {
+  fill: var(--primary-color);
   transition: fill 0.3s ease;
 }
-.primary-btn:active {
-  transform: scale(0.98);
+.primary-btn:hover {
+  color: var(--white-color);
 }
 
 .outline-btn {
@@ -888,8 +889,8 @@ kbd {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 .outline-btn .icon-wrapper svg {
-  width: 22px;
-  height: 22px;
+  width: 16px;
+  height: 16px;
   transition: transform 0.3s ease;
 }
 .outline-btn .icon-wrapper svg path {
@@ -1789,18 +1790,14 @@ kbd {
   }
 }
 
-/*--------------------------------------------------------------
-  Common Breadcrumb
-----------------------------------------------------------------*/
 .common-breadcrumb {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   font-family: var(--heading-font-family);
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-size: 20px;
+  font-weight: 600;
   text-transform: uppercase;
 }
 @media (max-width: 576px) {
@@ -1811,15 +1808,14 @@ kbd {
 }
 .common-breadcrumb__link {
   color: var(--white-color);
-  text-decoration: none;
-  transition: color 0.3s ease;
+  font-size: 20px;
+  font-weight: 500;
 }
 .common-breadcrumb__link:hover {
   color: var(--primary-color);
 }
 .common-breadcrumb__separator {
   color: var(--primary-color);
-  font-weight: 700;
 }
 .common-breadcrumb__current {
   color: var(--primary-color);
@@ -3205,6 +3201,7 @@ kbd {
   font-size: 30px;
   font-weight: 600;
   line-height: 36px;
+  max-width: 489px;
   color: var(--white-color);
   margin: 0;
 }
@@ -3233,7 +3230,7 @@ kbd {
 }
 .footer-dark__newsletter-input {
   flex: 1;
-  background-color: #151515;
+  background-color: var(--heading-color-three);
   border: none;
   outline: none;
   color: var(--white-color);
@@ -3243,10 +3240,10 @@ kbd {
   height: 52px;
 }
 .footer-dark__newsletter-input::-moz-placeholder {
-  color: color-mix(in srgb, var(--white-color), transparent 45%);
+  color: var(--white-color);
 }
 .footer-dark__newsletter-input::placeholder {
-  color: color-mix(in srgb, var(--white-color), transparent 45%);
+  color: var(--white-color);
 }
 .footer-dark__newsletter-input:focus {
   outline: none;
@@ -3307,7 +3304,7 @@ kbd {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #151515;
+  background-color: var(--heading-color-three);
   color: var(--white-color);
   text-decoration: none;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
@@ -3861,7 +3858,7 @@ kbd {
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 .footer-construction__social-btn--facebook, .footer-construction__social-btn--twitter, .footer-construction__social-btn--instagram, .footer-construction__social-btn--pinterest {
-  background-color: color-mix(in srgb, var(--white-color), transparent 75%);
+  border: 1px solid color-mix(in srgb, var(--white-color), transparent 75%);
 }
 .footer-construction__social-btn:hover {
   transform: translateY(-2px);
@@ -3921,23 +3918,19 @@ kbd {
   margin-right: 15px;
 }
 .hero-architecture__subtitle {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
   color: var(--white-color);
   text-transform: uppercase;
   margin-bottom: 20px;
 }
 .hero-architecture__title {
-  font-size: clamp(32px, 15vw, 65px);
+  font-size: 66px;
   font-weight: 500;
-  font-variation-settings: "wght" 500, "opsz" 85;
-  transform-origin: left;
-  display: inline-block;
-  letter-spacing: 1px;
-  transition: transform 0.3s ease;
-  white-space: nowrap;
+  line-height: 74px;
   color: var(--white-color);
   margin-bottom: 15px;
+  max-width: 855px;
 }
 .hero-architecture__datedesp {
   color: var(--white-color);
@@ -3948,8 +3941,9 @@ kbd {
 }
 .hero-architecture__datedesp .desp {
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 30px;
+  max-width: 545px;
   color: var(--white-color);
 }
 .hero-architecture--bottom-text {
@@ -3991,22 +3985,22 @@ kbd {
     width: 70%;
   }
 }
-.architecture-about {
-  background: var(--secendary-color);
+.about-architecture {
+  background: var(--secondary-color);
 }
-.architecture-about__wrapper {
+.about-architecture__wrapper {
   display: flex;
   gap: 30px;
   justify-content: space-between;
 }
-.architecture-about__visual-column {
+.about-architecture__visual-column {
   display: flex;
   flex-direction: column;
   gap: 60px;
   max-width: 300px;
   width: 100%;
 }
-.architecture-about__tag {
+.about-architecture__tag {
   color: var(--white-color);
   font-size: 18px;
   font-weight: 600;
@@ -4015,43 +4009,43 @@ kbd {
   align-items: center;
   gap: 12px;
 }
-.architecture-about__tag-line {
+.about-architecture__tag-line {
   display: inline-block;
   width: 35px;
   height: 2px;
   background: var(--white-color);
   flex-shrink: 0;
 }
-.architecture-about__content-column {
+.about-architecture__content-column {
   max-width: 751px;
 }
-.architecture-about__graphics {
+.about-architecture__graphics {
   position: relative;
 }
-.architecture-about__award-card {
+.about-architecture__award-card {
   position: absolute;
   bottom: -95px;
   left: 137px;
 }
-.architecture-about--title {
+.about-architecture--title {
   font-size: 36px;
   font-weight: 500;
   color: var(--white-color);
   text-transform: capitalize;
   margin-bottom: 50px;
 }
-.architecture-about__description {
+.about-architecture__description {
   font-size: 16px;
   color: var(--white-color);
   margin-bottom: 40px;
   font-weight: 500;
   margin-top: 50px;
 }
-.architecture-about__social-proof {
+.about-architecture__social-proof {
   display: flex;
   gap: 20px;
 }
-.architecture-about__social-proof .stats-text {
+.about-architecture__social-proof .stats-text {
   font-size: 16px;
   color: var(--white-color);
   font-weight: 500;
@@ -4076,7 +4070,7 @@ kbd {
 }
 
 .stats-banner {
-  background-color: var(--secendary-color);
+  background-color: var(--secondary-color);
   color: var(--white-color);
 }
 .stats-banner__wrapper {
@@ -4462,7 +4456,7 @@ kbd {
 .video-section__heading {
   color: var(--white-color);
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 32px;
 }
 .video-section__stat {
@@ -4593,7 +4587,7 @@ kbd {
 }
 .hero-interior__subtitle {
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--white-color);
   line-height: 22px;
   margin-bottom: 20px;
@@ -4851,14 +4845,13 @@ About Us
 }
 .about-us__subtitle-text {
   font-family: var(--heading-font-family);
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
-  letter-spacing: 0.5px;
   color: var(--primary-color);
   text-transform: uppercase;
 }
 .about-us__right {
-  max-width: 760px;
+  max-width: 780px;
   width: 100%;
 }
 .about-us__title {
@@ -4972,6 +4965,9 @@ About Us
 /*--------------------------------------------------------------
   Portfolio
 ----------------------------------------------------------------*/
+.portfolio .section-heading__title {
+  font-weight: 500;
+}
 .portfolio__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -5071,6 +5067,10 @@ About Us
 .service {
   background-color: var(--smoke-bg-color-one);
   margin: 0 15px 15px 15px;
+}
+
+.section-heading__title {
+  font-weight: 500;
 }
 
 .service__item {
@@ -5184,6 +5184,11 @@ About Us
   color: var(--heading-color);
   border: 1px solid var(--border-color);
   padding: 10px 16px;
+}
+.service__item-tag:hover {
+  background-color: var(--black-color);
+  color: var(--white-color);
+  transition: all 0.3s ease;
 }
 
 .service__item-image {
@@ -5497,6 +5502,11 @@ About Us
   color: var(--white-color);
   border-color: var(--white-color);
 }
+.how-we-work__card--dark .how-we-work__timeline-badge:hover {
+  background-color: var(--white-color);
+  color: var(--black-color);
+  transition: all 0.3s ease;
+}
 
 .how-we-work__card-inner {
   padding: 40px;
@@ -5573,6 +5583,11 @@ About Us
   color: var(--heading-color);
   border: 1px solid var(--border-color);
   padding: 12px 16px;
+}
+.how-we-work__timeline-badge:hover {
+  background-color: var(--black-color);
+  color: var(--white-color);
+  transition: all 0.3s ease;
 }
 
 .blog {
@@ -5833,7 +5848,7 @@ About Us
   background-color: var(--primary-color);
 }
 .choose-us__card--secondary {
-  background-color: var(--secendary-color);
+  background-color: var(--secondary-color);
 }
 .choose-us__card--dark {
   background-color: var(--heading-color);
@@ -5848,7 +5863,7 @@ About Us
   width: 100%;
   max-width: 60px;
   flex-shrink: 0;
-  margin-bottom: 90px;
+  margin-bottom: 70px;
 }
 .choose-us__card-title {
   font-size: 24px;
@@ -5903,7 +5918,7 @@ About Us
 }
 .portfolio-architecture__item-title {
   font-size: 30px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 36px;
   padding-top: 10px;
 }
@@ -5918,6 +5933,11 @@ About Us
   font-weight: 500;
   border: 1px solid var(--border-color);
   color: var(--heading-color);
+}
+.portfolio-architecture__item-tag:hover {
+  background-color: var(--black-color);
+  color: var(--white-color);
+  transition: all 0.3s ease;
 }
 .portfolio-architecture__image-wrap {
   position: relative;
@@ -6829,7 +6849,7 @@ About Us
   text-transform: uppercase;
   font-size: 130px;
   font-weight: 700;
-  opacity: 0.1;
+  opacity: 0.05;
   white-space: nowrap;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
@@ -6849,7 +6869,7 @@ About Us
   display: block;
   width: 1px;
   align-self: stretch;
-  background-color: color-mix(in srgb, var(--white-color), transparent 80%);
+  background-color: color-mix(in srgb, var(--white-color), transparent 90%);
   flex-shrink: 0;
 }
 @media (max-width: 992px) {
@@ -6936,7 +6956,7 @@ About Us
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 .service-construction__list-item--active {
   color: var(--white-color);
@@ -7312,9 +7332,9 @@ About Us
 .choose-us-construction__circle-text {
   fill: var(--white-color);
   font-family: var(--heading-font-family);
-  font-size: 8px;
+  font-size: 7px;
   font-weight: 500;
-  letter-spacing: 2.5px;
+  letter-spacing: 3px;
   text-transform: uppercase;
 }
 .choose-us-construction__circle-logo {
@@ -7346,7 +7366,7 @@ About Us
   }
 }
 .choose-us-construction__heading {
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 .choose-us-construction__heading .section-heading__title {
   color: var(--white-color);
@@ -7384,7 +7404,7 @@ About Us
 }
 .choose-us-construction__feature-desc {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 26px;
   color: var(--white-color);
   margin: 0;
@@ -7460,6 +7480,35 @@ About Us
 
 .team-construction {
   position: relative;
+  overflow: hidden;
+}
+.team-construction__element-top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+@media (max-width: 768px) {
+  .team-construction__element-top-right {
+    max-width: 250px;
+  }
+}
+.team-construction__element-bottom-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+@media (max-width: 768px) {
+  .team-construction__element-bottom-left {
+    max-width: 250px;
+  }
+}
+.team-construction .container {
+  position: relative;
+  z-index: 1;
 }
 .team-construction .section-heading__title {
   font-weight: 600;
@@ -7939,7 +7988,7 @@ About Us
 }
 .pricing-construction__save {
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 32px;
   color: var(--heading-color);
   margin: 0;
@@ -7949,7 +7998,7 @@ About Us
   font-weight: 600;
 }
 .pricing-construction__save-amount {
-  font-weight: 700;
+  font-weight: 600;
   color: var(--heading-color);
 }
 .pricing-construction__stars {
@@ -8056,6 +8105,7 @@ About Us
   z-index: 2;
 }
 .booking-construction__card {
+  position: relative;
   background-color: var(--white-color);
   padding: 60px;
   max-width: 535px;
@@ -8070,6 +8120,36 @@ About Us
   .booking-construction__card {
     padding: 40px 24px;
   }
+}
+.booking-construction__line {
+  position: absolute;
+  background-color: color-mix(in srgb, var(--white-color), transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+.booking-construction__line--left {
+  left: 0;
+  top: -1000px;
+  bottom: -1000px;
+  width: 1px;
+}
+.booking-construction__line--right {
+  right: 0;
+  top: -1000px;
+  bottom: -1000px;
+  width: 1px;
+}
+.booking-construction__line--top {
+  top: 0;
+  left: -1000px;
+  right: -1000px;
+  height: 1px;
+}
+.booking-construction__line--bottom {
+  bottom: 0;
+  left: -2000px;
+  right: -2000px;
+  height: 1px;
 }
 .booking-construction__title {
   font-size: 36px;
@@ -8201,9 +8281,14 @@ About Us
   justify-content: center;
   flex-shrink: 0;
 }
-.blog-construction__meta-icon img {
-  width: 14px;
-  height: 14px;
+.blog-construction__meta-icon-img--user {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+.blog-construction__meta-icon-img--comment {
+  width: 20px;
+  height: 18px;
   display: block;
 }
 .blog-construction__title {
@@ -8256,7 +8341,7 @@ About Us
   transition: transform 0.3s ease;
   flex-shrink: 0;
 }
-.blog-construction__share img {
+.blog-construction__share__share-icon {
   width: 20px;
   height: 20px;
   display: block;
@@ -8491,7 +8576,7 @@ About Us
 }
 .project-details__meta-label {
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--white-color);
   min-width: 130px;
 }

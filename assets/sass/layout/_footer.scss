@@ -214,6 +214,7 @@
     font-size: 30px;
     font-weight: 600;
     line-height: 36px;
+    max-width: 489px;
     color: var(--white-color);
     margin: 0;
 
@@ -241,7 +242,7 @@
 
   &__newsletter-input {
     flex: 1;
-    background-color: #151515;
+    background-color: var(--heading-color-three);
     border: none;
     outline: none;
     color: var(--white-color);
@@ -251,7 +252,7 @@
     height: 52px;
 
     &::placeholder {
-      color: color-mix(in srgb, var(--white-color), transparent 45%);
+      color: var(--white-color);
     }
 
     &:focus {
@@ -321,7 +322,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #151515;
+    background-color: var(--heading-color-three);
     color: var(--white-color);
     text-decoration: none;
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
@@ -923,7 +924,7 @@
     &--twitter,
     &--instagram,
     &--pinterest {
-      background-color: color-mix(in srgb, var(--white-color), transparent 75%);
+      border: 1px solid color-mix(in srgb, var(--white-color), transparent 75%);
     }
 
     &:hover {

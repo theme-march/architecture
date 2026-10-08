@@ -35,6 +35,7 @@
   }
 
   &__card {
+    position: relative;
     background-color: var(--white-color);
     padding: 60px;
     max-width: 535px;
@@ -46,6 +47,41 @@
 
     @include respond(sm) {
       padding: 40px 24px;
+    }
+  }
+
+  &__line {
+    position: absolute;
+    background-color: color-mix(in srgb, var(--white-color), transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+
+    &--left {
+      left: 0;
+      top: -1000px;
+      bottom: -1000px;
+      width: 1px;
+    }
+
+    &--right {
+      right: 0;
+      top: -1000px;
+      bottom: -1000px;
+      width: 1px;
+    }
+
+    &--top {
+      top: 0;
+      left: -1000px;
+      right: -1000px;
+      height: 1px;
+    }
+
+    &--bottom {
+      bottom: 0;
+      left: -2000px;
+      right: -2000px;
+      height: 1px;
     }
   }
 

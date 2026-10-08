@@ -4,7 +4,9 @@
 @use "../abstracts" as *;
 
 .portfolio {
-
+  .section-heading__title {
+    font-weight: 500;
+  }
   &__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;

@@ -118,12 +118,18 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+  }
 
-    img {
-      width: 14px;
-      height: 14px;
-      display: block;
-    }
+  &__meta-icon-img--user {
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+
+  &__meta-icon-img--comment {
+    width: 20px;
+    height: 18px;
+    display: block;
   }
 
   &__title {
@@ -182,7 +188,7 @@
     transition: transform 0.3s ease;
     flex-shrink: 0;
 
-    img {
+    &__share-icon {
       width: 20px;
       height: 20px;
       display: block;

@@ -35,25 +35,19 @@
     margin-right: 15px;
   }
   &__subtitle {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 500;
     color: var(--white-color);
     text-transform: uppercase;
     margin-bottom: 20px;
   }
   &__title {
-    font-size: clamp(32px, 15vw, 65px);
+    font-size: 66px;
     font-weight: 500;
-    font-variation-settings:
-      "wght" 500,
-      "opsz" 85;
-    transform-origin: left;
-    display: inline-block;
-    letter-spacing: 1px;
-    transition: transform 0.3s ease;
-    white-space: nowrap;
+    line-height: 74px;
     color: var(--white-color);
     margin-bottom: 15px;
+    max-width: 855px;
   }
   &__datedesp {
     color: var(--white-color);
@@ -63,8 +57,9 @@
     gap: 100px;
     .desp {
       font-size: 18px;
-      font-weight: 500;
+      font-weight: 400;
       line-height: 30px;
+      max-width: 545px;
       color: var(--white-color);
     }
   }
@@ -97,7 +92,6 @@
   transition:
     transform 2s ease,
     opacity 1.2s ease;
-  // transform: scale(1.2);
   opacity: 1;
 }
 

@@ -2,7 +2,7 @@
 
 .portfolio-architecture {
   padding: 0 30px;
-  
+
   .section-heading__title {
     font-weight: 600;
   }
@@ -34,7 +34,7 @@
 
   &__item-title {
     font-size: 30px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 36px;
     padding-top: 10px;
   }
@@ -51,6 +51,11 @@
     font-weight: 500;
     border: 1px solid var(--border-color);
     color: var(--heading-color);
+    &:hover {
+      background-color: var(--black-color);
+      color: var(--white-color);
+      transition: all 0.3s ease;
+    }
   }
 
   &__image-wrap {
@@ -85,7 +90,9 @@
     left: 50%;
     transform: translate(-50%, -50%) scale(0.9);
     opacity: 0;
-    transition: opacity 0.35s ease, transform 0.35s ease;
+    transition:
+      opacity 0.35s ease,
+      transform 0.35s ease;
     z-index: 2;
   }
 
