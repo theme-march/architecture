@@ -278,6 +278,79 @@
   }
 }
 
+.play-video-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  @include transition;
+
+  @include respond(md) {
+    width: 70px;
+    height: 70px;
+  }
+
+  svg {
+    width: 22px;
+    height: 24px;
+    margin-left: 4px;
+    fill: var(--white-color);
+    @include transition;
+
+    @include respond(md) {
+      width: 18px;
+      height: 20px;
+    }
+  }
+
+  &__ripple {
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    opacity: 0.8;
+    animation: play-video-ripple 2s ease-out infinite;
+    pointer-events: none;
+    z-index: -1;
+    @include transition;
+  }
+
+  &:hover {
+    transform: scale(1.08);
+    background-color: var(--white-color);
+
+    svg {
+      fill: var(--primary-color);
+    }
+
+    .play-video-btn__ripple {
+      background-color: var(--white-color);
+    }
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+@keyframes play-video-ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
 @keyframes play-btn-ripple {
   0% {
     transform: scale(1);

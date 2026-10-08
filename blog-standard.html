@@ -17,172 +17,832 @@
     <link rel="stylesheet" href="assets/sass/style.css" />
   </head>
 
-<body>
+  <body>
+    <!-- Start Topbar -->
+    <div class="construction-topbar" id="constructionTopbar">
+      <div class="construction-topbar__inner">
+        <div class="construction-topbar__left">
+          <span class="construction-topbar__item">
+            <i class="fa-solid fa-location-dot construction-topbar__icon"></i>
+            <span>4517 Washington Ave Kentucky</span>
+          </span>
+          <span class="construction-topbar__divider">|</span>
+          <span class="construction-topbar__item">
+            <i class="fa-solid fa-envelope construction-topbar__icon"></i>
+            <a href="mailto:Info@Example.Com">Info@Example.Com</a>
+          </span>
+        </div>
+        <div class="construction-topbar__right">
+          <a
+            href="#"
+            class="construction-topbar__social-link"
+            aria-label="Facebook"
+          >
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a
+            href="#"
+            class="construction-topbar__social-link"
+            aria-label="Twitter"
+          >
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+          <a
+            href="#"
+            class="construction-topbar__social-link"
+            aria-label="Instagram"
+          >
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a
+            href="#"
+            class="construction-topbar__social-link"
+            aria-label="Behance"
+          >
+            <i class="fa-brands fa-behance"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- End Topbar -->
 
+    <!-- Start Header -->
+    <header
+      class="header-construction header-construction--below-topbar"
+      id="constructionHeader"
+    >
+      <div class="header-construction__inner">
+        <div class="header-construction__logo">
+          <a href="index.html">
+            <img
+              src="assets/img/logo.svg"
+              alt="Akest"
+              class="header-construction__logo-img"
+            />
+          </a>
+        </div>
 
-    <!-- Start Header Section -->
+        <div class="tm-main-header-center">
+          <div class="tm-nav tm-medium">
+            <ul class="tm-nav_list">
+              <li class="menu-item-has-children">
+                <a href="index.html">Home +</a>
+                <ul>
+                  <li>
+                    <a href="index.html">Interior Design</a>
+                  </li>
+                  <li>
+                    <a href="architecture.html">Architecture</a>
+                  </li>
+                  <li>
+                    <a href="construction.html">Construction</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="about-us.html">About</a>
+              </li>
+              <li class="menu-item-has-children">
+                <a href="service.html">Services +</a>
+                <ul>
+                  <li>
+                    <a href="service.html">Services</a>
+                  </li>
+                  <li>
+                    <a href="service-details.html">Services Details</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item-has-children">
+                <a href="project.html">Pages +</a>
+                <ul>
+                  <li>
+                    <a href="project.html">Projects</a>
+                  </li>
+                  <li>
+                    <a href="project-details.html">Project Details</a>
+                  </li>
+                  <li>
+                    <a href="team.html">Our Team</a>
+                  </li>
+                  <li>
+                    <a href="team-details.html">Team Details</a>
+                  </li>
+                  <li>
+                    <a href="pricing.html">Pricing</a>
+                  </li>
+                  <li>
+                    <a href="faq.html">FAQ</a>
+                  </li>
+                  <li>
+                    <a href="blog.html">Blog</a>
+                  </li>
+                  <li>
+                    <a href="blog-standard.html">Blog Standard</a>
+                  </li>
+                  <li>
+                    <a href="blog-details.html">Blog Details</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="contact.html">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
 
-    <!-- End Header Section -->
+        <div class="header-construction__actions">
+          <button class="primary-btn">
+            <span class="text">Get a quite</span>
+            <span class="icon-wrapper">
+              <svg
+                width="15"
+                height="13"
+                viewBox="0 0 15 13"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.6875 6.8125L8.6875 11.8125C8.3125 12.2188 7.65625 12.2188 7.28125 11.8125C6.875 11.4375 6.875 10.7812 7.28125 10.4062L10.5625 7.09375H1C0.4375 7.09375 0 6.65625 0 6.09375C0 5.5625 0.4375 5.09375 1 5.09375H10.5625L7.28125 1.8125C6.875 1.4375 6.875 0.78125 7.28125 0.40625C7.65625 0 8.3125 0 8.6875 0.40625L13.6875 5.40625C14.0938 5.78125 14.0938 6.4375 13.6875 6.8125Z"
+                  fill="#DF5A21"
+                />
+              </svg>
+            </span>
+          </button>
+          <button
+            class="header-construction__toggle"
+            id="constructionNavToggle"
+            aria-label="Toggle navigation"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- End Header -->
 
+    <!-- Start Common Banner Section -->
+    <section class="common-banner">
+      <img
+        class="common-banner__bg"
+        src="assets/img/bg/banner-bg.png"
+        alt="Banner Background"
+      />
+      <div class="common-banner__overlay"></div>
+      <img
+        class="common-banner__element"
+        src="assets/img/bg/bg-element.png"
+        alt=""
+      />
 
+      <div class="common-banner__inner">
+        <div class="common-banner__content">
+          <nav class="common-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html" class="common-breadcrumb__link">HOME</a>
+            <span class="common-breadcrumb__separator">//</span>
+            <span class="common-breadcrumb__current">BLOG STANDARD</span>
+          </nav>
+          <h1 class="common-banner__title">
+            Elegant And Functional Interior Spaces Designed Around Your Vision
+          </h1>
+        </div>
+      </div>
+    </section>
+    <!-- End Common Banner Section -->
+
+    <!-- Start Blog Standard Section -->
+    <section class="blog-standard">
+      <div class="ak-height-120 ak-height-lg-60"></div>
+      <div class="container">
+        <div class="blog-standard__row">
+          <div class="blog-standard__content-col">
+            <div class="blog-standard__topbar">
+              <span class="blog-standard__results-count"
+                >Showing 1 - 9 Of 40 Result</span
+              >
+              <div class="blog-standard__sort-wrap">
+                <button type="button" class="blog-standard__sort-btn">
+                  <span>Short By Latest</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="blog-standard__list">
+              <article class="blog-standard__card">
+                <div class="blog-standard__card-media">
+                  <img
+                    src="assets/img/blog/blog-standard-1.png"
+                    alt="How To Make Your Home Feel More Spacious"
+                    class="blog-standard__card-img"
+                  />
+                  <span class="blog-standard__card-date">22 Aug 2025</span>
+                </div>
+                <div class="blog-standard__card-body">
+                  <ul class="blog-standard__card-meta">
+                    <li class="blog-standard__card-meta-item">
+                      <img
+                        src="assets/img/icon/user.svg"
+                        alt="User"
+                        class="blog-standard__card-meta-icon"
+                      />
+                      <span>Leslie Alexander</span>
+                    </li>
+                    <li class="blog-standard__card-meta-item">
+                      <img
+                        src="assets/img/icon/comment.svg"
+                        alt="Comment"
+                        class="blog-standard__card-meta-icon"
+                      />
+                      <span>(03) Comments</span>
+                    </li>
+                  </ul>
+                  <h2 class="blog-standard__card-title">
+                    <a href="blog-details.html"
+                      >How To Make Your Home Feel More Spacious</a
+                    >
+                  </h2>
+                  <p class="blog-standard__card-desc">
+                    The timeline varies depending on the project's scope and
+                    complexity. We provide detaile timeline after assessing your
+                    specific needs.
+                  </p>
+                  <a href="blog-details.html" class="read-more-btn">
+                    <span class="read-more-btn__icon">
+                      <img
+                        class="read-more-btn__bg"
+                        src="assets/img/icon/btn-background.svg"
+                        alt=""
+                      />
+                      <img
+                        class="read-more-btn__arrow"
+                        src="assets/img/icon/btn-arrow.svg"
+                        alt=""
+                      />
+                    </span>
+                    <span class="read-more-btn__label">Read More</span>
+                  </a>
+                </div>
+              </article>
+
+              <article class="blog-standard__card">
+                <div class="blog-standard__card-media">
+                  <img
+                    src="assets/img/blog/blog-standard-2.png"
+                    alt="Luxury Interior Design Ideas For Elegant Living"
+                    class="blog-standard__card-img"
+                  />
+                  <span class="blog-standard__card-date">22 Aug 2025</span>
+                </div>
+                <div class="blog-standard__card-body">
+                  <ul class="blog-standard__card-meta">
+                    <li class="blog-standard__card-meta-item">
+                      <img
+                        src="assets/img/icon/user.svg"
+                        alt="User"
+                        class="blog-standard__card-meta-icon"
+                      />
+                      <span>Leslie Alexander</span>
+                    </li>
+                    <li class="blog-standard__card-meta-item">
+                      <img
+                        src="assets/img/icon/comment.svg"
+                        alt="Comment"
+                        class="blog-standard__card-meta-icon"
+                      />
+                      <span>(03) Comments</span>
+                    </li>
+                  </ul>
+                  <h2 class="blog-standard__card-title">
+                    <a href="blog-details.html"
+                      >Luxury Interior Design Ideas For Elegant Living</a
+                    >
+                  </h2>
+                  <p class="blog-standard__card-desc">
+                    We offer a wide range of construction services including
+                    residential, commercial assessin industrial, and green
+                    construction.
+                  </p>
+                  <a href="blog-details.html" class="read-more-btn">
+                    <span class="read-more-btn__icon">
+                      <img
+                        class="read-more-btn__bg"
+                        src="assets/img/icon/btn-background.svg"
+                        alt=""
+                      />
+                      <img
+                        class="read-more-btn__arrow"
+                        src="assets/img/icon/btn-arrow.svg"
+                        alt=""
+                      />
+                    </span>
+                    <span class="read-more-btn__label">Read More</span>
+                  </a>
+                </div>
+              </article>
+
+              <article class="blog-standard__card">
+                <div class="blog-standard__card-media">
+                  <img
+                    src="assets/img/blog/blog-standard-3.png"
+                    alt="The Importance Of Lighting In Interior Design"
+                    class="blog-standard__card-img"
+                  />
+                  <span class="blog-standard__card-date">22 Aug 2025</span>
+                </div>
+                <div class="blog-standard__card-body">
+                  <ul class="blog-standard__card-meta">
+                    <li class="blog-standard__card-meta-item">
+                      <img
+                        src="assets/img/icon/user.svg"
+                        alt="User"
+                        class="blog-standard__card-meta-icon"
+                      />
+                      <span>Leslie Alexander</span>
+                    </li>
+                    <li class="blog-standard__card-meta-item">
+                      <img
+                        src="assets/img/icon/comment.svg"
+                        alt="Comment"
+                        class="blog-standard__card-meta-icon"
+                      />
+                      <span>(03) Comments</span>
+                    </li>
+                  </ul>
+                  <h2 class="blog-standard__card-title">
+                    <a href="blog-details.html"
+                      >The Importance Of Lighting In Interior Design</a
+                    >
+                  </h2>
+                  <p class="blog-standard__card-desc">
+                    The duration of a project depends on its scope and
+                    complexity. We provide a detailed as timeline after the
+                    initial consultation.
+                  </p>
+                  <a href="blog-details.html" class="read-more-btn">
+                    <span class="read-more-btn__icon">
+                      <img
+                        class="read-more-btn__bg"
+                        src="assets/img/icon/btn-background.svg"
+                        alt=""
+                      />
+                      <img
+                        class="read-more-btn__arrow"
+                        src="assets/img/icon/btn-arrow.svg"
+                        alt=""
+                      />
+                    </span>
+                    <span class="read-more-btn__label">Read More</span>
+                  </a>
+                </div>
+              </article>
+            </div>
+
+            <div class="blog-standard__pagination">
+              <nav class="ak-pagination" aria-label="Blog pagination">
+                <a
+                  href="#"
+                  class="ak-pagination__arrow ak-pagination__arrow--prev"
+                  aria-label="Previous page"
+                >
+                  <img
+                    src="assets/img/icon/pagination-arrow.svg"
+                    alt="Previous"
+                    class="ak-pagination__arrow-icon"
+                  />
+                </a>
+                <a
+                  href="#"
+                  class="ak-pagination__item ak-pagination__item--active"
+                  >1</a
+                >
+                <a href="#" class="ak-pagination__item">2</a>
+                <a href="#" class="ak-pagination__item">3</a>
+                <a href="#" class="ak-pagination__item">4</a>
+                <a
+                  href="#"
+                  class="ak-pagination__arrow ak-pagination__arrow--next"
+                  aria-label="Next page"
+                >
+                  <img
+                    src="assets/img/icon/pagination-arrow.svg"
+                    alt="Next"
+                    class="ak-pagination__arrow-icon"
+                  />
+                </a>
+              </nav>
+            </div>
+          </div>
+
+          <!-- Sidebar Column -->
+          <div class="blog-standard__sidebar-col">
+            <aside class="sidebar">
+              <div class="sidebar__widget">
+                <h3 class="sidebar__widget-title">Search</h3>
+                <span class="sidebar__title-underline">
+                  <img
+                    src="assets/img/icon/sidebar-underline.svg"
+                    alt="line"
+                    class="sidebar__title-underline-img"
+                  />
+                </span>
+                <form class="sidebar__search-form" action="#" method="get">
+                  <input
+                    type="text"
+                    name="search"
+                    placeholder="Search Here..."
+                    class="sidebar__search-input"
+                  />
+                  <button type="submit" class="sidebar__search-btn">
+                    Search
+                  </button>
+                </form>
+              </div>
+
+              <div class="sidebar__widget">
+                <h3 class="sidebar__widget-title">Category</h3>
+                <span class="sidebar__title-underline">
+                  <img
+                    src="assets/img/icon/sidebar-underline.svg"
+                    alt="line"
+                    class="sidebar__title-underline-img"
+                  />
+                </span>
+                <ul class="sidebar__category-list">
+                  <li class="sidebar__category-item">
+                    <a href="#" class="sidebar__category-link">
+                      <span>Residential Interiors</span>
+                      <span class="sidebar__category-arrow">
+                        <i
+                          class="fa-solid fa-arrow-right sidebar__category-arrow-icon"
+                        ></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="sidebar__category-item">
+                    <a href="#" class="sidebar__category-link">
+                      <span>Commercial Interiors</span>
+                      <span class="sidebar__category-arrow">
+                        <i
+                          class="fa-solid fa-arrow-right sidebar__category-arrow-icon"
+                        ></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="sidebar__category-item">
+                    <a href="#" class="sidebar__category-link">
+                      <span>Space Planning</span>
+                      <span class="sidebar__category-arrow">
+                        <i
+                          class="fa-solid fa-arrow-right sidebar__category-arrow-icon"
+                        ></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="sidebar__category-item">
+                    <a href="#" class="sidebar__category-link">
+                      <span>Lighting Solutions</span>
+                      <span class="sidebar__category-arrow">
+                        <i
+                          class="fa-solid fa-arrow-right sidebar__category-arrow-icon"
+                        ></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="sidebar__category-item">
+                    <a href="#" class="sidebar__category-link">
+                      <span>Furniture Design</span>
+                      <span class="sidebar__category-arrow">
+                        <i
+                          class="fa-solid fa-arrow-right sidebar__category-arrow-icon"
+                        ></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="sidebar__category-item">
+                    <a href="#" class="sidebar__category-link">
+                      <span>Interior Renovation</span>
+                      <span class="sidebar__category-arrow">
+                        <i
+                          class="fa-solid fa-arrow-right sidebar__category-arrow-icon"
+                        ></i>
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="sidebar__widget">
+                <h3 class="sidebar__widget-title">Latest News</h3>
+                <span class="sidebar__title-underline">
+                  <img
+                    src="assets/img/icon/sidebar-underline.svg"
+                    alt="line"
+                    class="sidebar__title-underline-img"
+                  />
+                </span>
+                <ul class="sidebar__news-list">
+                  <li class="sidebar__news-item">
+                    <a href="blog-details.html" class="sidebar__news-thumb">
+                      <img
+                        src="assets/img/sidebar/sidebar-1.png"
+                        alt="Excellence In Every Brick Tips"
+                      />
+                    </a>
+                    <div class="sidebar__news-content">
+                      <span class="sidebar__news-date">
+                        <i class="fa-regular fa-calendar-days"></i>
+                        <span>22 Aug, 2025</span>
+                      </span>
+                      <h4 class="sidebar__news-title">
+                        <a href="blog-details.html"
+                          >Excellence In Every Brick Tips</a
+                        >
+                      </h4>
+                    </div>
+                  </li>
+                  <li class="sidebar__news-item">
+                    <a href="blog-details.html" class="sidebar__news-thumb">
+                      <img
+                        src="assets/img/sidebar/sidebar-2.png"
+                        alt="Trust Construction Solutions"
+                      />
+                    </a>
+                    <div class="sidebar__news-content">
+                      <span class="sidebar__news-date">
+                        <i class="fa-regular fa-calendar-days"></i>
+                        <span>22 Aug, 2025</span>
+                      </span>
+                      <h4 class="sidebar__news-title">
+                        <a href="blog-details.html"
+                          >Trust Construction Solutions</a
+                        >
+                      </h4>
+                    </div>
+                  </li>
+                  <li class="sidebar__news-item">
+                    <a href="blog-details.html" class="sidebar__news-thumb">
+                      <img
+                        src="assets/img/sidebar/sidebar-3.png"
+                        alt="Where Quality Bric Meet Strength"
+                      />
+                    </a>
+                    <div class="sidebar__news-content">
+                      <span class="sidebar__news-date">
+                        <i class="fa-regular fa-calendar-days"></i>
+                        <span>22 Aug, 2025</span>
+                      </span>
+                      <h4 class="sidebar__news-title">
+                        <a href="blog-details.html"
+                          >Where Quality Bric Meet Strength</a
+                        >
+                      </h4>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="sidebar__newsletter">
+                <h3 class="sidebar__newsletter-title">Get Updates</h3>
+                <span class="sidebar__newsletter-underline">
+                  <img
+                    src="assets/img/icon/sidebar-underline.svg"
+                    alt="line"
+                    class="sidebar__newsletter-underline-img"
+                  />
+                </span>
+                <p class="sidebar__newsletter-text">
+                  Subscribe email and get recent news and updates or offers.
+                </p>
+                <form class="sidebar__newsletter-form" action="#" method="post">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email address..."
+                    class="sidebar__newsletter-input"
+                    required
+                  />
+                  <button type="submit" class="sidebar__newsletter-btn">
+                    JOIN NOW
+                  </button>
+                </form>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+      <div class="ak-height-120 ak-height-lg-60"></div>
+    </section>
+    <!-- End Blog Standard Section -->
 
     <!-- Start Footer Section -->
     <footer class="footer-dark">
-        <span class="footer-dark__watermark">AKEST</span>
-        <div class="ak-height-120 ak-height-lg-60"></div>
-        <div class="container">
-            <div class="footer-dark__inner">
-                <div class="footer-dark__top">
-                    <div class="footer-dark__brand">
-                        <a href="index.html" class="footer-dark__logo">
-                            <img src="assets/img/logo.svg" alt="Akest" />
-                        </a>
-                        <p class="footer-dark__desc">
-                            We're here to answer all your questions. Fill out our contact form and we'll connect you with the people who can help.
-                        </p>
-                        <a href="contact-us.html" class="outline-btn">
-                            <span class="text">CONTACT US</span>
-                            <span class="icon-wrapper">
-                                <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13.6875 6.8125L8.6875 11.8125C8.3125 12.2188 7.65625 12.2188 7.28125 11.8125C6.875 11.4375 6.875 10.7812 7.28125 10.4062L10.5625 7.09375H1C0.4375 7.09375 0 6.65625 0 6.09375C0 5.5625 0.4375 5.09375 1 5.09375H10.5625L7.28125 1.8125C6.875 1.4375 6.875 0.78125 7.28125 0.40625C7.65625 0 8.3125 0 8.6875 0.40625L13.6875 5.40625C14.0938 5.78125 14.0938 6.4375 13.6875 6.8125Z" />
-                                </svg>
-                            </span>
-                        </a>
-                    </div>
-
-                    <div class="footer-dark__widget">
-                        <h2 class="footer-dark__widget-title">Our Services</h2>
-                        <span class="footer-dark__title-bar"></span>
-                        <ul class="footer-dark__list">
-                            <li>
-                                <a href="services-details.html" class="footer-dark__link">
-                                    <span class="footer-dark__link-icon">&#62;</span>
-                                    <span>Space Planning</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="services-details.html" class="footer-dark__link">
-                                    <span class="footer-dark__link-icon">&#62;</span>
-                                    <span>Residential Design</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="services-details.html" class="footer-dark__link">
-                                    <span class="footer-dark__link-icon">&#62;</span>
-                                    <span>Commercial Interiors</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="services-details.html" class="footer-dark__link">
-                                    <span class="footer-dark__link-icon">&#62;</span>
-                                    <span>Furniture & Selection</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="services-details.html" class="footer-dark__link">
-                                    <span class="footer-dark__link-icon">&#62;</span>
-                                    <span>3D Rendering</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-dark__widget">
-                        <h2 class="footer-dark__widget-title">Useful Links</h2>
-                        <span class="footer-dark__title-bar"></span>
-                        <ul class="footer-dark__list">
-                            <li>
-                                <a href="index.html" class="footer-dark__link">
-                                    <span class="footer-dark__link-icon">&#62;</span>
-                                    <span>Home</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="about-us.html" class="footer-dark__link">
-                                    <span class="footer-dark__link-icon">&#62;</span>
-                                    <span>About Us</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="services.html" class="footer-dark__link">
-                                    <span class="footer-dark__link-icon">&#62;</span>
-                                    <span>Services</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="footer-dark__link">
-                                    <span class="footer-dark__link-icon">&#62;</span>
-                                    <span>Pages</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="footer-dark__link">
-                                    <span class="footer-dark__link-icon">&#62;</span>
-                                    <span>News</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-dark__widget">
-                        <h2 class="footer-dark__widget-title">Our Gallery</h2>
-                        <span class="footer-dark__title-bar"></span>
-                        <div class="footer-dark__gallery">
-                            <a href="assets/img/footer/footer-1.png" class="footer-dark__gallery-item">
-                                <img src="assets/img/footer/footer-1.png" alt="Gallery 1" />
-                            </a>
-                            <a href="assets/img/footer/footer-2.png" class="footer-dark__gallery-item">
-                                <img src="assets/img/footer/footer-2.png" alt="Gallery 2" />
-                            </a>
-                            <a href="assets/img/footer/footer-3.png" class="footer-dark__gallery-item">
-                                <img src="assets/img/footer/footer-3.png" alt="Gallery 3" />
-                            </a>
-                            <a href="assets/img/footer/footer-4.png" class="footer-dark__gallery-item">
-                                <img src="assets/img/footer/footer-4.png" alt="Gallery 4" />
-                            </a>
-                            <a href="assets/img/footer/footer-5.png" class="footer-dark__gallery-item">
-                                <img src="assets/img/footer/footer-5.png" alt="Gallery 5" />
-                            </a>
-                            <a href="assets/img/footer/footer-6.png" class="footer-dark__gallery-item">
-                                <img src="assets/img/footer/footer-6.png" alt="Gallery 6" />
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="footer-dark__newsletter">
-                    <h3 class="footer-dark__newsletter-title">
-                        Sign Up Today To Get The Latest<br>Inspiration & Insights
-                    </h3>
-                    <form class="footer-dark__newsletter-form" action="#" method="post">
-                        <input type="email" class="footer-dark__newsletter-input" placeholder="Enter your Email" required />
-                        <button type="submit" class="footer-dark__newsletter-btn" aria-label="Subscribe">
-                            <img src="assets/img/icon/gmail.svg" alt="Gmail" />
-                        </button>
-                    </form>
-                </div>
-
-                <div class="footer-dark__bottom">
-                    <p class="footer-dark__copyright">
-                        &copy; 2026 <span class="footer-dark__brand-name">Akest.</span> All rights reserved
-                    </p>
-                    <div class="footer-dark__socials">
-                        <a href="#" class="footer-dark__social-link" aria-label="Facebook">
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="footer-dark__social-link" aria-label="Twitter">
-                            <i class="fa-brands fa-twitter"></i>
-                        </a>
-                        <a href="#" class="footer-dark__social-link" aria-label="Instagram">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                        <a href="#" class="footer-dark__social-link" aria-label="Pinterest">
-                            <i class="fa-brands fa-pinterest-p"></i>
-                        </a>
-                    </div>
-                </div>
+      <span class="footer-dark__watermark">AKEST</span>
+      <div class="ak-height-120 ak-height-lg-60"></div>
+      <div class="container">
+        <div class="footer-dark__inner">
+          <div class="footer-dark__top">
+            <div class="footer-dark__brand">
+              <a href="index.html" class="footer-dark__logo">
+                <img src="assets/img/logo.svg" alt="Akest" />
+              </a>
+              <p class="footer-dark__desc">
+                We're here to answer all your questions. Fill out our contact
+                form and we'll connect you with the people who can help.
+              </p>
+              <a href="contact-us.html" class="outline-btn">
+                <span class="text">CONTACT US</span>
+                <span class="icon-wrapper">
+                  <svg
+                    width="15"
+                    height="13"
+                    viewBox="0 0 15 13"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M13.6875 6.8125L8.6875 11.8125C8.3125 12.2188 7.65625 12.2188 7.28125 11.8125C6.875 11.4375 6.875 10.7812 7.28125 10.4062L10.5625 7.09375H1C0.4375 7.09375 0 6.65625 0 6.09375C0 5.5625 0.4375 5.09375 1 5.09375H10.5625L7.28125 1.8125C6.875 1.4375 6.875 0.78125 7.28125 0.40625C7.65625 0 8.3125 0 8.6875 0.40625L13.6875 5.40625C14.0938 5.78125 14.0938 6.4375 13.6875 6.8125Z"
+                    />
+                  </svg>
+                </span>
+              </a>
             </div>
+
+            <div class="footer-dark__widget">
+              <h2 class="footer-dark__widget-title">Our Services</h2>
+              <span class="footer-dark__title-bar"></span>
+              <ul class="footer-dark__list">
+                <li>
+                  <a href="services-details.html" class="footer-dark__link">
+                    <span class="footer-dark__link-icon">&#62;</span>
+                    <span>Space Planning</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="services-details.html" class="footer-dark__link">
+                    <span class="footer-dark__link-icon">&#62;</span>
+                    <span>Residential Design</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="services-details.html" class="footer-dark__link">
+                    <span class="footer-dark__link-icon">&#62;</span>
+                    <span>Commercial Interiors</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="services-details.html" class="footer-dark__link">
+                    <span class="footer-dark__link-icon">&#62;</span>
+                    <span>Furniture & Selection</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="services-details.html" class="footer-dark__link">
+                    <span class="footer-dark__link-icon">&#62;</span>
+                    <span>3D Rendering</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="footer-dark__widget">
+              <h2 class="footer-dark__widget-title">Useful Links</h2>
+              <span class="footer-dark__title-bar"></span>
+              <ul class="footer-dark__list">
+                <li>
+                  <a href="index.html" class="footer-dark__link">
+                    <span class="footer-dark__link-icon">&#62;</span>
+                    <span>Home</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="about-us.html" class="footer-dark__link">
+                    <span class="footer-dark__link-icon">&#62;</span>
+                    <span>About Us</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="services.html" class="footer-dark__link">
+                    <span class="footer-dark__link-icon">&#62;</span>
+                    <span>Services</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="footer-dark__link">
+                    <span class="footer-dark__link-icon">&#62;</span>
+                    <span>Pages</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="footer-dark__link">
+                    <span class="footer-dark__link-icon">&#62;</span>
+                    <span>News</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="footer-dark__widget">
+              <h2 class="footer-dark__widget-title">Our Gallery</h2>
+              <span class="footer-dark__title-bar"></span>
+              <div class="footer-dark__gallery">
+                <a
+                  href="assets/img/footer/footer-1.png"
+                  class="footer-dark__gallery-item"
+                >
+                  <img src="assets/img/footer/footer-1.png" alt="Gallery 1" />
+                </a>
+                <a
+                  href="assets/img/footer/footer-2.png"
+                  class="footer-dark__gallery-item"
+                >
+                  <img src="assets/img/footer/footer-2.png" alt="Gallery 2" />
+                </a>
+                <a
+                  href="assets/img/footer/footer-3.png"
+                  class="footer-dark__gallery-item"
+                >
+                  <img src="assets/img/footer/footer-3.png" alt="Gallery 3" />
+                </a>
+                <a
+                  href="assets/img/footer/footer-4.png"
+                  class="footer-dark__gallery-item"
+                >
+                  <img src="assets/img/footer/footer-4.png" alt="Gallery 4" />
+                </a>
+                <a
+                  href="assets/img/footer/footer-5.png"
+                  class="footer-dark__gallery-item"
+                >
+                  <img src="assets/img/footer/footer-5.png" alt="Gallery 5" />
+                </a>
+                <a
+                  href="assets/img/footer/footer-6.png"
+                  class="footer-dark__gallery-item"
+                >
+                  <img src="assets/img/footer/footer-6.png" alt="Gallery 6" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-dark__newsletter">
+            <h3 class="footer-dark__newsletter-title">
+              Sign Up Today To Get The Latest<br />Inspiration & Insights
+            </h3>
+            <form class="footer-dark__newsletter-form" action="#" method="post">
+              <input
+                type="email"
+                class="footer-dark__newsletter-input"
+                placeholder="Enter your Email"
+                required
+              />
+              <button
+                type="submit"
+                class="footer-dark__newsletter-btn"
+                aria-label="Subscribe"
+              >
+                <img src="assets/img/icon/gmail.svg" alt="Gmail" />
+              </button>
+            </form>
+          </div>
+
+          <div class="footer-dark__bottom">
+            <p class="footer-dark__copyright">
+              &copy; 2026
+              <span class="footer-dark__brand-name">Akest.</span> All rights
+              reserved
+            </p>
+            <div class="footer-dark__socials">
+              <a
+                href="#"
+                class="footer-dark__social-link"
+                aria-label="Facebook"
+              >
+                <i class="fa-brands fa-facebook-f"></i>
+              </a>
+              <a href="#" class="footer-dark__social-link" aria-label="Twitter">
+                <i class="fa-brands fa-twitter"></i>
+              </a>
+              <a
+                href="#"
+                class="footer-dark__social-link"
+                aria-label="Instagram"
+              >
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a
+                href="#"
+                class="footer-dark__social-link"
+                aria-label="Pinterest"
+              >
+                <i class="fa-brands fa-pinterest-p"></i>
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
     </footer>
     <!-- End Footer Section -->
 
@@ -197,18 +857,18 @@
 
     <!-- Start Video Popup -->
     <div class="ak-video-popup">
-        <div class="ak-video-popup-overlay"></div>
-        <div class="ak-video-popup-content">
-            <div class="ak-video-popup-layer"></div>
-            <div class="ak-video-popup-container">
-                <div class="ak-video-popup-align">
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="about:blank"></iframe>
-                    </div>
-                </div>
-                <div class="ak-video-popup-close"></div>
+      <div class="ak-video-popup-overlay"></div>
+      <div class="ak-video-popup-content">
+        <div class="ak-video-popup-layer"></div>
+        <div class="ak-video-popup-container">
+          <div class="ak-video-popup-align">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="about:blank"></iframe>
             </div>
+          </div>
+          <div class="ak-video-popup-close"></div>
         </div>
+      </div>
     </div>
     <!-- End Video Popup -->
 
@@ -223,19 +883,5 @@
     <script src="assets/js/plugins/sticky-sidebar.js"></script>
 
     <script src="assets/js/main.js"></script>
-
-    <script>
-        document.querySelectorAll('.service__item-header').forEach(function(header) {
-            header.addEventListener('click', function() {
-                var item = this.closest('.service__item');
-                var isActive = item.classList.contains('service__item--active');
-                document.querySelectorAll('.service__item').forEach(function(el) {
-                    el.classList.remove('service__item--active');
-                });
-                if (!isActive) item.classList.add('service__item--active');
-            });
-        });
-    </script>
-</body>
-
+  </body>
 </html>
