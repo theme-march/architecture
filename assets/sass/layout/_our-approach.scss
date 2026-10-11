@@ -7,6 +7,9 @@
   position: relative;
   overflow: hidden;
   margin: 0 15px 15px;
+  @include respond(md) {
+    margin: 0 12px 12px;
+  }
 
   &__bg {
     position: absolute;

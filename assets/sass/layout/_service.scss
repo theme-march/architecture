@@ -6,6 +6,9 @@
 .service {
   background-color: var(--smoke-bg-color-one);
   margin: 0 15px 15px 15px;
+  @include respond(md) {
+    margin: 0 12px 12px 12px;
+  }
 }
 .section-heading__title {
   font-weight: 500;

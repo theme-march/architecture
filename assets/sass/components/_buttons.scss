@@ -42,10 +42,37 @@
       }
     }
   }
-    &:hover {
+
+  &:hover {
     color: var(--white-color);
   }
 
+  @include respond(md) {
+    font-size: 14px;
+    padding: 4px 4px 4px 16px;
+
+    .text {
+      margin-right: 14px;
+    }
+
+    .icon-wrapper {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  @include respond(sm) {
+    padding: 4px 4px 4px 14px;
+
+    .text {
+      margin-right: 12px;
+    }
+
+    .icon-wrapper {
+      width: 36px;
+      height: 36px;
+    }
+  }
 }
 
 .outline-btn {
@@ -112,6 +139,33 @@
 
   &:active {
     transform: scale(0.98);
+  }
+
+  @include respond(md) {
+    font-size: 14px;
+    padding: 4px 4px 4px 16px;
+
+    .text {
+      margin-right: 14px;
+    }
+
+    .icon-wrapper {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  @include respond(sm) {
+    padding: 4px 4px 4px 14px;
+
+    .text {
+      margin-right: 12px;
+    }
+
+    .icon-wrapper {
+      width: 36px;
+      height: 36px;
+    }
   }
 }
 

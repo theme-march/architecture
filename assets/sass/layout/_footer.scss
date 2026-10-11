@@ -37,19 +37,20 @@
     }
 
     @include respond(xl) {
+      top: 1%;
       font-size: 340px;
     }
 
     @include respond(lg) {
       font-size: 240px;
+      font-weight: 800;
     }
 
     @include respond(md) {
-      font-size: 160px;
+      font-size: 200px;
     }
-
-    @include respond(sm) {
-      font-size: 110px;
+    @include respond(md) {
+      font-size: 160px;
     }
   }
 
@@ -78,6 +79,7 @@
     @include respond(sm) {
       grid-template-columns: 1fr;
       gap: 40px;
+      padding-bottom: 40px;
     }
   }
 
@@ -92,6 +94,10 @@
   &__logo {
     display: inline-block;
     margin-bottom: 35px;
+
+    @include respond(md) {
+      margin-bottom: 25px;
+    }
 
     img {
       height: 100%;
@@ -115,6 +121,9 @@
     line-height: 26px;
     color: var(--white-color);
     margin-bottom: 15px;
+    @include respond(md) {
+      margin-bottom: 10px;
+    }
   }
 
   &__title-bar {
@@ -124,6 +133,10 @@
     border-radius: 2px;
     background: linear-gradient(90deg, #fa5e07 30%, rgba(148, 56, 4, 0.5) 100%);
     margin-bottom: 35px;
+
+    @include respond(md) {
+      margin-bottom: 25px;
+    }
   }
 
   &__list {
@@ -163,8 +176,8 @@
     gap: 12px;
     max-width: 294px;
 
-    @include respond(sm) {
-      max-width: 260px;
+    @include respond(md) {
+      max-width: 85%;
     }
   }
 
@@ -205,8 +218,9 @@
       gap: 25px;
     }
 
-    @include respond(sm) {
+    @include respond(md) {
       padding: 24px 20px;
+      margin-bottom: 30px;
     }
   }
 
@@ -290,11 +304,13 @@
     padding-bottom: 35px;
     gap: 20px;
 
+    @include respond(md) {
+      padding-bottom: 20px;
+    }
     @include respond(sm) {
       flex-direction: column;
       align-items: flex-start;
       gap: 20px;
-      padding-bottom: 30px;
     }
   }
 
@@ -314,6 +330,9 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    @include respond(md) {
+      display: none;
+    }
   }
 
   &__social-link {
@@ -370,7 +389,7 @@
       padding-bottom: 60px;
     }
 
-    @include respond(sm) {
+    @include respond(md) {
       grid-template-columns: 1fr;
       gap: 40px;
     }

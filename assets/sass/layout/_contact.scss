@@ -34,6 +34,10 @@
     @include respond(md) {
       flex: 0 0 100%;
     }
+    @include respond(sm) {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
 
     &-watermark {
       position: absolute;
@@ -60,12 +64,27 @@
       transition: all 0.3s ease;
       position: relative;
       z-index: 1;
+
+      @include respond(md) {
+        width: 68px;
+        height: 68px;
+      }
+
+      @include respond(sm) {
+        width: 60px;
+        height: 60px;
+      }
     }
 
     &-icon {
       width: 40px;
       height: 40px;
       display: block;
+
+      @include respond(md) {
+        width: 34px;
+        height: 34px;
+      }
     }
 
     &-body {
@@ -80,6 +99,11 @@
       line-height: 36px;
       margin-bottom: 15px;
       color: var(--heading-color);
+
+      @include respond(lg) {
+        font-size: 26px;
+        line-height: 32px;
+      }
     }
 
     &-text {
@@ -172,12 +196,13 @@
     position: relative;
     font-size: 50px;
     font-weight: 700;
-    line-height: 57px;
+    line-height: 1.14;
     color: var(--heading-color);
     margin-bottom: 50px;
 
     @include respond(lg) {
       font-size: 38px;
+      margin-bottom: 40px;
     }
 
     @include respond(md) {
@@ -186,7 +211,8 @@
     }
 
     @include respond(sm) {
-      font-size: 24px;
+      font-size: 26px;
+      margin-bottom: 24px;
     }
   }
 
@@ -291,6 +317,16 @@
     font-size: 16px;
     font-weight: 500;
     transition: background-color 0.3s ease;
+
+    @include respond(md) {
+      padding: 18px 36px;
+      font-size: 15px;
+    }
+
+    @include respond(sm) {
+      width: 100%;
+      padding: 16px 24px;
+    }
 
     &:hover {
       background-color: var(--heading-color);

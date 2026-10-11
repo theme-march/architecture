@@ -6,6 +6,10 @@
 .testimonial {
   background-color: var(--smoke-bg-color-one);
   margin: 0 15px 15px 15px;
+  
+  @include respond(md) {
+    margin: 0 12px 12px 12px;
+  }
 
   &__header {
     display: flex;
@@ -20,7 +24,7 @@
 
   &__heading-wrap {
     flex: 1;
-    
+
     .section-heading {
       display: flex;
       flex-direction: column;

@@ -60,6 +60,7 @@
 
   $(function () {
     mainNav();
+    navSidebar();
     stickyHeader();
     constructionStickyHeader();
     dynamicBackground();
@@ -107,10 +108,10 @@
     // Add toggle elements
     $(".tm-nav").append('<span class="tm-munu_toggle"><span></span></span>');
     $(".menu-item-has-children").append(
-      '<span class="tm-munu_dropdown_toggle"></span>'
+      '<span class="tm-munu_dropdown_toggle"></span>',
     );
     $(".menu-item-has-black-section").append(
-      '<span class="tm-munu_dropdown_toggle_1"></span>'
+      '<span class="tm-munu_dropdown_toggle_1"></span>',
     );
 
     // Menu toggle functionality
@@ -148,11 +149,63 @@
       $(".tm-side_header").removeClass("active");
     });
 
-    // Construction Mobile toggle
-    $("#constructionNavToggle, .header-construction__toggle").on("click", function () {
-      $(this).closest(".header-construction").find(".tm-nav_list").slideToggle();
+    // Construction Mobile toggle — now handled by navSidebar()
+  }
+  /*--------------------------------------------------------------
+  2b. Nav Sidebar (Mobile Drawer)
+  --------------------------------------------------------------*/
+  function navSidebar() {
+    var $sidebar = $("#navSidebar");
+
+    if (!$sidebar.length) return;
+
+    // Open sidebar — triggered by all three header toggle variants
+    $document.on(
+      "click",
+      ".tm-munu_toggle, #constructionNavToggle, .header-construction__toggle",
+      function (e) {
+        e.stopPropagation();
+        $sidebar.addClass("nav-sidebar--open");
+        $("body").addClass("nav-sidebar-open");
+      },
+    );
+
+    // Close via close button or overlay
+    $document.on(
+      "click",
+      "#navSidebarClose, .nav-sidebar__overlay",
+      function () {
+        $sidebar.removeClass("nav-sidebar--open");
+        $("body").removeClass("nav-sidebar-open");
+      },
+    );
+
+    // Close via Escape key
+    $document.on("keydown", function (e) {
+      if (e.key === "Escape" && $sidebar.hasClass("nav-sidebar--open")) {
+        $sidebar.removeClass("nav-sidebar--open");
+        $("body").removeClass("nav-sidebar-open");
+      }
+    });
+
+    // Sub-menu accordion
+    $document.on("click", ".nav-sidebar__arrow", function () {
+      var $item = $(this).closest(".nav-sidebar__item--has-children");
+      var isExpanded = $item.hasClass("nav-sidebar__item--expanded");
+
+      // Collapse all other open items
+      $(".nav-sidebar__item--has-children")
+        .not($item)
+        .removeClass("nav-sidebar__item--expanded")
+        .find(".nav-sidebar__sub")
+        .slideUp(200);
+
+      // Toggle current
+      $item.toggleClass("nav-sidebar__item--expanded", !isExpanded);
+      $item.find("> .nav-sidebar__sub").slideToggle(220);
     });
   }
+
   /*--------------------------------------------------------------
   3. Sticky Header
   --------------------------------------------------------------*/
@@ -203,7 +256,9 @@
         $constructionHeader.removeClass("header-construction--below-topbar");
         $topbar.addClass("topbar-hidden");
       } else {
-        $constructionHeader.removeClass("scrolled tm-gescout_sticky tm-gescout_show");
+        $constructionHeader.removeClass(
+          "scrolled tm-gescout_sticky tm-gescout_show",
+        );
         $constructionHeader.addClass("header-construction--below-topbar");
         $topbar.removeClass("topbar-hidden");
       }
@@ -245,9 +300,7 @@
     if (typeof Swiper === "undefined") return;
 
     if ($.exists(".medical-doctors-team-slider")) {
-
     }
-
   }
 
   /*--------------------------------------------------------------
@@ -269,20 +322,24 @@
 
       $(".ak-video-popup-container iframe").attr(
         "src",
-        `https://www.youtube.com/embed/${videoId}`
+        `https://www.youtube.com/embed/${videoId}`,
       );
 
       $(".ak-video-popup").addClass("active");
       $("html").addClass("overflow-hidden");
     });
 
-    $document.on("click", ".ak-video-popup-close, .ak-video-popup-layer", function (e) {
-      e.preventDefault();
+    $document.on(
+      "click",
+      ".ak-video-popup-close, .ak-video-popup-layer",
+      function (e) {
+        e.preventDefault();
 
-      $(".ak-video-popup").removeClass("active");
-      $("html").removeClass("overflow-hidden");
-      $(".ak-video-popup-container iframe").attr("src", "about:blank");
-    });
+        $(".ak-video-popup").removeClass("active");
+        $("html").removeClass("overflow-hidden");
+        $(".ak-video-popup-container iframe").attr("src", "about:blank");
+      },
+    );
   }
 
   /*--------------------------------------------------------------
@@ -296,7 +353,7 @@
         {
           scrollTop: 0,
         },
-        0
+        0,
       );
     });
   }
@@ -311,7 +368,6 @@
     }
   }
 
-
   /*--------------------------------------------------------------
   8. Hero Animation
   --------------------------------------------------------------*/
@@ -320,7 +376,6 @@
   9. Title Animation
   --------------------------------------------------------------*/
 
-
   /*--------------------------------------------------------------
   10. Cta Animation
   --------------------------------------------------------------*/
@@ -328,7 +383,6 @@
   /*--------------------------------------------------------------
   11. Funfact Counter
   --------------------------------------------------------------*/
-
 
   /*--------------------------------------------------------------
   12. Sticky Sidebar 
@@ -350,8 +404,4 @@
       }
     });
   }
-
-
 })(jQuery);
-
-

@@ -4,13 +4,23 @@
 @use "../abstracts" as *;
 
 .portfolio {
+
   .section-heading__title {
     font-weight: 500;
   }
+
   &__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
+
+    @include respond(lg) {
+      gap: 6px;
+    }
+
+    @include respond(md) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__item {
@@ -20,6 +30,10 @@
 
     &--wide {
       grid-column: 1 / -1;
+
+      @include respond(md) {
+        grid-column: 1 / -1;
+      }
     }
   }
 
@@ -94,23 +108,5 @@
     font-weight: 600;
     color: var(--body-color);
     flex-shrink: 0;
-  }
-
-  @include respond(lg) {
-    padding: 0 10px;
-
-    &__grid {
-      gap: 6px;
-    }
-  }
-
-  @include respond(md) {
-    &__grid {
-      grid-template-columns: 1fr;
-    }
-
-    &__item--wide {
-      grid-column: 1 / -1;
-    }
   }
 }

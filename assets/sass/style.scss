@@ -37,8 +37,9 @@
 @use "components/sidebar";
 
 @use "layout/header";
+@use "layout/nav-sidebar";
 @use "layout/footer";
-@use "layout/hero";
+@use "layout/hero-architecture";
 @use "layout/about-architecture";
 @use "layout/funfact";
 @use "layout/architect-portfolio";
@@ -75,4 +76,3 @@
 @use "layout/blog-standard";
 @use "layout/blog-details";
 @use "layout/contact";
-
