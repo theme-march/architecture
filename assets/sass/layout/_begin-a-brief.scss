@@ -38,6 +38,7 @@ Begin A Brief
     flex-direction: column;
     align-items: center;
     text-align: center;
+    padding: 0 15px;
   }
 
   &__icon {
@@ -49,6 +50,7 @@ Begin A Brief
 
     @include respond(md) {
       margin-bottom: 20px;
+      max-width: 65px;
     }
   }
 
@@ -72,8 +74,8 @@ Begin A Brief
     }
 
     @include respond(sm) {
-      font-size: 26px;
-      line-height: 33px;
+      font-size: 28px;
+      line-height: 32px;
     }
   }
 
@@ -103,8 +105,8 @@ Begin A Brief
       color-mix(in srgb, var(--black-color), transparent 100%) 100%
     );
 
-    @include respond(md) {
-      margin-top: 50px;
+    @include respond(lg) {
+      margin-top: 40px;
     }
   }
 
@@ -119,9 +121,12 @@ Begin A Brief
       animation-play-state: paused;
     }
 
-    @include respond(md) {
-      gap: 60px;
+    @include respond(lg) {
+      gap: 50px;
       animation-duration: 20s;
+    }
+    @include respond(md) {
+      gap: 40px;
     }
   }
 
@@ -146,7 +151,7 @@ Begin A Brief
     }
 
     @include respond(md) {
-      height: 32px;
+      height: 26px;
     }
   }
 }

@@ -1,11 +1,19 @@
+@use "../abstracts" as *;
+
 .stats-banner {
   background-color: var(--secondary-color);
   color: var(--white-color);
+
   &__wrapper {
     display: flex;
     justify-content: space-between;
     border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+    @include respond(lg) {
+      flex-wrap: wrap;
+    }
   }
+
   &__item {
     display: flex;
     align-items: center;
@@ -25,6 +33,42 @@
       height: 100%;
       background-color: rgba(255, 255, 255, 0.12);
     }
+
+    @include respond(lg) {
+      flex: 0 0 50%;
+      padding-top: 35px;
+      padding-bottom: 35px;
+
+      &:nth-child(2n)::after {
+        display: none;
+      }
+
+      &:nth-child(n + 3) {
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      }
+    }
+
+    @include respond(md) {
+      gap: 15px;
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+
+    @include respond(sm) {
+      flex: 0 0 100%;
+      justify-content: flex-start;
+      padding-left: 20px;
+      padding-top: 25px;
+      padding-bottom: 25px;
+
+      &::after {
+        display: none !important;
+      }
+
+      &:not(:first-child) {
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      }
+    }
   }
 
   &__number {
@@ -33,6 +77,14 @@
     font-weight: 500;
     line-height: 1;
     letter-spacing: -1px;
+
+    @include respond(lg) {
+      font-size: 54px;
+    }
+
+    @include respond(md) {
+      font-size: 44px;
+    }
   }
 
   &__text {
@@ -41,50 +93,10 @@
     font-size: 18px;
     font-weight: 500;
     line-height: 30px;
+
+    @include respond(md) {
+      font-size: 15px;
+      line-height: 22px;
+    }
   }
-
-  //   @media (max-width: 992px) {
-  //     &__container {
-  //       gap: 0;
-  //     }
-
-  //     &__item {
-  //       flex: 0 0 50%;
-  //       &:nth-child(2)::after,
-  //       &:nth-child(4)::after {
-  //         display: none;
-  //       }
-  //       &:nth-child(3)::before,
-  //       &:nth-child(4)::before {
-  //         content: "";
-  //         position: absolute;
-  //         top: 0;
-  //         left: 0;
-  //         width: 100%;
-  //         height: 1px;
-  //         background-color: rgba(255, 255, 255, 0.12);
-  //       }
-  //     }
-  //   }
-
-  //   @media (max-width: 576px) {
-  //     &__item {
-  //       flex: 0 0 100%;
-  //       justify-content: flex-start;
-  //       padding-left: 20px;
-  //       &::after {
-  //         display: none;
-  //       }
-
-  //       &:not(:first-child)::before {
-  //         content: "";
-  //         position: absolute;
-  //         top: 0;
-  //         left: 0;
-  //         width: 100%;
-  //         height: 1px;
-  //         background-color: rgba(255, 255, 255, 0.12);
-  //       }
-  //     }
-  //   }
 }

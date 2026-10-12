@@ -68,14 +68,6 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 100px;
-
-    @include respond(md) {
-      padding-top: 80px;
-    }
-
-    @include respond(sm) {
-      padding-top: 70px;
-    }
   }
 
   &__subtitle {
@@ -87,7 +79,7 @@
 
     @include respond(md) {
       font-size: 16px;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
   }
 
@@ -104,12 +96,14 @@
 
     @include respond(xl) {
       font-size: clamp(42px, 7vw, 80px);
+      max-width: 800px;
     }
 
     @include respond(lg) {
       font-size: clamp(38px, 7.5vw, 64px);
       letter-spacing: 1px;
       margin-bottom: 20px;
+      max-width: 700px;
     }
 
     @include respond(md) {

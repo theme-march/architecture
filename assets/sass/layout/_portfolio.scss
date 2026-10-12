@@ -14,10 +14,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 15px;
 
-    @include respond(lg) {
-      gap: 6px;
-    }
-
     @include respond(md) {
       grid-template-columns: 1fr;
     }

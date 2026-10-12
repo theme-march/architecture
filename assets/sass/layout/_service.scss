@@ -35,9 +35,26 @@
 
     .service__item-header {
       padding: 40px 40px 30px 40px;
+      gap: 40px;
+
+      @include respond(lg) {
+        padding: 40px 30px 20px 30px;
+      }
+      @include respond(md) {
+        padding: 20px 20px 20px 30px;
+      }
     }
     .service__item-body {
       padding: 10px 40px 40px 130px;
+      gap: 40px;
+
+      @include respond(lg) {
+        flex-direction: column;
+        padding: 10px 30px 40px 90px;
+      }
+      @include respond(md) {
+        padding: 10px 20px 30px 40px;
+      }
     }
   }
 }
@@ -48,6 +65,14 @@
   gap: 65px;
   padding: 40px 40px 30px 60px;
   cursor: pointer;
+
+  @include respond(lg) {
+    padding: 35px 30px 30px 40px;
+  }
+  @include respond(md) {
+    padding: 20px 20px 20px 30px;
+    gap: 40px;
+  }
 }
 
 .service__item-number {
@@ -63,6 +88,11 @@
   font-weight: 600;
   line-height: 36px;
   flex: 1;
+  @include respond(md) {
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 32px;
+  }
 }
 
 .service__item-icon {
@@ -94,8 +124,8 @@
   display: flex;
   gap: 80px;
 
-  @include respond(md) {
-    flex-direction: column;
+  @include respond(lg) {
+    gap: 40px;
   }
 }
 
@@ -117,6 +147,10 @@
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+
+  @include respond(lg) {
+    margin-top: 15px;
+  }
 }
 
 .service__item-tag {
@@ -142,6 +176,6 @@
 
   @include respond(md) {
     width: 100%;
-    height: 220px;
+    height: 100%;
   }
 }

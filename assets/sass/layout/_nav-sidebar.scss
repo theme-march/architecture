@@ -199,11 +199,13 @@
 
   &__sub-link {
     display: block;
-    padding: 11px 24px 11px 36px;
     font-family: var(--heading-font-family);
+    padding: 13px 24px 13px 40px;
     font-size: 14px;
-    font-weight: 500;
-    color: color-mix(in srgb, var(--white-color), transparent 25%);
+    font-weight: 400;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--white-color);
     transition: color 0.3s ease;
 
     &:hover {

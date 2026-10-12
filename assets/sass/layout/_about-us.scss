@@ -36,30 +36,10 @@ About Us
     flex-shrink: 0;
 
     @include respond(lg) {
-      gap: 30px;
+      gap: 15px;
     }
   }
 
-  &__subtitle {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  &__subtitle-line {
-    display: inline-block;
-    width: 32px;
-    height: 2px;
-    background-color: var(--primary-color);
-  }
-
-  &__subtitle-text {
-    font-family: var(--heading-font-family);
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--primary-color);
-    text-transform: uppercase;
-  }
 
   &__right {
     max-width: 780px;
@@ -76,10 +56,13 @@ About Us
 
     @include respond(lg) {
       font-size: 32px;
+      line-height: 38px;
     }
 
     @include respond(md) {
       font-size: 26px;
+      line-height: 34px;
+      margin-bottom: 15px;
     }
   }
 
@@ -127,17 +110,17 @@ About Us
     position: absolute;
     top: 30px;
     right: 40px;
-    width: 60px;
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   &__card-icon-img {
+    width: 50px;
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
+    
+    @include respond(md) {
+      width: 70px;
+    }
   }
 
   &__card-circle {
@@ -150,6 +133,12 @@ About Us
     border: 15px solid var(--smoke-bg-color-one);
     pointer-events: none;
     z-index: 1;
+
+    @include respond(sm) {
+      width: 130px;
+      height: 130px;
+      border: 20px solid var(--smoke-bg-color-one);
+    }
   }
 
   &__card-number {
@@ -163,8 +152,13 @@ About Us
     margin-bottom: 10px;
     margin-top: 220px;
 
-    @include respond(lg) {
-      font-size: 42px;
+    @include respond(md) {
+      margin-top: 190px;
+    }
+    @include respond(sm) {
+      font-size: 70px;
+      margin-bottom: 20px;
+      margin-top: 220px;
     }
   }
 

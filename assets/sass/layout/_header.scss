@@ -16,6 +16,27 @@
   z-index: 100001;
 
   @include respond(lg) {
+    .primary-btn {
+      font-size: 14px;
+      padding: 4px 4px 4px 16px;
+
+      .text {
+        margin-right: 14px;
+      }
+
+      .icon-wrapper {
+        width: 42px;
+        height: 42px;
+
+        svg {
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+  }
+
+  @include respond(lg) {
     .container {
       max-width: 100%;
     }
@@ -76,8 +97,6 @@
   }
 
   @include respond(xl) {
-    top: 0;
-
     .tm-nav {
       display: flex;
     }
@@ -112,7 +131,9 @@
 
   @include respond(sm) {
     .tm-main-header-right {
-      .primary-btn .text,
+      .primary-btn {
+        display: none;
+      }
       .outline-btn .text {
         display: none;
       }
@@ -373,12 +394,12 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 52px;
+    height: 52px;
     background: none;
     border: 1px solid color-mix(in srgb, var(--white-color), transparent 72%);
     color: var(--white-color);
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
     position: relative;
     top: 0;
@@ -492,8 +513,6 @@
   position: fixed !important;
   width: 100%;
   z-index: 999;
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
   transition: background-color 0.4s ease;
 
   &.style-2 {
@@ -575,6 +594,7 @@
 
 .tm-gescout_show {
   top: 0 !important;
+  background-color: var(--black-color);
 }
 
 .btn-close {
@@ -605,6 +625,42 @@
   }
 }
 
+//Architecture Header — style-2 type-2
+
+.tm-site_header.tm-style1.style-2.type-2 {
+  @include respond(xl) {
+    .tm-main_header_in {
+      height: 80px;
+      justify-content: space-between;
+    }
+
+    .tm-main-header-center {
+      display: none;
+    }
+
+    .tm-main-header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .tm-munu_toggle {
+      display: inline-flex;
+    }
+  }
+
+  @include respond(sm) {
+    .tm-main-header-right {
+      .primary-btn {
+        display: none;
+      }
+      .outline-btn .text {
+        display: none;
+      }
+    }
+  }
+}
+
 /*--------------------------------------------------------------
   Floating Header Variant (Index / Hero)
 ----------------------------------------------------------------*/
@@ -617,13 +673,16 @@
   max-width: 1320px;
   z-index: 999;
 
-  @include respond(xl) {
-    top: 16px;
+  @include respond(xxl) {
+    top: 15px;
     left: 15px;
     transform: none;
     width: calc(100% - 30px);
     max-width: none;
     padding: 0;
+  }
+  @include respond(xl) {
+    top: 16px;
   }
 
   @include respond(md) {
@@ -653,8 +712,8 @@
   &.tm-gescout_show {
     top: 15px !important;
 
-    @include respond(xl) {
-      top: 8px !important;
+    @include respond(xxl) {
+      top: 0px !important;
     }
   }
 
@@ -785,7 +844,9 @@
     gap: 12px;
 
     @include respond(sm) {
-      display: none;
+      .primary-btn {
+        display: none;
+      }
     }
   }
 
@@ -796,12 +857,12 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
+      width: 48px;
+      height: 48px;
       background: none;
       border: 1px solid color-mix(in srgb, var(--white-color), transparent 72%);
       color: var(--white-color);
-      font-size: 18px;
+      font-size: 20px;
       cursor: pointer;
       position: relative;
       top: 0;
@@ -819,45 +880,12 @@
   }
 }
 
-/*--------------------------------------------------------------
-  Architecture Header — style-2 type-2
-----------------------------------------------------------------*/
-.tm-site_header.tm-style1.style-2.type-2 {
-  @include respond(xl) {
-    .tm-main_header_in {
-      height: 80px;
-      justify-content: space-between;
-    }
-
-    .tm-main-header-center {
-      display: none;
-    }
-
-    .tm-main-header-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .tm-munu_toggle {
-      display: inline-flex;
-    }
-  }
-
-  @include respond(sm) {
-    .tm-main-header-right {
-      .primary-btn .text,
-      .outline-btn .text {
-        display: none;
-      }
-    }
-  }
-}
 
 /*--------------------------------------------------------------
   Construction Topbar
 ----------------------------------------------------------------*/
 .construction-topbar {
+  background-color: var(--black-color);
   border-bottom: 1px solid
     color-mix(in srgb, var(--white-color), transparent 85%);
   transition:
@@ -868,6 +896,10 @@
   left: 0;
   width: 100%;
   z-index: 1001;
+
+  @include respond(lg) {
+    display: none;
+  }
 
   &.topbar-hidden {
     transform: translateY(-100%);
@@ -982,9 +1014,9 @@
   &--below-topbar {
     top: 50px;
 
-    @include respond(md) {
+    @include respond(lg) {
       top: 0;
-      position: sticky;
+      background-color: var(--black-color);
     }
   }
 
@@ -1049,14 +1081,86 @@
     justify-content: center;
 
     .tm-nav {
+      display: flex;
+      align-items: center;
+      height: 100%;
+
       .tm-nav_list {
-        ul {
-          background-color: var(--black-color);
+        display: flex !important;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        > li {
+          margin-right: 35px;
+          position: relative;
+
+          &:last-child {
+            margin-right: 0;
+          }
+
+          > a {
+            color: var(--white-color) !important;
+            font-family: var(--heading-font-family);
+            font-size: 16px;
+            font-weight: 500;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s ease;
+
+            &:hover {
+              color: var(--primary-color) !important;
+            }
+          }
+
+          &.menu-item-has-children {
+            position: relative;
+
+            > ul {
+              position: absolute;
+              top: calc(100% + 20px);
+              left: 0;
+              min-width: 220px;
+              background-color: var(--black-color);
+              padding: 12px 0;
+              opacity: 0;
+              visibility: hidden;
+              transition: all 0.3s ease;
+              list-style: none;
+              box-shadow: 0px 10px 30px
+                color-mix(in srgb, var(--black-color), transparent 50%);
+              border: 1px solid
+                color-mix(in srgb, var(--white-color), transparent 85%);
+
+              li a {
+                display: block;
+                padding: 8px 24px;
+                font-family: var(--heading-font-family);
+                font-size: 16px;
+                font-weight: 500;
+                color: var(--white-color);
+                text-transform: capitalize;
+                transition: color 0.3s ease;
+
+                &:hover {
+                  color: var(--primary-color);
+                }
+              }
+            }
+
+            &:hover > ul {
+              top: calc(100% + 0px);
+              opacity: 1;
+              visibility: visible;
+            }
+          }
         }
       }
     }
 
-    @include respond(lg) {
+    @include respond(xl) {
       display: none;
     }
   }
@@ -1066,15 +1170,30 @@
     align-items: center;
     gap: 16px;
 
-    @include respond(sm) {
-      gap: 10px;
+    @include respond(lg) {
+      .primary-btn {
+        font-size: 14px;
+        padding: 4px 4px 4px 16px;
 
-      .primary-btn .text {
-        display: none;
+        .text {
+          margin-right: 14px;
+        }
+
+        .icon-wrapper {
+          width: 42px;
+          height: 42px;
+
+          svg {
+            width: 14px;
+            height: 14px;
+          }
+        }
       }
     }
 
-    @include respond(xs) {
+    @include respond(sm) {
+      gap: 10px;
+
       .primary-btn {
         display: none;
       }
@@ -1086,11 +1205,11 @@
     background: none;
     border: 1px solid color-mix(in srgb, var(--white-color), transparent 72%);
     color: var(--white-color);
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
     padding: 0;
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     align-items: center;
     justify-content: center;
     transition:
@@ -1098,7 +1217,7 @@
       border-color 0.3s ease,
       color 0.3s ease;
 
-    @include respond(lg) {
+    @include respond(xl) {
       display: inline-flex;
     }
 

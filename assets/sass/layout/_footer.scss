@@ -391,7 +391,7 @@
 
     @include respond(md) {
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 30px;
     }
   }
 
@@ -423,6 +423,9 @@
     font-weight: 500;
     line-height: 26px;
     margin-bottom: 30px;
+    @include respond(md) {
+      margin-bottom: 15px;
+    }
   }
 
   &__socials {
