@@ -22,8 +22,8 @@
     align-items: center;
     gap: 10px;
     margin-bottom: 15px;
-    @include respond(md) {
-      margin-bottom: 10px;
+    @include respond(lg) {
+      margin-bottom: 8px;
     }
   }
 
@@ -84,7 +84,7 @@
 
     .section-heading__subtitle {
       @include respond(lg) {
-        margin-bottom: 0;
+        margin-bottom: 10px;
       }
     }
     .section-heading__subtitle-line {

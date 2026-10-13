@@ -5,9 +5,10 @@
 @use "../abstracts" as *;
 
 .vision-to-structure {
-  .section-heading__subtitle{
+  .section-heading__subtitle {
     margin-bottom: 0;
   }
+
   .section-heading__subtitle-text {
     color: var(--heading-color);
   }
@@ -29,6 +30,10 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+
+    @include respond(md) {
+      flex-direction: column;
+    }
   }
 
   &__text-stack {
@@ -37,13 +42,40 @@
     flex-direction: column;
     flex: 1 1 auto;
     min-width: 0;
+    @include respond(lg) {
+      gap: 30px;
+    }
 
     .vision-to-structure__text-line:nth-child(1) {
       padding-left: 100px;
+
+      @include respond(xl) {
+        padding-left: 70px;
+      }
+
+      @include respond(lg) {
+        padding-left: 30px;
+      }
+
+      @include respond(md) {
+        padding-left: 10px;
+      }
     }
 
     .vision-to-structure__text-line:nth-child(2) {
       padding-left: 240px;
+
+      @include respond(xl) {
+        padding-left: 140px;
+      }
+
+      @include respond(lg) {
+        padding-left: 80px;
+      }
+
+      @include respond(md) {
+        padding-left: 50px;
+      }
     }
 
     .vision-to-structure__text-line:nth-child(3) {
@@ -52,6 +84,22 @@
 
     .vision-to-structure__text-line:nth-child(4) {
       padding-left: 345px;
+
+      @include respond(xl) {
+        padding-left: 180px;
+      }
+
+      @include respond(lg) {
+        padding-left: 110px;
+      }
+
+      @include respond(md) {
+        padding-left: 70px;
+      }
+
+      @include respond(sm) {
+        padding-left: 40px;
+      }
     }
   }
 
@@ -67,8 +115,20 @@
     white-space: nowrap;
     position: relative;
     cursor: pointer;
-    transition: color 0.3s ease, z-index 0.3s ease;
+    transition:
+      color 0.3s ease,
+      z-index 0.3s ease;
 
+    @include respond(xl) {
+      font-size: 90px;
+      line-height: 1;
+    }
+    @include respond(lg) {
+      font-size: 60px;
+    }
+    @include respond(md) {
+      font-size: 40px;
+    }
     &--normal {
       color: color-mix(in srgb, var(--heading-color), transparent 85%);
       z-index: 0;
@@ -82,9 +142,14 @@
     &--active {
       color: var(--heading-color);
       z-index: 3;
+
       &:hover {
         z-index: 0;
       }
+    }
+
+    @include respond(sm) {
+      font-size: clamp(32px, 8vw, 48px);
     }
   }
 
@@ -93,47 +158,29 @@
     max-width: 420px;
     align-self: flex-start;
     z-index: 2;
+
     &:hover {
-        z-index: 10;
-      }
+      z-index: 10;
+    }
+
+    @include respond(xl) {
+      flex: 0 0 380px;
+      max-width: 380px;
+    }
+
+    @include respond(lg) {
+      flex: 0 0 280px;
+      max-width: 280px;
+    }
+
+    @include respond(md) {
+      display: none;
+    }
   }
 
   &__image {
     width: 100%;
     height: auto;
     display: block;
-  }
-
-  @include respond(xl) {
-    &__image-wrap {
-      flex: 0 0 380px;
-      max-width: 380px;
-    }
-  }
-
-  @include respond(lg) {
-    &__image-wrap {
-      flex: 0 0 300px;
-      max-width: 300px;
-    }
-  }
-
-  @include respond(md) {
-    &__composition {
-      flex-direction: column;
-    }
-
-    &__image-wrap {
-      flex: 0 0 auto;
-      max-width: 100%;
-      width: 100%;
-      margin-top: 32px;
-    }
-  }
-
-  @include respond(sm) {
-    &__text-line {
-      font-size: clamp(32px, 8vw, 48px);
-    }
   }
 }

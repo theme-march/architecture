@@ -17,6 +17,10 @@
       grid-template-columns: repeat(2, 1fr);
     }
 
+    @include respond(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
     @include respond(sm) {
       grid-template-columns: 1fr;
     }
@@ -41,7 +45,24 @@
     }
 
     @include respond(lg) {
-      padding: 40px 20px;
+      padding: 30px;
+
+      &:first-child {
+        padding-left: 30px;
+      }
+
+      &:last-child {
+        padding-right: 30px;
+      }
+
+      &:nth-child(2n) {
+        border-right: none;
+      }
+    }
+
+    @include respond(sm) {
+      padding: 30px 20px;
+      border-right: none;
 
       &:first-child {
         padding-left: 20px;
@@ -50,37 +71,8 @@
       &:last-child {
         padding-right: 20px;
       }
-
-      &:nth-child(2) {
-        border-right: none;
-      }
-
-      &:nth-child(3) {
-        border-top: 1px solid var(--border-color);
-      }
-
-      &:nth-child(4) {
-        border-top: 1px solid var(--border-color);
-        border-right: none;
-      }
     }
 
-    @include respond(sm) {
-      padding: 40px 15px;
-      border-right: none;
-
-      &:first-child {
-        padding-left: 15px;
-      }
-
-      &:last-child {
-        padding-right: 15px;
-      }
-
-      &:not(:first-child) {
-        border-top: 1px solid var(--border-color);
-      }
-    }
   }
 
   &__image-wrap {
@@ -93,7 +85,7 @@
     flex-shrink: 0;
 
     @include respond(md) {
-      width: 200px;
+      width: 100%;
     }
   }
 
@@ -114,6 +106,10 @@
     font-weight: 500;
     line-height: 32px;
     margin-bottom: 10px;
+
+    @include respond(lg) {
+      margin-bottom: 5px;
+    }
   }
 
   &__designation {

@@ -1,5 +1,7 @@
 @use "../abstracts" as *;
-
+/*--------------------------------------------------------------
+  Stats Banner Section
+----------------------------------------------------------------*/
 .stats-banner {
   background-color: var(--secondary-color);
   color: var(--white-color);
@@ -9,8 +11,14 @@
     justify-content: space-between;
     border-top: 1px solid rgba(255, 255, 255, 0.12);
 
+    @include respond(xl) {
+      gap: 0;
+    }
+
     @include respond(lg) {
       flex-wrap: wrap;
+      gap: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     }
   }
 
@@ -55,17 +63,29 @@
     }
 
     @include respond(sm) {
+      flex: 0 0 50%;
+      justify-content: center;
+      padding: 20px 10px;
+
+      &:nth-child(2n)::after {
+        display: none;
+      }
+
+      &:nth-child(n + 3) {
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      }
+    }
+
+    @media (max-width: 400px) {
       flex: 0 0 100%;
       justify-content: flex-start;
-      padding-left: 20px;
-      padding-top: 25px;
-      padding-bottom: 25px;
+      padding: 20px 15px;
 
       &::after {
         display: none !important;
       }
 
-      &:not(:first-child) {
+      &:nth-child(n + 2) {
         border-top: 1px solid rgba(255, 255, 255, 0.12);
       }
     }

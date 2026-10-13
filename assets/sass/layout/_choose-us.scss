@@ -6,19 +6,22 @@
 
 .choose-us {
   position: relative;
-  padding: 0 100px 120px;
+  padding: 0 100px;
   overflow: hidden;
 
+  @include respond(xxl) {
+    padding: 0 50px;
+  }
   @include respond(lg) {
-    padding: 0 40px 60px;
+    padding: 0 40px;
   }
 
   @include respond(md) {
-    padding: 0 24px 60px;
+    padding: 0 24px;
   }
 
   @include respond(sm) {
-    padding: 0 16px 60px;
+    padding: 0 16px;
   }
 
   &__bg {
@@ -35,23 +38,25 @@
     display: flex;
     flex-direction: column;
     gap: 240px;
+
+    @include respond(xxxl) {
+      gap: 100px;
+    }
+
+    @include respond(lg) {
+      gap: 30px;
+    }
+
+    @include respond(md) {
+      gap: 0;
+    }
   }
 
   &__heading-wrap {
     position: relative;
     z-index: 1;
-    width: 615px;
+    max-width: 615px;
     margin: 0 auto;
-
-    @include respond(lg) {
-      padding-top: 60px;
-      padding-bottom: 40px;
-    }
-
-    @include respond(md) {
-      padding-top: 40px;
-      padding-bottom: 30px;
-    }
   }
 
   &__grid {
@@ -63,10 +68,12 @@
 
     @include respond(lg) {
       grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
     }
 
     @include respond(md) {
       grid-template-columns: 1fr;
+      gap: 15px;
     }
   }
 
@@ -81,8 +88,11 @@
     display: flex;
     flex-direction: column;
 
-    @include respond(md) {
+    @include respond(xl) {
       padding: 30px 40px 30px 30px;
+    }
+    @include respond(md) {
+      padding: 20px 30px 20px 20px;
     }
 
     &--primary {
@@ -111,6 +121,10 @@
     max-width: 60px;
     flex-shrink: 0;
     margin-bottom: 70px;
+    @include respond(lg) {
+      max-width: 80px;
+      margin-bottom: 50px;
+    }
   }
 
   &__card-title {

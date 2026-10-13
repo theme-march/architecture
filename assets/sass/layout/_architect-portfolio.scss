@@ -1,3 +1,7 @@
+@use "../abstracts" as *;
+/*--------------------------------------------------------------
+  Architecture Portfolio Section
+----------------------------------------------------------------*/
 .architect-portfolio {
   width: 100%;
 
@@ -29,6 +33,21 @@
   -webkit-font-smoothing: antialiased;
   backface-visibility: hidden;
 
+  @include respond(lg) {
+    height: 450px;
+  }
+
+  @include respond(md) {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  @include respond(sm) {
+    flex: 0 0 100%;
+    max-width: 100%;
+    height: 400px;
+  }
+
   &__image {
     width: 100%;
     height: 100%;
@@ -59,6 +78,10 @@
     visibility: hidden;
     transform: translateY(20px);
     transition: all 0.4s ease-in-out;
+
+    @include respond(lg) {
+      padding: 20px;
+    }
   }
 
   &__icon {
@@ -134,23 +157,5 @@
   &:hover &__image,
   &.active &__image {
     transform: translateZ(0) scale(1.05);
-  }
-
-  @media (max-width: 1024px) {
-    height: 450px;
-    &__overlay {
-      padding: 25px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-
-  @media (max-width: 576px) {
-    flex: 0 0 100%;
-    max-width: 100%;
-    height: 400px;
   }
 }

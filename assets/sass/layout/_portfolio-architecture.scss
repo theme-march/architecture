@@ -3,6 +3,14 @@
 .portfolio-architecture {
   padding: 0 30px;
 
+  @include respond(md) {
+    padding: 0 20px;
+  }
+
+  @include respond(sm) {
+    padding: 0 15px;
+  }
+
   .section-heading__title {
     font-weight: 600;
   }
@@ -22,6 +30,11 @@
     &:last-child {
       margin-bottom: 0;
     }
+
+    @include respond(md) {
+      padding-top: 20px;
+      margin-bottom: 10px;
+    }
   }
 
   &__item-header {
@@ -30,6 +43,13 @@
     align-items: center;
     margin-bottom: 40px;
     gap: 20px;
+
+    @include respond(md) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
   }
 
   &__item-title {
@@ -37,12 +57,22 @@
     font-weight: 600;
     line-height: 36px;
     padding-top: 10px;
+
+    @include respond(md) {
+      font-size: 26px;
+      line-height: 30px;
+    }
   }
 
   &__item-tags {
     display: flex;
     align-items: center;
     gap: 10px;
+
+    @include respond(md) {
+      gap: 16px;
+      flex-wrap: wrap;
+    }
   }
 
   &__item-tag {
@@ -51,6 +81,12 @@
     font-weight: 500;
     border: 1px solid var(--border-color);
     color: var(--heading-color);
+
+    @include respond(md) {
+      padding: 10px 14px;
+      font-size: 14px;
+    }
+
     &:hover {
       background-color: var(--black-color);
       color: var(--white-color);
@@ -82,6 +118,14 @@
     object-fit: cover;
     display: block;
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+
+    @include respond(md) {
+      height: 330px;
+    }
+
+    @include respond(sm) {
+      height: 220px;
+    }
   }
 
   &__view-btn-wrap {
@@ -103,6 +147,11 @@
     gap: 30px;
     margin-top: 40px;
     margin-bottom: 0;
+    
+    @include respond(md) {
+      margin-top: 20px;
+      gap: 15px;
+    }
   }
 
   &__item-meta-line {
@@ -116,6 +165,12 @@
     font-size: 16px;
     line-height: 24px;
     white-space: nowrap;
+
+    @include respond(md) {
+      white-space: normal;
+      text-align: center;
+      font-size: 14px;
+    }
   }
 
   &__item-meta-label {
@@ -127,53 +182,5 @@
   &__item-meta-value {
     color: var(--body-color);
     font-weight: 500;
-  }
-
-  @include respond(md) {
-    padding: 60px 20px;
-
-    &__item {
-      padding-top: 20px;
-      margin-bottom: 40px;
-    }
-
-    &__item-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    &__item-tags {
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    &__image {
-      height: 380px;
-    }
-
-    &__item-meta {
-      gap: 15px;
-    }
-
-    &__item-meta-text {
-      white-space: normal;
-      text-align: center;
-      font-size: 14px;
-    }
-  }
-
-  @include respond(sm) {
-    padding: 50px 15px;
-
-    &__image {
-      height: 260px;
-    }
-
-    &__view-btn-wrap {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(0.85);
-    }
   }
 }
