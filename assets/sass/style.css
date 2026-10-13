@@ -7439,30 +7439,10 @@ About Us
   align-items: center;
   overflow: hidden;
   padding-top: 150px;
-  padding-bottom: 50px;
-}
-@media (max-width: 1200px) {
-  .hero-construction {
-    min-height: 850px;
-  }
-}
-@media (max-width: 992px) {
-  .hero-construction {
-    min-height: auto;
-    padding-top: 160px;
-    padding-bottom: 60px;
-  }
 }
 @media (max-width: 768px) {
   .hero-construction {
-    padding-top: 140px;
-    padding-bottom: 50px;
-  }
-}
-@media (max-width: 576px) {
-  .hero-construction {
-    padding-top: 130px;
-    padding-bottom: 40px;
+    padding-top: 100px;
   }
 }
 .hero-construction__bg {
@@ -7474,34 +7454,24 @@ About Us
   object-fit: cover;
   z-index: 1;
 }
-.hero-construction .container {
-  position: relative;
-  width: 100%;
-}
 .hero-construction__row {
   position: relative;
-  z-index: 6;
+  z-index: 3;
   min-height: 100%;
 }
 .hero-construction__content {
   width: 100%;
   max-width: 700px;
 }
-@media (max-width: 1200px) {
-  .hero-construction__content {
-    max-width: 600px;
-  }
-}
 @media (max-width: 992px) {
   .hero-construction__content {
-    max-width: 720px;
-    margin: 0 auto;
+    max-width: 100%;
     text-align: center;
   }
 }
 .hero-construction__badge {
   display: inline-block;
-  padding: 12px 20px;
+  padding: 15px;
   border-left: 1px solid color-mix(in srgb, var(--white-color), transparent 60%);
   border-right: 1px solid color-mix(in srgb, var(--white-color), transparent 60%);
   background-color: color-mix(in srgb, var(--white-color), transparent 90%);
@@ -7512,54 +7482,28 @@ About Us
   letter-spacing: 1.5px;
   margin-bottom: 20px;
 }
-@media (max-width: 768px) {
-  .hero-construction__badge {
-    font-size: 14px;
-    padding: 10px 16px;
-    letter-spacing: 1.2px;
-    margin-bottom: 16px;
-  }
-}
-@media (max-width: 576px) {
-  .hero-construction__badge {
-    font-size: 12px;
-    padding: 8px 14px;
-    letter-spacing: 1px;
-    margin-bottom: 14px;
-  }
-}
 .hero-construction__title {
   color: var(--white-color);
   font-family: var(--heading-font-family);
   font-size: 66px;
   font-weight: 600;
-  line-height: 1.15;
+  line-height: 74px;
   margin: 0 0 25px 0;
 }
 @media (max-width: 1200px) {
   .hero-construction__title {
-    font-size: 54px;
-    line-height: 1.18;
-  }
-}
-@media (max-width: 992px) {
-  .hero-construction__title {
-    font-size: 48px;
-    margin: 0 auto 20px auto;
+    font-size: 58px;
   }
 }
 @media (max-width: 768px) {
   .hero-construction__title {
-    font-size: 38px;
-    line-height: 1.22;
-    margin-bottom: 18px;
+    font-size: 42px;
+    line-height: 1.2;
   }
 }
 @media (max-width: 576px) {
   .hero-construction__title {
-    font-size: 28px;
-    line-height: 1.25;
-    margin-bottom: 15px;
+    font-size: 34px;
   }
 }
 .hero-construction__title-highlight {
@@ -7578,19 +7522,6 @@ About Us
   .hero-construction__desc {
     margin-left: auto;
     margin-right: auto;
-    max-width: 580px;
-  }
-}
-@media (max-width: 576px) {
-  .hero-construction__desc {
-    font-size: 14px;
-    line-height: 22px;
-    margin-bottom: 24px;
-  }
-}
-@media (max-width: 992px) {
-  .hero-construction__btn {
-    margin: 0 auto;
   }
 }
 .hero-construction__visual {
@@ -7598,42 +7529,6 @@ About Us
   right: 180px;
   bottom: 0;
   z-index: 5;
-  pointer-events: none;
-}
-@media (max-width: 1400px) {
-  .hero-construction__visual {
-    right: 40px;
-  }
-}
-@media (max-width: 1200px) {
-  .hero-construction__visual {
-    right: 0;
-    transform: scale(0.85);
-    transform-origin: bottom right;
-  }
-}
-@media (max-width: 992px) {
-  .hero-construction__visual {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    margin: 120px auto 0 auto;
-    max-width: 440px;
-    width: 100%;
-    transform: none;
-  }
-}
-@media (max-width: 768px) {
-  .hero-construction__visual {
-    margin-top: 100px;
-    max-width: 380px;
-  }
-}
-@media (max-width: 576px) {
-  .hero-construction__visual {
-    margin-top: 85px;
-    max-width: 290px;
-  }
 }
 .hero-construction__person-bg {
   width: 100%;
@@ -7647,26 +7542,12 @@ About Us
   bottom: 0;
   left: 37%;
   transform: translateX(-50%);
-  width: 150%;
-  max-width: 785px;
   height: auto;
-  max-height: 800px;
   display: block;
   pointer-events: none;
+  max-width: 785px;
+  height: 800px;
   aspect-ratio: 121/123;
-  object-fit: contain;
-}
-@media (max-width: 992px) {
-  .hero-construction__person {
-    left: 50%;
-    width: 130%;
-    max-height: none;
-  }
-}
-@media (max-width: 576px) {
-  .hero-construction__person {
-    width: 125%;
-  }
 }
 
 /*--------------------------------------------------------------
