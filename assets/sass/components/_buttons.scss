@@ -280,6 +280,10 @@
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
+    
+    @include respond(sm) {
+      padding: 14px 20px;
+    }
 
   &__icon {
     position: relative;
@@ -326,8 +330,6 @@
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px
-      color-mix(in srgb, var(--black-color), transparent 85%);
 
     .play-story-btn__icon {
       transform: scale(1.06);

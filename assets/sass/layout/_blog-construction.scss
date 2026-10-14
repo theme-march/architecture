@@ -16,7 +16,7 @@
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @include respond(sm) {
+    @include respond(md) {
       grid-template-columns: 1fr;
     }
   }
@@ -65,6 +65,12 @@
     width: 200px;
     height: 40px;
     z-index: 1;
+
+    @include respond(lg) {
+      width: 150px;
+      height: 30px;
+      left: 20px;
+    }
   }
 
   &__date-bg {
@@ -83,6 +89,10 @@
     font-weight: 500;
     font-family: var(--heading-font-family);
     white-space: nowrap;
+
+    @include respond(lg) {
+      font-size: 14px;
+    }
   }
 
   &__body {
@@ -107,8 +117,8 @@
   &__comments {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    font-size: 14px;
+    gap: 8px;
+    font-size: 16px;
     font-weight: 500;
     color: var(--body-color);
   }
@@ -138,8 +148,9 @@
     line-height: 36px;
     margin-bottom: 20px;
 
-    @include respond(md) {
-      font-size: 20px;
+    @include respond(lg) {
+      font-size: 24px;
+      line-height: 32px;
     }
 
     a {

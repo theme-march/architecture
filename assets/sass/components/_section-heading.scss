@@ -67,6 +67,20 @@
       font-size: 32px;
       line-height: 34px;
     }
+    @include respond(sm) {
+      font-size: 30px;
+      line-height: 32px;
+    }
+
+    //section-heading__title--light
+    &--light {
+      font-weight: 500;
+    }
+
+    //section-heading__title--white
+    &--white {
+      color: var(--white-color);
+    }
   }
 
   &__right {
@@ -80,6 +94,9 @@
 
     @include respond(lg) {
       gap: 10px;
+    }
+    @include respond(md) {
+      gap: 0;
     }
 
     .section-heading__subtitle {

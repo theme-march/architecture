@@ -681,7 +681,7 @@
       padding-bottom: 40px;
     }
 
-    @include respond(sm) {
+    @include respond(md) {
       grid-template-columns: 1fr;
       gap: 30px;
     }
@@ -711,6 +711,10 @@
   &__title-bar {
     display: block;
     margin-bottom: 25px;
+
+    @include respond(sm) {
+      margin-bottom: 20px;
+    }
   }
 
   &__title-bar-img {
@@ -735,6 +739,10 @@
     line-height: 26px;
     flex-grow: 1;
     outline: none;
+    @include respond(sm) {
+      padding: 15px 0 15px 20px;
+      font-size: 14px;
+    }
 
     &::placeholder {
       color: var(--white-color);
@@ -754,6 +762,11 @@
     letter-spacing: 0.5px;
     transition: filter 0.3s ease;
     flex-shrink: 0;
+
+    @include respond(sm) {
+      padding: 0 30px;
+      font-size: 14px;
+    }
 
     &:hover {
       filter: brightness(1.3);
@@ -800,6 +813,9 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    @include respond(sm) {
+      gap: 15px;
+    }
   }
 
   &__contact-item {
@@ -843,6 +859,11 @@
     background-color: var(--primary-color);
     padding: 30px;
     margin-bottom: 30px;
+
+    @include respond(sm) {
+      padding: 20px;
+      margin-bottom: 12px;
+    }
   }
 
   &__banner-top {

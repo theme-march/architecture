@@ -49,8 +49,6 @@
     @include respond(sm) {
       grid-template-columns: 1fr;
       gap: 30px;
-      max-width: 360px;
-      margin-inline: auto;
     }
   }
 
