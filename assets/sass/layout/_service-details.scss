@@ -23,6 +23,11 @@
 
     @include respond(lg) {
       width: 100%;
+      padding: 30px;
+    }
+    @include respond(md) {
+      width: 100%;
+      padding: 20px;
     }
   }
 
@@ -40,6 +45,10 @@
     height: auto;
     display: block;
     margin-bottom: 30px;
+
+    @include respond(md) {
+      margin-bottom: 20px;
+    }
   }
 
   &__title {
@@ -47,14 +56,22 @@
     font-weight: 600;
     margin-bottom: 20px;
 
-    @include respond(md) {
+    @include respond(lg) {
       font-size: 30px;
+    }
+    @include respond(md) {
+      font-size: 28px;
+      margin-bottom: 15px;
     }
   }
 
   &__title-underline {
     display: block;
     margin-bottom: 30px;
+
+    @include respond(md) {
+      margin-bottom: 25px;
+    }
   }
 
   &__title-underline-img {
@@ -77,7 +94,8 @@
     margin-bottom: 15px;
 
     @include respond(md) {
-      font-size: 24px;
+      font-size: 26px;
+      line-height: 28px;
     }
   }
 
@@ -86,7 +104,8 @@
     gap: 40px;
     margin-bottom: 30px;
 
-    @include respond(sm) {
+    @include respond(md) {
+      gap: 30px;
       flex-direction: column;
     }
   }
@@ -97,8 +116,9 @@
     display: block;
     object-fit: cover;
 
-    @include respond(sm) {
+    @include respond(md) {
       width: 100%;
+      max-height: 230px;
     }
   }
 
@@ -108,6 +128,9 @@
     display: flex;
     flex-wrap: wrap;
     gap: 15px 30px;
+    @include respond(sm) {
+      gap: 10px 30px;
+    }
 
     &--single-col {
       display: block;
@@ -115,6 +138,9 @@
       .service-details__list-item {
         width: auto;
         line-height: 36px;
+        @include respond(md) {
+          line-height: 28px;
+        }
       }
     }
   }
@@ -126,7 +152,7 @@
     font-size: 16px;
     width: calc(50% - 15px);
 
-    @include respond(sm) {
+    @include respond(md) {
       width: 100%;
     }
   }

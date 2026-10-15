@@ -23,11 +23,20 @@
     font-weight: 600;
     line-height: 46px;
     margin-bottom: 10px;
+    
+    @include respond(md) {
+      font-size: 28px;
+      line-height: 32px;
+    }
   }
 
   &__title-underline {
     display: block;
     margin-bottom: 30px;
+
+    @include respond(md) {
+      margin-bottom: 25px;
+    }
   }
 
   &__title-underline-img {
@@ -40,6 +49,9 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    @include respond(md) {
+      gap: 15px;
+    }
   }
 
   &__category-item {
@@ -56,6 +68,11 @@
     font-weight: 600;
     color: var(--heading-color);
     @include transition;
+    
+    @include respond(md) {
+      font-size: 18px;
+      padding: 12px 25px;
+    }
 
     &:hover {
       color: var(--white-color);
@@ -79,6 +96,11 @@
     @include flex-center;
     flex-shrink: 0;
     @include transition;
+
+    @include respond(md) {
+      width: 35px;
+      height: 35px;
+    }
   }
 
   &__category-arrow-icon {
@@ -102,6 +124,11 @@
     line-height: 46px;
     color: var(--white-color);
     margin-bottom: 10px;
+
+    @include respond(md) {
+      font-size: 28px;
+      line-height: 32px;
+    }
   }
 
   &__newsletter-underline {
@@ -155,6 +182,11 @@
     @include transition;
     align-self: flex-start;
 
+    @include respond(md) {
+      font-size: 16px;
+      padding: 16px 30px;
+    }
+
     &:hover {
       background-color: var(--white-color);
       color: var(--primary-color);
@@ -165,6 +197,10 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    
+    @include respond(md) {
+      gap: 15px;
+    }
   }
 
   &__search-input {

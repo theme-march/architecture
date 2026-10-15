@@ -42,8 +42,8 @@
     }
 
     @include respond(md) {
-      margin-top: -40px;
-      padding: 25px 20px;
+      margin-top: -50px;
+      padding: 20px;
     }
   }
 
@@ -54,7 +54,8 @@
     margin-bottom: 20px;
 
     @include respond(md) {
-      font-size: 26px;
+      font-size: 24px;
+      margin-bottom: 15px;
     }
   }
 
@@ -64,6 +65,10 @@
     line-height: 26px;
     color: var(--white-color);
     margin-bottom: 35px;
+
+    @include respond(md) {
+      margin-bottom: 20px;
+    }
   }
 
   &__meta-grid {
@@ -77,9 +82,9 @@
       gap: 20px;
     }
 
-    @include respond(sm) {
+    @include respond(md) {
       flex-direction: column;
-      gap: 16px;
+      gap: 15px;
     }
   }
 
@@ -88,8 +93,9 @@
     flex-direction: column;
     gap: 30px;
     flex: 1;
-
-    @include respond(sm) {
+    
+    @include respond(md) {
+      gap: 15px;
       width: 100%;
     }
   }
@@ -105,6 +111,10 @@
     font-weight: 500;
     color: var(--white-color);
     min-width: 130px;
+
+    @include respond(md) {
+      font-size: 16px;
+    }
   }
 
   &__meta-value {
@@ -145,9 +155,10 @@
     @include respond(lg) {
       gap: 20px;
     }
-
+    
     @include respond(md) {
       flex-direction: column;
+      gap: 15px;
     }
   }
 
@@ -161,6 +172,14 @@
     height: 100%;
     object-fit: cover;
     display: block;
+
+    @include respond(md) {
+      max-height: 250px;
+    }
+    @include respond(sm) {
+      max-height: 200px;
+    }
+    
   }
 
   &__benefits {
@@ -183,7 +202,7 @@
     margin: 25px 0 0 0;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 15px;
   }
 
   &__list-item {
@@ -192,6 +211,10 @@
     gap: 12px;
     font-size: 16px;
     font-weight: 500;
+
+    @include respond(lg) {
+      line-height: 24px;
+    }
   }
 
   &__list-icon {

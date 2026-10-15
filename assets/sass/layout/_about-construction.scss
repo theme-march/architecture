@@ -189,14 +189,13 @@
     justify-items: center;
 
     @include respond(xl) {
-      grid-template-columns: repeat(2, minmax(0, 310px));
+      grid-template-columns: repeat(2, 1fr);
       justify-content: center;
       gap: 30px 20px;
     }
 
-    @include respond(sm) {
-      grid-template-columns: minmax(0, 320px);
-      gap: 20px;
+    @include respond(md) {
+      gap: 15px;
     }
   }
 
@@ -218,6 +217,10 @@
     &--white {
       background-color: var(--white-color);
       box-shadow: 0 0 10px 0 color-mix(in srgb, var(--shadow-color-one), transparent 70%);
+
+      @include respond(sm) {
+        padding: 0;
+      }
     }
 
     &--image {
@@ -240,8 +243,15 @@
     color: var(--primary-color);
     margin-bottom: 10px;
 
+    @include respond(lg) {
+      font-size: 56px;
+    }
+    @include respond(md) {
+      font-size: 38px;
+      line-height: 1;
+    }
     @include respond(sm) {
-      font-size: 46px;
+      font-size: 28px;
     }
   }
 
@@ -252,6 +262,16 @@
     line-height: 30px;
     margin-bottom: 10px;
     max-width: 210px;
+
+    @include respond(md) {
+      font-size: 16px;
+      line-height: 22px;
+      padding: 0 10px;
+    }
+    @include respond(sm) {
+      font-size: 14px;
+      line-height: 1;
+    }
   }
 
   &__circle-subtext {
@@ -259,12 +279,21 @@
     font-weight: 500;
     line-height: 26px;
     font-style: italic;
+
+    @include respond(md) {
+      font-size: 14px;
+      padding: 0 10px;
+    }
   }
 
   &__rating-wrap {
     display: flex;
     align-items: center;
     gap: 10px;
+
+    @include respond(md) {
+      padding: 0 10px;
+    }
   }
 
   &__rating-score {
@@ -272,6 +301,10 @@
     font-size: 16px;
     font-weight: 600;
     line-height: 26px;
+
+    @include respond(md) {
+      font-size: 12px;
+    }
   }
 
   &__rating-stars {
