@@ -108,6 +108,10 @@
     line-height: 36px;
     color: var(--heading-color);
     margin-bottom: 25px;
+    
+    @include respond(md) {
+      font-size: 28px;
+    }
 
 
   }

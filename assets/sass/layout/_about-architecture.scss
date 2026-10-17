@@ -21,7 +21,7 @@
     }
   }
 
-  .section-heading__subtitle {
+  &__subtitle {
     margin-bottom: 0;
 
     &-line {
@@ -123,14 +123,14 @@
     margin-bottom: 50px;
 
     @include respond(lg) {
-      font-size: 30px;
+      font-size: 32px;
       line-height: 40px;
       margin-bottom: 40px;
     }
 
     @include respond(md) {
-      font-size: 26px;
-      line-height: 34px;
+      font-size: 28px;
+      line-height: 36px;
       margin-bottom: 30px;
     }
   }

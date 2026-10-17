@@ -8,8 +8,7 @@
   position: relative;
   background-color: var(--white-color);
 
-  .section-heading__title {
-    font-weight: 600;
+  &__title {
     max-width: 530px;
   }
 
@@ -19,8 +18,12 @@
     gap: 30px;
 
     @include respond(lg) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+    @include respond(md) {
       grid-template-columns: 1fr;
-      gap: 50px;
+      gap: 40px;
     }
   }
 
@@ -103,8 +106,8 @@
   &__features-wrap {
     padding: 0 40px;
 
-    @include respond(md) {
-      padding: 0 30px;
+    @include respond(xl) {
+      padding: 0 20px;
     }
   }
 

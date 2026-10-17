@@ -4,15 +4,17 @@
   padding: 0 30px;
 
   @include respond(md) {
-    padding: 0 20px;
-  }
-
-  @include respond(sm) {
     padding: 0 15px;
   }
 
-  .section-heading__title {
-    font-weight: 600;
+  @include respond(sm) {
+    padding: 0 12px;
+  }
+  
+  &__wrapper {
+    @include respond(md) {
+      padding: 0;
+    }
   }
 
   &__list {
@@ -147,7 +149,7 @@
     gap: 30px;
     margin-top: 40px;
     margin-bottom: 0;
-    
+
     @include respond(md) {
       margin-top: 20px;
       gap: 15px;

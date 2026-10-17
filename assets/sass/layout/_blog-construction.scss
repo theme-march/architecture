@@ -148,6 +148,10 @@
     line-height: 36px;
     margin-bottom: 20px;
 
+    @include respond(xl) {
+      font-size: 22px;
+      line-height: 28px;
+    }
     @include respond(lg) {
       font-size: 24px;
       line-height: 32px;

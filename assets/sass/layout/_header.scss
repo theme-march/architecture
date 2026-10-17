@@ -397,7 +397,6 @@
     width: 52px;
     height: 52px;
     background: none;
-    border: 1px solid color-mix(in srgb, var(--white-color), transparent 72%);
     color: var(--white-color);
     font-size: 20px;
     cursor: pointer;
@@ -722,7 +721,6 @@
     background-color: color-mix(in srgb, var(--white-color), transparent 80%);
     -webkit-backdrop-filter: blur(40px);
     backdrop-filter: blur(40px);
-    border: 1px solid color-mix(in srgb, var(--white-color), transparent 82%);
     transition:
       background-color 0.4s ease,
       border-color 0.4s ease,
@@ -746,7 +744,6 @@
       background-color: var(--black-color);
       -webkit-backdrop-filter: none;
       backdrop-filter: none;
-      border: 1px solid color-mix(in srgb, var(--white-color), transparent 88%);
       box-shadow: 0 10px 30px
         color-mix(in srgb, var(--black-color), transparent 50%);
     }
@@ -805,8 +802,6 @@
           opacity: 0;
           visibility: hidden;
           transition: all 0.4s ease;
-          border: 1px solid
-            color-mix(in srgb, var(--white-color), transparent 85%);
           box-shadow: 0px 10px 30px
             color-mix(in srgb, var(--black-color), transparent 50%);
 
@@ -857,7 +852,6 @@
       width: 48px;
       height: 48px;
       background: none;
-      border: 1px solid color-mix(in srgb, var(--white-color), transparent 72%);
       color: var(--white-color);
       font-size: 20px;
       cursor: pointer;
@@ -1127,8 +1121,6 @@
               list-style: none;
               box-shadow: 0px 10px 30px
                 color-mix(in srgb, var(--black-color), transparent 50%);
-              border: 1px solid
-                color-mix(in srgb, var(--white-color), transparent 85%);
 
               li a {
                 display: block;

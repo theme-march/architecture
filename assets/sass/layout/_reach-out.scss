@@ -12,16 +12,16 @@
       margin-bottom: 30px;
     }
 
-    .section-heading__title {
-      font-size: 36px;
-      font-weight: 600;
-      line-height: 46px;
-    }
-
     @include respond(lg) {
       align-items: flex-start;
       gap: 30px;
     }
+  }
+
+  &__title {
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 40px;
   }
 
   &__contact-card {
@@ -70,6 +70,9 @@
 
     @include respond(lg) {
       padding: 30px;
+    }
+    @include respond(md) {
+      padding: 20px;
     }
   }
 

@@ -28,19 +28,18 @@
 
   &__heading-wrap {
     flex: 1;
+  }
 
-    .section-heading {
-      display: flex;
-      flex-direction: column;
-      align-items: start;
-      margin-bottom: 0;
+  &__heading {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 0;
 
-      @include respond(lg) {
-        gap: 10px;
-      }
-      @include respond(md) {
-        gap: 0;
-      }
+    @include respond(lg) {
+      gap: 10px;
+    }
+    @include respond(md) {
+      gap: 0;
     }
   }
 

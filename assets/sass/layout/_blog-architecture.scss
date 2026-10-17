@@ -3,13 +3,6 @@
 .blog-architecture {
   background-color: var(--smoke-bg-color-one);
 
-  .section-heading {
-
-    &__title {
-      font-weight: 600;
-    }
-  }
-
   &__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

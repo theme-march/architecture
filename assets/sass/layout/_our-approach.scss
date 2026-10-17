@@ -38,10 +38,10 @@
     @include respond(md) {
       margin-bottom: 60px;
     }
+  }
 
-    .section-heading__title {
-      max-width: 800px;
-    }
+  &__title {
+    max-width: 800px;
   }
 
   &__grid {

@@ -5,16 +5,8 @@
 @use "../abstracts" as *;
 
 .vision-to-structure {
-  .section-heading__subtitle {
+  &__subtitle {
     margin-bottom: 0;
-  }
-
-  .section-heading__subtitle-text {
-    color: var(--heading-color);
-  }
-
-  .section-heading__subtitle-line {
-    background-color: var(--heading-color);
   }
 
   &__inner {
