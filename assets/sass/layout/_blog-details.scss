@@ -54,6 +54,13 @@
     font-size: 18px;
     font-weight: 500;
     z-index: 2;
+
+    @include respond(md) {
+      top: 20px;
+      left: 20px;
+      padding: 15px 30px;
+      font-size: 16px;
+    }
   }
 
   &__meta-bar {
@@ -70,7 +77,6 @@
 
     @include respond(sm) {
       position: static;
-      flex-direction: column;
       gap: 12px;
       align-items: flex-start;
       padding: 15px 20px;
@@ -85,8 +91,15 @@
     font-size: 16px;
     font-weight: 500;
 
+    @include respond(md) {
+      font-size: 14px;
+    }
+
     i {
       font-size: 16px;
+      @include respond(md) {
+        font-size: 14px;
+      }
     }
   }
 
@@ -100,7 +113,6 @@
     }
   }
 
-
   &__title {
     font-size: 50px;
     font-weight: 600;
@@ -108,8 +120,12 @@
     color: var(--heading-color);
     margin-bottom: 15px;
 
+    @include respond(lg) {
+      font-size: 36px;
+      line-height: 1;
+    }
     @include respond(md) {
-      font-size: 28px;
+      font-size: 26px;
       line-height: 38px;
     }
   }
@@ -126,6 +142,9 @@
     display: flex;
     flex-wrap: wrap;
     gap: 18px 30px;
+    @include respond(md) {
+      gap: 15px;
+    }
   }
 
   &__checklist-item {
@@ -178,9 +197,10 @@
     border-radius: 20px;
 
     @include respond(md) {
-      padding: 30px 20px 30px 35px;
+      padding: 30px 20px 30px 30px;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: end;
+      margin: 30px 0;
     }
   }
 
@@ -193,8 +213,6 @@
     background-color: var(--primary-color);
     border-radius: 10px;
   }
-
-
 
   &__quote-content {
     flex: 1;
@@ -209,7 +227,7 @@
     margin-bottom: 15px;
 
     @include respond(md) {
-      font-size: 16px;
+      font-size: 14px;
       line-height: 26px;
     }
   }
@@ -220,6 +238,9 @@
     line-height: 26px;
     font-family: var(--display-font-family-two);
     color: var(--heading-color-two);
+    @include respond(md) {
+      font-size: 18px;
+    }
   }
 
   &__quote-icon {
@@ -235,6 +256,7 @@
 
     @include respond(sm) {
       flex-direction: column;
+      gap: 20px;
     }
   }
 
@@ -244,6 +266,7 @@
 
     @include respond(sm) {
       width: 100%;
+      max-height: 220px;
     }
   }
 
@@ -282,6 +305,9 @@
     font-weight: 600;
     color: var(--heading-color);
     margin-right: 30px;
+    @include respond(md) {
+      font-size: 18px;
+    }
   }
 
   &__tag-link {
@@ -305,6 +331,9 @@
     font-size: 20px;
     font-weight: 600;
     color: var(--heading-color);
+    @include respond(md) {
+      font-size: 18px;
+    }
   }
 
   &__share-links {
@@ -326,6 +355,11 @@
     text-decoration: none;
     @include transition;
 
+    @include respond(lg) {
+      width: 35px;
+      height: 35px;
+    }
+
     &:hover {
       background-color: var(--title-color);
       color: var(--white-color);
@@ -338,6 +372,9 @@
     font-weight: 600;
     line-height: 46px;
     margin-bottom: 10px;
+    @include respond(md) {
+      font-size: 28px;
+    }
   }
 
   &__title-underline {
@@ -352,6 +389,9 @@
 
   &__comments-wrap {
     margin-bottom: 100px;
+    @include respond(lg) {
+      margin-bottom: 60px;
+    }
   }
 
   &__comment-list {
@@ -366,6 +406,12 @@
     display: flex;
     align-items: flex-start;
     gap: 20px;
+    @include respond(md) {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 20px;
+    }
 
     &--reply {
       margin-left: 100px;
@@ -374,11 +420,6 @@
         margin-left: 20px;
       }
     }
-
-    @include respond(xs) {
-      flex-direction: column;
-      padding: 20px;
-    }
   }
 
   &__comment-avatar {
@@ -386,6 +427,9 @@
     max-width: 130px;
     flex-shrink: 0;
     overflow: hidden;
+    @include respond(md) {
+      max-width: 100px;
+    }
   }
 
   &__comment-avatar-img {
@@ -429,7 +473,12 @@
     text-decoration: none;
     @include transition;
 
-   &:hover {
+    @include respond(md) {
+      padding: 10px 30px;
+      font-size: 14px;
+    }
+
+    &:hover {
       background-color: var(--primary-color);
       color: var(--white-color);
     }
@@ -440,6 +489,9 @@
     font-weight: 600;
     color: var(--heading-color-three);
     margin-bottom: 10px;
+    @include respond(md) {
+      line-height: 22px;
+    }
   }
 
   &__comment-text {
@@ -502,7 +554,7 @@
     cursor: pointer;
   }
 
-    &__checkbox {
+  &__checkbox {
     appearance: none;
     -webkit-appearance: none;
     width: 20px;
@@ -514,10 +566,14 @@
     display: grid;
     place-content: center;
     transition: all 0.2s ease;
+    @include respond(md) {
+      width: 30px;
+      height: 20px;
+    }
 
     &:checked {
       background-color: var(--primary-color);
-      
+
       &::before {
         content: "";
         width: 10px;
@@ -528,7 +584,6 @@
       }
     }
   }
-
 
   &__checkbox-label {
     font-size: 14px;
@@ -549,6 +604,10 @@
     cursor: pointer;
     margin-top: 10px;
     @include transition;
+
+    @include respond(md) {
+      padding: 15px 40px;
+    }
 
     &:hover {
       background-color: var(--title-color);

@@ -29,7 +29,7 @@
     z-index: 2;
     background-color: var(--white-color);
     flex-shrink: 0;
-    margin-bottom: -299px;
+    margin-bottom: -265px;
     box-shadow: 0px 10px 40px color-mix(in srgb, var(--black-color), transparent 92%);
 
     @include respond(lg) {

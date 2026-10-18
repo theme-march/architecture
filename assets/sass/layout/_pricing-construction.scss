@@ -127,6 +127,10 @@
     align-items: center;
     gap: 10px;
     margin-bottom: 10px;
+    
+    @include respond(md) {
+      gap: 15px;
+    }
 
     &:last-child {
       margin-bottom: 0;

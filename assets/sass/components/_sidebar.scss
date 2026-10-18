@@ -14,7 +14,7 @@
     padding: 40px;
 
     @include respond(md) {
-      padding: 30px;
+      padding: 20px;
     }
   }
 
@@ -228,6 +228,11 @@
     cursor: pointer;
     align-self: flex-start;
     @include transition;
+    
+    @include respond(md) {
+      font-size: 14px;
+      padding: 14px 30px;
+    }
 
     &:hover {
       background-color: var(--title-color);
@@ -295,6 +300,8 @@
     max-width: 190px;
 
     a {
+      font-size: inherit;
+      line-height: inherit;
       color: var(--title-color);
       text-decoration: none;
       @include transition;

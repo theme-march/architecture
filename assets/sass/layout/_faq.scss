@@ -14,6 +14,10 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    @include respond(md) {
+      gap: 15px;
+    }
   }
 
   &__pagination {
@@ -53,7 +57,7 @@
     line-height: 26px;
 
     @include respond(md) {
-      font-size: 16px;
+      font-size: 18px;
     }
   }
 

@@ -68,13 +68,14 @@
     padding-left: 100px;
     padding-right: 30px;
     transform: translateY(70px);
-
+    
     @include respond(xxl) {
       padding-left: 50px;
     }
-
+    
     @include respond(lg) {
       padding-left: 30px;
+      transform: translateY(50px);
     }
 
     @include respond(md) {

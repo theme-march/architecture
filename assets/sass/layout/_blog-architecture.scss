@@ -8,13 +8,14 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
     align-items: start;
-
+    
     @include respond(lg) {
       grid-template-columns: repeat(2, 1fr);
     }
-
+    
     @include respond(sm) {
       grid-template-columns: 1fr;
+      gap: 30px;
     }
   }
 
