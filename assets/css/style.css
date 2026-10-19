@@ -831,7 +831,7 @@ kbd {
   border: none;
   padding: 5px 5px 5px 20px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 .primary-btn .text {
   margin-right: 20px;
@@ -844,10 +844,15 @@ kbd {
   background-color: var(--white-color);
   width: 47px;
   height: 47px;
+  transition: background-color 0.3s ease;
 }
 .primary-btn .icon-wrapper svg {
+  display: block;
   width: 16px;
   height: 16px;
+  transform-origin: 50% 50%;
+  backface-visibility: hidden;
+  will-change: transform;
   transition: transform 0.3s ease;
 }
 .primary-btn .icon-wrapper svg path {
@@ -855,7 +860,17 @@ kbd {
   transition: fill 0.3s ease;
 }
 .primary-btn:hover {
-  color: var(--white-color);
+  background-color: var(--white-color);
+  color: var(--title-color);
+}
+.primary-btn:hover .icon-wrapper {
+  background-color: var(--primary-color);
+}
+.primary-btn:hover .icon-wrapper svg {
+  transform: rotate(-45deg);
+}
+.primary-btn:hover .icon-wrapper svg path {
+  fill: var(--white-color);
 }
 @media (max-width: 768px) {
   .primary-btn {
@@ -1038,6 +1053,8 @@ kbd {
   width: 18px;
   flex-shrink: 0;
   display: block;
+  transform-origin: center center;
+  transition: transform 0.3s ease;
 }
 .read-more-btn__label {
   font-family: var(--heading-font-family);
@@ -1047,8 +1064,7 @@ kbd {
   letter-spacing: 0.5px;
 }
 .read-more-btn:hover .read-more-btn__arrow {
-  transform: translateX(4px);
-  transition: transform 0.3s ease;
+  transform: rotate(-45deg);
 }
 .read-more-btn:active {
   transform: scale(0.98);

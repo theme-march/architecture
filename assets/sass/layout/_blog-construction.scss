@@ -32,7 +32,6 @@
       box-shadow 0.3s ease;
 
     &:hover {
-      transform: translateY(-5px);
       box-shadow: 0 10px 50px
         color-mix(in srgb, var(--black-color), transparent 88%);
     }
@@ -177,11 +176,15 @@
 
     .read-more-btn {
       color: var(--heading-color);
-
+      
       &__label {
         font-size: 16px;
         font-weight: 600;
         color: var(--heading-color);
+        &:hover {
+          color: var(--primary-color);
+          transition: color 0.3s ease;
+        }
       }
     }
   }

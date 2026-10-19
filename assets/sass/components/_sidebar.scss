@@ -154,6 +154,9 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    @include respond(md) {   
+      gap: 15px;
+    }
   }
 
   &__newsletter-input {
@@ -298,6 +301,9 @@
     font-weight: 600;
     line-height: 24px;
     max-width: 190px;
+    @include respond(md) {
+      max-width: none;
+    }
 
     a {
       font-size: inherit;
