@@ -55,6 +55,21 @@
     }
   }
 
+  &__slider {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  &__slide {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    position: relative;
+    width: 100%;
+  }
+
   &__quote {
     font-family: var(--heading-font-family);
     font-size: 30px;
@@ -95,6 +110,7 @@
   &__author-role {
     font-family: var(--body-font-family);
     font-size: 16px;
+    line-height: 26px;
     font-weight: 500;
     color: var(--body-color);
   }

@@ -1,4 +1,4 @@
-﻿(function ($) {
+(function ($) {
   "use strict";
 
   /*
@@ -24,6 +24,7 @@
 | 12. Funfact Counter
 | 13. Sticky Sidebar
 | 14. Working Process Accordion
+| 15. Testimonial Slider
 |--------------------------------------------------------------------------
  */
 
@@ -69,6 +70,7 @@
     modalVideo();
     scrollUp();
     serviceAccordion();
+    testimonialSlider();
   });
 
   $window.on("scroll", function () {
@@ -402,6 +404,135 @@
       if (!isActive) {
         $item.addClass("service__item--active");
       }
+    });
+  }
+
+  /*--------------------------------------------------------------
+  15. Testimonial Slider
+  --------------------------------------------------------------*/
+  function testimonialSlider() {
+    if (!$.exists(".testimonial__slider")) return;
+
+    var $slides = $(".testimonial__slide");
+    var $dots = $(".testimonial__dot");
+    var total = $slides.length;
+    var current = 0;
+    var autoTimer = null;
+    var DURATION = 5000;
+    var EASE = "power2.inOut";
+    var isAnimating = false;
+
+    // Check if initial active slide exists
+    var initialIndex = $slides.filter(".testimonial__slide--active").index();
+    if (initialIndex !== -1) {
+      current = initialIndex;
+    }
+
+    // Set initial display and positioning for slides
+    $slides.each(function (i) {
+      if (i === current) {
+        $(this).addClass("testimonial__slide--active").show();
+        if (typeof gsap !== "undefined") {
+          gsap.set(this, { opacity: 1, x: 0 });
+        }
+      } else {
+        $(this).removeClass("testimonial__slide--active").hide();
+        if (typeof gsap !== "undefined") {
+          gsap.set(this, { opacity: 0, x: 50 });
+        }
+      }
+    });
+
+    // Update active dot matching initial slide
+    $dots.removeClass("testimonial__dot--active");
+    $dots.eq(current).addClass("testimonial__dot--active");
+
+    function goTo(index) {
+      if (index === current || isAnimating) return;
+      isAnimating = true;
+
+      var $outSlide = $slides.eq(current);
+      var $inSlide = $slides.eq(index);
+
+      // Determine sliding direction: forward (right to left) or backward
+      var isForward = index > current;
+      if (current === total - 1 && index === 0) isForward = true;
+      if (current === 0 && index === total - 1) isForward = false;
+
+      var outX = isForward ? -50 : 50;
+      var inStartX = isForward ? 50 : -50;
+
+      // Update dots immediately for responsive feel
+      $dots.removeClass("testimonial__dot--active");
+      $dots.eq(index).addClass("testimonial__dot--active");
+
+      if (typeof gsap !== "undefined") {
+        gsap.to($outSlide[0], {
+          opacity: 0,
+          x: outX,
+          duration: 0.45,
+          ease: EASE,
+          onComplete: function () {
+            $outSlide.hide().removeClass("testimonial__slide--active");
+          },
+        });
+
+        $inSlide.show();
+        gsap.set($inSlide[0], { opacity: 0, x: inStartX });
+        gsap.to($inSlide[0], {
+          opacity: 1,
+          x: 0,
+          duration: 0.55,
+          ease: EASE,
+          delay: 0.15,
+          onStart: function () {
+            $inSlide.addClass("testimonial__slide--active");
+          },
+          onComplete: function () {
+            isAnimating = false;
+          },
+        });
+      } else {
+        $outSlide.hide().removeClass("testimonial__slide--active");
+        $inSlide.show().addClass("testimonial__slide--active");
+        isAnimating = false;
+      }
+
+      current = index;
+    }
+
+    function startAuto() {
+      stopAuto();
+      autoTimer = setInterval(function () {
+        goTo((current + 1) % total);
+      }, DURATION);
+    }
+
+    function stopAuto() {
+      if (autoTimer) {
+        clearInterval(autoTimer);
+        autoTimer = null;
+      }
+    }
+
+    startAuto();
+
+    // Dot click interaction
+    $document.on("click", ".testimonial__dot", function () {
+      var idx = parseInt($(this).attr("data-index"), 10);
+      if (isNaN(idx)) {
+        idx = $(this).index();
+      }
+      stopAuto();
+      goTo(idx);
+      startAuto();
+    });
+
+    // Pause on hover
+    $(".testimonial__slider").on("mouseenter", function () {
+      stopAuto();
+    }).on("mouseleave", function () {
+      startAuto();
     });
   }
 })(jQuery);
