@@ -54,7 +54,9 @@
     background-color: var(--heading-color);
     padding: 0 30px 30px 30px;
     margin-top: 110px;
-    transition: background-color 0.4s ease, transform 0.4s ease;
+    transition:
+      background-color 0.4s ease,
+      transform 0.4s ease;
 
     &:hover {
       background-color: var(--primary-color);
@@ -96,7 +98,9 @@
     border-radius: 30px;
     padding: 0;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    transition: padding 0.3s ease, border-color 0.3s ease;
+    transition:
+      padding 0.3s ease,
+      border-color 0.3s ease;
   }
 
   &__social-list {
@@ -109,10 +113,11 @@
     visibility: hidden;
     padding-bottom: 0;
     overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.3s ease,
-                visibility 0.3s ease,
-                padding 0.3s ease;
+    transition:
+      max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.3s ease,
+      visibility 0.3s ease,
+      padding 0.3s ease;
     @include respond(md) {
       gap: 15px;
     }
@@ -124,7 +129,9 @@
     justify-content: center;
     font-size: 14px;
     color: var(--heading-color);
-    transition: color 0.3s ease, transform 0.3s ease;
+    transition:
+      color 0.3s ease,
+      transform 0.3s ease;
 
     &:hover {
       color: var(--primary-color);
@@ -145,7 +152,7 @@
     border: none;
     cursor: pointer;
     transition: transform 0.3s ease;
-    
+
     @include respond(md) {
       width: 50px;
       height: 50px;
@@ -184,6 +191,17 @@
     font-weight: 600;
     line-height: 32px;
     margin-bottom: 5px;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      font-size: inherit;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: var(--heading-color);
+      }
+    }
   }
 
   &__designation {

@@ -196,7 +196,7 @@
   background-color: var(--white-color);
   color: var(--heading-color);
   font-family: var(--heading-font-family);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   line-height: 22px;
   text-transform: uppercase;
@@ -212,7 +212,6 @@
   @include respond(md) {
     width: 100px;
     height: 100px;
-    font-size: 15px;
     line-height: 18px;
   }
 
