@@ -1,7 +1,4 @@
-(function ($) {
-  "use strict";
-
-  /*
+/*
 |--------------------------------------------------------------------------
 | Template Name: Akest
 | Author: Thememarch
@@ -25,8 +22,12 @@
 | 13. Sticky Sidebar
 | 14. Working Process Accordion
 | 15. Testimonial Slider
+| 16. How We Work Horizontal Scroll
 |--------------------------------------------------------------------------
- */
+*/
+(function ($) {
+  "use strict";
+
 
   /*--------------------------------------------------------------
   Scripts initialization
@@ -71,6 +72,8 @@
     scrollUp();
     serviceAccordion();
     testimonialSlider();
+    howWeWorkHorizontalScroll();
+    visionToStructureHover();
   });
 
   $window.on("scroll", function () {
@@ -527,12 +530,88 @@
       goTo(idx);
       startAuto();
     });
+  }
 
-    // Pause on hover
-    $(".testimonial__slider").on("mouseenter", function () {
-      stopAuto();
-    }).on("mouseleave", function () {
-      startAuto();
+  /*--------------------------------------------------------------
+  16. How We Work — Horizontal Scroll (scroll-lock + slide)
+  --------------------------------------------------------------*/
+  function howWeWorkHorizontalScroll() {
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+    var $section   = $(".how-we-work");
+    var $trackWrap = $(".how-we-work__track-wrap");
+    var $track     = $(".how-we-work__track");
+
+    if (!$section.length || !$track.length) return;
+
+    // Helper: compute the target right-padding in pixels
+    function getRightPad() {
+      return Math.max(15, (window.innerWidth - 1320) / 2 + 15);
+    }
+
+    // Helper: how far the track must slide left to leave exactly getRightPad() gap
+    // between the right edge of the last card and the right edge of the viewport
+    function getScrollDistance() {
+      var trackEl = $track[0];
+      var currentX = gsap.getProperty(trackEl, "x") || 0;
+      var trackRect = trackEl.getBoundingClientRect();
+      var rightPad = getRightPad();
+
+      var initialRightEdge = trackRect.right - currentX;
+
+      return Math.max(0, initialRightEdge - (window.innerWidth - rightPad));
+    }
+
+    // Only activate on tablet/desktop (>= 769 px).
+    // On mobile the cards naturally overflow and the section scrolls normally.
+    var mm = gsap.matchMedia();
+
+    mm.add("(min-width: 769px)", function () {
+      var tl = gsap.timeline({
+        scrollTrigger: {
+          trigger         : $section[0],
+          start           : "top top",
+          end             : function () { return "+=" + getScrollDistance(); },
+          pin             : true,
+          anticipatePin   : 1,
+          scrub           : 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      tl.to($track[0], {
+        x    : function () { return -getScrollDistance(); },
+        ease : "none",
+      });
+
+      // Return cleanup function for matchMedia
+      return function () {
+        tl.kill();
+      };
     });
   }
+
+  /*--------------------------------------------------------------
+  17. Vision To Structure — Cursor-follow Animation
+  --------------------------------------------------------------*/
+  function visionToStructureHover() {
+    if (typeof gsap === "undefined") return;
+
+    var composition = document.querySelector(".vision-to-structure__composition");
+    var imageWrap   = document.querySelector(".vision-to-structure__image-wrap");
+
+    if (!composition || !imageWrap) return;
+
+    // GSAP quickTo — creates smooth, hardware-accelerated cursor tracking
+    var xTo = gsap.quickTo(imageWrap, "x", { duration: 0.55, ease: "power3.out" });
+    var yTo = gsap.quickTo(imageWrap, "y", { duration: 0.55, ease: "power3.out" });
+
+    // Track cursor relative to the composition container
+    composition.addEventListener("mousemove", function (e) {
+      var rect = composition.getBoundingClientRect();
+      xTo(e.clientX - rect.left);
+      yTo(e.clientY - rect.top);
+    });
+  }
+
 })(jQuery);

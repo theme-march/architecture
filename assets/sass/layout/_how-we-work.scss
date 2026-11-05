@@ -1,8 +1,14 @@
 @use "../abstracts" as *;
 
+// Scroll-lock horizontal reveal — section must clip the sliding track
+.how-we-work {
+  overflow-x: hidden;
+  position: relative;
+}
+
 .how-we-work__track-wrap {
   padding-left: max(15px, calc((100vw - 1320px) / 2 + 15px));
-  overflow: hidden;
+  // overflow removed — parent section clips the track
 
   @include respond(md) {
     padding-left: 15px;

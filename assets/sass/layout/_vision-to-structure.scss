@@ -19,6 +19,8 @@
   &__composition {
     width: 100%;
     margin-top: 50px;
+    position: relative;      // anchor for the floating image-wrap
+    overflow: visible;       // let the image-wrap bleed outside bounds
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -146,23 +148,29 @@
   }
 
   &__image-wrap {
-    flex: 0 0 420px;
-    max-width: 420px;
-    align-self: flex-start;
-    z-index: 2;
-
-    &:hover {
-      z-index: 10;
-    }
+    // Floating cursor-follow element — taken out of flex flow
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 420px;
+    height: 380px;
+    // Center the image on the cursor hotspot
+    transform: translate(-50%, -50%);
+    // 1st image visible by default
+    opacity: 1;
+    // Must not intercept mouse events intended for text lines below
+    pointer-events: none;
+    z-index: 10;
+    will-change: transform;
 
     @include respond(xl) {
-      flex: 0 0 380px;
-      max-width: 380px;
+      width: 380px;
+      height: 340px;
     }
 
     @include respond(lg) {
-      flex: 0 0 280px;
-      max-width: 280px;
+      width: 280px;
+      height: 250px;
     }
 
     @include respond(md) {
@@ -171,8 +179,64 @@
   }
 
   &__image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
-    display: block;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    transform: scale(0.96);
+
+    &--1 {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  // Pure CSS hover image-change based on hovered text-line
+  &:has(.vision-to-structure__text-line:nth-child(1):hover) {
+    .vision-to-structure__image {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    .vision-to-structure__image--1 {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  &:has(.vision-to-structure__text-line:nth-child(2):hover) {
+    .vision-to-structure__image {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    .vision-to-structure__image--2 {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  &:has(.vision-to-structure__text-line:nth-child(3):hover) {
+    .vision-to-structure__image {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    .vision-to-structure__image--3 {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  &:has(.vision-to-structure__text-line:nth-child(4):hover) {
+    .vision-to-structure__image {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    .vision-to-structure__image--4 {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 }
