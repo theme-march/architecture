@@ -820,6 +820,7 @@ kbd {
   6. Buttons
 ----------------------------------------------------------------*/
 .primary-btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   background-color: var(--primary-color);
@@ -830,75 +831,93 @@ kbd {
   line-height: 22px;
   text-transform: uppercase;
   border: none;
-  padding: 5px 5px 5px 20px;
+  padding: 17px 67px 17px 20px;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.9s ease;
 }
 .primary-btn .text {
-  margin-right: 20px;
+  position: relative;
+  z-index: 2;
   letter-spacing: 0.5px;
+  pointer-events: none;
+  transition: color 0.9s ease;
 }
 .primary-btn .icon-wrapper {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  bottom: 5px;
+  width: 47px;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  padding-right: 16px;
   background-color: var(--white-color);
-  width: 47px;
-  height: 47px;
-  transition: background-color 0.3s ease;
+  z-index: 1;
+  transition: width 0.9s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .primary-btn .icon-wrapper svg {
   display: block;
   transform-origin: center center;
   backface-visibility: hidden;
   will-change: transform;
-  transition: transform 0.3s ease;
+  transition: transform 0.8s ease;
 }
 .primary-btn .icon-wrapper svg path {
   fill: var(--primary-color);
-  transition: fill 0.3s ease;
+  transition: fill 0.4s ease;
 }
 .primary-btn:hover {
-  background-color: var(--black-color);
-  color: var(--white-color);
+  color: var(--black-color);
+}
+.primary-btn:hover .text {
+  color: var(--black-color);
 }
 .primary-btn:hover .icon-wrapper {
-  background-color: var(--primary-color);
+  width: calc(100% - 10px);
 }
 .primary-btn:hover .icon-wrapper svg {
   transform: rotate(-45deg);
-  transition: transform 0.4s ease;
 }
 .primary-btn:hover .icon-wrapper svg path {
-  fill: var(--white-color);
+  fill: var(--primary-color);
 }
 @media (max-width: 768px) {
   .primary-btn {
     font-size: 14px;
-    padding: 4px 4px 4px 16px;
-  }
-  .primary-btn .text {
-    margin-right: 14px;
+    padding: 4px 54px 4px 16px;
   }
   .primary-btn .icon-wrapper {
+    top: 4px;
+    right: 4px;
+    bottom: 4px;
     width: 40px;
-    height: 40px;
+    padding-right: 13px;
+  }
+  .primary-btn:hover .icon-wrapper {
+    width: calc(100% - 8px);
   }
 }
 @media (max-width: 576px) {
   .primary-btn {
-    padding: 4px 4px 4px 14px;
-  }
-  .primary-btn .text {
-    margin-right: 12px;
+    padding: 4px 48px 4px 14px;
   }
   .primary-btn .icon-wrapper {
+    top: 4px;
+    right: 4px;
+    bottom: 4px;
     width: 36px;
-    height: 36px;
+    padding-right: 11px;
+  }
+  .primary-btn:hover .icon-wrapper {
+    width: calc(100% - 8px);
   }
 }
 
 .outline-btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   background-color: transparent;
@@ -909,44 +928,58 @@ kbd {
   line-height: 22px;
   text-transform: uppercase;
   border: 1px solid var(--white-color);
-  padding: 5px 5px 5px 20px;
+  padding: 17px 67px 17px 20px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.9s ease;
 }
 .outline-btn .text {
-  margin-right: 20px;
+  position: relative;
+  z-index: 2;
   letter-spacing: 0.5px;
+  pointer-events: none;
+  transition: color 0.9s ease;
 }
 .outline-btn .icon-wrapper {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  bottom: 5px;
+  width: 47px;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  padding-right: 16px;
   background-color: var(--white-color);
-  color: var(--secendary-color);
-  width: 47px;
-  height: 47px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  z-index: 1;
+  transition: width 0.9s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .outline-btn .icon-wrapper svg {
-  transition: transform 0.3s ease;
+  display: block;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  will-change: transform;
+  transition: transform 0.8s ease;
 }
 .outline-btn .icon-wrapper svg path {
   fill: var(--primary-color);
-  transition: fill 0.3s ease;
+  transition: fill 0.4s ease;
 }
 .outline-btn:hover {
-  background-color: var(--white-color);
-  color: var(--title-color);
+  color: var(--black-color);
+}
+.outline-btn:hover .text {
+  color: var(--black-color);
 }
 .outline-btn:hover .icon-wrapper {
-  background-color: var(--primary-color);
-  color: var(--white-color);
+  width: calc(100% - 10px);
 }
 .outline-btn:hover .icon-wrapper svg {
   transform: rotate(-45deg);
 }
 .outline-btn:hover .icon-wrapper svg path {
-  fill: var(--white-color);
+  fill: var(--primary-color);
 }
 .outline-btn:active {
   transform: scale(0.98);
@@ -954,26 +987,32 @@ kbd {
 @media (max-width: 768px) {
   .outline-btn {
     font-size: 14px;
-    padding: 4px 4px 4px 16px;
-  }
-  .outline-btn .text {
-    margin-right: 14px;
+    padding: 4px 54px 4px 16px;
   }
   .outline-btn .icon-wrapper {
+    top: 4px;
+    right: 4px;
+    bottom: 4px;
     width: 40px;
-    height: 40px;
+    padding-right: 13px;
+  }
+  .outline-btn:hover .icon-wrapper {
+    width: calc(100% - 8px);
   }
 }
 @media (max-width: 576px) {
   .outline-btn {
-    padding: 4px 4px 4px 14px;
-  }
-  .outline-btn .text {
-    margin-right: 12px;
+    padding: 4px 48px 4px 14px;
   }
   .outline-btn .icon-wrapper {
+    top: 4px;
+    right: 4px;
+    bottom: 4px;
     width: 36px;
-    height: 36px;
+    padding-right: 11px;
+  }
+  .outline-btn:hover .icon-wrapper {
+    width: calc(100% - 8px);
   }
 }
 
@@ -2042,6 +2081,14 @@ kbd {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  position: sticky;
+  top: 100px;
+}
+@media (max-width: 992px) {
+  .sidebar {
+    position: static;
+    top: auto;
+  }
 }
 .sidebar__widget {
   background-color: var(--smoke-bg-color-one);
@@ -2529,8 +2576,9 @@ kbd {
 }
 .tm-nav .tm-nav_list a {
   font-family: var(--heading-font-family);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
+  letter-spacing: 0.6px;
   text-transform: uppercase;
   color: var(--white-color);
   transition: color 0.3s ease;
@@ -3004,10 +3052,11 @@ kbd {
   display: block;
   padding: 8px 24px;
   font-family: var(--heading-font-family);
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 500;
+  letter-spacing: 0.6px;
   color: var(--white-color);
-  text-transform: capitalize;
+  text-transform: uppercase;
   transition: color 0.3s ease;
 }
 .tm-site_header.header-floating .tm-nav_list > li.menu-item-has-children > ul li a:hover {
@@ -3287,10 +3336,11 @@ kbd {
   display: block;
   padding: 8px 24px;
   font-family: var(--heading-font-family);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
+  letter-spacing: 0.6px;
   color: var(--white-color);
-  text-transform: capitalize;
+  text-transform: uppercase;
   transition: color 0.3s ease;
 }
 .header-construction .tm-main-header-center .tm-nav .tm-nav_list > li.menu-item-has-children > ul li a:hover {
@@ -7591,9 +7641,6 @@ About Us
 .team-architecture__social-link--active {
   background-color: var(--primary-color);
   color: var(--white-color);
-}
-.team-architecture {
-  /* Hover state: plus icon scales down and socials slide/fade in horizontally */
 }
 .team-architecture__item:hover .team-architecture__toggle-btn {
   opacity: 0;

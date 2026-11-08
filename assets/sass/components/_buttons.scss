@@ -4,6 +4,7 @@
 @use "../abstracts" as *;
 
 .primary-btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   background-color: var(--primary-color);
@@ -14,53 +15,63 @@
   line-height: 22px;
   text-transform: uppercase;
   border: none;
-  padding: 5px 5px 5px 20px;
+  padding: 17px 67px 17px 20px;
   cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.9s ease;
 
   .text {
-    margin-right: 20px;
+    position: relative;
+    z-index: 2;
     letter-spacing: 0.5px;
+    pointer-events: none;
+    transition: color 0.9s ease;
   }
 
   .icon-wrapper {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    width: 47px;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+    padding-right: 16px;
     background-color: var(--white-color);
-    width: 47px;
-    height: 47px;
-    transition: background-color 0.3s ease;
+    z-index: 1;
+    transition: width 0.9s cubic-bezier(0.25, 1, 0.5, 1);
 
     svg {
       display: block;
       transform-origin: center center;
       backface-visibility: hidden;
       will-change: transform;
-      transition: transform 0.3s ease;
+      transition: transform 0.8s ease;
 
       path {
         fill: var(--primary-color);
-        transition: fill 0.3s ease;
+        transition: fill 0.4s ease;
       }
     }
   }
 
   &:hover {
-    background-color: var(--black-color);
-    color: var(--white-color);
+    color: var(--black-color);
+
+    .text {
+      color: var(--black-color);
+    }
 
     .icon-wrapper {
-      background-color: var(--primary-color);
+      width: calc(100% - 10px);
 
       svg {
         transform: rotate(-45deg);
-        transition: transform 0.4s ease;
 
         path {
-          fill: var(--white-color);
+          fill: var(--primary-color);
         }
       }
     }
@@ -68,33 +79,40 @@
 
   @include respond(md) {
     font-size: 14px;
-    padding: 4px 4px 4px 16px;
-
-    .text {
-      margin-right: 14px;
-    }
+    padding: 4px 54px 4px 16px;
 
     .icon-wrapper {
+      top: 4px;
+      right: 4px;
+      bottom: 4px;
       width: 40px;
-      height: 40px;
+      padding-right: 13px;
+    }
+
+    &:hover .icon-wrapper {
+      width: calc(100% - 8px);
     }
   }
 
   @include respond(sm) {
-    padding: 4px 4px 4px 14px;
-
-    .text {
-      margin-right: 12px;
-    }
+    padding: 4px 48px 4px 14px;
 
     .icon-wrapper {
+      top: 4px;
+      right: 4px;
+      bottom: 4px;
       width: 36px;
-      height: 36px;
+      padding-right: 11px;
+    }
+
+    &:hover .icon-wrapper {
+      width: calc(100% - 8px);
     }
   }
 }
 
 .outline-btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   background-color: transparent;
@@ -105,50 +123,63 @@
   line-height: 22px;
   text-transform: uppercase;
   border: 1px solid var(--white-color);
-  padding: 5px 5px 5px 20px;
+  padding: 17px 67px 17px 20px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.9s ease;
 
   .text {
-    margin-right: 20px;
+    position: relative;
+    z-index: 2;
     letter-spacing: 0.5px;
+    pointer-events: none;
+    transition: color 0.9s ease;
   }
 
   .icon-wrapper {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    width: 47px;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+    padding-right: 16px;
     background-color: var(--white-color);
-    color: var(--secendary-color);
-    width: 47px;
-    height: 47px;
-    transition:
-      background-color 0.3s ease,
-      color 0.3s ease;
+    z-index: 1;
+    transition: width 0.9s cubic-bezier(0.25, 1, 0.5, 1);
 
     svg {
-      transition: transform 0.3s ease;
+      display: block;
+      transform-origin: center center;
+      backface-visibility: hidden;
+      will-change: transform;
+      transition: transform 0.8s ease;
 
       path {
         fill: var(--primary-color);
-        transition: fill 0.3s ease;
+        transition: fill 0.4s ease;
       }
     }
   }
 
   &:hover {
-    background-color: var(--white-color);
-    color: var(--title-color);
+    color: var(--black-color);
+
+    .text {
+      color: var(--black-color);
+    }
 
     .icon-wrapper {
-      background-color: var(--primary-color);
-      color: var(--white-color);
+      width: calc(100% - 10px);
 
       svg {
         transform: rotate(-45deg);
 
         path {
-          fill: var(--white-color);
+          fill: var(--primary-color);
         }
       }
     }
@@ -160,28 +191,34 @@
 
   @include respond(md) {
     font-size: 14px;
-    padding: 4px 4px 4px 16px;
-
-    .text {
-      margin-right: 14px;
-    }
+    padding: 4px 54px 4px 16px;
 
     .icon-wrapper {
+      top: 4px;
+      right: 4px;
+      bottom: 4px;
       width: 40px;
-      height: 40px;
+      padding-right: 13px;
+    }
+
+    &:hover .icon-wrapper {
+      width: calc(100% - 8px);
     }
   }
 
   @include respond(sm) {
-    padding: 4px 4px 4px 14px;
-
-    .text {
-      margin-right: 12px;
-    }
+    padding: 4px 48px 4px 14px;
 
     .icon-wrapper {
+      top: 4px;
+      right: 4px;
+      bottom: 4px;
       width: 36px;
-      height: 36px;
+      padding-right: 11px;
+    }
+
+    &:hover .icon-wrapper {
+      width: calc(100% - 8px);
     }
   }
 }
