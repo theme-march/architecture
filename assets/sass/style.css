@@ -3057,7 +3057,7 @@ kbd {
   Construction Topbar
 ----------------------------------------------------------------*/
 .construction-topbar {
-  background-color: var(--black-color);
+  background-color: transparent;
   border-bottom: 1px solid color-mix(in srgb, var(--white-color), transparent 85%);
   transition: transform 0.3s ease, opacity 0.3s ease;
   position: fixed;
@@ -6871,15 +6871,18 @@ About Us
     min-height: 300px;
   }
 }
-.blog__featured-img {
+.blog__featured-img-link {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
+  z-index: 1;
+  display: block;
+}
+.blog__featured-img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  z-index: 1;
+  display: block;
   transition: transform 0.5s ease;
 }
 .blog__featured-card:hover .blog__featured-img {
@@ -7590,15 +7593,15 @@ About Us
   color: var(--white-color);
 }
 .team-architecture {
-  /* Active state when plus icon is clicked */
+  /* Hover state: plus icon scales down and socials slide/fade in horizontally */
 }
-.team-architecture__item.is-active .team-architecture__toggle-btn {
+.team-architecture__item:hover .team-architecture__toggle-btn {
   opacity: 0;
   visibility: hidden;
   transform: scale(0.5);
   pointer-events: none;
 }
-.team-architecture__item.is-active .team-architecture__socials {
+.team-architecture__item:hover .team-architecture__socials {
   opacity: 1;
   visibility: visible;
   transform: translate(-50%, -50%) scale(1);
@@ -9101,10 +9104,15 @@ About Us
   background-color: var(--heading-color);
   padding: 0 30px 30px 30px;
   margin-top: 110px;
+  display: block;
+  text-decoration: none;
   transition: background-color 0.4s ease, transform 0.4s ease;
 }
 .team-construction__card:hover {
   background-color: var(--primary-color);
+}
+.team-construction__card:hover .team-construction__image {
+  transform: translateY(-5px);
 }
 .team-construction__image-wrap {
   position: relative;
@@ -9119,6 +9127,7 @@ About Us
   aspect-ratio: 79/86;
   -o-object-fit: cover;
      object-fit: cover;
+  transition: transform 0.3s ease;
 }
 .team-construction__social-wrap {
   position: absolute;
@@ -10967,6 +10976,9 @@ About Us
 }
 .blog-standard__card:hover .blog-standard__card-title a:hover {
   color: var(--title-color);
+}
+.blog-standard__card:hover .blog-standard__card-desc {
+  color: var(--white-color);
 }
 .blog-standard__card-media {
   position: relative;

@@ -209,8 +209,8 @@
     }
   }
 
-  /* Active state when plus icon is clicked */
-  &__item.is-active {
+  /* Hover state: plus icon scales down and socials slide/fade in horizontally */
+  &__item:hover {
     .team-architecture__toggle-btn {
       opacity: 0;
       visibility: hidden;

@@ -54,12 +54,17 @@
     background-color: var(--heading-color);
     padding: 0 30px 30px 30px;
     margin-top: 110px;
+    display: block;
+    text-decoration: none;
     transition:
       background-color 0.4s ease,
       transform 0.4s ease;
 
     &:hover {
       background-color: var(--primary-color);
+    }
+    &:hover .team-construction__image {
+      transform: translateY(-5px);
     }
   }
 
@@ -68,6 +73,7 @@
     margin-top: -110px;
     margin-bottom: 25px;
     overflow: visible;
+
   }
 
   &__image {
@@ -76,6 +82,7 @@
     display: block;
     aspect-ratio: 79/86;
     object-fit: cover;
+    transition: transform 0.3s ease;
   }
 
   &__social-wrap {

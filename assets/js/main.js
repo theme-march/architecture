@@ -319,15 +319,20 @@
 
       if (!videoUrl || videoUrl === "#") return;
 
-      const videoId = videoUrl.includes("?v=")
-        ? videoUrl.split("?v=")[1].split("&")[0]
-        : videoUrl.split("/").pop();
+      let videoId = "";
+      if (videoUrl.includes("?v=")) {
+        videoId = videoUrl.split("?v=")[1].split("&")[0];
+      } else if (videoUrl.includes("youtu.be/")) {
+        videoId = videoUrl.split("youtu.be/")[1].split("?")[0].split("&")[0];
+      } else {
+        videoId = videoUrl.split("/").pop().split("?")[0];
+      }
 
       if (!videoId) return;
 
       $(".ak-video-popup-container iframe").attr(
         "src",
-        `https://www.youtube.com/embed/${videoId}`,
+        `https://www.youtube.com/embed/${videoId}?autoplay=1`,
       );
 
       $(".ak-video-popup").addClass("active");
