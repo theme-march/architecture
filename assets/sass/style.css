@@ -8817,6 +8817,7 @@ About Us
   width: 44%;
   height: 100%;
   z-index: 2;
+  overflow: visible;
 }
 @media (max-width: 992px) {
   .choose-us-construction__image-side {
@@ -8839,10 +8840,25 @@ About Us
     padding: 0 12px;
   }
 }
-.choose-us-construction__img {
+.choose-us-construction__img-slider {
   width: 100%;
   height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.choose-us-construction__img-track {
+  display: flex;
+  flex-direction: row;
+  width: 300%;
+  height: 100%;
+  transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+.choose-us-construction__img {
+  width: 33.3333333333%;
+  height: 100%;
   object-fit: cover;
+  flex-shrink: 0;
   display: block;
 }
 .choose-us-construction__circle-badge {
@@ -8868,7 +8884,8 @@ About Us
   position: absolute;
   width: 100%;
   height: 100%;
-  animation: rotate 18s linear infinite;
+  transform-origin: center center;
+  animation: rotate-circle-text 16s linear infinite;
 }
 .choose-us-construction__circle-text {
   fill: var(--white-color);
@@ -8947,6 +8964,8 @@ About Us
 }
 .choose-us-construction__feature-body {
   flex: 1;
+  cursor: pointer;
+  user-select: none;
 }
 .choose-us-construction__feature-title {
   font-size: 30px;
@@ -9059,6 +9078,14 @@ About Us
   background-color: var(--primary-color);
 }
 
+@keyframes rotate-circle-text {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .team-construction {
   position: relative;
   overflow: hidden;

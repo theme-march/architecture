@@ -76,6 +76,7 @@
     visionToStructureHover();
     funfactCounter();
     serviceConstructionTabs();
+    chooseUsConstructionTabs();
   });
 
   $window.on("scroll", function () {
@@ -522,6 +523,39 @@
         } else {
           $track.css("transform", "translateY(" + offsetY + "px)");
         }
+      }
+    });
+  }
+
+  /*--------------------------------------------------------------
+  15. Choose Us Construction Features & Image Slider
+  --------------------------------------------------------------*/
+  function chooseUsConstructionTabs() {
+    var $section = $(".choose-us-construction");
+    if (!$section.length) return;
+
+    $section.on("click", ".choose-us-construction__feature-body", function () {
+      var $item = $(this).closest(".choose-us-construction__feature-item");
+      if ($item.hasClass("choose-us-construction__feature-item--active")) return;
+
+      var index = parseInt($item.attr("data-index"), 10) || 0;
+
+      // 1. Update active item state
+      $section.find(".choose-us-construction__feature-item").removeClass("choose-us-construction__feature-item--active");
+      $item.addClass("choose-us-construction__feature-item--active");
+
+      // 2. Slide image track horizontally (left-to-right / right-to-left)
+      var $track = $section.find(".choose-us-construction__img-track");
+      var offsetPercent = -(index * (100 / 3));
+
+      if (typeof gsap !== "undefined") {
+        gsap.to($track, {
+          xPercent: offsetPercent,
+          duration: 0.7,
+          ease: "power3.out"
+        });
+      } else {
+        $track.css("transform", "translateX(" + offsetPercent + "%)");
       }
     });
   }

@@ -22,6 +22,7 @@
     width: 44%;
     height: 100%;
     z-index: 2;
+    overflow: visible;
 
     @include respond(lg) {
       position: relative;
@@ -41,10 +42,27 @@
     }
   }
 
-  &__img {
+  &__img-slider {
     width: 100%;
     height: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  &__img-track {
+    display: flex;
+    flex-direction: row;
+    width: 300%;
+    height: 100%;
+    transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+  }
+
+  &__img {
+    width: calc(100% / 3);
+    height: 100%;
     object-fit: cover;
+    flex-shrink: 0;
     display: block;
   }
 
@@ -71,7 +89,8 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    animation: rotate 18s linear infinite;
+    transform-origin: center center;
+    animation: rotate-circle-text 16s linear infinite;
   }
 
   &__circle-text {
@@ -159,6 +178,8 @@
 
   &__feature-body {
     flex: 1;
+    cursor: pointer;
+    user-select: none;
   }
 
   &__feature-title {
@@ -270,5 +291,14 @@
         background-color: var(--primary-color);
       }
     }
+  }
+}
+
+@keyframes rotate-circle-text {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
