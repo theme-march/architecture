@@ -75,6 +75,7 @@
     howWeWorkHorizontalScroll();
     visionToStructureHover();
     funfactCounter();
+    serviceConstructionTabs();
   });
 
   $window.on("scroll", function () {
@@ -444,6 +445,83 @@
       $(".service__item").removeClass("service__item--active");
       if (!isActive) {
         $item.addClass("service__item--active");
+      }
+    });
+  }
+
+  /*--------------------------------------------------------------
+  14. Service Construction Tab Switcher
+  --------------------------------------------------------------*/
+  function serviceConstructionTabs() {
+    var $section = $(".service-construction");
+    if (!$section.length) return;
+
+    $section.on("click", ".service-construction__list-item", function () {
+      var $clicked = $(this);
+      if ($clicked.hasClass("service-construction__list-item--active")) return;
+
+      var index = parseInt($clicked.attr("data-index"), 10) || 0;
+      var numberText = $clicked.attr("data-number") || ("0" + (index + 1) + ".");
+
+      // 1. Update active item state
+      $section.find(".service-construction__list-item").removeClass("service-construction__list-item--active");
+      $section.find(".service-construction__list-dash").removeClass("service-construction__list-dash--active");
+      $clicked.addClass("service-construction__list-item--active");
+      $clicked.find(".service-construction__list-dash").addClass("service-construction__list-dash--active");
+
+      // 2. Animate number change
+      var $number = $section.find(".service-construction__number");
+      if (typeof gsap !== "undefined") {
+        gsap.to($number, {
+          y: -10,
+          opacity: 0,
+          duration: 0.2,
+          onComplete: function () {
+            $number.text(numberText);
+            gsap.fromTo($number, { y: 10, opacity: 0 }, { y: 0, opacity: 0.1, duration: 0.3 });
+          }
+        });
+      } else {
+        $number.text(numberText);
+      }
+
+      // 3. Switch bottom content panel with basic fade animation
+      var $panels = $section.find(".service-construction__panel");
+      var $currentActive = $panels.filter(".service-construction__panel--active");
+      var $nextActive = $panels.filter('[data-index="' + index + '"]');
+
+      if (typeof gsap !== "undefined") {
+        gsap.to($currentActive, {
+          opacity: 0,
+          duration: 0.2,
+          onComplete: function () {
+            $currentActive.removeClass("service-construction__panel--active").css({ display: "none" });
+            $nextActive.addClass("service-construction__panel--active").css({ display: "block" });
+            gsap.fromTo($nextActive, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" });
+          }
+        });
+      } else {
+        $panels.removeClass("service-construction__panel--active");
+        $nextActive.addClass("service-construction__panel--active");
+      }
+
+      // 4. Slide up the image track
+      var $track = $section.find(".service-construction__img-track");
+      var $groups = $section.find(".service-construction__img-group");
+      if ($groups.length) {
+        var groupHeight = $groups.first().outerHeight(false);
+        var gap = parseFloat($track.css("gap")) || 30;
+        var offsetY = -(index * (groupHeight + gap));
+
+        if (typeof gsap !== "undefined") {
+          gsap.to($track, {
+            y: offsetY,
+            duration: 0.75,
+            ease: "power3.out"
+          });
+        } else {
+          $track.css("transform", "translateY(" + offsetY + "px)");
+        }
       }
     });
   }

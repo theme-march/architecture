@@ -8417,23 +8417,21 @@ About Us
   flex: 1;
   align-self: stretch;
   padding-top: 110px;
-  padding-bottom: 120px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 120px;
 }
 @media (max-width: 992px) {
   .service-construction__content-col {
     flex-direction: column-reverse;
     padding-top: 50px;
-    padding-bottom: 40px;
     gap: 40px;
   }
 }
 @media (max-width: 768px) {
   .service-construction__content-col {
     padding-top: 30px;
-    padding-bottom: 10px;
   }
 }
 .service-construction__number {
@@ -8492,6 +8490,17 @@ About Us
   font-size: inherit;
   line-height: inherit;
 }
+.service-construction__content-bottom {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.service-construction__panel {
+  display: none;
+}
+.service-construction__panel--active {
+  display: block;
+}
 .service-construction__title {
   font-size: 30px;
   font-weight: 600;
@@ -8516,6 +8525,8 @@ About Us
   position: relative;
   width: 100%;
   max-width: 600px;
+  height: 795px;
+  max-height: 795px;
   flex-shrink: 0;
   background-color: var(--black-color);
   padding: 30px 30px 0 30px;
@@ -8526,14 +8537,31 @@ About Us
 @media (max-width: 992px) {
   .service-construction__images-col {
     max-width: 100%;
+    height: auto;
+    max-height: none;
     padding: 30px 20px 0 20px;
   }
 }
 .service-construction__img-track {
   display: flex;
-  gap: 30px;
   flex-direction: column;
+  gap: 30px;
   width: 100%;
+  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+.service-construction__img-group {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  height: 765px;
+  flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .service-construction__img-group {
+    gap: 20px;
+  }
 }
 .service-construction__img {
   width: 100%;
@@ -8541,17 +8569,13 @@ About Us
   object-fit: cover;
 }
 .service-construction__img:first-child {
-  height: auto;
+  height: 480px;
+  max-height: 480px;
 }
 .service-construction__img:last-child {
-  height: 100%;
-  max-height: 250px;
+  height: 255px;
+  max-height: 255px;
   object-position: top;
-}
-@media (max-width: 768px) {
-  .service-construction__img:last-child {
-    max-height: 180px;
-  }
 }
 
 /*--------------------------------------------------------------

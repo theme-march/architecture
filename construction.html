@@ -568,29 +568,43 @@
               <span class="service-construction__number">01.</span>
 
               <ul class="service-construction__list">
-                <li class="service-construction__list-item">
-                  <span class="service-construction__list-dash"></span>
-                  <span class="service-construction__list-label"
-                    >Residential Construction</span
-                  >
-                </li>
                 <li
                   class="service-construction__list-item service-construction__list-item--active"
+                  data-index="0"
+                  data-number="01."
                 >
                   <span
                     class="service-construction__list-dash service-construction__list-dash--active"
                   ></span>
                   <span class="service-construction__list-label"
+                    >Residential Construction</span
+                  >
+                </li>
+                <li
+                  class="service-construction__list-item"
+                  data-index="1"
+                  data-number="02."
+                >
+                  <span class="service-construction__list-dash"></span>
+                  <span class="service-construction__list-label"
                     >Commercial Construction</span
                   >
                 </li>
-                <li class="service-construction__list-item">
+                <li
+                  class="service-construction__list-item"
+                  data-index="2"
+                  data-number="03."
+                >
                   <span class="service-construction__list-dash"></span>
                   <span class="service-construction__list-label"
                     >Renovation &amp; Remodeling</span
                   >
                 </li>
-                <li class="service-construction__list-item">
+                <li
+                  class="service-construction__list-item"
+                  data-index="3"
+                  data-number="04."
+                >
                   <span class="service-construction__list-dash"></span>
                   <span class="service-construction__list-label"
                     >Civil Engineering Works</span
@@ -600,14 +614,77 @@
             </div>
 
             <div class="service-construction__content-bottom">
-              <h3 class="service-construction__title">
-                Commercial Construction
-              </h3>
-              <p class="service-construction__desc">
-                Our experienced construction team transforms ideas into durable
-                and functional structures, ensuring superior quality, timely
-                project delivery, and long-lasting value for every client.
-              </p>
+              <div
+                class="service-construction__panel service-construction__panel--active"
+                data-index="0"
+              >
+                <div class="service-construction__title-wrap">
+                  <h3 class="service-construction__title">
+                    Residential Construction
+                  </h3>
+                </div>
+                <div class="service-construction__desc-wrap">
+                  <p class="service-construction__desc">
+                    Building bespoke homes crafted to perfection with high-grade
+                    materials, smart structural designs, and tailored finishes
+                    built for modern luxury and lifelong comfort.
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="service-construction__panel"
+                data-index="1"
+              >
+                <div class="service-construction__title-wrap">
+                  <h3 class="service-construction__title">
+                    Commercial Construction
+                  </h3>
+                </div>
+                <div class="service-construction__desc-wrap">
+                  <p class="service-construction__desc">
+                    Our experienced construction team transforms ideas into durable
+                    and functional structures, ensuring superior quality, timely
+                    project delivery, and long-lasting value for every client.
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="service-construction__panel"
+                data-index="2"
+              >
+                <div class="service-construction__title-wrap">
+                  <h3 class="service-construction__title">
+                    Renovation &amp; Remodeling
+                  </h3>
+                </div>
+                <div class="service-construction__desc-wrap">
+                  <p class="service-construction__desc">
+                    Revitalizing existing structures into contemporary masterworks,
+                    optimizing spaces, enhancing longevity, and elevating property
+                    value with seamless modernization.
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="service-construction__panel"
+                data-index="3"
+              >
+                <div class="service-construction__title-wrap">
+                  <h3 class="service-construction__title">
+                    Civil Engineering Works
+                  </h3>
+                </div>
+                <div class="service-construction__desc-wrap">
+                  <p class="service-construction__desc">
+                    Delivering large-scale infrastructure solutions, foundational
+                    earthworks, and robust structural engineering that withstand
+                    the test of time and environmental demands.
+                  </p>
+                </div>
+              </div>
 
               <button class="read-more-btn">
                 <span class="read-more-btn__icon">
@@ -631,16 +708,57 @@
 
           <div class="service-construction__images-col">
             <div class="service-construction__img-track">
-              <img
-                class="service-construction__img"
-                src="assets/img/service/service-construction-1.png"
-                alt="Commercial construction building"
-              />
-              <img
-                class="service-construction__img"
-                src="assets/img/service/service-construction-2.jpg"
-                alt="Construction team collaborating on site"
-              />
+              <div class="service-construction__img-group">
+                <img
+                  class="service-construction__img"
+                  src="assets/img/service/service-construction-1.png"
+                  alt="Residential construction building"
+                />
+                <img
+                  class="service-construction__img"
+                  src="assets/img/service/service-construction-2.jpg"
+                  alt="Residential construction details"
+                />
+              </div>
+
+              <div class="service-construction__img-group">
+                <img
+                  class="service-construction__img"
+                  src="assets/img/architect-portfolio/architect-portfolio-2.png"
+                  alt="Commercial construction site"
+                />
+                <img
+                  class="service-construction__img"
+                  src="assets/img/architect-portfolio/architect-portfolio-3.png"
+                  alt="Commercial construction building"
+                />
+              </div>
+
+              <div class="service-construction__img-group">
+                <img
+                  class="service-construction__img"
+                  src="assets/img/service/service-construction-1.png"
+                  alt="Renovation and remodeling"
+                />
+                <img
+                  class="service-construction__img"
+                  src="assets/img/service/service-construction-2.jpg"
+                  alt="Remodeled structure"
+                />
+              </div>
+
+              <div class="service-construction__img-group">
+                <img
+                  class="service-construction__img"
+                  src="assets/img/architect-portfolio/architect-portfolio-2.png"
+                  alt="Civil engineering works"
+                />
+                <img
+                  class="service-construction__img"
+                  src="assets/img/architect-portfolio/architect-portfolio-3.png"
+                  alt="Infrastructure development"
+                />
+              </div>
             </div>
           </div>
           <span class="service-construction__divider"></span>

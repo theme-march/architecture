@@ -100,20 +100,18 @@
     flex: 1;
     align-self: stretch;
     padding-top: 110px;
-    padding-bottom: 120px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 120px;
 
     @include respond(lg) {
       flex-direction: column-reverse;
       padding-top: 50px;
-      padding-bottom: 40px;
       gap: 40px;
     }
     @include respond(md) {
       padding-top: 30px;
-      padding-bottom: 10px;
     }
   }
 
@@ -179,12 +177,27 @@
     line-height: inherit;
   }
 
+  &__content-bottom {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__panel {
+    display: none;
+
+    &--active {
+      display: block;
+    }
+  }
+
   &__title {
     font-size: 30px;
     font-weight: 600;
     line-height: 36px;
     color: var(--white-color);
     margin-bottom: 20px;
+
     @include respond(md) {
       margin-bottom: 15px;
     }
@@ -203,6 +216,8 @@
     position: relative;
     width: 100%;
     max-width: 600px;
+    height: 795px;
+    max-height: 795px;
     flex-shrink: 0;
     background-color: var(--black-color);
     padding: 30px 30px 0 30px;
@@ -212,15 +227,32 @@
 
     @include respond(lg) {
       max-width: 100%;
+      height: auto;
+      max-height: none;
       padding: 30px 20px 0 20px;
     }
   }
 
   &__img-track {
     display: flex;
-    gap: 30px;
     flex-direction: column;
+    gap: 30px;
     width: 100%;
+    transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+  }
+
+  &__img-group {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    height: 765px;
+    flex-shrink: 0;
+
+    @include respond(md) {
+      gap: 20px;
+    }
   }
 
   &__img {
@@ -229,17 +261,14 @@
     object-fit: cover;
 
     &:first-child {
-      height: auto;
+      height: 480px;
+      max-height: 480px;
     }
 
     &:last-child {
-      height: 100%;
-      max-height: 250px;
+      height: 255px;
+      max-height: 255px;
       object-position: top;
-
-      @include respond(md) {
-        max-height: 180px;
-      }
     }
   }
 }
