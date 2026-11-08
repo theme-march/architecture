@@ -4878,7 +4878,7 @@ kbd {
   display: flex;
   gap: 20px;
 }
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .about-architecture__social-proof {
     flex-direction: column;
     align-items: flex-start;
