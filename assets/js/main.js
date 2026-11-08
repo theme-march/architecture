@@ -74,6 +74,7 @@
     testimonialSlider();
     howWeWorkHorizontalScroll();
     visionToStructureHover();
+    funfactCounter();
   });
 
   $window.on("scroll", function () {
@@ -393,6 +394,38 @@
   /*--------------------------------------------------------------
   11. Funfact Counter
   --------------------------------------------------------------*/
+  function funfactCounter() {
+    var $counters = $(".elementor-counter-number");
+    if (!$counters.length) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        observer.unobserve(entry.target);
+
+        var $el = $(entry.target);
+        var to = parseFloat($el.data("to-value")) || 0;
+        var pad = $el.data("prefix") === "0";
+        var suffix = $el.data("suffix") || "";
+
+        $({ val: parseFloat($el.data("from-value")) || 0 }).animate(
+          { val: to },
+          {
+            duration: parseInt($el.data("duration"), 10) || 2000,
+            easing: "swing",
+            step: function (now) {
+              var n = Math.round(now);
+              $el.text((pad && n < 10 ? "0" : "") + n + suffix);
+            }
+          }
+        );
+      });
+    }, { threshold: 0.25 });
+
+    $counters.each(function () {
+      observer.observe(this);
+    });
+  }
 
   /*--------------------------------------------------------------
   12. Sticky Sidebar 
