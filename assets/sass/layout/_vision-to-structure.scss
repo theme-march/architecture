@@ -109,9 +109,9 @@
     white-space: nowrap;
     position: relative;
     cursor: pointer;
-    transition:
-      color 0.3s ease,
-      z-index 0.3s ease;
+    z-index: 5;
+    color: color-mix(in srgb, var(--heading-color), transparent 85%);
+    transition: color 0.3s ease;
 
     @include respond(xl) {
       font-size: 90px;
@@ -123,23 +123,9 @@
     @include respond(md) {
       font-size: 40px;
     }
-    &--normal {
-      color: color-mix(in srgb, var(--heading-color), transparent 85%);
-      z-index: 0;
 
-      &:hover {
-        color: var(--heading-color);
-        z-index: 3;
-      }
-    }
-
-    &--active {
+    &:hover {
       color: var(--heading-color);
-      z-index: 3;
-
-      &:hover {
-        z-index: 0;
-      }
     }
 
     @include respond(sm) {
@@ -147,20 +133,24 @@
     }
   }
 
+  // 1st item active by default, but turns dim when user hovers any other line
+  &__text-stack:not(:has(.vision-to-structure__text-line:hover)) .vision-to-structure__text-line:first-child {
+    color: var(--heading-color);
+  }
+
   &__image-wrap {
-    // Floating cursor-follow element — taken out of flex flow
+    // Floating cursor-follow element — behind the text lines
     position: absolute;
     top: 0;
     left: 0;
     width: 420px;
     height: 380px;
-    // Center the image on the cursor hotspot
+    // Center the image on the hotspot
     transform: translate(-50%, -50%);
-    // 1st image visible by default
     opacity: 1;
     // Must not intercept mouse events intended for text lines below
     pointer-events: none;
-    z-index: 10;
+    z-index: 1;
     will-change: transform;
 
     @include respond(xl) {

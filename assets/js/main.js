@@ -635,20 +635,55 @@
   function visionToStructureHover() {
     if (typeof gsap === "undefined") return;
 
+    var section     = document.querySelector(".vision-to-structure");
     var composition = document.querySelector(".vision-to-structure__composition");
     var imageWrap   = document.querySelector(".vision-to-structure__image-wrap");
 
-    if (!composition || !imageWrap) return;
+    if (!section || !composition || !imageWrap) return;
 
-    // GSAP quickTo — creates smooth, hardware-accelerated cursor tracking
-    var xTo = gsap.quickTo(imageWrap, "x", { duration: 0.55, ease: "power3.out" });
-    var yTo = gsap.quickTo(imageWrap, "y", { duration: 0.55, ease: "power3.out" });
+    function getInitialCoords() {
+      var compRect = composition.getBoundingClientRect();
+      var wrapWidth = imageWrap.offsetWidth || 420;
+      return {
+        x: Math.max(0, compRect.width - wrapWidth * 0.55),
+        y: Math.max(50, compRect.height * 0.18)
+      };
+    }
 
-    // Track cursor relative to the composition container
-    composition.addEventListener("mousemove", function (e) {
-      var rect = composition.getBoundingClientRect();
-      xTo(e.clientX - rect.left);
-      yTo(e.clientY - rect.top);
+    // Set initial position
+    var initPos = getInitialCoords();
+    gsap.set(imageWrap, { x: initPos.x, y: initPos.y });
+
+    // Track mouse across the whole section
+    section.addEventListener("mousemove", function (e) {
+      var compRect = composition.getBoundingClientRect();
+      var targetX = e.clientX - compRect.left;
+      var targetY = e.clientY - compRect.top;
+
+      gsap.to(imageWrap, {
+        x: targetX,
+        y: targetY,
+        duration: 0.5,
+        ease: "power2.out",
+        overwrite: "auto"
+      });
+    });
+
+    // When cursor leaves the whole section, return to initial position
+    section.addEventListener("mouseleave", function () {
+      var init = getInitialCoords();
+      gsap.to(imageWrap, {
+        x: init.x,
+        y: init.y,
+        duration: 0.7,
+        ease: "power3.out",
+        overwrite: "auto"
+      });
+    });
+
+    window.addEventListener("resize", function () {
+      var init = getInitialCoords();
+      gsap.set(imageWrap, { x: init.x, y: init.y });
     });
   }
 
