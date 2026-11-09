@@ -147,6 +147,222 @@
     position: relative;
     overflow: hidden;
     width: 100%;
+    display: block;
+  }
+
+  &__curl-wrap {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      background-image: linear-gradient(
+        -45deg,
+        rgba(0, 0, 0, 0.7) 0%,
+        transparent 45%,
+        rgba(255, 255, 255, 0.3) 100%
+      );
+    }
+  }
+
+  &__curl {
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(
+      135deg,
+      #ffffff,
+      #f3f3f3 20%,
+      #bbbbbb 38%,
+      #aaaaaa 44%,
+      #888888 50%,
+      rgba(0, 0, 0, 0.7) 50%,
+      rgba(0, 0, 0, 0.4) 60%,
+      rgba(0, 0, 0, 0.3)
+    );
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: 12%;
+      bottom: 6%;
+      width: 70%;
+      max-width: 300px;
+      max-height: 100px;
+      height: 55%;
+      box-shadow: 0 12px 15px rgba(0, 0, 0, 0.3);
+      transform: skew(-10deg) rotate(-6deg);
+    }
+
+    &::after {
+      left: auto;
+      right: 6%;
+      bottom: auto;
+      top: 14%;
+      transform: skew(-15deg) rotate(-84deg);
+    }
+  }
+
+  &__curl-arrow {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translate(8px, 8px) scale(0.6);
+    transition:
+      opacity 0.35s ease,
+      transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 4;
+
+    img {
+      width: 16px;
+      height: 16px;
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+    }
+  }
+
+  // Hover triggers for Paper Curl on Blog Standard Card
+  &__card:hover {
+    .blog-standard__curl-wrap::before {
+      opacity: 1;
+    }
+
+    .blog-standard__curl {
+      width: 65px;
+      height: 65px;
+    }
+
+    .blog-standard__curl-arrow {
+      opacity: 1;
+      transform: translate(0, 0) scale(1);
+      transition-delay: 0.05s;
+    }
+  }
+
+  // --------------------------------------------------------------
+  // Paper Curl Corner Effect
+  // --------------------------------------------------------------
+  &__curl-wrap {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      background-image: linear-gradient(
+        -45deg,
+        rgba(0, 0, 0, 0.7) 0%,
+        transparent 45%,
+        rgba(255, 255, 255, 0.3) 100%
+      );
+    }
+  }
+
+  &__curl {
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(
+      135deg,
+      #ffffff,
+      #f3f3f3 20%,
+      #bbbbbb 38%,
+      #aaaaaa 44%,
+      #888888 50%,
+      rgba(0, 0, 0, 0.7) 50%,
+      rgba(0, 0, 0, 0.4) 60%,
+      rgba(0, 0, 0, 0.3)
+    );
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: 12%;
+      bottom: 6%;
+      width: 70%;
+      max-width: 300px;
+      max-height: 100px;
+      height: 55%;
+      box-shadow: 0 12px 15px rgba(0, 0, 0, 0.3);
+      transform: skew(-10deg) rotate(-6deg);
+    }
+
+    &::after {
+      left: auto;
+      right: 6%;
+      bottom: auto;
+      top: 14%;
+      transform: skew(-15deg) rotate(-84deg);
+    }
+  }
+
+  &__curl-arrow {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translate(8px, 8px) scale(0.6);
+    transition:
+      opacity 0.35s ease,
+      transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 4;
+
+    img {
+      width: 16px;
+      height: 16px;
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+    }
+  }
+
+  // Hover triggers for Paper Curl on Blog Standard Card
+  &__card:hover {
+    .blog-standard__curl-wrap::before {
+      opacity: 1;
+    }
+
+    .blog-standard__curl {
+      width: 65px;
+      height: 65px;
+    }
+
+    .blog-standard__curl-arrow {
+      opacity: 1;
+      transform: translate(0, 0) scale(1);
+      transition-delay: 0.05s;
+    }
   }
 
   &__card-img {
@@ -157,9 +373,9 @@
     @include transition;
   }
 
-  &__card:hover &__card-img {
-    transform: scale(1.03);
-  }
+  // &__card:hover &__card-img {
+  //   transform: scale(1.03);
+  // }
 
   &__card-date {
     position: absolute;
