@@ -25,6 +25,15 @@
     @include respond(lg) {
       margin-bottom: 5px;
     }
+
+    &--white {
+      .section-heading__subtitle-line {
+        background-color: var(--white-color);
+      }
+      .section-heading__subtitle-text {
+        color: var(--white-color);
+      }
+    }
   }
 
   &__subtitle-line {

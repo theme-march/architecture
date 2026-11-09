@@ -77,6 +77,7 @@
     funfactCounter();
     serviceConstructionTabs();
     chooseUsConstructionTabs();
+    faqConstructionAccordion();
   });
 
   $window.on("scroll", function () {
@@ -558,6 +559,13 @@
         $track.css("transform", "translateX(" + offsetPercent + "%)");
       }
     });
+  }
+
+  /*--------------------------------------------------------------
+  16. FAQ Construction Accordion
+  --------------------------------------------------------------*/
+  function faqConstructionAccordion() {
+    // Handled natively by Bootstrap 5 Accordion Collapse
   }
 
   /*--------------------------------------------------------------

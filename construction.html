@@ -1305,7 +1305,7 @@
 
           <div class="section-heading section-heading--light">
             <div>
-              <div class="section-heading__subtitle">
+              <div class="section-heading__subtitle section-heading__subtitle--white">
                 <span class="section-heading__subtitle-line"></span>
                 <span class="section-heading__subtitle-text">FAQ</span>
               </div>
@@ -1315,86 +1315,128 @@
             </div>
           </div>
 
-          <div class="faq-construction__accordion">
-            <div class="faq-construction__item faq-construction__item--active">
+          <div class="faq-construction__accordion accordion" id="faqConstructionAccordion">
+            <div class="faq-construction__item accordion-item">
               <span class="faq-construction__trigger-icon">
-                <img
-                  class="faq-construction__icon"
-                  src="assets/img/icon/faq-minus.svg"
-                  alt=""
-                />
+                <span class="faq-construction__icon-wrap">
+                  <span class="faq-construction__icon-line faq-construction__icon-line--h"></span>
+                  <span class="faq-construction__icon-line faq-construction__icon-line--v"></span>
+                </span>
               </span>
               <div class="faq-construction__content-wrap">
-                <button class="faq-construction__trigger" type="button">
-                  <span class="faq-construction__question-wrap">
-                    <h3 class="faq-construction__question">
-                      How Do You Ensure Project Quality And Safety?
-                    </h3>
-                  </span>
-                </button>
-                <div class="faq-construction__body">
-                  <p class="faq-construction__answer">
-                    We comply with International Industrial Improves your
-                    website's visibility in search engines a driving more
-                    organic traffic and kind qualified leads specialize in
-                    optimizing
-                  </p>
+                <div class="faq-construction__item-header">
+                  <button
+                    class="faq-construction__trigger accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faqCollapseOne"
+                    aria-expanded="true"
+                    aria-controls="faqCollapseOne"
+                  >
+                    <span class="faq-construction__question-wrap">
+                      <h3 class="faq-construction__question">
+                        How Do You Ensure Project Quality And Safety?
+                      </h3>
+                    </span>
+                  </button>
+                </div>
+                <div
+                  id="faqCollapseOne"
+                  class="faq-construction__collapse accordion-collapse collapse show"
+                  data-bs-parent="#faqConstructionAccordion"
+                >
+                  <div class="faq-construction__body accordion-body">
+                    <p class="faq-construction__answer">
+                      We comply with International Industrial Improves your
+                      website's visibility in search engines a driving more
+                      organic traffic and kind qualified leads specialize in
+                      optimizing
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div class="faq-construction__item">
+            <div class="faq-construction__item accordion-item">
               <span class="faq-construction__trigger-icon">
-                <img
-                  class="faq-construction__icon"
-                  src="assets/img/icon/faq-plus.svg"
-                  alt=""
-                />
+                <span class="faq-construction__icon-wrap">
+                  <span class="faq-construction__icon-line faq-construction__icon-line--h"></span>
+                  <span class="faq-construction__icon-line faq-construction__icon-line--v"></span>
+                </span>
               </span>
               <div class="faq-construction__content-wrap">
-                <button class="faq-construction__trigger" type="button">
-                  <span class="faq-construction__question-wrap">
-                    <h3 class="faq-construction__question">
-                      How Is The Project Timeline And Cost Estimated?
-                    </h3>
-                  </span>
-                </button>
-                <div class="faq-construction__body">
-                  <p class="faq-construction__answer">
-                    Our estimation process begins with a comprehensive site
-                    assessment and detailed scope review. We factor in
-                    materials, labor, permits, and contingencies to provide a
-                    transparent, fixed-price proposal with a realistic
-                    milestone-based timeline before any work begins.
-                  </p>
+                <div class="faq-construction__item-header">
+                  <button
+                    class="faq-construction__trigger accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faqCollapseTwo"
+                    aria-expanded="false"
+                    aria-controls="faqCollapseTwo"
+                  >
+                    <span class="faq-construction__question-wrap">
+                      <h3 class="faq-construction__question">
+                        How Is The Project Timeline And Cost Estimated?
+                      </h3>
+                    </span>
+                  </button>
+                </div>
+                <div
+                  id="faqCollapseTwo"
+                  class="faq-construction__collapse accordion-collapse collapse"
+                  data-bs-parent="#faqConstructionAccordion"
+                >
+                  <div class="faq-construction__body accordion-body">
+                    <p class="faq-construction__answer">
+                      Our estimation process begins with a comprehensive site
+                      assessment and detailed scope review. We factor in
+                      materials, labor, permits, and contingencies to provide a
+                      transparent, fixed-price proposal with a realistic
+                      milestone-based timeline before any work begins.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div class="faq-construction__item">
+            <div class="faq-construction__item accordion-item">
               <span class="faq-construction__trigger-icon">
-                <img
-                  class="faq-construction__icon"
-                  src="assets/img/icon/faq-plus.svg"
-                  alt=""
-                />
+                <span class="faq-construction__icon-wrap">
+                  <span class="faq-construction__icon-line faq-construction__icon-line--h"></span>
+                  <span class="faq-construction__icon-line faq-construction__icon-line--v"></span>
+                </span>
               </span>
               <div class="faq-construction__content-wrap">
-                <button class="faq-construction__trigger" type="button">
-                  <span class="faq-construction__question-wrap">
-                    <h3 class="faq-construction__question">
-                      How Can I Track The Progress Of My Buildi
-                    </h3>
-                  </span>
-                </button>
-                <div class="faq-construction__body">
-                  <p class="faq-construction__answer">
-                    Every client receives access to our project portal where you
-                    can view real-time progress updates, photo documentation,
-                    and schedule milestones. Your dedicated project manager is
-                    also available for weekly on-site walkthroughs and direct
-                    communication throughout the build.
-                  </p>
+                <div class="faq-construction__item-header">
+                  <button
+                    class="faq-construction__trigger accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faqCollapseThree"
+                    aria-expanded="false"
+                    aria-controls="faqCollapseThree"
+                  >
+                    <span class="faq-construction__question-wrap">
+                      <h3 class="faq-construction__question">
+                        How Can I Track The Progress Of My Buildi
+                      </h3>
+                    </span>
+                  </button>
+                </div>
+                <div
+                  id="faqCollapseThree"
+                  class="faq-construction__collapse accordion-collapse collapse"
+                  data-bs-parent="#faqConstructionAccordion"
+                >
+                  <div class="faq-construction__body accordion-body">
+                    <p class="faq-construction__answer">
+                      Every client receives access to our project portal where you
+                      can view real-time progress updates, photo documentation,
+                      and schedule milestones. Your dedicated project manager is
+                      also available for weekly on-site walkthroughs and direct
+                      communication.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
