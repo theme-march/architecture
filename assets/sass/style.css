@@ -6050,6 +6050,13 @@ About Us
   transform: translateY(-4px);
   box-shadow: 0 12px 32px rgba(var(--black-color), 0.06);
 }
+.about-us__card:hover .about-us__card-circle {
+  bottom: -70px;
+  right: -70px;
+  width: 320px;
+  height: 320px;
+  border: 30px solid var(--smoke-bg-color-one);
+}
 .about-us__card-icon {
   position: absolute;
   top: 30px;
@@ -6077,6 +6084,7 @@ About Us
   border: 15px solid var(--smoke-bg-color-one);
   pointer-events: none;
   z-index: 1;
+  transition: bottom 0.5s cubic-bezier(0.25, 1, 0.5, 1), right 0.5s cubic-bezier(0.25, 1, 0.5, 1), width 0.5s cubic-bezier(0.25, 1, 0.5, 1), height 0.5s cubic-bezier(0.25, 1, 0.5, 1), border-width 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 @media (max-width: 576px) {
   .about-us__card-circle {
@@ -6147,14 +6155,11 @@ About Us
 }
 .portfolio__item-img {
   width: 100%;
-  height: 100%;
+  height: 125%;
   -o-object-fit: cover;
      object-fit: cover;
   display: block;
-  transition: transform 0.5s ease;
-}
-.portfolio__item:hover .portfolio__item-img {
-  transform: scale(1.05);
+  will-change: transform;
 }
 .portfolio__item-overlay {
   position: absolute;

@@ -77,6 +77,7 @@
     funfactCounter();
     serviceConstructionTabs();
     chooseUsConstructionTabs();
+    portfolioParallax();
   });
 
   $window.on("scroll", function () {
@@ -557,6 +558,37 @@
       } else {
         $track.css("transform", "translateX(" + offsetPercent + "%)");
       }
+    });
+  }
+
+  /*--------------------------------------------------------------
+  16. Portfolio Parallax
+  --------------------------------------------------------------*/
+  function portfolioParallax() {
+    var $items = $(".portfolio__item");
+    if (!$items.length || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+    $items.each(function () {
+      var item = this;
+      var img = item.querySelector(".portfolio__item-img");
+      if (!img) return;
+
+      gsap.fromTo(
+        img,
+        {
+          yPercent: -25,
+        },
+        {
+          yPercent: 25,
+          ease: "none",
+          scrollTrigger: {
+            trigger: item,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        }
+      );
     });
   }
 

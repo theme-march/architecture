@@ -103,6 +103,14 @@ About Us
     &:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 32px rgba(var(--black-color), 0.06);
+
+      .about-us__card-circle {
+        bottom: -70px;
+        right: -70px;
+        width: 320px;
+        height: 320px;
+        border: 30px solid var(--smoke-bg-color-one);
+      }
     }
   }
 
@@ -133,6 +141,12 @@ About Us
     border: 15px solid var(--smoke-bg-color-one);
     pointer-events: none;
     z-index: 1;
+    transition:
+      bottom 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+      right 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+      width 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+      height 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+      border-width 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 
     @include respond(sm) {
       width: 130px;
