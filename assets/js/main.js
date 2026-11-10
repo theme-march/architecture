@@ -963,22 +963,25 @@
 
     if (!$section.length || !$track.length) return;
 
-    // Helper: compute the target right-padding in pixels
+    // Helper: compute container margin/padding offset on right
     function getRightPad() {
       return Math.max(15, (window.innerWidth - 1320) / 2 + 15);
     }
 
-    // Helper: how far the track must slide left to leave exactly getRightPad() gap
-    // between the right edge of the last card and the right edge of the viewport
-    function getScrollDistance() {
+    // Helper: exact horizontal distance track must slide left
+    function getHorizontalDistance() {
       var trackEl = $track[0];
-      var currentX = gsap.getProperty(trackEl, "x") || 0;
-      var trackRect = trackEl.getBoundingClientRect();
       var rightPad = getRightPad();
+      var trackWidth = trackEl.scrollWidth;
+      // Distance needed so right edge of last card aligns with right container edge
+      var needed = trackWidth + (2 * rightPad) - window.innerWidth;
+      return Math.max(0, needed);
+    }
 
-      var initialRightEdge = trackRect.right - currentX;
-
-      return Math.max(0, initialRightEdge - (window.innerWidth - rightPad));
+    // Helper: balanced vertical scroll duration for pin lock (~1200-1400px)
+    function getPinDuration() {
+      var xDist = getHorizontalDistance();
+      return Math.max(1200, Math.round(xDist * 2.5));
     }
 
     // Only activate on tablet/desktop (>= 769 px).
@@ -988,19 +991,26 @@
     mm.add("(min-width: 769px)", function () {
       var tl = gsap.timeline({
         scrollTrigger: {
-          trigger         : $section[0],
-          start           : "top top",
-          end             : function () { return "+=" + getScrollDistance(); },
-          pin             : true,
-          anticipatePin   : 1,
-          scrub           : 1,
+          trigger: $section[0],
+          start: "top top",
+          end: function () {
+            return "+=" + getPinDuration();
+          },
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 0,
+          scrub: 0.5,
+          fastScrollEnd: true,
+          preventOverlaps: true,
           invalidateOnRefresh: true,
         },
       });
 
       tl.to($track[0], {
-        x    : function () { return -getScrollDistance(); },
-        ease : "none",
+        x: function () {
+          return -getHorizontalDistance();
+        },
+        ease: "none",
       });
 
       // Return cleanup function for matchMedia

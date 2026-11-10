@@ -6555,7 +6555,7 @@ About Us
 ----------------------------------------------------------------*/
 .testimonial {
   background-color: var(--smoke-bg-color-one);
-  margin: 0 15px 15px 15px;
+  margin: 0 15px 0 15px;
 }
 @media (max-width: 768px) {
   .testimonial {
@@ -6766,8 +6766,9 @@ About Us
 }
 
 .how-we-work {
-  overflow-x: hidden;
+  overflow: hidden;
   position: relative;
+  width: 100%;
 }
 
 .how-we-work__track-wrap {
@@ -6783,6 +6784,8 @@ About Us
 .how-we-work__track {
   display: flex;
   gap: 15px;
+  width: max-content;
+  will-change: transform;
 }
 
 .how-we-work__card {
