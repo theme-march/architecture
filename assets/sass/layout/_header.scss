@@ -226,7 +226,7 @@
   .tm-nav_list {
     a {
       font-family: var(--heading-font-family);
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 500;
       letter-spacing: 0.6px;
       text-transform: uppercase;
@@ -365,6 +365,7 @@
           display: block;
           line-height: inherit;
           padding: 7px 20px;
+          font-size: 15px;
         }
 
         ul {
@@ -537,7 +538,9 @@
         .menu-item-has-children > ul {
           background-color: var(--black-color);
 
-          & > li > a {
+          li a {
+            font-size: 15px;
+            font-weight: 500;
             transition: color 0.3s ease;
 
             &:hover {
@@ -625,9 +628,28 @@
   }
 }
 
-//Architecture Header — style-2 type-2
+/*--------------------------------------------------------------
+  Architecture Header — style-2 type-2
+----------------------------------------------------------------*/
 
 .tm-site_header.tm-style1.style-2.type-2 {
+  .tm-nav_list {
+    > li {
+      > a {
+        font-size: 16px;
+      }
+
+      &.menu-item-has-children {
+        > ul {
+          li a {
+            font-size: 15px;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+
   @include respond(xl) {
     .tm-main_header_in {
       height: 80px;

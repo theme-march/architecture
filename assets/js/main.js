@@ -78,6 +78,7 @@
     serviceConstructionTabs();
     chooseUsConstructionTabs();
     portfolioParallax();
+    footerParallax();
   });
 
   $window.on("scroll", function () {
@@ -607,13 +608,11 @@
     var EASE = "power2.inOut";
     var isAnimating = false;
 
-    // Check if initial active slide exists
     var initialIndex = $slides.filter(".testimonial__slide--active").index();
     if (initialIndex !== -1) {
       current = initialIndex;
     }
 
-    // Set initial display and positioning for slides
     $slides.each(function (i) {
       if (i === current) {
         $(this).addClass("testimonial__slide--active").show();
@@ -628,7 +627,6 @@
       }
     });
 
-    // Update active dot matching initial slide
     $dots.removeClass("testimonial__dot--active");
     $dots.eq(current).addClass("testimonial__dot--active");
 
@@ -639,7 +637,6 @@
       var $outSlide = $slides.eq(current);
       var $inSlide = $slides.eq(index);
 
-      // Determine sliding direction: forward (right to left) or backward
       var isForward = index > current;
       if (current === total - 1 && index === 0) isForward = true;
       if (current === 0 && index === total - 1) isForward = false;
@@ -647,7 +644,6 @@
       var outX = isForward ? -50 : 50;
       var inStartX = isForward ? 50 : -50;
 
-      // Update dots immediately for responsive feel
       $dots.removeClass("testimonial__dot--active");
       $dots.eq(index).addClass("testimonial__dot--active");
 
@@ -702,7 +698,6 @@
 
     startAuto();
 
-    // Dot click interaction
     $document.on("click", ".testimonial__dot", function () {
       var idx = parseInt($(this).attr("data-index"), 10);
       if (isNaN(idx)) {
@@ -782,8 +777,23 @@
     var section     = document.querySelector(".vision-to-structure");
     var composition = document.querySelector(".vision-to-structure__composition");
     var imageWrap   = document.querySelector(".vision-to-structure__image-wrap");
+    var textLines   = section ? section.querySelectorAll(".vision-to-structure__text-line") : [];
 
     if (!section || !composition || !imageWrap) return;
+
+    // Track active hovered line to adjust stacking order
+    textLines.forEach(function (line) {
+      line.addEventListener("mouseenter", function () {
+        textLines.forEach(function (l) {
+          l.classList.remove("is-hovered");
+        });
+        line.classList.add("is-hovered");
+      });
+
+      line.addEventListener("mouseleave", function () {
+        line.classList.remove("is-hovered");
+      });
+    });
 
     function getInitialCoords() {
       var compRect = composition.getBoundingClientRect();
@@ -815,6 +825,9 @@
 
     // When cursor leaves the whole section, return to initial position
     section.addEventListener("mouseleave", function () {
+      textLines.forEach(function (l) {
+        l.classList.remove("is-hovered");
+      });
       var init = getInitialCoords();
       gsap.to(imageWrap, {
         x: init.x,
@@ -829,6 +842,34 @@
       var init = getInitialCoords();
       gsap.set(imageWrap, { x: init.x, y: init.y });
     });
+  }
+
+  /*--------------------------------------------------------------
+    Footer Parallax — fixed reveal sync
+  --------------------------------------------------------------*/
+  function footerParallax() {
+    var $footer = $("footer.footer-dark, footer.footer-architecture, footer.footer-construction");
+    var $wrap = $(".page-reveal-wrap");
+    if (!$footer.length || !$wrap.length) return;
+
+    function syncFooterHeight() {
+      var h = $footer.outerHeight();
+      $wrap.css("margin-bottom", h + "px");
+      if (typeof ScrollTrigger !== "undefined") {
+        ScrollTrigger.refresh();
+      }
+    }
+
+    syncFooterHeight();
+
+    if (window.ResizeObserver && $footer[0]) {
+      var ro = new ResizeObserver(function () {
+        syncFooterHeight();
+      });
+      ro.observe($footer[0]);
+    }
+
+    $window.on("resize load", syncFooterHeight);
   }
 
 })(jQuery);

@@ -998,3 +998,24 @@
     }
   }
 }
+
+/*--------------------------------------------------------------
+  Footer Parallax — Fixed Reveal (shared by all 3 variants)
+----------------------------------------------------------------*/
+.footer-dark,
+.footer-architecture,
+.footer-construction {
+  position: fixed !important;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+/* Wrapper that slides over the fixed footer */
+.page-reveal-wrap {
+  position: relative;
+  z-index: 1;
+  background-color: var(--body-bg-color);
+}
+

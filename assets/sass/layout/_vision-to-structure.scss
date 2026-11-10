@@ -109,7 +109,7 @@
     white-space: nowrap;
     position: relative;
     cursor: pointer;
-    z-index: 5;
+    z-index: 1;
     color: color-mix(in srgb, var(--heading-color), transparent 85%);
     transition: color 0.3s ease;
 
@@ -124,8 +124,10 @@
       font-size: 40px;
     }
 
-    &:hover {
+    &:hover,
+    &.is-hovered {
       color: var(--heading-color);
+      z-index: 4;
     }
 
     @include respond(sm) {
@@ -134,12 +136,13 @@
   }
 
   // 1st item active by default, but turns dim when user hovers any other line
-  &__text-stack:not(:has(.vision-to-structure__text-line:hover)) .vision-to-structure__text-line:first-child {
+  &__text-stack:not(:has(.vision-to-structure__text-line:hover)):not(:has(.vision-to-structure__text-line.is-hovered)) .vision-to-structure__text-line:first-child {
     color: var(--heading-color);
+    z-index: 4;
   }
 
   &__image-wrap {
-    // Floating cursor-follow element — behind the text lines
+    // Floating cursor-follow element — behind the hovered line, on top of other lines
     position: absolute;
     top: 0;
     left: 0;
@@ -150,7 +153,7 @@
     opacity: 1;
     // Must not intercept mouse events intended for text lines below
     pointer-events: none;
-    z-index: 1;
+    z-index: 2;
     will-change: transform;
 
     @include respond(xl) {
@@ -185,8 +188,9 @@
     }
   }
 
-  // Pure CSS hover image-change based on hovered text-line
-  &:has(.vision-to-structure__text-line:nth-child(1):hover) {
+  // Hover image-change based on hovered text-line
+  &:has(.vision-to-structure__text-line:nth-child(1):hover),
+  &:has(.vision-to-structure__text-line:nth-child(1).is-hovered) {
     .vision-to-structure__image {
       opacity: 0;
       transform: scale(0.96);
@@ -197,7 +201,8 @@
     }
   }
 
-  &:has(.vision-to-structure__text-line:nth-child(2):hover) {
+  &:has(.vision-to-structure__text-line:nth-child(2):hover),
+  &:has(.vision-to-structure__text-line:nth-child(2).is-hovered) {
     .vision-to-structure__image {
       opacity: 0;
       transform: scale(0.96);
@@ -208,7 +213,8 @@
     }
   }
 
-  &:has(.vision-to-structure__text-line:nth-child(3):hover) {
+  &:has(.vision-to-structure__text-line:nth-child(3):hover),
+  &:has(.vision-to-structure__text-line:nth-child(3).is-hovered) {
     .vision-to-structure__image {
       opacity: 0;
       transform: scale(0.96);
@@ -219,7 +225,8 @@
     }
   }
 
-  &:has(.vision-to-structure__text-line:nth-child(4):hover) {
+  &:has(.vision-to-structure__text-line:nth-child(4):hover),
+  &:has(.vision-to-structure__text-line:nth-child(4).is-hovered) {
     .vision-to-structure__image {
       opacity: 0;
       transform: scale(0.96);
