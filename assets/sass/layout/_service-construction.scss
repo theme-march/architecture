@@ -222,53 +222,77 @@
     background-color: var(--black-color);
     padding: 30px 30px 0 30px;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
 
     @include respond(lg) {
       max-width: 100%;
-      height: auto;
-      max-height: none;
+      height: 650px;
+      max-height: 650px;
       padding: 30px 20px 0 20px;
+    }
+
+    @include respond(sm) {
+      height: 560px;
+      max-height: 560px;
     }
   }
 
   &__img-track {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+    position: relative;
     width: 100%;
-    transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
-    will-change: transform;
+    height: 100%;
+    overflow: hidden;
   }
 
-  &__img-group {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+  &__img-item {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 765px;
-    flex-shrink: 0;
+    overflow: hidden;
+    will-change: transform, top, height, opacity;
 
-    @include respond(md) {
-      gap: 20px;
+    // Initial fallback layout before GSAP initializes
+    &:first-child {
+      top: 0;
+      height: 480px;
+      z-index: 2;
+
+      @include respond(lg) {
+        height: 370px;
+      }
+      @include respond(sm) {
+        height: 320px;
+      }
+    }
+
+    &:nth-child(2) {
+      top: 510px;
+      height: 255px;
+      z-index: 2;
+
+      @include respond(lg) {
+        top: 395px;
+        height: 210px;
+      }
+      @include respond(sm) {
+        top: 340px;
+        height: 180px;
+      }
+    }
+
+    &:nth-child(n+3) {
+      top: 800px;
+      height: 255px;
+      opacity: 0;
+      display: none;
+      z-index: 1;
     }
   }
 
   &__img {
     width: 100%;
+    height: 100%;
     display: block;
     object-fit: cover;
-
-    &:first-child {
-      height: 480px;
-      max-height: 480px;
-    }
-
-    &:last-child {
-      height: 255px;
-      max-height: 255px;
-      object-position: top;
-    }
   }
 }

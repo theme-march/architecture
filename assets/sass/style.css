@@ -8758,51 +8758,79 @@ About Us
   background-color: var(--black-color);
   padding: 30px 30px 0 30px;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
 }
 @media (max-width: 992px) {
   .service-construction__images-col {
     max-width: 100%;
-    height: auto;
-    max-height: none;
+    height: 650px;
+    max-height: 650px;
     padding: 30px 20px 0 20px;
   }
 }
-.service-construction__img-track {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  width: 100%;
-  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
-  will-change: transform;
-}
-.service-construction__img-group {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  width: 100%;
-  height: 765px;
-  flex-shrink: 0;
-}
-@media (max-width: 768px) {
-  .service-construction__img-group {
-    gap: 20px;
+@media (max-width: 576px) {
+  .service-construction__images-col {
+    height: 560px;
+    max-height: 560px;
   }
+}
+.service-construction__img-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.service-construction__img-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  will-change: transform, top, height, opacity;
+}
+.service-construction__img-item:first-child {
+  top: 0;
+  height: 480px;
+  z-index: 2;
+}
+@media (max-width: 992px) {
+  .service-construction__img-item:first-child {
+    height: 370px;
+  }
+}
+@media (max-width: 576px) {
+  .service-construction__img-item:first-child {
+    height: 320px;
+  }
+}
+.service-construction__img-item:nth-child(2) {
+  top: 510px;
+  height: 255px;
+  z-index: 2;
+}
+@media (max-width: 992px) {
+  .service-construction__img-item:nth-child(2) {
+    top: 395px;
+    height: 210px;
+  }
+}
+@media (max-width: 576px) {
+  .service-construction__img-item:nth-child(2) {
+    top: 340px;
+    height: 180px;
+  }
+}
+.service-construction__img-item:nth-child(n+3) {
+  top: 800px;
+  height: 255px;
+  opacity: 0;
+  display: none;
+  z-index: 1;
 }
 .service-construction__img {
   width: 100%;
+  height: 100%;
   display: block;
   object-fit: cover;
-}
-.service-construction__img:first-child {
-  height: 480px;
-  max-height: 480px;
-}
-.service-construction__img:last-child {
-  height: 255px;
-  max-height: 255px;
-  object-position: top;
 }
 
 /*--------------------------------------------------------------

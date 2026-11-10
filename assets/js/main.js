@@ -459,14 +459,78 @@
     var $section = $(".service-construction");
     if (!$section.length) return;
 
+    var $imgItems = $section.find(".service-construction__img-item");
+    var currentIndex = 0;
+    var isAnimating = false;
+
+    function getSlotGeometry() {
+      var w = window.innerWidth;
+      var h1 = w <= 576 ? 320 : (w <= 992 ? 370 : 480);
+      var h2 = w <= 576 ? 180 : (w <= 992 ? 210 : 255);
+      var gap = w <= 576 ? 20 : 30;
+      return {
+        h1: h1,
+        h2: h2,
+        gap: gap,
+        top1: 0,
+        top2: h1 + gap,
+        exitTop: -(h1 + gap + 60),
+        exitBottom: h1 + gap + h2 + 60
+      };
+    }
+
+    function setInitialSlots() {
+      var geom = getSlotGeometry();
+      $imgItems.each(function (i) {
+        var $item = $(this);
+        if (i === currentIndex) {
+          gsap.set($item, {
+            top: geom.top1,
+            height: geom.h1,
+            opacity: 1,
+            display: "block",
+            zIndex: 3
+          });
+        } else if (i === currentIndex + 1) {
+          gsap.set($item, {
+            top: geom.top2,
+            height: geom.h2,
+            opacity: 1,
+            display: "block",
+            zIndex: 2
+          });
+        } else {
+          gsap.set($item, {
+            top: i < currentIndex ? geom.exitTop : geom.exitBottom,
+            height: geom.h2,
+            opacity: 0,
+            display: "none",
+            zIndex: 1
+          });
+        }
+      });
+    }
+
+    if (typeof gsap !== "undefined" && $imgItems.length) {
+      setInitialSlots();
+      $(window).on("resize", function () {
+        if (!isAnimating) {
+          setInitialSlots();
+        }
+      });
+    }
+
     $section.on("click", ".service-construction__list-item", function () {
       var $clicked = $(this);
-      if ($clicked.hasClass("service-construction__list-item--active")) return;
+      if ($clicked.hasClass("service-construction__list-item--active") || isAnimating) return;
 
-      var index = parseInt($clicked.attr("data-index"), 10) || 0;
-      var numberText = $clicked.attr("data-number") || ("0" + (index + 1) + ".");
+      var targetIndex = parseInt($clicked.attr("data-index"), 10) || 0;
+      var numberText = $clicked.attr("data-number") || ("0" + (targetIndex + 1) + ".");
+      var isForward = targetIndex > currentIndex;
 
-      // 1. Update active item state
+      isAnimating = true;
+
+      // 1. Update active tab UI
       $section.find(".service-construction__list-item").removeClass("service-construction__list-item--active");
       $section.find(".service-construction__list-dash").removeClass("service-construction__list-dash--active");
       $clicked.addClass("service-construction__list-item--active");
@@ -488,10 +552,10 @@
         $number.text(numberText);
       }
 
-      // 3. Switch bottom content panel with basic fade animation
+      // 3. Switch bottom content panel with fade
       var $panels = $section.find(".service-construction__panel");
       var $currentActive = $panels.filter(".service-construction__panel--active");
-      var $nextActive = $panels.filter('[data-index="' + index + '"]');
+      var $nextActive = $panels.filter('[data-index="' + targetIndex + '"]');
 
       if (typeof gsap !== "undefined") {
         gsap.to($currentActive, {
@@ -508,22 +572,200 @@
         $nextActive.addClass("service-construction__panel--active");
       }
 
-      // 4. Slide up the image track
-      var $track = $section.find(".service-construction__img-track");
-      var $groups = $section.find(".service-construction__img-group");
-      if ($groups.length) {
-        var groupHeight = $groups.first().outerHeight(false);
-        var gap = parseFloat($track.css("gap")) || 30;
-        var offsetY = -(index * (groupHeight + gap));
+      // 4. Animate individual images
+      if (typeof gsap === "undefined" || !$imgItems.length) {
+        currentIndex = targetIndex;
+        isAnimating = false;
+        return;
+      }
 
-        if (typeof gsap !== "undefined") {
-          gsap.to($track, {
-            y: offsetY,
-            duration: 0.75,
-            ease: "power3.out"
+      var geom = getSlotGeometry();
+      var dur = 0.75;
+      var ease = "power2.inOut";
+
+      var $currTop = $imgItems.eq(currentIndex);
+      var $currBottom = $imgItems.eq(currentIndex + 1);
+      var $targetTop = $imgItems.eq(targetIndex);
+      var $targetBottom = $imgItems.eq(targetIndex + 1);
+
+      function finishTransition() {
+        $imgItems.each(function (i) {
+          if (i !== targetIndex && i !== targetIndex + 1) {
+            $(this).css({ display: "none", opacity: 0 });
+          }
+        });
+        currentIndex = targetIndex;
+        isAnimating = false;
+      }
+
+      if (isForward) {
+        if (targetIndex === currentIndex + 1) {
+          // Sequential forward:
+          // $currTop slides up and disappears
+          gsap.to($currTop, {
+            top: geom.exitTop,
+            opacity: 0,
+            duration: dur,
+            ease: ease,
+            onComplete: function () {
+              $currTop.css("display", "none");
+            }
+          });
+
+          // $currBottom (which is $targetTop) slides up into slot 1 and expands to h1
+          gsap.to($targetTop, {
+            top: geom.top1,
+            height: geom.h1,
+            zIndex: 3,
+            duration: dur,
+            ease: ease
+          });
+
+          // $targetBottom enters from below into slot 2
+          gsap.set($targetBottom, {
+            display: "block",
+            top: geom.exitBottom,
+            height: geom.h2,
+            opacity: 0,
+            zIndex: 2
+          });
+          gsap.to($targetBottom, {
+            top: geom.top2,
+            opacity: 1,
+            duration: dur,
+            ease: ease,
+            onComplete: function () {
+              finishTransition();
+            }
           });
         } else {
-          $track.css("transform", "translateY(" + offsetY + "px)");
+          // Skipping forward:
+          gsap.to([$currTop, $currBottom], {
+            top: geom.exitTop,
+            opacity: 0,
+            duration: dur,
+            ease: ease,
+            onComplete: function () {
+              $currTop.css("display", "none");
+              $currBottom.css("display", "none");
+            }
+          });
+
+          gsap.set($targetTop, {
+            display: "block",
+            top: geom.exitBottom,
+            height: geom.h1,
+            opacity: 0,
+            zIndex: 3
+          });
+          gsap.to($targetTop, {
+            top: geom.top1,
+            opacity: 1,
+            duration: dur,
+            ease: ease
+          });
+
+          gsap.set($targetBottom, {
+            display: "block",
+            top: geom.exitBottom + 80,
+            height: geom.h2,
+            opacity: 0,
+            zIndex: 2
+          });
+          gsap.to($targetBottom, {
+            top: geom.top2,
+            opacity: 1,
+            duration: dur,
+            ease: ease,
+            onComplete: function () {
+              finishTransition();
+            }
+          });
+        }
+      } else {
+        // Backward direction:
+        if (targetIndex === currentIndex - 1) {
+          // Sequential backward:
+          // $currBottom drops down and disappears
+          gsap.to($currBottom, {
+            top: geom.exitBottom,
+            opacity: 0,
+            duration: dur,
+            ease: ease,
+            onComplete: function () {
+              $currBottom.css("display", "none");
+            }
+          });
+
+          // $currTop (which is $targetBottom) drops down into slot 2 and shrinks to h2
+          gsap.to($currTop, {
+            top: geom.top2,
+            height: geom.h2,
+            zIndex: 2,
+            duration: dur,
+            ease: ease
+          });
+
+          // $targetTop drops down from above into slot 1 at h1
+          gsap.set($targetTop, {
+            display: "block",
+            top: geom.exitTop,
+            height: geom.h1,
+            opacity: 0,
+            zIndex: 3
+          });
+          gsap.to($targetTop, {
+            top: geom.top1,
+            opacity: 1,
+            duration: dur,
+            ease: ease,
+            onComplete: function () {
+              finishTransition();
+            }
+          });
+        } else {
+          // Skipping backward:
+          gsap.to([$currTop, $currBottom], {
+            top: geom.exitBottom,
+            opacity: 0,
+            duration: dur,
+            ease: ease,
+            onComplete: function () {
+              $currTop.css("display", "none");
+              $currBottom.css("display", "none");
+            }
+          });
+
+          gsap.set($targetTop, {
+            display: "block",
+            top: geom.exitTop,
+            height: geom.h1,
+            opacity: 0,
+            zIndex: 3
+          });
+          gsap.to($targetTop, {
+            top: geom.top1,
+            opacity: 1,
+            duration: dur,
+            ease: ease
+          });
+
+          gsap.set($targetBottom, {
+            display: "block",
+            top: geom.exitTop - 80,
+            height: geom.h2,
+            opacity: 0,
+            zIndex: 2
+          });
+          gsap.to($targetBottom, {
+            top: geom.top2,
+            opacity: 1,
+            duration: dur,
+            ease: ease,
+            onComplete: function () {
+              finishTransition();
+            }
+          });
         }
       }
     });
