@@ -935,21 +935,25 @@
   --------------------------------------------------------------*/
   function videoSectionParallax() {
     var section = document.querySelector(".video-section");
+    var media = section ? section.querySelector(".video-section__media") : null;
     var overlay = section ? section.querySelector(".video-section__overlay") : null;
     if (!overlay || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
     function createTween() {
       gsap.fromTo(
         overlay,
-        { y: 90 },
+        { marginTop: -320 },
         {
-          y: -90,
+          marginTop: function () {
+            return -overlay.offsetHeight;
+          },
           ease: "none",
           scrollTrigger: {
-            trigger: section,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
+            trigger: media || section,
+            start: "top 75%",
+            end: "bottom 15%",
+            scrub: 0.3,
+            invalidateOnRefresh: true,
           },
         }
       );
