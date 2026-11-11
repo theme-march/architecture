@@ -78,6 +78,12 @@
     serviceConstructionTabs();
     chooseUsConstructionTabs();
     portfolioParallax();
+    ourApproachParallax();
+    chooseUsParallax();
+    videoSectionParallax();
+    blogParallax();
+    circleBtnEffects();
+    aboutArchitectureAwardAnim();
     footerParallax();
   });
 
@@ -98,7 +104,12 @@
     const $preloader = $("#preloader");
 
     if (!$preloader.length) {
-      initHeroAnimations();
+      if (typeof initHeroAnimations === "function") {
+        initHeroAnimations();
+      }
+      if (typeof ScrollTrigger !== "undefined") {
+        ScrollTrigger.refresh();
+      }
       return;
     }
 
@@ -106,7 +117,12 @@
       $preloader.addClass("loaded");
       $preloader.delay(850).fadeOut(500, function () {
         $(this).remove();
-        initHeroAnimations();
+        if (typeof initHeroAnimations === "function") {
+          initHeroAnimations();
+        }
+        if (typeof ScrollTrigger !== "undefined") {
+          ScrollTrigger.refresh();
+        }
       });
     }, 200);
   }
@@ -808,31 +824,183 @@
   16. Portfolio Parallax
   --------------------------------------------------------------*/
   function portfolioParallax() {
-    var $items = $(".portfolio__item");
-    if (!$items.length || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
-    $items.each(function () {
-      var item = this;
-      var img = item.querySelector(".portfolio__item-img");
-      if (!img) return;
+    [
+      [".portfolio__item", ".portfolio__item-img", 25],
+      [".portfolio-architecture__image-wrap", ".portfolio-architecture__image", 10],
+    ].forEach(function (cfg) {
+      document.querySelectorAll(cfg[0]).forEach(function (trigger) {
+        var img = trigger.querySelector(cfg[1]);
+        if (!img) return;
 
-      gsap.fromTo(
-        img,
-        {
-          yPercent: -25,
+        gsap.fromTo(
+          img,
+          { yPercent: -cfg[2] },
+          {
+            yPercent: cfg[2],
+            ease: "none",
+            scrollTrigger: {
+              trigger: trigger,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          }
+        );
+      });
+    });
+  }
+
+  /*--------------------------------------------------------------
+  17. Our Approach Parallax
+  --------------------------------------------------------------*/
+  function ourApproachParallax() {
+    var $section = $(".our-approach");
+    var $bg = $section.find(".our-approach__bg");
+    if (!$section.length || !$bg.length || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+    gsap.fromTo(
+      $bg[0],
+      {
+        yPercent: -6,
+      },
+      {
+        yPercent: 6,
+        ease: "none",
+        scrollTrigger: {
+          trigger: $section[0],
+          start: "top 75%",
+          end: "bottom 25%",
+          scrub: true,
         },
+      }
+    );
+  }
+
+  /*--------------------------------------------------------------
+  18. Choose Us Parallax
+  --------------------------------------------------------------*/
+  function chooseUsParallax() {
+    var $section = $(".choose-us");
+    var $bg = $section.find(".choose-us__bg");
+    var $grid = $section.find(".choose-us__grid");
+    if (!$section.length || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+    var createTrigger = function (triggerEl, start, end) {
+      return {
+        trigger: triggerEl,
+        start: start,
+        end: end,
+        scrub: true,
+      };
+    };
+
+    if ($bg.length) {
+      gsap.fromTo(
+        $bg[0],
+        { yPercent: -8 },
+        { yPercent: 8, ease: "none", scrollTrigger: createTrigger($section[0], "top bottom", "bottom top") }
+      );
+    }
+
+    var cards = $grid.find(".choose-us__card").toArray();
+    if (!$grid.length || !cards.length) return;
+
+    var rowOneCards = cards.slice(0, 2);
+    var rowTwoCards = cards.slice(2);
+
+    var animateCards = function () {
+      gsap.fromTo(
+        rowOneCards,
+        { y: 0 },
+        { y: 160, ease: "none", scrollTrigger: createTrigger($grid[0], "top 55%", "bottom 5%") }
+      );
+      gsap.fromTo(
+        rowTwoCards,
+        { y: 0 },
+        { y: -160, ease: "none", scrollTrigger: createTrigger($grid[0], "top 55%", "bottom 5%") }
+      );
+    };
+
+    if (typeof gsap.matchMedia === "function") {
+      gsap.matchMedia().add("(min-width: 993px)", animateCards);
+    } else {
+      animateCards();
+    }
+  }
+
+  /*--------------------------------------------------------------
+  18. Video Section Overlay Parallax
+  --------------------------------------------------------------*/
+  function videoSectionParallax() {
+    var section = document.querySelector(".video-section");
+    var overlay = section ? section.querySelector(".video-section__overlay") : null;
+    if (!overlay || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+    function createTween() {
+      gsap.fromTo(
+        overlay,
+        { y: 90 },
         {
-          yPercent: 25,
+          y: -90,
           ease: "none",
           scrollTrigger: {
-            trigger: item,
+            trigger: section,
             start: "top bottom",
             end: "bottom top",
             scrub: true,
           },
         }
       );
-    });
+    }
+
+    if (typeof gsap.matchMedia === "function") {
+      gsap.matchMedia().add("(min-width: 993px)", createTween);
+    } else {
+      createTween();
+    }
+  }
+
+  /*--------------------------------------------------------------
+  19. Blog Parallax
+  --------------------------------------------------------------*/
+  function blogParallax() {
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+    function scrubParallax(selector, triggerSelector, fromVars, toVars, end) {
+      document.querySelectorAll(selector).forEach(function (el) {
+        gsap.fromTo(
+          el,
+          fromVars,
+          $.extend({}, toVars, {
+            ease: "none",
+            scrollTrigger: {
+              trigger: el.closest(triggerSelector) || el,
+              start: "top bottom",
+              end: end,
+              scrub: true,
+            },
+          })
+        );
+      });
+    }
+
+    scrubParallax(
+      ".blog__featured-img, .blog__card-img, .blog-architecture__img",
+      ".blog__featured-card, .blog__card-img-wrap, .blog-architecture__img-wrap",
+      { yPercent: -10 },
+      { yPercent: 10 },
+      "bottom top"
+    );
+
+    scrubParallax(
+      ".blog-architecture__content",
+      ".blog-architecture__card",
+      { y: 100 },
+      { y: 0 },
+      "center 40%"
+    );
   }
 
   /*--------------------------------------------------------------
@@ -952,71 +1120,109 @@
   }
 
   /*--------------------------------------------------------------
-  16. How We Work — Horizontal Scroll (scroll-lock + slide)
+  16. How We Work Horizontal Scroll & Drag
   --------------------------------------------------------------*/
   function howWeWorkHorizontalScroll() {
-    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+    var $section = $(".how-we-work");
+    var $wrap    = $(".how-we-work__track-wrap");
+    var $track   = $(".how-we-work__track");
+    if (!$section.length || !$track.length || typeof gsap === "undefined") return;
 
-    var $section   = $(".how-we-work");
-    var $trackWrap = $(".how-we-work__track-wrap");
-    var $track     = $(".how-we-work__track");
+    var track = $track[0], wrap = $wrap[0];
+    var currentX = 0, dragOffset = 0, scrollProgress = 0, isDragging = false;
+    var startX = 0, startTrackX = 0, lastX = 0, lastTime = 0, velocity = 0, moved = false;
 
-    if (!$section.length || !$track.length) return;
-
-    // Helper: compute container margin/padding offset on right
-    function getRightPad() {
-      return Math.max(15, (window.innerWidth - 1320) / 2 + 15);
+    function getMaxDist() {
+      var pad = Math.max(15, (window.innerWidth - 1320) / 2 + 15);
+      return Math.max(0, track.scrollWidth + 2 * pad - window.innerWidth);
     }
 
-    // Helper: exact horizontal distance track must slide left
-    function getHorizontalDistance() {
-      var trackEl = $track[0];
-      var rightPad = getRightPad();
-      var trackWidth = trackEl.scrollWidth;
-      // Distance needed so right edge of last card aligns with right container edge
-      var needed = trackWidth + (2 * rightPad) - window.innerWidth;
-      return Math.max(0, needed);
+    function clamp(val, max) {
+      return Math.max(-max, Math.min(0, val));
     }
 
-    // Helper: balanced vertical scroll duration for pin lock (~1200-1400px)
-    function getPinDuration() {
-      var xDist = getHorizontalDistance();
-      return Math.max(1200, Math.round(xDist * 2.5));
-    }
-
-    // Only activate on tablet/desktop (>= 769 px).
-    // On mobile the cards naturally overflow and the section scrolls normally.
-    var mm = gsap.matchMedia();
-
-    mm.add("(min-width: 769px)", function () {
-      var tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: $section[0],
-          start: "top top",
-          end: function () {
-            return "+=" + getPinDuration();
-          },
-          pin: true,
-          pinSpacing: true,
-          anticipatePin: 0,
-          scrub: 0.5,
-          fastScrollEnd: true,
-          preventOverlaps: true,
-          invalidateOnRefresh: true,
-        },
+    if (typeof ScrollTrigger !== "undefined") {
+      ScrollTrigger.create({
+        trigger: $section[0],
+        start: "top 80%",
+        end: "bottom 20%",
+        onUpdate: function (self) {
+          scrollProgress = self.progress;
+          if (!isDragging) {
+            var max = getMaxDist();
+            currentX = clamp(-scrollProgress * max + dragOffset, max);
+            gsap.to(track, { x: currentX, duration: 0.35, ease: "power1.out", overwrite: "auto" });
+          }
+        }
       });
+    }
 
-      tl.to($track[0], {
-        x: function () {
-          return -getHorizontalDistance();
-        },
-        ease: "none",
+    wrap.addEventListener("pointerdown", function (e) {
+      if (e.button && e.button !== 0) return;
+      isDragging = true;
+      moved = false;
+      startX = lastX = e.clientX;
+      startTrackX = currentX = gsap.getProperty(track, "x") || 0;
+      lastTime = Date.now();
+      velocity = 0;
+      $wrap.addClass("is-dragging");
+      gsap.killTweensOf(track);
+      try { wrap.setPointerCapture(e.pointerId); } catch (_) {}
+    });
+
+    wrap.addEventListener("pointermove", function (e) {
+      if (!isDragging) return;
+      var dx = e.clientX - startX;
+      if (Math.abs(dx) > 4) moved = true;
+
+      var max = getMaxDist(), raw = startTrackX + dx;
+      if (raw > 0) raw *= 0.25;
+      else if (raw < -max) raw = -max + (raw + max) * 0.25;
+
+      currentX = raw;
+      gsap.set(track, { x: currentX });
+
+      var now = Date.now(), dt = now - lastTime;
+      if (dt > 10) {
+        velocity = (e.clientX - lastX) / dt;
+        lastX = e.clientX;
+        lastTime = now;
+      }
+    });
+
+    function endDrag(e) {
+      if (!isDragging) return;
+      isDragging = false;
+      $wrap.removeClass("is-dragging");
+      try { wrap.releasePointerCapture(e.pointerId); } catch (_) {}
+
+      var max = getMaxDist();
+      var targetX = clamp(currentX + velocity * 120, max);
+      var scrollBaseX = -scrollProgress * max;
+
+      gsap.to(track, {
+        x: targetX,
+        duration: 0.45,
+        ease: "power2.out",
+        onUpdate: function () { currentX = gsap.getProperty(track, "x") || 0; },
+        onComplete: function () {
+          currentX = targetX;
+          dragOffset = currentX - scrollBaseX;
+        }
       });
+      dragOffset = targetX - scrollBaseX;
+    }
 
-      // Return cleanup function for matchMedia
-      return function () {
-        tl.kill();
-      };
+    wrap.addEventListener("pointerup", endDrag);
+    wrap.addEventListener("pointercancel", endDrag);
+
+    $wrap.on("click", function (e) {
+      if (moved) { e.preventDefault(); e.stopPropagation(); }
+    });
+
+    $(window).on("resize", function () {
+      currentX = clamp(currentX, getMaxDist());
+      gsap.set(track, { x: currentX });
     });
   }
 
@@ -1026,26 +1232,11 @@
   function visionToStructureHover() {
     if (typeof gsap === "undefined") return;
 
-    var section     = document.querySelector(".vision-to-structure");
     var composition = document.querySelector(".vision-to-structure__composition");
+    var textStack   = document.querySelector(".vision-to-structure__text-stack");
     var imageWrap   = document.querySelector(".vision-to-structure__image-wrap");
-    var textLines   = section ? section.querySelectorAll(".vision-to-structure__text-line") : [];
 
-    if (!section || !composition || !imageWrap) return;
-
-    // Track active hovered line to adjust stacking order
-    textLines.forEach(function (line) {
-      line.addEventListener("mouseenter", function () {
-        textLines.forEach(function (l) {
-          l.classList.remove("is-hovered");
-        });
-        line.classList.add("is-hovered");
-      });
-
-      line.addEventListener("mouseleave", function () {
-        line.classList.remove("is-hovered");
-      });
-    });
+    if (!composition || !textStack || !imageWrap) return;
 
     function getInitialCoords() {
       var compRect = composition.getBoundingClientRect();
@@ -1056,30 +1247,21 @@
       };
     }
 
-    // Set initial position
     var initPos = getInitialCoords();
     gsap.set(imageWrap, { x: initPos.x, y: initPos.y });
 
-    // Track mouse across the whole section
-    section.addEventListener("mousemove", function (e) {
+    textStack.addEventListener("mousemove", function (e) {
       var compRect = composition.getBoundingClientRect();
-      var targetX = e.clientX - compRect.left;
-      var targetY = e.clientY - compRect.top;
-
       gsap.to(imageWrap, {
-        x: targetX,
-        y: targetY,
+        x: e.clientX - compRect.left,
+        y: e.clientY - compRect.top,
         duration: 0.5,
         ease: "power2.out",
         overwrite: "auto"
       });
     });
 
-    // When cursor leaves the whole section, return to initial position
-    section.addEventListener("mouseleave", function () {
-      textLines.forEach(function (l) {
-        l.classList.remove("is-hovered");
-      });
+    textStack.addEventListener("mouseleave", function () {
       var init = getInitialCoords();
       gsap.to(imageWrap, {
         x: init.x,
@@ -1097,10 +1279,59 @@
   }
 
   /*--------------------------------------------------------------
+    About Architecture Award Card Animation
+  --------------------------------------------------------------*/
+  function aboutArchitectureAwardAnim() {
+    var section = document.querySelector(".about-architecture");
+    var card = document.querySelector(".about-architecture__award-card");
+    if (!section || !card) return;
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        if (entries[0].isIntersecting) {
+          card.classList.add("is-visible");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.35 }
+    );
+    observer.observe(section);
+  }
+
+  /*--------------------------------------------------------------
+    Portfolio Architecture Circle Button — Cursor Tracking
+  --------------------------------------------------------------*/
+  function circleBtnEffects() {
+    if (typeof gsap === "undefined") return;
+
+    document.querySelectorAll(".portfolio-architecture__image-wrap").forEach(function (wrap) {
+      var btnWrap = wrap.querySelector(".portfolio-architecture__view-btn-wrap");
+      if (!btnWrap) return;
+
+      var xTo = gsap.quickTo(btnWrap, "x", { duration: 0.28, ease: "power3.out" });
+      var yTo = gsap.quickTo(btnWrap, "y", { duration: 0.28, ease: "power3.out" });
+
+      wrap.addEventListener("mouseenter", function (e) {
+        var r = wrap.getBoundingClientRect();
+        var x = e.clientX - r.left;
+        var y = e.clientY - r.top;
+        xTo(x, x);
+        yTo(y, y);
+      });
+
+      wrap.addEventListener("mousemove", function (e) {
+        var r = wrap.getBoundingClientRect();
+        xTo(e.clientX - r.left);
+        yTo(e.clientY - r.top);
+      });
+    });
+  }
+
+  /*--------------------------------------------------------------
     Footer Parallax — fixed reveal sync
   --------------------------------------------------------------*/
   function footerParallax() {
-    var $footer = $("footer.footer-dark, footer.footer-architecture, footer.footer-construction");
+    var $footer = $("footer.footer-dark");
     var $wrap = $(".page-reveal-wrap");
     if (!$footer.length || !$wrap.length) return;
 

@@ -145,18 +145,16 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.5s ease;
+    scale: 1.24;
+    will-change: transform;
     @include respond(sm) {
       max-height: 200px;
     }
   }
 
-  &__card:hover &__img {
-    transform: scale(1.05);
-  }
-
   &__content {
     padding-top: 20px;
+    will-change: transform;
   }
 
   &__meta {

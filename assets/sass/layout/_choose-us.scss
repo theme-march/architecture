@@ -26,12 +26,13 @@
 
   &__bg {
     position: absolute;
-    inset: 0;
+    top: -8%;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     z-index: 0;
-    top: -10%;
+    will-change: transform;
   }
 
   &__content {
@@ -87,12 +88,17 @@
     padding: 40px 50px 40px 40px;
     display: flex;
     flex-direction: column;
+    will-change: transform;
 
     @include respond(xl) {
       padding: 30px 40px 30px 30px;
     }
     @include respond(md) {
       padding: 20px 30px 20px 20px;
+    }
+
+    &:hover .choose-us__card-icon {
+      transform: perspective(600px) rotateY(180deg);
     }
 
     &--primary {
@@ -121,6 +127,8 @@
     max-width: 60px;
     flex-shrink: 0;
     margin-bottom: 70px;
+    transform: perspective(600px) rotateY(0deg);
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     @include respond(lg) {
       max-width: 80px;
       margin-bottom: 50px;

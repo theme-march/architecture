@@ -76,29 +76,55 @@
   }
 
   &__icon {
+    width: fit-content;
+    perspective: 600px;
+
     img {
       max-width: 100%;
       height: auto;
+      transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 
       @include respond(md) {
         width: 110px;
       }
     }
+
+    &:hover img {
+      transform: rotateY(180deg);
+    }
   }
 
   &__award-card {
     position: absolute;
-    bottom: -95px;
-    left: 137px;
+    bottom: -68px;
+    left: 65px;
+    transition:
+      bottom 1s cubic-bezier(0.22, 1, 0.36, 1),
+      left 1s cubic-bezier(0.22, 1, 0.36, 1);
+
+    &.is-visible {
+      bottom: -95px;
+      left: 137px;
+    }
 
     @include respond(lg) {
-      bottom: -70px;
-      left: 90px;
+      bottom: -43px;
+      left: 18px;
+
+      &.is-visible {
+        bottom: -70px;
+        left: 90px;
+      }
     }
 
     @include respond(md) {
-      bottom: -35px;
-      left: -60px;
+      bottom: -15px;
+      left: -95px;
+
+      &.is-visible {
+        bottom: -35px;
+        left: -60px;
+      }
     }
 
     img {

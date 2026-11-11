@@ -29,16 +29,11 @@
     z-index: 2;
     background-color: var(--white-color);
     flex-shrink: 0;
-    margin-bottom: -265px;
+    margin-bottom: -299px;
     box-shadow: 0px 10px 40px color-mix(in srgb, var(--black-color), transparent 92%);
 
     @include respond(lg) {
-      margin-bottom: -100px;
-    }
-
-    @include respond(md) {
-      margin-bottom: 0;
-      width: 100%;
+      display: none;
     }
   }
 
@@ -46,7 +41,7 @@
     width: 100%;
     justify-content: space-between;
     text-decoration: none;
-    padding: 5px 20px 5px 40px;
+    padding: 18px 20px 18px 40px;
     font-weight: 500;
 
     .icon-wrapper {
@@ -62,6 +57,7 @@
 
   &__contact-list {
     list-style: none;
+    max-width: 320px;
     padding: 40px;
     margin: 0;
     display: flex;
@@ -70,6 +66,7 @@
 
     @include respond(lg) {
       padding: 30px;
+      max-width: none;
     }
     @include respond(md) {
       padding: 20px;

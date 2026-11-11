@@ -231,7 +231,7 @@
   height: 120px;
   border-radius: 50%;
   background-color: var(--white-color);
-  color: var(--heading-color);
+  color: #000000;
   font-family: var(--heading-font-family);
   font-size: 15px;
   font-weight: 600;
@@ -241,10 +241,6 @@
   cursor: pointer;
   border: none;
   text-decoration: none;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease,
-    transform 0.3s ease;
 
   @include respond(md) {
     width: 100px;
@@ -253,13 +249,8 @@
   }
 
   &:hover {
-    background-color: var(--primary-color);
-    color: var(--white-color);
-    transform: scale(1.08);
-  }
-
-  &:active {
-    transform: scale(0.96);
+    color: var(--black-color);
+    transition: none;
   }
 }
 
