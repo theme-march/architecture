@@ -820,11 +820,9 @@
       var $currImg = $imgs.eq(currentIndex);
       var $nextImg = $imgs.eq(targetIndex);
 
-      // 1. Update active item state
       $section.find(".choose-us-construction__feature-item").removeClass("choose-us-construction__feature-item--active");
       $item.addClass("choose-us-construction__feature-item--active");
 
-      // 2. Horizontal slide transition matching service-construction__img-track timing/easing
       if (typeof gsap !== "undefined") {
         var dur = 0.75;
         var ease = "power2.inOut";
