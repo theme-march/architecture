@@ -78,6 +78,7 @@
     serviceConstructionTabs();
     chooseUsConstructionTabs();
     portfolioParallax();
+    portfolioConstructionParallax();
     ourApproachParallax();
     chooseUsParallax();
     videoSectionParallax();
@@ -794,29 +795,77 @@
     var $section = $(".choose-us-construction");
     if (!$section.length) return;
 
+    var $imgs = $section.find(".choose-us-construction__img");
+    var currentIndex = 0;
+
+    if (typeof gsap !== "undefined" && $imgs.length) {
+      $imgs.each(function (i) {
+        gsap.set(this, {
+          xPercent: 0,
+          opacity: i === 0 ? 1 : 0,
+          display: i === 0 ? "block" : "none",
+          zIndex: i === 0 ? 2 : 1,
+        });
+      });
+    }
+
     $section.on("click", ".choose-us-construction__feature-body", function () {
       var $item = $(this).closest(".choose-us-construction__feature-item");
       if ($item.hasClass("choose-us-construction__feature-item--active")) return;
 
-      var index = parseInt($item.attr("data-index"), 10) || 0;
+      var targetIndex = parseInt($item.attr("data-index"), 10) || 0;
+      if (targetIndex === currentIndex || !$imgs.length) return;
+
+      var isForward = targetIndex > currentIndex;
+      var $currImg = $imgs.eq(currentIndex);
+      var $nextImg = $imgs.eq(targetIndex);
 
       // 1. Update active item state
       $section.find(".choose-us-construction__feature-item").removeClass("choose-us-construction__feature-item--active");
       $item.addClass("choose-us-construction__feature-item--active");
 
-      // 2. Slide image track horizontally (left-to-right / right-to-left)
-      var $track = $section.find(".choose-us-construction__img-track");
-      var offsetPercent = -(index * (100 / 3));
-
+      // 2. Horizontal slide transition matching service-construction__img-track timing/easing
       if (typeof gsap !== "undefined") {
-        gsap.to($track, {
-          xPercent: offsetPercent,
-          duration: 0.7,
-          ease: "power3.out"
+        var dur = 0.75;
+        var ease = "power2.inOut";
+        var exitX = isForward ? -100 : 100;
+        var enterX = isForward ? 100 : -100;
+
+        gsap.killTweensOf($imgs);
+        $imgs.each(function (i) {
+          if (i !== currentIndex && i !== targetIndex) {
+            gsap.set(this, { display: "none", opacity: 0, zIndex: 1 });
+          }
+        });
+
+        gsap.to($currImg, {
+          xPercent: exitX,
+          opacity: 0,
+          zIndex: 1,
+          duration: dur,
+          ease: ease,
+          onComplete: function () {
+            $currImg.css("display", "none");
+          },
+        });
+
+        gsap.set($nextImg, {
+          display: "block",
+          xPercent: enterX,
+          opacity: 0,
+          zIndex: 2,
+        });
+        gsap.to($nextImg, {
+          xPercent: 0,
+          opacity: 1,
+          duration: dur,
+          ease: ease,
         });
       } else {
-        $track.css("transform", "translateX(" + offsetPercent + "%)");
+        $imgs.hide().eq(targetIndex).show();
       }
+
+      currentIndex = targetIndex;
     });
   }
 
@@ -849,6 +898,59 @@
           }
         );
       });
+    });
+  }
+
+  /*--------------------------------------------------------------
+  16b. Portfolio Construction Parallax
+  --------------------------------------------------------------*/
+  function portfolioConstructionParallax() {
+    var items = [].slice.call(document.querySelectorAll(".portfolio-construction__item"));
+    if (!items.length || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+    var getBounds = function () {
+      var heights = items.map(function (el) {
+        return el.offsetHeight;
+      });
+      return {
+        min: Math.min.apply(null, heights),
+        max: Math.max.apply(null, heights),
+      };
+    };
+
+    var bounds = getBounds();
+    var getShift = function (item) {
+      var h = item.offsetHeight;
+      var ratio = (h - bounds.min) / Math.max(1, bounds.max - bounds.min);
+      return Math.round(h * (0.15 + 0.13 * ratio));
+    };
+
+    items.forEach(function (item) {
+      var img = item.querySelector(".portfolio-construction__img");
+      if (!img) return;
+
+      gsap.fromTo(
+        img,
+        {
+          y: function () {
+            bounds = getBounds();
+            return -getShift(item);
+          },
+        },
+        {
+          y: function () {
+            return getShift(item);
+          },
+          ease: "none",
+          scrollTrigger: {
+            trigger: item,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        }
+      );
     });
   }
 
