@@ -19,14 +19,27 @@
   cursor: pointer;
   overflow: hidden;
   z-index: 1;
-  transition: color 0.9s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--black-color);
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 1;
+    pointer-events: none;
+  }
 
   .text {
     position: relative;
     z-index: 2;
     letter-spacing: 0.5px;
     pointer-events: none;
-    transition: color 0.9s ease;
+    color: var(--white-color);
   }
 
   .icon-wrapper {
@@ -40,146 +53,41 @@
     justify-content: flex-end;
     padding-right: 16px;
     background-color: var(--white-color);
-    z-index: 1;
-    transition: width 0.9s cubic-bezier(0.25, 1, 0.5, 1);
-
-    svg {
-      display: block;
-      transform-origin: center center;
-      backface-visibility: hidden;
-      will-change: transform;
-      transition: transform 0.8s ease;
-
-      path {
-        fill: var(--primary-color);
-        transition: fill 0.4s ease;
-      }
-    }
-  }
-
-  &:hover {
-    color: var(--black-color);
-
-    .text {
-      color: var(--black-color);
-    }
-
-    .icon-wrapper {
-      width: calc(100% - 10px);
-
-      svg {
-        transform: rotate(-45deg);
-
-        path {
-          fill: var(--primary-color);
-        }
-      }
-    }
-  }
-
-  @include respond(md) {
-    font-size: 14px;
-    padding: 4px 54px 4px 16px;
-
-    .icon-wrapper {
-      top: 4px;
-      right: 4px;
-      bottom: 4px;
-      width: 40px;
-      padding-right: 13px;
-    }
-
-    &:hover .icon-wrapper {
-      width: calc(100% - 8px);
-    }
-  }
-
-  @include respond(sm) {
-    padding: 4px 48px 4px 14px;
-
-    .icon-wrapper {
-      top: 4px;
-      right: 4px;
-      bottom: 4px;
-      width: 36px;
-      padding-right: 11px;
-    }
-
-    &:hover .icon-wrapper {
-      width: calc(100% - 8px);
-    }
-  }
-}
-
-.outline-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  background-color: transparent;
-  color: var(--white-color);
-  font-family: var(--heading-font-family);
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 22px;
-  text-transform: uppercase;
-  border: 1px solid var(--white-color);
-  padding: 17px 67px 17px 20px;
-  cursor: pointer;
-  overflow: hidden;
-  z-index: 1;
-  transition: color 0.9s ease;
-
-  .text {
-    position: relative;
     z-index: 2;
-    letter-spacing: 0.5px;
-    pointer-events: none;
-    transition: color 0.9s ease;
-  }
-
-  .icon-wrapper {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    bottom: 5px;
-    width: 47px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 16px;
-    background-color: var(--white-color);
-    z-index: 1;
-    transition: width 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: background-color 0.3s ease 0.24s;
 
     svg {
       display: block;
       transform-origin: center center;
       backface-visibility: hidden;
       will-change: transform;
-      transition: transform 0.8s ease;
+      transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1) 0.22s;
 
       path {
         fill: var(--primary-color);
-        transition: fill 0.4s ease;
+        transition: fill 0.28s ease 0.24s;
       }
     }
   }
 
   &:hover {
-    color: var(--black-color);
-
-    .text {
-      color: var(--black-color);
+    &::before {
+      transform: scaleX(1);
+      transform-origin: left center;
+      transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     .icon-wrapper {
-      width: calc(100% - 10px);
+      background-color: var(--primary-color);
+      transition: background-color 0.3s ease 0.24s;
 
       svg {
         transform: rotate(-45deg);
+        transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1) 0.22s;
 
         path {
-          fill: var(--primary-color);
+          fill: var(--black-color);
+          transition: fill 0.28s ease 0.24s;
         }
       }
     }
@@ -200,10 +108,6 @@
       width: 40px;
       padding-right: 13px;
     }
-
-    &:hover .icon-wrapper {
-      width: calc(100% - 8px);
-    }
   }
 
   @include respond(sm) {
@@ -216,9 +120,128 @@
       width: 36px;
       padding-right: 11px;
     }
+  }
+}
 
-    &:hover .icon-wrapper {
-      width: calc(100% - 8px);
+.outline-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background-color: transparent;
+  color: var(--white-color);
+  font-family: var(--heading-font-family);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  text-transform: uppercase;
+  border: 1px solid var(--white-color);
+  padding: 17px 67px 17px 20px;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
+  transition: border-color 0.35s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--black-color);
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .text {
+    position: relative;
+    z-index: 2;
+    letter-spacing: 0.5px;
+    pointer-events: none;
+    color: var(--white-color);
+  }
+
+  .icon-wrapper {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    width: 47px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 16px;
+    background-color: var(--white-color);
+    z-index: 2;
+    transition: background-color 0.3s ease 0.24s;
+
+    svg {
+      display: block;
+      transform-origin: center center;
+      backface-visibility: hidden;
+      will-change: transform;
+      transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1) 0.22s;
+
+      path {
+        fill: var(--primary-color);
+        transition: fill 0.28s ease 0.24s;
+      }
+    }
+  }
+
+  &:hover {
+    border-color: var(--black-color);
+
+    &::before {
+      transform: scaleX(1);
+      transform-origin: left center;
+      transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .icon-wrapper {
+      background-color: var(--primary-color);
+      transition: background-color 0.3s ease 0.24s;
+
+      svg {
+        transform: rotate(-45deg);
+        transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1) 0.22s;
+
+        path {
+          fill: var(--black-color);
+          transition: fill 0.28s ease 0.24s;
+        }
+      }
+    }
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  @include respond(md) {
+    font-size: 14px;
+    padding: 4px 54px 4px 16px;
+
+    .icon-wrapper {
+      top: 4px;
+      right: 4px;
+      bottom: 4px;
+      width: 40px;
+      padding-right: 13px;
+    }
+  }
+
+  @include respond(sm) {
+    padding: 4px 48px 4px 14px;
+
+    .icon-wrapper {
+      top: 4px;
+      right: 4px;
+      bottom: 4px;
+      width: 36px;
+      padding-right: 11px;
     }
   }
 }

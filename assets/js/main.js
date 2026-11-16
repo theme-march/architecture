@@ -7,6 +7,7 @@
 |--------------------------------------------------------------------------
 | TABLE OF CONTENTS:
 |--------------------------------------------------------------------------
+| 0. Smooth Scroll (Lenis)
 | 1. Preloader
 | 2. Mobile Menu
 | 3. Sticky Header
@@ -27,6 +28,41 @@
 */
 (function ($) {
   "use strict";
+
+  /*--------------------------------------------------------------
+  0. Smooth Scroll (Lenis)
+  --------------------------------------------------------------*/
+  var lenisInstance = null;
+
+  function initLenis() {
+    if (typeof Lenis === "undefined") return;
+
+    var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+
+    lenisInstance = new Lenis({
+      lerp: 0.1,
+      wheelMultiplier: 1,
+      smoothWheel: true,
+      smoothTouch: false,
+      infinite: false,
+    });
+
+    if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+      lenisInstance.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add(function (time) {
+        lenisInstance.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      (function raf(time) {
+        lenisInstance.raf(time);
+        requestAnimationFrame(raf);
+      })(0);
+    }
+  }
+
+  initLenis();
 
 
   /*--------------------------------------------------------------
@@ -78,6 +114,7 @@
     serviceConstructionTabs();
     chooseUsConstructionTabs();
     portfolioParallax();
+    portfolioArchitectureExpandOnScroll();
     portfolioConstructionParallax();
     ourApproachParallax();
     chooseUsParallax();
@@ -381,12 +418,16 @@
     $document.on("click", ".ak-scrollup", function (e) {
       e.preventDefault();
 
-      $("html, body").animate(
-        {
-          scrollTop: 0,
-        },
-        0,
-      );
+      if (lenisInstance) {
+        lenisInstance.scrollTo(0);
+      } else {
+        $("html, body").animate(
+          {
+            scrollTop: 0,
+          },
+          300,
+        );
+      }
     });
   }
 
@@ -896,6 +937,67 @@
           }
         );
       });
+    });
+  }
+
+  /*--------------------------------------------------------------
+  16a. Portfolio Architecture Expand On Scroll
+  --------------------------------------------------------------*/
+  function portfolioArchitectureExpandOnScroll() {
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+    var wraps = document.querySelectorAll(".portfolio-architecture__image-wrap");
+    if (!wraps.length) return;
+
+    ScrollTrigger.matchMedia({
+      // Desktop & Tablet
+      "(min-width: 768px)": function () {
+        wraps.forEach(function (wrap) {
+          gsap.fromTo(
+            wrap,
+            {
+              width: "85%",
+              borderRadius: "12px",
+            },
+            {
+              width: "100%",
+              borderRadius: "4px",
+              ease: "none",
+              scrollTrigger: {
+                trigger: wrap,
+                start: "top bottom",
+                end: "top 68%",
+                scrub: true,
+                invalidateOnRefresh: true,
+              },
+            }
+          );
+        });
+      },
+      // Mobile
+      "(max-width: 767.98px)": function () {
+        wraps.forEach(function (wrap) {
+          gsap.fromTo(
+            wrap,
+            {
+              width: "92%",
+              borderRadius: "10px",
+            },
+            {
+              width: "100%",
+              borderRadius: "4px",
+              ease: "none",
+              scrollTrigger: {
+                trigger: wrap,
+                start: "top bottom",
+                end: "top 68%",
+                scrub: true,
+                invalidateOnRefresh: true,
+              },
+            }
+          );
+        });
+      },
     });
   }
 
