@@ -106,6 +106,7 @@
     modalVideo();
     scrollUp();
     serviceAccordion();
+    faqConstructionAccordion();
     testimonialSlider();
     howWeWorkHorizontalScroll();
     visionToStructureHover();
@@ -498,6 +499,25 @@
       $(".service__item").removeClass("service__item--active");
       if (!isActive) {
         $item.addClass("service__item--active");
+      }
+    });
+  }
+
+  /*--------------------------------------------------------------
+  13b. FAQ Construction Accordion
+  --------------------------------------------------------------*/
+  function faqConstructionAccordion() {
+    $document.on("click", ".faq-construction__trigger-icon", function () {
+      $(this)
+        .closest(".faq-construction__item")
+        .find(".faq-construction__trigger")
+        .trigger("click");
+    });
+
+    $document.on("keydown", ".faq-construction__trigger-icon", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        $(this).trigger("click");
       }
     });
   }

@@ -126,10 +126,9 @@
     align-items: stretch;
     overflow: hidden;
     padding: 0;
-    transition: padding 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: padding 0.3s ease;
 
-    &:has(.accordion-button:not(.collapsed)),
-    &:has(.collapsing) {
+    &:has(.accordion-button:not(.collapsed)) {
       padding: 8px;
 
       .faq-construction__trigger-icon {
@@ -159,9 +158,12 @@
     align-self: stretch;
     background-color: var(--white-color);
     border-right: 1px solid var(--border-color);
+    cursor: pointer;
+    user-select: none;
     transition:
-      background-color 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-      border-radius 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      background-color 0.25s ease,
+      border-radius 0.25s ease,
+      border-right-color 0.25s ease;
 
     @include respond(sm) {
       width: 48px;
@@ -183,9 +185,9 @@
     border-radius: 2px;
     transform-origin: center center;
     transition:
-      transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
-      opacity 0.25s ease,
-      background-color 0.35s ease;
+      transform 0.25s ease,
+      opacity 0.2s ease,
+      background-color 0.25s ease;
 
     &--h {
       width: 16px;
