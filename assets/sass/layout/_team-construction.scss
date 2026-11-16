@@ -37,6 +37,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
+    align-items: start;
 
     @include respond(lg) {
       grid-template-columns: repeat(2, 1fr);
@@ -51,17 +52,39 @@
 
   &__card {
     position: relative;
-    background-color: var(--heading-color);
-    padding: 0 30px 30px 30px;
-    margin-top: 110px;
+    padding: 0 30px 40px 30px;
+    margin-top: 0;
     display: block;
     text-decoration: none;
-    transition:
-      background-color 0.4s ease,
-      transform 0.4s ease;
+    z-index: 1;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 110px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--heading-color);
+      z-index: -1;
+      transition:
+        top 0.4s ease,
+        background-color 0.4s ease;
+    }
 
     &:hover {
-      background-color: var(--primary-color);
+      &::before {
+        top: 0;
+        background-color: var(--primary-color);
+      }
+
+      .team-construction__image-wrap {
+        transform: translateY(30px);
+      }
+
+      .team-construction__info {
+        transform: translateY(15px);
+      }
     }
     &:hover .team-construction__image {
       transform: translateY(-5px);
@@ -70,10 +93,10 @@
 
   &__image-wrap {
     position: relative;
-    margin-top: -110px;
+    margin-top: 5px;
     margin-bottom: 25px;
     overflow: visible;
-
+    transition: transform 0.4s ease;
   }
 
   &__image {
@@ -211,6 +234,7 @@
 
   &__info {
     text-align: left;
+    transition: transform 0.4s ease;
   }
 
   &__name {

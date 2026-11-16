@@ -290,6 +290,11 @@
     color: var(--heading-color);
     flex-shrink: 0;
 
+    .text {
+      color: var(--heading-color);
+      transition: color 0.3s ease;
+    }
+
     .icon-wrapper {
       background-color: var(--heading-color);
       color: var(--white-color);
@@ -302,6 +307,10 @@
     &:hover {
       background-color: var(--heading-color);
       color: var(--white-color);
+
+      .text {
+        color: var(--white-color);
+      }
 
       .icon-wrapper {
         background-color: var(--primary-color);
