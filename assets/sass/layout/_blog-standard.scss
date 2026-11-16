@@ -6,7 +6,6 @@
 .blog-standard {
   &__row {
     display: flex;
-    align-items: flex-start;
     justify-content: center;
     gap: 30px;
     
@@ -27,6 +26,7 @@
   &__sidebar-col {
     width: 33.333333%;
     flex-shrink: 0;
+    align-self: stretch;
 
     @include respond(lg) {
       width: 100%;

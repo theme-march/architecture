@@ -8,7 +8,6 @@
 
   &__row {
     display: flex;
-    align-items: flex-start;
     gap: 30px;
 
     @include respond(lg) {
@@ -32,6 +31,7 @@
 
   &__sidebar-col {
     width: 33.333333%;
+    align-self: stretch;
 
     @include respond(lg) {
       width: 100%;
@@ -240,6 +240,15 @@
   &__card {
     background-color: var(--smoke-bg-color-one);
     padding: 30px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 110px;
+    align-self: flex-start;
+
+    @include respond(lg) {
+      position: static;
+      top: auto;
+    }
     
     @include respond(md) {
       padding: 20px;

@@ -7,7 +7,6 @@
 .service-details {
   &__row {
     display: flex;
-    align-items: flex-start;
     gap: 30px;
 
     @include respond(lg) {
@@ -34,6 +33,7 @@
   &__sidebar-col {
     width: 33.333333%;
     flex-shrink: 0;
+    align-self: stretch;
 
     @include respond(lg) {
       width: 100%;

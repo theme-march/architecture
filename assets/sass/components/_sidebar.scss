@@ -8,8 +8,11 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+  position: -webkit-sticky;
   position: sticky;
-  top: 100px;
+  top: 60px;
+  align-self: flex-start;
+  width: 100%;
 
   @include respond(lg) {
     position: static;

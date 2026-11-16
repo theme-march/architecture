@@ -103,7 +103,6 @@
     constructionStickyHeader();
     dynamicBackground();
     swiperInit();
-    sidebarStickySidebar();
     modalVideo();
     scrollUp();
     serviceAccordion();
@@ -487,13 +486,6 @@
     $counters.each(function () {
       observer.observe(this);
     });
-  }
-
-  /*--------------------------------------------------------------
-  12. Sticky Sidebar 
-  --------------------------------------------------------------*/
-  function sidebarStickySidebar() {
-    // sticky sidebar logic
   }
 
   /*--------------------------------------------------------------
