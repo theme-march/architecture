@@ -602,21 +602,58 @@
         $number.text(numberText);
       }
 
-      // 3. Switch bottom content panel with fade
+      // 3. Switch bottom content panel with slide up animation
       var $panels = $section.find(".service-construction__panel");
       var $currentActive = $panels.filter(".service-construction__panel--active");
       var $nextActive = $panels.filter('[data-index="' + targetIndex + '"]');
 
       if (typeof gsap !== "undefined") {
-        gsap.to($currentActive, {
-          opacity: 0,
-          duration: 0.2,
-          onComplete: function () {
-            $currentActive.removeClass("service-construction__panel--active").css({ display: "none" });
-            $nextActive.addClass("service-construction__panel--active").css({ display: "block" });
-            gsap.fromTo($nextActive, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" });
-          }
+        var yExit = isForward ? -40 : 40;
+        var yEnter = isForward ? 40 : -40;
+        var panelDur = 0.6;
+        var panelEase = "power2.inOut";
+
+        // Keep outgoing panel in absolute overlay position so incoming slides up simultaneously without jump
+        $currentActive.css({
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          zIndex: 1,
         });
+
+        // Show incoming panel in normal flow
+        $nextActive
+          .addClass("service-construction__panel--active")
+          .css({ display: "block", position: "relative", zIndex: 2 });
+
+        // Animate outgoing panel sliding up and fading out
+        gsap.to($currentActive, {
+          y: yExit,
+          opacity: 0,
+          duration: panelDur,
+          ease: panelEase,
+          onComplete: function () {
+            $currentActive
+              .removeClass("service-construction__panel--active")
+              .removeAttr("style");
+          },
+        });
+
+        // Animate incoming panel sliding up into place
+        gsap.fromTo(
+          $nextActive,
+          { y: yEnter, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: panelDur,
+            ease: panelEase,
+            onComplete: function () {
+              $nextActive.css({ position: "", zIndex: "", transform: "" });
+            },
+          }
+        );
       } else {
         $panels.removeClass("service-construction__panel--active");
         $nextActive.addClass("service-construction__panel--active");
@@ -957,8 +994,8 @@
               ease: "none",
               scrollTrigger: {
                 trigger: wrap,
-                start: "top bottom",
-                end: "top 68%",
+                start: "top 96%",
+                end: "top 50%",
                 scrub: true,
                 invalidateOnRefresh: true,
               },
@@ -981,8 +1018,8 @@
               ease: "none",
               scrollTrigger: {
                 trigger: wrap,
-                start: "top bottom",
-                end: "top 68%",
+                start: "top 96%",
+                end: "top 50%",
                 scrub: true,
                 invalidateOnRefresh: true,
               },
