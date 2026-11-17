@@ -147,4 +147,169 @@
       color: var(--heading-color);
     }
   }
+
+  &__subtitle--animated,
+  &--animated {
+    .section-heading__subtitle-line {
+      opacity: 0;
+      transform: translateX(-120px);
+      will-change: transform, opacity;
+      transition:
+        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.4s ease;
+
+      @include respond(md) {
+        transform: translateX(-70px);
+      }
+    }
+    
+    &.section-heading--center,
+    .section-heading--center & {
+      .section-heading__subtitle-line:last-of-type {
+        transform: translateX(120px);
+
+        @include respond(md) {
+          transform: translateX(70px);
+        }
+      }
+    }
+
+    .section-heading__subtitle-text {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      opacity: 0;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--primary-color);
+        transform: scaleX(0);
+        transform-origin: left center;
+        pointer-events: none;
+      }
+    }
+
+    .section-heading__title {
+      opacity: 0;
+      transform: translateY(25px);
+      transition:
+        opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1),
+        transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change: opacity, transform;
+    }
+
+    &.is-visible {
+      .section-heading__subtitle-line {
+        opacity: 1;
+        transform: translateX(0);
+        animation: subtitleLineSlideLeft 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      // In centered heading, right line slides right to left
+      &.section-heading--center,
+      .section-heading--center & {
+        .section-heading__subtitle-line:last-of-type {
+          animation-name: subtitleLineSlideRight;
+        }
+      }
+
+      .section-heading__subtitle-text {
+        animation: subtitleTextReveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+
+        &::after {
+          animation: subtitleBlockReveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+        }
+      }
+
+      .section-heading__title {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 1s;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .section-heading__subtitle-line {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+        transition: none !important;
+      }
+      .section-heading__subtitle-text {
+        opacity: 1 !important;
+        animation: none !important;
+        &::after {
+          display: none !important;
+        }
+      }
+      .section-heading__title {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+  }
+}
+
+@keyframes subtitleLineSlideLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-120px);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes subtitleLineSlideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(120px);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes subtitleBlockReveal {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+  50% {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+  51% {
+    transform: scaleX(1);
+    transform-origin: right center;
+  }
+  100% {
+    transform: scaleX(0);
+    transform-origin: right center;
+  }
+}
+
+@keyframes subtitleTextReveal {
+  0%,
+  49% {
+    opacity: 0;
+  }
+  50%,
+  100% {
+    opacity: 1;
+  }
 }

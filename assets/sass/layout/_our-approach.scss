@@ -60,6 +60,60 @@
       grid-template-columns: 1fr;
       padding: 0 10px;
     }
+
+    &.is-visible {
+      .our-approach__card {
+        opacity: 1;
+        transform: translateY(0);
+
+        // Desktop: Row 1 (cards 1, 2, 3)
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3) {
+          transition-delay: 0.1s;
+        }
+
+        // Desktop: Row 2 (cards 4, 5, 6)
+        &:nth-child(4),
+        &:nth-child(5),
+        &:nth-child(6) {
+          transition-delay: 0.35s;
+        }
+
+        // Tablet: 2 columns (Row 1: 1-2, Row 2: 3-4, Row 3: 5-6)
+        @include respond(lg) {
+          &:nth-child(1),
+          &:nth-child(2) {
+            transition-delay: 0.1s;
+          }
+          &:nth-child(3),
+          &:nth-child(4) {
+            transition-delay: 0.28s;
+          }
+          &:nth-child(5),
+          &:nth-child(6) {
+            transition-delay: 0.46s;
+          }
+        }
+
+        // Mobile: 1 column sequential stagger
+        @include respond(md) {
+          @for $i from 1 through 6 {
+            &:nth-child(#{$i}) {
+              transition-delay: #{0.1 + ($i - 1) * 0.15}s;
+            }
+          }
+        }
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .our-approach__card {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
   }
 
   &__card {
@@ -68,12 +122,19 @@
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     padding: 40px;
+    opacity: 0;
+    transform: translateY(45px);
+    transition:
+      opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+      transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: opacity, transform;
 
     @include respond(lg) {
       padding: 30px;
     }
     @include respond(md) {
       padding: 25px;
+      transform: translateY(35px);
     }
   }
 

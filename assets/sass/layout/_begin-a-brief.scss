@@ -77,6 +77,37 @@ Begin A Brief
       font-size: 28px;
       line-height: 32px;
     }
+
+    span {
+      display: inline-block;
+      opacity: 0.15;
+      filter: blur(8px);
+      transform: translateY(6px);
+      transition:
+        opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+        filter 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+        transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change: opacity, filter, transform;
+
+      @for $i from 1 through 30 {
+        &:nth-child(#{$i}) {
+          transition-delay: #{$i * 0.045}s;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        opacity: 1 !important;
+        filter: none !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+
+    &.is-visible span {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateY(0);
+    }
   }
 
   &__btn {

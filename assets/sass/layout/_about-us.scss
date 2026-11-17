@@ -72,6 +72,41 @@ About Us
     font-weight: 500;
     line-height: 26px;
     color: var(--body-color);
+
+    .about-us__line {
+      display: block;
+      width: fit-content;
+      max-width: 100%;
+      clip-path: inset(0 100% 0 0);
+      will-change: clip-path;
+      transition: clip-path 0.85s cubic-bezier(0.25, 1, 0.5, 1);
+
+      &:nth-child(1) {
+        transition-delay: 0.15s;
+      }
+      &:nth-child(2) {
+        transition-delay: 0.35s;
+      }
+      &:nth-child(3) {
+        transition-delay: 0.55s;
+      }
+      &:nth-child(4) {
+        transition-delay: 0.75s;
+      }
+      &:nth-child(5) {
+        transition-delay: 0.95s;
+        transition-duration: 0.5s;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        clip-path: none !important;
+        transition: none !important;
+      }
+    }
+
+    &.is-visible .about-us__line {
+      clip-path: inset(0 0% 0 0);
+    }
   }
 
   &__grid {

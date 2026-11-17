@@ -123,6 +123,7 @@
     circleBtnEffects();
     aboutArchitectureAwardAnim();
     footerParallax();
+    titleAnimation();
   });
 
   $window.on("scroll", function () {
@@ -448,6 +449,28 @@
   /*--------------------------------------------------------------
   9. Title Animation
   --------------------------------------------------------------*/
+  function titleAnimation() {
+    var titles = document.querySelectorAll(
+      ".begin-a-brief__title, .title-anim-blur, .section-heading--animated, .section-heading__subtitle--animated, .about-us__description, .our-approach__grid"
+    );
+    if (!titles.length) return;
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    titles.forEach(function (title) {
+      observer.observe(title);
+    });
+  }
 
   /*--------------------------------------------------------------
   10. Cta Animation
