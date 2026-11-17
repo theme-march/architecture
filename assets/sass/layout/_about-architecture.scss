@@ -5,6 +5,8 @@
 ----------------------------------------------------------------*/
 
 .about-architecture {
+  position: relative;
+  z-index: 2;
   background: var(--secondary-color);
   &__wrapper {
     display: flex;

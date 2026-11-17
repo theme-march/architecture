@@ -117,6 +117,7 @@
     portfolioArchitectureExpandOnScroll();
     portfolioConstructionParallax();
     ourApproachParallax();
+    heroArchitectureParallax();
     chooseUsParallax();
     videoSectionParallax();
     blogParallax();
@@ -451,7 +452,7 @@
   --------------------------------------------------------------*/
   function titleAnimation() {
     var titles = document.querySelectorAll(
-      ".begin-a-brief__title, .title-anim-blur, .section-heading--animated, .section-heading__subtitle--animated, .about-us__description, .our-approach__grid"
+      ".begin-a-brief__title, .title-anim-blur, .section-heading--animated, .section-heading__subtitle--animated, .about-us__description, .our-approach__grid, .hero-architecture--animated"
     );
     if (!titles.length) return;
 
@@ -1147,6 +1148,36 @@
           start: "top 75%",
           end: "bottom 25%",
           scrub: true,
+        },
+      }
+    );
+  }
+
+  /*--------------------------------------------------------------
+  17b. Hero Architecture Parallax
+  --------------------------------------------------------------*/
+  function heroArchitectureParallax() {
+    var $hero = $(".hero-architecture");
+    var $img = $hero.find(".hero-architecture__img");
+    if (!$hero.length || !$img.length || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+    gsap.fromTo(
+      $img[0],
+      { y: 0 },
+      {
+        y: -120,
+        ease: "none",
+        scrollTrigger: {
+          trigger: $hero[0],
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+          onLeave: function () {
+            gsap.set($img[0], { autoAlpha: 0 });
+          },
+          onEnterBack: function () {
+            gsap.set($img[0], { autoAlpha: 1 });
+          },
         },
       }
     );
