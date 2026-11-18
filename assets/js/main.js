@@ -117,7 +117,8 @@
     portfolioArchitectureExpandOnScroll();
     portfolioConstructionParallax();
     ourApproachParallax();
-    heroArchitectureParallax();
+    heroArchitectureCurtain();
+    heroConstructionParallax();
     chooseUsParallax();
     videoSectionParallax();
     blogParallax();
@@ -452,7 +453,7 @@
   --------------------------------------------------------------*/
   function titleAnimation() {
     var titles = document.querySelectorAll(
-      ".begin-a-brief__title, .title-anim-blur, .section-heading--animated, .section-heading__subtitle--animated, .about-us__description, .our-approach__grid, .hero-architecture--animated"
+      ".begin-a-brief__title, .title-anim-blur, .section-heading--animated, .section-heading__subtitle--animated, .about-us__description, .about-architecture__description, .about-architecture--title, .our-approach__grid, .hero-architecture--animated, .hero-construction--animated, .about-construction__title, .about-construction__desc, .about-construction__circles-row--animated"
     );
     if (!titles.length) return;
 
@@ -472,10 +473,6 @@
       observer.observe(title);
     });
   }
-
-  /*--------------------------------------------------------------
-  10. Cta Animation
-  --------------------------------------------------------------*/
 
   /*--------------------------------------------------------------
   11. Funfact Counter
@@ -1154,33 +1151,123 @@
   }
 
   /*--------------------------------------------------------------
-  17b. Hero Architecture Parallax
+  17b. Hero Architecture Curtain / Stacking Effect
   --------------------------------------------------------------*/
-  function heroArchitectureParallax() {
+  function heroArchitectureCurtain() {
     var $hero = $(".hero-architecture");
-    var $img = $hero.find(".hero-architecture__img");
-    if (!$hero.length || !$img.length || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+    var $wrapper = $hero.find(".hero-architecture__wrapper");
+    var $overlay = $hero.find(".hero-architecture__overlay");
+    var $about = $(".about-architecture");
+    if (!$hero.length || !$wrapper.length || !$about.length || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
-    gsap.fromTo(
-      $img[0],
-      { y: 0 },
-      {
-        y: -120,
-        ease: "none",
-        scrollTrigger: {
-          trigger: $hero[0],
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-          onLeave: function () {
-            gsap.set($img[0], { autoAlpha: 0 });
+    ScrollTrigger.matchMedia({
+      // Desktop & Tablet (>= 768px)
+      "(min-width: 768px)": function () {
+        var tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: $hero[0],
+            start: "top top",
+            endTrigger: $about[0],
+            end: "top top",
+            pin: true,
+            pinSpacing: false,
+            scrub: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
           },
-          onEnterBack: function () {
-            gsap.set($img[0], { autoAlpha: 1 });
+        });
+
+        tl.to(
+          $wrapper[0],
+          {
+            scale: 0.94,
+            ease: "none",
           },
-        },
-      }
-    );
+          0
+        );
+
+        if ($overlay.length) {
+          tl.to(
+            $overlay[0],
+            {
+              opacity: 0.5,
+              ease: "none",
+            },
+            0
+          );
+        }
+
+        return function () {
+          gsap.set($wrapper[0], { clearProps: "transform,scale" });
+          if ($overlay.length) {
+            gsap.set($overlay[0], { clearProps: "opacity" });
+          }
+        };
+      },
+    });
+  }
+
+  /*--------------------------------------------------------------
+  17c. Hero Construction Parallax
+  --------------------------------------------------------------*/
+  function heroConstructionParallax() {
+    var $hero = $(".hero-construction");
+    if (!$hero.length || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+    var $bg = $hero.find(".hero-construction__bg");
+    var $personBg = $hero.find(".hero-construction__person-bg");
+    var $person = $hero.find(".hero-construction__person");
+
+    ScrollTrigger.matchMedia({
+      // Desktop & Tablet (>= 992px where hero visual is visible)
+      "(min-width: 992px)": function () {
+        if ($bg.length) {
+          gsap.to($bg[0], {
+            yPercent: 12,
+            ease: "none",
+            scrollTrigger: {
+              trigger: $hero[0],
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        }
+
+        if ($personBg.length) {
+          gsap.to($personBg[0], {
+            y: -50,
+            ease: "none",
+            scrollTrigger: {
+              trigger: $hero[0],
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        }
+
+        if ($person.length) {
+          gsap.to($person[0], {
+            xPercent: -50,
+            y: -95,
+            ease: "none",
+            scrollTrigger: {
+              trigger: $hero[0],
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        }
+
+        return function () {
+          if ($bg.length) gsap.set($bg[0], { clearProps: "transform" });
+          if ($personBg.length) gsap.set($personBg[0], { clearProps: "transform" });
+          if ($person.length) gsap.set($person[0], { clearProps: "transform" });
+        };
+      },
+    });
   }
 
   /*--------------------------------------------------------------

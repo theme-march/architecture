@@ -3,6 +3,8 @@
   Stats Banner Section
 ----------------------------------------------------------------*/
 .stats-banner {
+  position: relative;
+  z-index: 2;
   background-color: var(--secondary-color);
   color: var(--white-color);
 

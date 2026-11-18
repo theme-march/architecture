@@ -8,24 +8,6 @@
   background-color: var(--smoke-bg-color-one);
   overflow: hidden;
 
-  &__bg-element {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    pointer-events: none;
-    z-index: 1;
-    max-height: 100%;
-    object-fit: contain;
-
-    @include respond(xl) {
-      width: 320px;
-    }
-
-    @include respond(lg) {
-      display: none;
-    }
-  }
-
   &__inner {
     position: relative;
     z-index: 2;
@@ -113,7 +95,36 @@
       font-size: 28px;
     }
 
+    > span {
+      display: inline-block;
+      opacity: 0.15;
+      filter: blur(8px);
+      transform: translateY(6px);
+      transition:
+        opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+        filter 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+        transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change: opacity, filter, transform;
 
+      @for $i from 1 through 35 {
+        &:nth-child(#{$i}) {
+          transition-delay: #{$i * 0.045}s;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        opacity: 1 !important;
+        filter: none !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+
+    &.is-visible > span {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateY(0);
+    }
   }
 
   &__title-badge {
@@ -142,6 +153,34 @@
     line-height: 26px;
     color: var(--body-color);
     margin-bottom: 30px;
+
+    .about-construction__line {
+      display: block;
+      width: fit-content;
+      max-width: 100%;
+      clip-path: inset(0 100% 0 0);
+      will-change: clip-path;
+      transition: clip-path 0.85s cubic-bezier(0.25, 1, 0.5, 1);
+
+      &:nth-child(1) {
+        transition-delay: 0.15s;
+      }
+      &:nth-child(2) {
+        transition-delay: 0.35s;
+      }
+      &:nth-child(3) {
+        transition-delay: 0.55s;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        clip-path: none !important;
+        transition: none !important;
+      }
+    }
+
+    &.is-visible .about-construction__line {
+      clip-path: inset(0 0% 0 0);
+    }
   }
 
   &__action-row {
@@ -200,6 +239,43 @@
 
     @include respond(md) {
       gap: 15px;
+    }
+
+    &--animated {
+      .about-construction__circle {
+        opacity: 0;
+        transform: translateY(50px) scale(0.85);
+        will-change: transform, opacity;
+        transition:
+          opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+
+        &:nth-child(1) {
+          transition-delay: 0.1s;
+        }
+        &:nth-child(2) {
+          transition-delay: 0.25s;
+        }
+        &:nth-child(3) {
+          transition-delay: 0.4s;
+        }
+        &:nth-child(4) {
+          transition-delay: 0.55s;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+      }
+
+      &.is-visible {
+        .about-construction__circle {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
     }
   }
 

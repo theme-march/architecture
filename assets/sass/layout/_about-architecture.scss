@@ -161,6 +161,37 @@
       line-height: 36px;
       margin-bottom: 30px;
     }
+
+    span {
+      display: inline-block;
+      opacity: 0.15;
+      filter: blur(8px);
+      transform: translateY(6px);
+      transition:
+        opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+        filter 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+        transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change: opacity, filter, transform;
+
+      @for $i from 1 through 30 {
+        &:nth-child(#{$i}) {
+          transition-delay: #{$i * 0.045}s;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        opacity: 1 !important;
+        filter: none !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+
+    &.is-visible span {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateY(0);
+    }
   }
 
   &__description {
@@ -178,6 +209,41 @@
     @include respond(md) {
       margin-top: 15px;
       margin-bottom: 30px;
+    }
+
+    .about-architecture__line {
+      display: block;
+      width: fit-content;
+      max-width: 100%;
+      clip-path: inset(0 100% 0 0);
+      will-change: clip-path;
+      transition: clip-path 0.85s cubic-bezier(0.25, 1, 0.5, 1);
+
+      &:nth-child(1) {
+        transition-delay: 0.15s;
+      }
+      &:nth-child(2) {
+        transition-delay: 0.35s;
+      }
+      &:nth-child(3) {
+        transition-delay: 0.55s;
+      }
+      &:nth-child(4) {
+        transition-delay: 0.75s;
+      }
+      &:nth-child(5) {
+        transition-delay: 0.95s;
+        transition-duration: 0.5s;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        clip-path: none !important;
+        transition: none !important;
+      }
+    }
+
+    &.is-visible .about-architecture__line {
+      clip-path: inset(0 0% 0 0);
     }
   }
 
