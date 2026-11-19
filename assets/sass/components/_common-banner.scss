@@ -146,3 +146,83 @@
     color: var(--primary-color);
   }
 }
+
+/*--------------------------------------------------------------
+  Common Banner Entrance & Scroll Animations
+----------------------------------------------------------------*/
+
+.common-banner--animated {
+  .common-banner__bg {
+    transform: scale(1.08);
+    transform-origin: center center;
+    will-change: transform;
+    animation: commonBannerScaleSettle 1.4s cubic-bezier(0.25, 1, 0.5, 1) 0.1s forwards;
+  }
+
+  .common-breadcrumb {
+    opacity: 0;
+    transform: translateY(-16px);
+    will-change: opacity, transform;
+    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .common-banner__title {
+    opacity: 0;
+    transform: translateY(38px);
+    will-change: opacity, transform;
+    transition: opacity 0.85s cubic-bezier(0.25, 1, 0.5, 1),
+      transform 0.85s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .common-banner__element {
+    clip-path: inset(0 100% 0 0);
+    will-change: clip-path;
+    transition: clip-path 1.15s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  &.is-visible {
+    .common-breadcrumb {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.15s;
+    }
+
+    .common-banner__title {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.3s;
+    }
+
+    .common-banner__element {
+      clip-path: inset(0 0% 0 0);
+      transition-delay: 0.45s;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .common-banner__bg {
+      animation: none;
+      transform: none;
+    }
+    .common-breadcrumb,
+    .common-banner__title {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .common-banner__element {
+      clip-path: none;
+      transition: none;
+    }
+  }
+}
+
+@keyframes commonBannerScaleSettle {
+  0% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

@@ -125,6 +125,7 @@
     circleBtnEffects();
     aboutArchitectureAwardAnim();
     footerParallax();
+    commonBannerParallax();
     titleAnimation();
   });
 
@@ -453,7 +454,7 @@
   --------------------------------------------------------------*/
   function titleAnimation() {
     var titles = document.querySelectorAll(
-      ".begin-a-brief__title, .title-anim-blur, .section-heading--animated, .section-heading__subtitle--animated, .about-us__description, .about-architecture__description, .about-architecture--title, .our-approach__grid, .hero-architecture--animated, .hero-construction--animated, .about-construction__title, .about-construction__desc, .about-construction__circles-row--animated"
+      ".begin-a-brief__title, .title-anim-blur, .section-heading--animated, .section-heading__subtitle--animated, .about-us__description, .about-architecture__description, .about-architecture--title, .our-approach__grid, .hero-architecture--animated, .hero-construction--animated, .about-construction__title, .about-construction__desc, .about-construction__circles-row--animated, .common-banner--animated"
     );
     if (!titles.length) return;
 
@@ -1749,6 +1750,31 @@
     }
 
     $window.on("resize load", syncFooterHeight);
+  }
+
+  /*--------------------------------------------------------------
+    Common Banner Scroll Parallax
+  --------------------------------------------------------------*/
+  function commonBannerParallax() {
+    var $banners = $(".common-banner");
+    if (!$banners.length || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+    $banners.each(function () {
+      var $banner = $(this);
+      var $bg = $banner.find(".common-banner__bg");
+      if (!$bg.length) return;
+
+      gsap.to($bg[0], {
+        yPercent: 14,
+        ease: "none",
+        scrollTrigger: {
+          trigger: $banner[0],
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    });
   }
 
 })(jQuery);
