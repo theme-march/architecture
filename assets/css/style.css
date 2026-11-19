@@ -4814,18 +4814,19 @@ kbd {
 }
 
 /*--------------------------------------------------------------
-  Footer Parallax — Fixed Reveal
+  Footer Parallax — Fixed Reveal (Index page only)
 ----------------------------------------------------------------*/
-.footer-dark {
+body.has-footer-parallax .footer-dark {
   position: fixed !important;
   bottom: 0;
   left: 0;
   width: 100%;
   z-index: 0;
 }
-
-/* Wrapper that slides over the fixed footer */
-.page-reveal-wrap {
+body.has-footer-parallax {
+  /* Wrapper that slides over the fixed footer */
+}
+body.has-footer-parallax .page-reveal-wrap {
   position: relative;
   z-index: 1;
   background-color: var(--body-bg-color);

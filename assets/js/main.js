@@ -1725,9 +1725,11 @@
   }
 
   /*--------------------------------------------------------------
-    Footer Parallax — fixed reveal sync
+    Footer Parallax — fixed reveal sync (Index page only)
   --------------------------------------------------------------*/
   function footerParallax() {
+    if (!$("body").hasClass("has-footer-parallax")) return;
+
     var $footer = $("footer.footer-dark");
     var $wrap = $(".page-reveal-wrap");
     if (!$footer.length || !$wrap.length) return;
