@@ -41,9 +41,14 @@
     if (prefersReduced) return;
 
     lenisInstance = new Lenis({
-      lerp: 0.1,
-      wheelMultiplier: 1,
+      duration: 1.15,
+      easing: function (t) {
+        return Math.min(1, 1.001 - Math.pow(2, -10 * t));
+      },
+      orientation: "vertical",
+      gestureOrientation: "vertical",
       smoothWheel: true,
+      wheelMultiplier: 1,
       smoothTouch: false,
       infinite: false,
     });
@@ -53,7 +58,7 @@
       gsap.ticker.add(function (time) {
         lenisInstance.raf(time * 1000);
       });
-      gsap.ticker.lagSmoothing(0);
+      gsap.ticker.lagSmoothing(500, 33);
     } else {
       (function raf(time) {
         lenisInstance.raf(time);
@@ -278,14 +283,16 @@
   3. Sticky Header
   --------------------------------------------------------------*/
   function stickyHeader() {
-    const $window = $(window);
     let lastScrollTop = 0;
     const $header = $(".tm-sticky_header");
-    const headerHeight = $header.outerHeight() + 30;
+    if (!$header.length) return;
+    let headerHeight = $header.outerHeight() + 30;
 
-    $window.scroll(function () {
-      const windowTop = $window.scrollTop();
+    $window.on("resize", function () {
+      headerHeight = $header.outerHeight() + 30;
+    });
 
+    function handleSticky(windowTop) {
       if (windowTop >= headerHeight) {
         $header.addClass("tm-gescout_sticky");
       } else {
@@ -301,7 +308,17 @@
       }
 
       lastScrollTop = windowTop;
-    });
+    }
+
+    if (lenisInstance) {
+      lenisInstance.on("scroll", function (e) {
+        handleSticky(e.scroll);
+      });
+    } else {
+      $window.on("scroll", function () {
+        handleSticky($window.scrollTop());
+      });
+    }
   }
 
   /*--------------------------------------------------------------
@@ -316,9 +333,11 @@
     var headerHeight = $constructionHeader.outerHeight() + 30;
     var lastScrollTop = 0;
 
-    $window.scroll(function () {
-      var windowTop = $window.scrollTop();
+    $window.on("resize", function () {
+      headerHeight = $constructionHeader.outerHeight() + 30;
+    });
 
+    function handleConstructionSticky(windowTop) {
       if (windowTop > headerHeight) {
         $constructionHeader.addClass("scrolled");
         $constructionHeader.removeClass("header-construction--below-topbar");
@@ -346,7 +365,17 @@
       }
 
       lastScrollTop = windowTop;
-    });
+    }
+
+    if (lenisInstance) {
+      lenisInstance.on("scroll", function (e) {
+        handleConstructionSticky(e.scroll);
+      });
+    } else {
+      $window.on("scroll", function () {
+        handleConstructionSticky($window.scrollTop());
+      });
+    }
   }
 
   function dynamicBackground() {
