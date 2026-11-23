@@ -130,6 +130,7 @@
     commonBannerParallax();
     titleAnimation();
     typewriterAnimation();
+    navRollingText();
   });
 
   $window.on("scroll", function () {
@@ -1915,6 +1916,33 @@
 
       // Start typing animation on start after initial pause
       setTimeout(tick, startDelay);
+    });
+  }
+
+  /*--------------------------------------------------------------
+  Nav Rolling Text Hover Effect (Auto-enhancer for unrolled nav links)
+  ----------------------------------------------------------------*/
+  function navRollingText() {
+    $(".tm-nav_list > li > a").each(function () {
+      var $link = $(this);
+      if ($link.find(".roll-text").length) return;
+      var text = $link.text().trim();
+      if (!text) return;
+      var html = '<span class="roll-text" aria-label="' + text + '">';
+      for (var i = 0; i < text.length; i++) {
+        var ch = text.charAt(i);
+        if (ch === " ") {
+          html += '<span class="roll-char roll-char--space" style="--char-i: ' + i + ';">&nbsp;</span>';
+        } else {
+          var isPlus = ch === "+";
+          html += '<span class="roll-char' + (isPlus ? ' roll-char--plus' : '') + '" style="--char-i: ' + i + ';">' +
+                  '<span class="char-top">' + ch + '</span>' +
+                  '<span class="char-bottom">' + ch + '</span>' +
+                  '</span>';
+        }
+      }
+      html += '</span>';
+      $link.html(html);
     });
   }
 
