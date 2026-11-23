@@ -10,6 +10,10 @@
     flex-wrap: wrap;
     width: 100%;
 
+    @include respond-min(lg) {
+      flex-wrap: nowrap;
+    }
+
     &:hover .architect-card.active:not(:hover) .architect-card__overlay {
       opacity: 0;
       visibility: hidden;
@@ -24,28 +28,36 @@
 
 .architect-card {
   position: relative;
-  flex: 0 0 25%;
-  max-width: 25%;
-  height: 550px;
+  flex: 0 0 50%;
+  max-width: 50%;
+  height: 450px;
   overflow: hidden;
   cursor: pointer;
 
   -webkit-font-smoothing: antialiased;
   backface-visibility: hidden;
 
-  @include respond(lg) {
-    height: 450px;
-  }
-
-  @include respond(md) {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-
   @include respond(sm) {
     flex: 0 0 100%;
     max-width: 100%;
     height: 400px;
+  }
+
+  @include respond-min(lg) {
+    flex: 1 1 0%;
+    max-width: none;
+    min-width: 0;
+    height: 550px;
+    transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: flex;
+
+    .architect-portfolio__container:hover & {
+      flex: 1 1 0%;
+
+      &:hover {
+        flex: 1.615 1 0%;
+      }
+    }
   }
 
   &__image {
@@ -94,6 +106,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    min-width: 0;
   }
 
   &__title {
@@ -108,42 +121,108 @@
     line-height: 26px;
     margin-bottom: 30px;
     color: var(--white-color);
+    max-width: 480px;
   }
 
   &__btn {
+    position: relative;
     display: inline-flex;
-    align-items: stretch;
+    align-items: center;
+    background-color: var(--white-color);
+    color: var(--black-color);
+    font-family: var(--heading-font-family);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
     text-decoration: none;
-    font-family: var(--body-font-family), sans-serif;
+    border: none;
+    padding: 12px 52px 12px 20px;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.3s ease;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--black-color);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1;
+      pointer-events: none;
+    }
 
     .btn-text {
-      background-color: var(--white-color);
-      color: var(--black-color);
-      font-size: 12px;
-      font-weight: 700;
-      padding: 12px 20px;
-      display: flex;
-      align-items: center;
-      transition: background-color 0.3s;
+      position: relative;
+      z-index: 2;
+      color: inherit;
+      pointer-events: none;
+      transition: color 0.3s ease;
     }
 
     .btn-icon {
-      background-color: var(--black-color);
-      color: var(--white-color);
-      display: flex;
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      bottom: 4px;
+      width: 34px;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0 15px;
-      transition: background-color 0.3s;
+      padding: 0;
+      background-color: var(--black-color);
+      color: var(--white-color);
+      z-index: 2;
+      transition:
+        top 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        right 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        bottom 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        width 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        background-color 0.35s ease;
+
+      svg {
+        display: block;
+        transform-origin: center center;
+        backface-visibility: hidden;
+        will-change: transform;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        stroke: currentColor;
+      }
     }
 
     &:hover {
+      color: var(--white-color);
+
+      &::before {
+        transform: scaleX(1);
+      }
+
       .btn-text {
-        background-color: #f1f1f1;
+        color: var(--white-color);
       }
+
       .btn-icon {
-        background-color: #333;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 42px;
+        background-color: var(--white-color);
+        color: var(--black-color);
+
+        svg {
+          transform: rotate(-45deg);
+        }
       }
+    }
+
+    &:active {
+      transform: scale(0.98);
     }
   }
 

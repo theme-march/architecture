@@ -4,23 +4,35 @@
   overflow: hidden;
   position: relative;
   width: 100%;
+
+  @include respond-min(lg) {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 0 40px;
+
+    > .ak-height-120 {
+      display: none;
+    }
+  }
 }
 
 .how-we-work__track-wrap {
   padding-left: max(15px, calc((100vw - 1320px) / 2 + 15px));
-  cursor: grab;
   user-select: none;
   -webkit-user-select: none;
-  touch-action: pan-y;
-
-  &:active,
-  &.is-dragging {
-    cursor: grabbing;
-  }
 
   @include respond(md) {
     padding-left: 15px;
     padding-right: 15px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 

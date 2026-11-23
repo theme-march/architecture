@@ -53,18 +53,11 @@
       infinite: false,
     });
 
-    if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
-      lenisInstance.on("scroll", ScrollTrigger.update);
-      gsap.ticker.add(function (time) {
-        lenisInstance.raf(time * 1000);
-      });
-      gsap.ticker.lagSmoothing(500, 33);
-    } else {
-      (function raf(time) {
-        lenisInstance.raf(time);
-        requestAnimationFrame(raf);
-      })(0);
+    function raf(time) {
+      lenisInstance.raf(time);
+      requestAnimationFrame(raf);
     }
+    requestAnimationFrame(raf);
   }
 
   initLenis();
@@ -99,6 +92,10 @@
     if (plugins.length) {
       gsap.registerPlugin(...plugins);
     }
+
+    if (lenisInstance && typeof ScrollTrigger !== "undefined") {
+      lenisInstance.on("scroll", ScrollTrigger.update);
+    }
   }
 
   $(function () {
@@ -132,6 +129,7 @@
     footerParallax();
     commonBannerParallax();
     titleAnimation();
+    typewriterAnimation();
   });
 
   $window.on("scroll", function () {
@@ -574,15 +572,23 @@
   }
 
   /*--------------------------------------------------------------
-  14. Service Construction Tab Switcher
+  14. Service Construction Tab Switcher & Pinned Scroll
   --------------------------------------------------------------*/
   function serviceConstructionTabs() {
     var $section = $(".service-construction");
     if (!$section.length) return;
 
     var $imgItems = $section.find(".service-construction__img-item");
+    var $listItems = $section.find(".service-construction__list-item");
+    var $panels = $section.find(".service-construction__panel");
+    var $number = $section.find(".service-construction__number");
+
     var currentIndex = 0;
     var isAnimating = false;
+    var pendingIndex = null;
+    var isClickScrolling = false;
+    var st = null;
+    var pinDistance = 900;
 
     function getSlotGeometry() {
       var w = window.innerWidth;
@@ -641,77 +647,89 @@
       });
     }
 
-    $section.on("click", ".service-construction__list-item", function () {
-      var $clicked = $(this);
-      if ($clicked.hasClass("service-construction__list-item--active") || isAnimating) return;
+    function goToTab(targetIndex, onDone) {
+      if (targetIndex === currentIndex) return;
+      if (targetIndex < 0) targetIndex = 0;
+      if (targetIndex > 3) targetIndex = 3;
 
-      var targetIndex = parseInt($clicked.attr("data-index"), 10) || 0;
-      var numberText = $clicked.attr("data-number") || ("0" + (targetIndex + 1) + ".");
+      if (isAnimating) {
+        pendingIndex = targetIndex;
+        return;
+      }
+
+      var $targetItem = $listItems.filter('[data-index="' + targetIndex + '"]');
+      if (!$targetItem.length) return;
+
+      var numberText = $targetItem.attr("data-number") || ("0" + (targetIndex + 1) + ".");
       var isForward = targetIndex > currentIndex;
 
       isAnimating = true;
 
-      // 1. Update active tab UI
-      $section.find(".service-construction__list-item").removeClass("service-construction__list-item--active");
+      // 1. Update active tab list UI
+      $listItems.removeClass("service-construction__list-item--active");
       $section.find(".service-construction__list-dash").removeClass("service-construction__list-dash--active");
-      $clicked.addClass("service-construction__list-item--active");
-      $clicked.find(".service-construction__list-dash").addClass("service-construction__list-dash--active");
+      $targetItem.addClass("service-construction__list-item--active");
+      $targetItem.find(".service-construction__list-dash").addClass("service-construction__list-dash--active");
 
       // 2. Animate number change
-      var $number = $section.find(".service-construction__number");
       if (typeof gsap !== "undefined") {
         gsap.to($number, {
           y: -10,
           opacity: 0,
-          duration: 0.2,
+          duration: 0.18,
+          overwrite: true,
           onComplete: function () {
             $number.text(numberText);
-            gsap.fromTo($number, { y: 10, opacity: 0 }, { y: 0, opacity: 0.1, duration: 0.3 });
+            gsap.fromTo($number, { y: 10, opacity: 0 }, { y: 0, opacity: 0.1, duration: 0.25 });
           }
         });
       } else {
         $number.text(numberText);
       }
 
-      // 3. Switch bottom content panel with slide up animation
-      var $panels = $section.find(".service-construction__panel");
+      // 3. Switch bottom content panel with slide up/down animation
       var $currentActive = $panels.filter(".service-construction__panel--active");
       var $nextActive = $panels.filter('[data-index="' + targetIndex + '"]');
 
       if (typeof gsap !== "undefined") {
-        var yExit = isForward ? -40 : 40;
-        var yEnter = isForward ? 40 : -40;
-        var panelDur = 0.6;
+        var yExit = isForward ? -35 : 35;
+        var yEnter = isForward ? 35 : -35;
+        var panelDur = 0.4;
         var panelEase = "power2.inOut";
 
-        // Keep outgoing panel in absolute overlay position so incoming slides up simultaneously without jump
+        // Reset any other panel styles to prevent layout contamination
+        $panels.each(function () {
+          if (this !== $currentActive[0] && this !== $nextActive[0]) {
+            gsap.killTweensOf(this);
+            $(this).removeClass("service-construction__panel--active").removeAttr("style");
+          }
+        });
+
         $currentActive.css({
           position: "absolute",
           top: 0,
           left: 0,
           width: "100%",
-          zIndex: 1,
+          zIndex: 1
         });
 
-        // Show incoming panel in normal flow
         $nextActive
           .addClass("service-construction__panel--active")
           .css({ display: "block", position: "relative", zIndex: 2 });
 
-        // Animate outgoing panel sliding up and fading out
         gsap.to($currentActive, {
           y: yExit,
           opacity: 0,
           duration: panelDur,
           ease: panelEase,
+          overwrite: true,
           onComplete: function () {
             $currentActive
               .removeClass("service-construction__panel--active")
               .removeAttr("style");
-          },
+          }
         });
 
-        // Animate incoming panel sliding up into place
         gsap.fromTo(
           $nextActive,
           { y: yEnter, opacity: 0 },
@@ -720,9 +738,10 @@
             opacity: 1,
             duration: panelDur,
             ease: panelEase,
+            overwrite: true,
             onComplete: function () {
               $nextActive.css({ position: "", zIndex: "", transform: "" });
-            },
+            }
           }
         );
       } else {
@@ -734,11 +753,12 @@
       if (typeof gsap === "undefined" || !$imgItems.length) {
         currentIndex = targetIndex;
         isAnimating = false;
+        if (onDone) onDone();
         return;
       }
 
       var geom = getSlotGeometry();
-      var dur = 0.75;
+      var dur = 0.48;
       var ease = "power2.inOut";
 
       var $currTop = $imgItems.eq(currentIndex);
@@ -754,32 +774,40 @@
         });
         currentIndex = targetIndex;
         isAnimating = false;
+
+        if (onDone) onDone();
+
+        // Process any queued step that arrived during animation
+        if (pendingIndex !== null && pendingIndex !== currentIndex) {
+          var nextTarget = pendingIndex;
+          pendingIndex = null;
+          goToTab(nextTarget);
+        }
       }
 
       if (isForward) {
         if (targetIndex === currentIndex + 1) {
           // Sequential forward:
-          // $currTop slides up and disappears
           gsap.to($currTop, {
             top: geom.exitTop,
             opacity: 0,
             duration: dur,
             ease: ease,
+            overwrite: true,
             onComplete: function () {
               $currTop.css("display", "none");
             }
           });
 
-          // $currBottom (which is $targetTop) slides up into slot 1 and expands to h1
           gsap.to($targetTop, {
             top: geom.top1,
             height: geom.h1,
             zIndex: 3,
             duration: dur,
-            ease: ease
+            ease: ease,
+            overwrite: true
           });
 
-          // $targetBottom enters from below into slot 2
           gsap.set($targetBottom, {
             display: "block",
             top: geom.exitBottom,
@@ -792,9 +820,8 @@
             opacity: 1,
             duration: dur,
             ease: ease,
-            onComplete: function () {
-              finishTransition();
-            }
+            overwrite: true,
+            onComplete: finishTransition
           });
         } else {
           // Skipping forward:
@@ -803,6 +830,7 @@
             opacity: 0,
             duration: dur,
             ease: ease,
+            overwrite: true,
             onComplete: function () {
               $currTop.css("display", "none");
               $currBottom.css("display", "none");
@@ -820,7 +848,8 @@
             top: geom.top1,
             opacity: 1,
             duration: dur,
-            ease: ease
+            ease: ease,
+            overwrite: true
           });
 
           gsap.set($targetBottom, {
@@ -835,36 +864,34 @@
             opacity: 1,
             duration: dur,
             ease: ease,
-            onComplete: function () {
-              finishTransition();
-            }
+            overwrite: true,
+            onComplete: finishTransition
           });
         }
       } else {
         // Backward direction:
         if (targetIndex === currentIndex - 1) {
           // Sequential backward:
-          // $currBottom drops down and disappears
           gsap.to($currBottom, {
             top: geom.exitBottom,
             opacity: 0,
             duration: dur,
             ease: ease,
+            overwrite: true,
             onComplete: function () {
               $currBottom.css("display", "none");
             }
           });
 
-          // $currTop (which is $targetBottom) drops down into slot 2 and shrinks to h2
           gsap.to($currTop, {
             top: geom.top2,
             height: geom.h2,
             zIndex: 2,
             duration: dur,
-            ease: ease
+            ease: ease,
+            overwrite: true
           });
 
-          // $targetTop drops down from above into slot 1 at h1
           gsap.set($targetTop, {
             display: "block",
             top: geom.exitTop,
@@ -877,9 +904,8 @@
             opacity: 1,
             duration: dur,
             ease: ease,
-            onComplete: function () {
-              finishTransition();
-            }
+            overwrite: true,
+            onComplete: finishTransition
           });
         } else {
           // Skipping backward:
@@ -888,6 +914,7 @@
             opacity: 0,
             duration: dur,
             ease: ease,
+            overwrite: true,
             onComplete: function () {
               $currTop.css("display", "none");
               $currBottom.css("display", "none");
@@ -905,7 +932,8 @@
             top: geom.top1,
             opacity: 1,
             duration: dur,
-            ease: ease
+            ease: ease,
+            overwrite: true
           });
 
           gsap.set($targetBottom, {
@@ -920,11 +948,115 @@
             opacity: 1,
             duration: dur,
             ease: ease,
-            onComplete: function () {
-              finishTransition();
-            }
+            overwrite: true,
+            onComplete: finishTransition
           });
         }
+      }
+    }
+
+    // ScrollTrigger Pinned Vertical Scrolling on Desktop (>= 992px)
+    if (typeof ScrollTrigger !== "undefined") {
+      ScrollTrigger.matchMedia({
+        "(min-width: 992px)": function () {
+          st = ScrollTrigger.create({
+            trigger: $section[0],
+            start: "center center",
+            end: "+=" + pinDistance,
+            pin: true,
+            pinSpacing: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            onUpdate: function (self) {
+              if (isClickScrolling) return;
+
+              var p = self.progress;
+              var targetStep = 0;
+              if (p >= 0.82) {
+                targetStep = 3;
+              } else if (p >= 0.52) {
+                targetStep = 2;
+              } else if (p >= 0.22) {
+                targetStep = 1;
+              } else {
+                targetStep = 0;
+              }
+
+              if (targetStep !== currentIndex) {
+                if (!isAnimating) {
+                  goToTab(targetStep);
+                } else {
+                  pendingIndex = targetStep;
+                }
+              }
+            },
+            onLeave: function () {
+              if (!isClickScrolling && currentIndex !== 3) {
+                pendingIndex = null;
+                goToTab(3);
+              }
+            },
+            onLeaveBack: function () {
+              if (!isClickScrolling && currentIndex !== 0) {
+                pendingIndex = null;
+                goToTab(0);
+              }
+            },
+            onRefresh: function (self) {
+              if (self.isActive && !isClickScrolling) {
+                var p = self.progress;
+                var targetStep = p >= 0.82 ? 3 : (p >= 0.52 ? 2 : (p >= 0.22 ? 1 : 0));
+                if (targetStep !== currentIndex) {
+                  goToTab(targetStep);
+                }
+              }
+            }
+          });
+
+          return function () {
+            if (st) {
+              st.kill();
+              st = null;
+            }
+          };
+        }
+      });
+    }
+
+    // Click on tab items: switches tab and synchronizes scroll position when pinned
+    $section.on("click", ".service-construction__list-item", function () {
+      var $clicked = $(this);
+      var targetIndex = parseInt($clicked.attr("data-index"), 10) || 0;
+      if (targetIndex === currentIndex) return;
+
+      if (st && typeof st.start === "number") {
+        isClickScrolling = true;
+        pendingIndex = null;
+        goToTab(targetIndex);
+
+        var targetProgressMap = [0, 0.37, 0.67, 0.95];
+        var targetProgress = targetProgressMap[targetIndex] || 0;
+        var targetScroll = Math.round(st.start + targetProgress * pinDistance);
+
+        if (lenisInstance) {
+          lenisInstance.scrollTo(targetScroll, {
+            duration: 0.5,
+            onComplete: function () {
+              setTimeout(function () {
+                isClickScrolling = false;
+              }, 40);
+            }
+          });
+        } else {
+          $("html, body").stop().animate({ scrollTop: targetScroll }, 500, function () {
+            setTimeout(function () {
+              isClickScrolling = false;
+            }, 40);
+          });
+        }
+      } else {
+        pendingIndex = null;
+        goToTab(targetIndex);
       }
     });
   }
@@ -1017,6 +1149,7 @@
     [
       [".portfolio__item", ".portfolio__item-img", 25],
       [".portfolio-architecture__image-wrap", ".portfolio-architecture__image", 10],
+      [".reach-out__img-wrap", ".reach-out__img", 15],
     ].forEach(function (cfg) {
       document.querySelectorAll(cfg[0]).forEach(function (trigger) {
         var img = trigger.querySelector(cfg[1]);
@@ -1056,7 +1189,7 @@
           gsap.fromTo(
             wrap,
             {
-              width: "85%",
+              width: "72%",
               borderRadius: "12px",
             },
             {
@@ -1191,7 +1324,6 @@
     if (!$hero.length || !$wrapper.length || !$about.length || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
     ScrollTrigger.matchMedia({
-      // Desktop & Tablet (>= 768px)
       "(min-width: 768px)": function () {
         var tl = gsap.timeline({
           scrollTrigger: {
@@ -1210,7 +1342,7 @@
         tl.to(
           $wrapper[0],
           {
-            scale: 0.94,
+            scale: 0.85,
             ease: "none",
           },
           0
@@ -1245,8 +1377,6 @@
     if (!$hero.length || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
     var $bg = $hero.find(".hero-construction__bg");
-    var $personBg = $hero.find(".hero-construction__person-bg");
-    var $person = $hero.find(".hero-construction__person");
 
     ScrollTrigger.matchMedia({
       // Desktop & Tablet (>= 992px where hero visual is visible)
@@ -1264,37 +1394,8 @@
           });
         }
 
-        if ($personBg.length) {
-          gsap.to($personBg[0], {
-            y: -50,
-            ease: "none",
-            scrollTrigger: {
-              trigger: $hero[0],
-              start: "top top",
-              end: "bottom top",
-              scrub: true,
-            },
-          });
-        }
-
-        if ($person.length) {
-          gsap.to($person[0], {
-            xPercent: -50,
-            y: -95,
-            ease: "none",
-            scrollTrigger: {
-              trigger: $hero[0],
-              start: "top top",
-              end: "bottom top",
-              scrub: true,
-            },
-          });
-        }
-
         return function () {
           if ($bg.length) gsap.set($bg[0], { clearProps: "transform" });
-          if ($personBg.length) gsap.set($personBg[0], { clearProps: "transform" });
-          if ($person.length) gsap.set($person[0], { clearProps: "transform" });
         };
       },
     });
@@ -1546,109 +1647,57 @@
   }
 
   /*--------------------------------------------------------------
-  16. How We Work Horizontal Scroll & Drag
+  16. How We Work Pinned Horizontal Scroll
   --------------------------------------------------------------*/
   function howWeWorkHorizontalScroll() {
     var $section = $(".how-we-work");
     var $wrap    = $(".how-we-work__track-wrap");
     var $track   = $(".how-we-work__track");
-    if (!$section.length || !$track.length || typeof gsap === "undefined") return;
+    if (!$section.length || !$track.length || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
-    var track = $track[0], wrap = $wrap[0];
-    var currentX = 0, dragOffset = 0, scrollProgress = 0, isDragging = false;
-    var startX = 0, startTrackX = 0, lastX = 0, lastTime = 0, velocity = 0, moved = false;
+    var section = $section[0];
+    var track = $track[0];
 
-    function getMaxDist() {
-      var pad = Math.max(15, (window.innerWidth - 1320) / 2 + 15);
-      return Math.max(0, track.scrollWidth + 2 * pad - window.innerWidth);
-    }
-
-    function clamp(val, max) {
-      return Math.max(-max, Math.min(0, val));
-    }
-
-    if (typeof ScrollTrigger !== "undefined") {
-      ScrollTrigger.create({
-        trigger: $section[0],
-        start: "top 80%",
-        end: "bottom 20%",
-        onUpdate: function (self) {
-          scrollProgress = self.progress;
-          if (!isDragging) {
-            var max = getMaxDist();
-            currentX = clamp(-scrollProgress * max + dragOffset, max);
-            gsap.to(track, { x: currentX, duration: 0.35, ease: "power1.out", overwrite: "auto" });
-          }
+    ScrollTrigger.matchMedia({
+      // Desktop & Large Screens (>= 992px): Pin section & scroll cards horizontally
+      "(min-width: 992px)": function () {
+        function getScrollDistance() {
+          var padLeft = parseFloat($wrap.css("padding-left")) || 15;
+          return Math.max(0, track.scrollWidth + padLeft * 2 - window.innerWidth);
         }
-      });
-    }
 
-    wrap.addEventListener("pointerdown", function (e) {
-      if (e.button && e.button !== 0) return;
-      isDragging = true;
-      moved = false;
-      startX = lastX = e.clientX;
-      startTrackX = currentX = gsap.getProperty(track, "x") || 0;
-      lastTime = Date.now();
-      velocity = 0;
-      $wrap.addClass("is-dragging");
-      gsap.killTweensOf(track);
-      try { wrap.setPointerCapture(e.pointerId); } catch (_) {}
-    });
+        var tween = gsap.to(track, {
+          x: function () {
+            return -getScrollDistance();
+          },
+          ease: "none",
+        });
 
-    wrap.addEventListener("pointermove", function (e) {
-      if (!isDragging) return;
-      var dx = e.clientX - startX;
-      if (Math.abs(dx) > 4) moved = true;
+        var st = ScrollTrigger.create({
+          trigger: section,
+          start: "top top",
+          end: function () {
+            return "+=" + (getScrollDistance() * 0.7);
+          },
+          pin: true,
+          pinSpacing: true,
+          scrub: 0.5,
+          animation: tween,
+          invalidateOnRefresh: true,
+          anticipatePin: 1,
+        });
 
-      var max = getMaxDist(), raw = startTrackX + dx;
-      if (raw > 0) raw *= 0.25;
-      else if (raw < -max) raw = -max + (raw + max) * 0.25;
+        return function () {
+          if (st) st.kill();
+          if (tween) tween.kill();
+          gsap.set(track, { clearProps: "transform" });
+        };
+      },
 
-      currentX = raw;
-      gsap.set(track, { x: currentX });
-
-      var now = Date.now(), dt = now - lastTime;
-      if (dt > 10) {
-        velocity = (e.clientX - lastX) / dt;
-        lastX = e.clientX;
-        lastTime = now;
-      }
-    });
-
-    function endDrag(e) {
-      if (!isDragging) return;
-      isDragging = false;
-      $wrap.removeClass("is-dragging");
-      try { wrap.releasePointerCapture(e.pointerId); } catch (_) {}
-
-      var max = getMaxDist();
-      var targetX = clamp(currentX + velocity * 120, max);
-      var scrollBaseX = -scrollProgress * max;
-
-      gsap.to(track, {
-        x: targetX,
-        duration: 0.45,
-        ease: "power2.out",
-        onUpdate: function () { currentX = gsap.getProperty(track, "x") || 0; },
-        onComplete: function () {
-          currentX = targetX;
-          dragOffset = currentX - scrollBaseX;
-        }
-      });
-      dragOffset = targetX - scrollBaseX;
-    }
-
-    wrap.addEventListener("pointerup", endDrag);
-    wrap.addEventListener("pointercancel", endDrag);
-
-    $wrap.on("click", function (e) {
-      if (moved) { e.preventDefault(); e.stopPropagation(); }
-    });
-
-    $(window).on("resize", function () {
-      currentX = clamp(currentX, getMaxDist());
-      gsap.set(track, { x: currentX });
+      // Mobile / Tablet (< 992px): Revert to native touch-scroll / swipe
+      "(max-width: 991px)": function () {
+        gsap.set(track, { clearProps: "transform" });
+      },
     });
   }
 
@@ -1805,6 +1854,67 @@
           scrub: true,
         },
       });
+    });
+  }
+
+  /*--------------------------------------------------------------
+  Hero Interior Typewriter Animation
+  --------------------------------------------------------------*/
+  function typewriterAnimation() {
+    var $targets = $("[data-words]");
+    if (!$targets.length) return;
+
+    $targets.each(function () {
+      var $el = $(this);
+      var wordsRaw = $el.attr("data-words");
+      var words = [];
+      try {
+        words = JSON.parse(wordsRaw);
+      } catch (_) {
+        words = wordsRaw ? wordsRaw.split(",").map(function (w) { return w.trim(); }) : [];
+      }
+      if (!words || !words.length) return;
+
+      var wordIndex = 0;
+      var currentText = "";
+      var isDeleting = false; // Start with typing animation on start
+      var typingSpeed = 100;
+      var deletingSpeed = 55;
+      var pauseAfterWord = 2000;
+      var pauseAfterDelete = 400;
+      var startDelay = 500;
+
+      $el.text("");
+
+      function tick() {
+        var targetWord = words[wordIndex];
+
+        if (isDeleting) {
+          currentText = targetWord.substring(0, currentText.length - 1);
+          $el.text(currentText);
+
+          if (currentText.length === 0) {
+            isDeleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+            setTimeout(tick, pauseAfterDelete);
+            return;
+          }
+          setTimeout(tick, deletingSpeed);
+        } else {
+          currentText = targetWord.substring(0, currentText.length + 1);
+          $el.text(currentText);
+
+          if (currentText === targetWord) {
+            isDeleting = true;
+            setTimeout(tick, pauseAfterWord);
+            return;
+          }
+          setTimeout(tick, typingSpeed);
+        }
+      }
+
+      // Start typing animation on start after initial pause
+      setTimeout(tick, startDelay);
     });
   }
 

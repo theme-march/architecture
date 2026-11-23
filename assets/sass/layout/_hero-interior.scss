@@ -54,7 +54,7 @@
   &__overlay {
     position: absolute;
     inset: 0;
-    background-color: color-mix(in srgb, var(--black-color), transparent 75%);
+    background-color: color-mix(in srgb, var(--black-color), transparent 70%);
     z-index: 2;
   }
 
@@ -117,5 +117,35 @@
       letter-spacing: 0px;
       margin-bottom: 15px;
     }
+  }
+
+  &__typing-text {
+    display: inline;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    text-transform: inherit;
+  }
+
+  &__typing-cursor {
+    display: inline-block;
+    margin-left: 3px;
+    color: var(--primary-color);
+    font-weight: 300;
+    line-height: 1;
+    animation: typingCursorBlink 0.85s infinite ease-in-out;
+    vertical-align: baseline;
+    user-select: none;
+  }
+}
+
+@keyframes typingCursorBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
   }
 }

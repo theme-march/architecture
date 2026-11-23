@@ -860,8 +860,8 @@ kbd {
   height: 100%;
   background-color: var(--black-color);
   transform: scaleX(0);
-  transform-origin: right center;
-  transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-origin: left center;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
   pointer-events: none;
 }
@@ -880,39 +880,38 @@ kbd {
   width: 47px;
   display: inline-flex;
   align-items: center;
-  justify-content: flex-end;
-  padding-right: 16px;
+  justify-content: center;
+  padding: 0;
   background-color: var(--white-color);
   z-index: 2;
-  transition: background-color 0.3s ease 0.24s;
+  transition: top 0.45s cubic-bezier(0.4, 0, 0.2, 1), right 0.45s cubic-bezier(0.4, 0, 0.2, 1), bottom 0.45s cubic-bezier(0.4, 0, 0.2, 1), width 0.45s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.35s ease;
 }
 .primary-btn .icon-wrapper svg {
   display: block;
   transform-origin: center center;
   backface-visibility: hidden;
   will-change: transform;
-  transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1) 0.22s;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .primary-btn .icon-wrapper svg path {
   fill: var(--primary-color);
-  transition: fill 0.28s ease 0.24s;
+  transition: fill 0.28s ease;
 }
 .primary-btn:hover::before {
   transform: scaleX(1);
-  transform-origin: left center;
-  transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .primary-btn:hover .icon-wrapper {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 55px;
   background-color: var(--primary-color);
-  transition: background-color 0.3s ease 0.24s;
 }
 .primary-btn:hover .icon-wrapper svg {
   transform: rotate(-45deg);
-  transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1) 0.22s;
 }
 .primary-btn:hover .icon-wrapper svg path {
   fill: var(--black-color);
-  transition: fill 0.28s ease 0.24s;
 }
 .primary-btn:active {
   transform: scale(0.98);
@@ -927,7 +926,12 @@ kbd {
     right: 4px;
     bottom: 4px;
     width: 40px;
-    padding-right: 13px;
+  }
+  .primary-btn:hover .icon-wrapper {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 46px;
   }
 }
 @media (max-width: 576px) {
@@ -939,7 +943,12 @@ kbd {
     right: 4px;
     bottom: 4px;
     width: 36px;
-    padding-right: 11px;
+  }
+  .primary-btn:hover .icon-wrapper {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 42px;
   }
 }
 
@@ -969,8 +978,8 @@ kbd {
   height: 100%;
   background-color: var(--black-color);
   transform: scaleX(0);
-  transform-origin: right center;
-  transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-origin: left center;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
   pointer-events: none;
 }
@@ -989,42 +998,41 @@ kbd {
   width: 47px;
   display: inline-flex;
   align-items: center;
-  justify-content: flex-end;
-  padding-right: 16px;
+  justify-content: center;
+  padding: 0;
   background-color: var(--white-color);
   z-index: 2;
-  transition: background-color 0.3s ease 0.24s;
+  transition: top 0.45s cubic-bezier(0.4, 0, 0.2, 1), right 0.45s cubic-bezier(0.4, 0, 0.2, 1), bottom 0.45s cubic-bezier(0.4, 0, 0.2, 1), width 0.45s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.35s ease;
 }
 .outline-btn .icon-wrapper svg {
   display: block;
   transform-origin: center center;
   backface-visibility: hidden;
   will-change: transform;
-  transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1) 0.22s;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .outline-btn .icon-wrapper svg path {
   fill: var(--primary-color);
-  transition: fill 0.28s ease 0.24s;
+  transition: fill 0.28s ease;
 }
 .outline-btn:hover {
   border-color: var(--black-color);
 }
 .outline-btn:hover::before {
   transform: scaleX(1);
-  transform-origin: left center;
-  transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .outline-btn:hover .icon-wrapper {
-  background-color: var(--primary-color);
-  transition: background-color 0.3s ease 0.24s;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 55px;
+  background-color: var(--white-color);
 }
 .outline-btn:hover .icon-wrapper svg {
   transform: rotate(-45deg);
-  transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1) 0.22s;
 }
 .outline-btn:hover .icon-wrapper svg path {
-  fill: var(--black-color);
-  transition: fill 0.28s ease 0.24s;
+  fill: var(--primary-color);
 }
 .outline-btn:active {
   transform: scale(0.98);
@@ -1039,7 +1047,12 @@ kbd {
     right: 4px;
     bottom: 4px;
     width: 40px;
-    padding-right: 13px;
+  }
+  .outline-btn:hover .icon-wrapper {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 46px;
   }
 }
 @media (max-width: 576px) {
@@ -1051,7 +1064,12 @@ kbd {
     right: 4px;
     bottom: 4px;
     width: 36px;
-    padding-right: 11px;
+  }
+  .outline-btn:hover .icon-wrapper {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 42px;
   }
 }
 
@@ -5621,6 +5639,11 @@ body.has-footer-parallax .page-reveal-wrap {
   flex-wrap: wrap;
   width: 100%;
 }
+@media (min-width: 992px) {
+  .architect-portfolio__container {
+    flex-wrap: nowrap;
+  }
+}
 .architect-portfolio__container:hover .architect-card.active:not(:hover) .architect-card__overlay {
   opacity: 0;
   visibility: hidden;
@@ -5632,30 +5655,35 @@ body.has-footer-parallax .page-reveal-wrap {
 
 .architect-card {
   position: relative;
-  flex: 0 0 25%;
-  max-width: 25%;
-  height: 550px;
+  flex: 0 0 50%;
+  max-width: 50%;
+  height: 450px;
   overflow: hidden;
   cursor: pointer;
   -webkit-font-smoothing: antialiased;
   backface-visibility: hidden;
-}
-@media (max-width: 992px) {
-  .architect-card {
-    height: 450px;
-  }
-}
-@media (max-width: 768px) {
-  .architect-card {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
 }
 @media (max-width: 576px) {
   .architect-card {
     flex: 0 0 100%;
     max-width: 100%;
     height: 400px;
+  }
+}
+@media (min-width: 992px) {
+  .architect-card {
+    flex: 1 1 0%;
+    max-width: none;
+    min-width: 0;
+    height: 550px;
+    transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: flex;
+  }
+  .architect-portfolio__container:hover .architect-card {
+    flex: 1 1 0%;
+  }
+  .architect-portfolio__container:hover .architect-card:hover {
+    flex: 1.615 1 0%;
   }
 }
 .architect-card__image {
@@ -5697,6 +5725,7 @@ body.has-footer-parallax .page-reveal-wrap {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  min-width: 0;
 }
 .architect-card__title {
   font-size: 24px;
@@ -5709,37 +5738,93 @@ body.has-footer-parallax .page-reveal-wrap {
   line-height: 26px;
   margin-bottom: 30px;
   color: var(--white-color);
+  max-width: 480px;
 }
 .architect-card__btn {
+  position: relative;
   display: inline-flex;
-  align-items: stretch;
-  text-decoration: none;
-  font-family: var(--body-font-family), sans-serif;
-}
-.architect-card__btn .btn-text {
+  align-items: center;
   background-color: var(--white-color);
   color: var(--black-color);
-  font-size: 12px;
+  font-family: var(--heading-font-family);
+  font-size: 13px;
   font-weight: 700;
-  padding: 12px 20px;
-  display: flex;
-  align-items: center;
-  transition: background-color 0.3s;
+  line-height: 18px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  padding: 12px 52px 12px 20px;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+.architect-card__btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--black-color);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  pointer-events: none;
+}
+.architect-card__btn .btn-text {
+  position: relative;
+  z-index: 2;
+  color: inherit;
+  pointer-events: none;
+  transition: color 0.3s ease;
 }
 .architect-card__btn .btn-icon {
-  background-color: var(--black-color);
-  color: var(--white-color);
-  display: flex;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  bottom: 4px;
+  width: 34px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0 15px;
-  transition: background-color 0.3s;
+  padding: 0;
+  background-color: var(--black-color);
+  color: var(--white-color);
+  z-index: 2;
+  transition: top 0.45s cubic-bezier(0.4, 0, 0.2, 1), right 0.45s cubic-bezier(0.4, 0, 0.2, 1), bottom 0.45s cubic-bezier(0.4, 0, 0.2, 1), width 0.45s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.35s ease;
+}
+.architect-card__btn .btn-icon svg {
+  display: block;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  will-change: transform;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  stroke: currentColor;
+}
+.architect-card__btn:hover {
+  color: var(--white-color);
+}
+.architect-card__btn:hover::before {
+  transform: scaleX(1);
 }
 .architect-card__btn:hover .btn-text {
-  background-color: #f1f1f1;
+  color: var(--white-color);
 }
 .architect-card__btn:hover .btn-icon {
-  background-color: #333;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 42px;
+  background-color: var(--white-color);
+  color: var(--black-color);
+}
+.architect-card__btn:hover .btn-icon svg {
+  transform: rotate(-45deg);
+}
+.architect-card__btn:active {
+  transform: scale(0.98);
 }
 .architect-card:hover .architect-card__overlay, .architect-card.active .architect-card__overlay {
   opacity: 1;
@@ -6243,7 +6328,7 @@ body.has-footer-parallax .page-reveal-wrap {
 .hero-interior__overlay {
   position: absolute;
   inset: 0;
-  background-color: color-mix(in srgb, var(--black-color), transparent 75%);
+  background-color: color-mix(in srgb, var(--black-color), transparent 70%);
   z-index: 2;
 }
 .hero-interior__content {
@@ -6309,7 +6394,33 @@ body.has-footer-parallax .page-reveal-wrap {
     margin-bottom: 15px;
   }
 }
+.hero-interior__typing-text {
+  display: inline;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  text-transform: inherit;
+}
+.hero-interior__typing-cursor {
+  display: inline-block;
+  margin-left: 3px;
+  color: var(--primary-color);
+  font-weight: 300;
+  line-height: 1;
+  animation: typingCursorBlink 0.85s infinite ease-in-out;
+  vertical-align: baseline;
+  user-select: none;
+}
 
+@keyframes typingCursorBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
 /*--------------------------------------------------------------
 Begin A Brief
 ----------------------------------------------------------------*/
@@ -6885,13 +6996,31 @@ About Us
 }
 
 .service__item {
+  position: relative;
+  overflow: hidden;
   border-top: 1px solid var(--border-color);
   transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+.service__item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--white-color);
+  transform: translateY(100%);
+  transform-origin: bottom center;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 0;
+  pointer-events: none;
+}
+.service__item:not(.service__item--active):hover::before {
+  transform: translateY(0%);
 }
 .service__item:last-child {
   border-bottom: 1px solid var(--border-color);
 }
 .service__item .service__item-header {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 65px;
@@ -6911,6 +7040,8 @@ About Us
   }
 }
 .service__item .service__item-collapse {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.55s cubic-bezier(0.25, 1, 0.5, 1);
@@ -7479,21 +7610,34 @@ About Us
   position: relative;
   width: 100%;
 }
+@media (min-width: 992px) {
+  .how-we-work {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 0 40px;
+  }
+  .how-we-work > .ak-height-120 {
+    display: none;
+  }
+}
 
 .how-we-work__track-wrap {
   padding-left: max(15px, (100vw - 1320px) / 2 + 15px);
-  cursor: grab;
   user-select: none;
   -webkit-user-select: none;
-  touch-action: pan-y;
-}
-.how-we-work__track-wrap:active, .how-we-work__track-wrap.is-dragging {
-  cursor: grabbing;
 }
 @media (max-width: 768px) {
   .how-we-work__track-wrap {
     padding-left: 15px;
     padding-right: 15px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .how-we-work__track-wrap::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -8222,7 +8366,7 @@ About Us
 .portfolio-architecture__image-wrap {
   position: relative;
   overflow: hidden;
-  width: 85%;
+  width: 72%;
   margin-left: auto;
   margin-right: auto;
   height: 520px;
@@ -8789,17 +8933,18 @@ About Us
   position: relative;
   z-index: 1;
   overflow: hidden;
+  height: clamp(240px, 25vw, 476px);
 }
 .reach-out__img {
+  position: absolute;
+  top: -15%;
+  left: 0;
   width: 100%;
-  height: auto;
+  height: 130%;
+  min-height: 130%;
   display: block;
   object-fit: cover;
-}
-@media (max-width: 768px) {
-  .reach-out__img {
-    min-height: 200px;
-  }
+  will-change: transform;
 }
 
 /*--------------------------------------------------------------
@@ -9047,14 +9192,14 @@ About Us
   transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .hero-construction--animated .hero-construction__person-bg {
-  opacity: 0;
-  transform: scale(0.88);
-  will-change: transform, opacity;
+  clip-path: inset(100% 0 0 0);
+  will-change: clip-path;
+  transition: clip-path 1.1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .hero-construction--animated .hero-construction__person {
-  opacity: 0;
-  transform: translateX(-50%) translateY(70px);
-  will-change: transform, opacity;
+  clip-path: inset(100% 0 0 0);
+  will-change: clip-path;
+  transition: clip-path 1.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .hero-construction--animated.is-visible .hero-construction__badge {
   opacity: 1;
@@ -9080,54 +9225,30 @@ About Us
   transition-delay: 1.35s;
 }
 .hero-construction--animated.is-visible .hero-construction__person-bg {
-  animation: heroArchEntrance 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  clip-path: inset(0 0% 0 0);
+  transition-delay: 0.3s;
 }
 .hero-construction--animated.is-visible .hero-construction__person {
-  animation: heroPersonEntrance 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+  clip-path: inset(0 0% 0 0);
+  transition-delay: 0.4s;
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-construction--animated .hero-construction__badge,
   .hero-construction--animated .hero-construction__title,
   .hero-construction--animated .hero-construction__title-highlight,
-  .hero-construction--animated .hero-construction__btn,
-  .hero-construction--animated .hero-construction__person-bg {
+  .hero-construction--animated .hero-construction__btn {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
-    animation: none !important;
   }
-  .hero-construction--animated .hero-construction__line {
+  .hero-construction--animated .hero-construction__line,
+  .hero-construction--animated .hero-construction__person-bg,
+  .hero-construction--animated .hero-construction__person {
     clip-path: none !important;
     transition: none !important;
   }
-  .hero-construction--animated .hero-construction__person {
-    opacity: 1 !important;
-    transform: translateX(-50%) !important;
-    transition: none !important;
-    animation: none !important;
-  }
 }
 
-@keyframes heroArchEntrance {
-  0% {
-    opacity: 0;
-    transform: scale(0.88);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-@keyframes heroPersonEntrance {
-  0% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(70px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-}
 /*--------------------------------------------------------------
   About Construction Section
 ----------------------------------------------------------------*/

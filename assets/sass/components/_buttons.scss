@@ -28,8 +28,8 @@
     height: 100%;
     background-color: var(--black-color);
     transform: scaleX(0);
-    transform-origin: right center;
-    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    transform-origin: left center;
+    transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1;
     pointer-events: none;
   }
@@ -50,22 +50,27 @@
     width: 47px;
     display: inline-flex;
     align-items: center;
-    justify-content: flex-end;
-    padding-right: 16px;
+    justify-content: center;
+    padding: 0;
     background-color: var(--white-color);
     z-index: 2;
-    transition: background-color 0.3s ease 0.24s;
+    transition:
+      top 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+      right 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+      bottom 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+      width 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 0.35s ease;
 
     svg {
       display: block;
       transform-origin: center center;
       backface-visibility: hidden;
       will-change: transform;
-      transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1) 0.22s;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
       path {
         fill: var(--primary-color);
-        transition: fill 0.28s ease 0.24s;
+        transition: fill 0.28s ease;
       }
     }
   }
@@ -73,21 +78,20 @@
   &:hover {
     &::before {
       transform: scaleX(1);
-      transform-origin: left center;
-      transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     .icon-wrapper {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 55px;
       background-color: var(--primary-color);
-      transition: background-color 0.3s ease 0.24s;
 
       svg {
         transform: rotate(-45deg);
-        transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1) 0.22s;
 
         path {
           fill: var(--black-color);
-          transition: fill 0.28s ease 0.24s;
         }
       }
     }
@@ -106,7 +110,15 @@
       right: 4px;
       bottom: 4px;
       width: 40px;
-      padding-right: 13px;
+    }
+
+    &:hover {
+      .icon-wrapper {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 46px;
+      }
     }
   }
 
@@ -118,7 +130,15 @@
       right: 4px;
       bottom: 4px;
       width: 36px;
-      padding-right: 11px;
+    }
+
+    &:hover {
+      .icon-wrapper {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 42px;
+      }
     }
   }
 }
@@ -149,8 +169,8 @@
     height: 100%;
     background-color: var(--black-color);
     transform: scaleX(0);
-    transform-origin: right center;
-    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    transform-origin: left center;
+    transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1;
     pointer-events: none;
   }
@@ -171,22 +191,27 @@
     width: 47px;
     display: inline-flex;
     align-items: center;
-    justify-content: flex-end;
-    padding-right: 16px;
+    justify-content: center;
+    padding: 0;
     background-color: var(--white-color);
     z-index: 2;
-    transition: background-color 0.3s ease 0.24s;
+    transition:
+      top 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+      right 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+      bottom 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+      width 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 0.35s ease;
 
     svg {
       display: block;
       transform-origin: center center;
       backface-visibility: hidden;
       will-change: transform;
-      transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1) 0.22s;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
       path {
         fill: var(--primary-color);
-        transition: fill 0.28s ease 0.24s;
+        transition: fill 0.28s ease;
       }
     }
   }
@@ -196,21 +221,20 @@
 
     &::before {
       transform: scaleX(1);
-      transform-origin: left center;
-      transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     .icon-wrapper {
-      background-color: var(--primary-color);
-      transition: background-color 0.3s ease 0.24s;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 55px;
+      background-color: var(--white-color);
 
       svg {
         transform: rotate(-45deg);
-        transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1) 0.22s;
 
         path {
-          fill: var(--black-color);
-          transition: fill 0.28s ease 0.24s;
+          fill: var(--primary-color);
         }
       }
     }
@@ -229,7 +253,15 @@
       right: 4px;
       bottom: 4px;
       width: 40px;
-      padding-right: 13px;
+    }
+
+    &:hover {
+      .icon-wrapper {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 46px;
+      }
     }
   }
 
@@ -241,7 +273,15 @@
       right: 4px;
       bottom: 4px;
       width: 36px;
-      padding-right: 11px;
+    }
+
+    &:hover {
+      .icon-wrapper {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 42px;
+      }
     }
   }
 }
