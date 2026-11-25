@@ -41,23 +41,22 @@
     if (prefersReduced) return;
 
     lenisInstance = new Lenis({
-      duration: 1.15,
-      easing: function (t) {
-        return Math.min(1, 1.001 - Math.pow(2, -10 * t));
-      },
+      lerp: 0.08,
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1,
+      wheelMultiplier: 1.2,
       smoothTouch: false,
       infinite: false,
     });
 
-    function raf(time) {
-      lenisInstance.raf(time);
+    if (typeof gsap === "undefined") {
+      function raf(time) {
+        lenisInstance.raf(time);
+        requestAnimationFrame(raf);
+      }
       requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
   }
 
   initLenis();
@@ -93,8 +92,14 @@
       gsap.registerPlugin(...plugins);
     }
 
-    if (lenisInstance && typeof ScrollTrigger !== "undefined") {
-      lenisInstance.on("scroll", ScrollTrigger.update);
+    if (lenisInstance) {
+      if (typeof ScrollTrigger !== "undefined") {
+        lenisInstance.on("scroll", ScrollTrigger.update);
+      }
+      gsap.ticker.add(function (time) {
+        lenisInstance.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
     }
   }
 
@@ -293,18 +298,26 @@
       headerHeight = $header.outerHeight() + 30;
     });
 
+    let isSticky = false;
+    let isShown = false;
+
     function handleSticky(windowTop) {
-      if (windowTop >= headerHeight) {
-        $header.addClass("tm-gescout_sticky");
-      } else {
-        $header.removeClass("tm-gescout_sticky tm-gescout_show");
+      const nextSticky = windowTop >= headerHeight;
+      if (nextSticky !== isSticky) {
+        isSticky = nextSticky;
+        if (isSticky) {
+          $header.addClass("tm-gescout_sticky");
+        } else {
+          isShown = false;
+          $header.removeClass("tm-gescout_sticky tm-gescout_show");
+        }
       }
 
-      if ($header.hasClass("tm-gescout_sticky")) {
-        if (windowTop < lastScrollTop) {
-          $header.addClass("tm-gescout_show");
-        } else {
-          $header.removeClass("tm-gescout_show");
+      if (isSticky) {
+        const nextShown = windowTop < lastScrollTop;
+        if (nextShown !== isShown) {
+          isShown = nextShown;
+          $header.toggleClass("tm-gescout_show", isShown);
         }
       }
 
@@ -448,31 +461,47 @@
   /*--------------------------------------------------------------
   7. Scroll Up
   --------------------------------------------------------------*/
-  function scrollUp() {
-    $document.on("click", ".ak-scrollup", function (e) {
-      e.preventDefault();
+  var scrollUpEl = null;
 
-      if (lenisInstance) {
-        lenisInstance.scrollTo(0);
-      } else {
-        $("html, body").animate(
-          {
-            scrollTop: 0,
-          },
-          300,
-        );
+  function scrollToTop(e) {
+    e.preventDefault();
+    if (lenisInstance) {
+      lenisInstance.scrollTo(0);
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
+
+  function scrollUp() {
+    scrollUpEl = document.querySelector(".ak-scrollup");
+    if (!scrollUpEl) return;
+
+    scrollUpEl.addEventListener("click", scrollToTop);
+    scrollUpEl.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        scrollToTop(e);
       }
     });
+
+    if (lenisInstance) {
+      lenisInstance.on("scroll", showScrollUp);
+    }
   }
 
   function showScrollUp() {
-    let scroll = $window.scrollTop();
-
-    if (scroll >= 350) {
-      $(".ak-scrollup").addClass("ak-scrollup-show");
-    } else {
-      $(".ak-scrollup").removeClass("ak-scrollup-show");
+    if (!scrollUpEl) {
+      scrollUpEl = document.querySelector(".ak-scrollup");
     }
+    if (!scrollUpEl) return;
+
+    var scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+    var maxScroll =
+      document.documentElement.scrollHeight - window.innerHeight;
+    var progress =
+      maxScroll > 0 ? Math.min(Math.max(scrollTop / maxScroll, 0), 1) : 0;
+
+    scrollUpEl.style.setProperty("--scroll-progress", progress.toFixed(4));
+    scrollUpEl.classList.toggle("ak-scrollup-show", scrollTop >= 350);
   }
 
   /*--------------------------------------------------------------
@@ -517,22 +546,33 @@
         if (!entry.isIntersecting) return;
         observer.unobserve(entry.target);
 
-        var $el = $(entry.target);
+        var el = entry.target;
+        var $el = $(el);
+        var from = parseFloat($el.data("from-value")) || 0;
         var to = parseFloat($el.data("to-value")) || 0;
         var pad = $el.data("prefix") === "0";
         var suffix = $el.data("suffix") || "";
+        var duration = parseInt($el.data("duration"), 10) || 2000;
+        var startTime = null;
+        var lastText = "";
 
-        $({ val: parseFloat($el.data("from-value")) || 0 }).animate(
-          { val: to },
-          {
-            duration: parseInt($el.data("duration"), 10) || 2000,
-            easing: "swing",
-            step: function (now) {
-              var n = Math.round(now);
-              $el.text((pad && n < 10 ? "0" : "") + n + suffix);
-            }
+        function stepCounter(now) {
+          if (startTime === null) startTime = now;
+          var progress = Math.min(1, (now - startTime) / duration);
+          // Smooth easeOutCubic synchronized to display refresh rate (120Hz+)
+          var eased = 1 - Math.pow(1 - progress, 3);
+          var n = Math.round(from + (to - from) * eased);
+          var text = (pad && n < 10 ? "0" : "") + n + suffix;
+          if (text !== lastText) {
+            lastText = text;
+            el.textContent = text;
           }
-        );
+          if (progress < 1) {
+            requestAnimationFrame(stepCounter);
+          }
+        }
+
+        requestAnimationFrame(stepCounter);
       });
     }, { threshold: 0.25 });
 
@@ -635,30 +675,39 @@
 
     function setInitialSlots() {
       var geom = getSlotGeometry();
+      var clipBottom = Math.max(0, geom.h1 - geom.h2);
+      var clipFull = "inset(0px 0px 0px 0px)";
+      var clipSlot2 = "inset(0px 0px " + clipBottom + "px 0px)";
+
       $imgItems.each(function (i) {
         var $item = $(this);
+        gsap.set($item, {
+          top: 0,
+          height: geom.h1,
+        });
+
         if (i === currentIndex) {
           gsap.set($item, {
-            top: geom.top1,
-            height: geom.h1,
+            y: geom.top1,
+            clipPath: clipFull,
             opacity: 1,
-            display: "block",
+            visibility: "visible",
             zIndex: 3
           });
         } else if (i === currentIndex + 1) {
           gsap.set($item, {
-            top: geom.top2,
-            height: geom.h2,
+            y: geom.top2,
+            clipPath: clipSlot2,
             opacity: 1,
-            display: "block",
+            visibility: "visible",
             zIndex: 2
           });
         } else {
           gsap.set($item, {
-            top: i < currentIndex ? geom.exitTop : geom.exitBottom,
-            height: geom.h2,
+            y: i < currentIndex ? geom.exitTop : geom.exitBottom,
+            clipPath: clipSlot2,
             opacity: 0,
-            display: "none",
+            visibility: "hidden",
             zIndex: 1
           });
         }
@@ -785,6 +834,9 @@
       }
 
       var geom = getSlotGeometry();
+      var clipBottom = Math.max(0, geom.h1 - geom.h2);
+      var clipFull = "inset(0px 0px 0px 0px)";
+      var clipSlot2 = "inset(0px 0px " + clipBottom + "px 0px)";
       var dur = 0.48;
       var ease = "power2.inOut";
 
@@ -796,7 +848,7 @@
       function finishTransition() {
         $imgItems.each(function (i) {
           if (i !== targetIndex && i !== targetIndex + 1) {
-            $(this).css({ display: "none", opacity: 0 });
+            $(this).css({ visibility: "hidden", opacity: 0 });
           }
         });
         currentIndex = targetIndex;
@@ -816,19 +868,19 @@
         if (targetIndex === currentIndex + 1) {
           // Sequential forward:
           gsap.to($currTop, {
-            top: geom.exitTop,
+            y: geom.exitTop,
             opacity: 0,
             duration: dur,
             ease: ease,
             overwrite: true,
             onComplete: function () {
-              $currTop.css("display", "none");
+              $currTop.css("visibility", "hidden");
             }
           });
 
           gsap.to($targetTop, {
-            top: geom.top1,
-            height: geom.h1,
+            y: geom.top1,
+            clipPath: clipFull,
             zIndex: 3,
             duration: dur,
             ease: ease,
@@ -836,14 +888,14 @@
           });
 
           gsap.set($targetBottom, {
-            display: "block",
-            top: geom.exitBottom,
-            height: geom.h2,
+            visibility: "visible",
+            y: geom.exitBottom,
+            clipPath: clipSlot2,
             opacity: 0,
             zIndex: 2
           });
           gsap.to($targetBottom, {
-            top: geom.top2,
+            y: geom.top2,
             opacity: 1,
             duration: dur,
             ease: ease,
@@ -853,26 +905,26 @@
         } else {
           // Skipping forward:
           gsap.to([$currTop, $currBottom], {
-            top: geom.exitTop,
+            y: geom.exitTop,
             opacity: 0,
             duration: dur,
             ease: ease,
             overwrite: true,
             onComplete: function () {
-              $currTop.css("display", "none");
-              $currBottom.css("display", "none");
+              $currTop.css("visibility", "hidden");
+              $currBottom.css("visibility", "hidden");
             }
           });
 
           gsap.set($targetTop, {
-            display: "block",
-            top: geom.exitBottom,
-            height: geom.h1,
+            visibility: "visible",
+            y: geom.exitBottom,
+            clipPath: clipFull,
             opacity: 0,
             zIndex: 3
           });
           gsap.to($targetTop, {
-            top: geom.top1,
+            y: geom.top1,
             opacity: 1,
             duration: dur,
             ease: ease,
@@ -880,14 +932,14 @@
           });
 
           gsap.set($targetBottom, {
-            display: "block",
-            top: geom.exitBottom + 80,
-            height: geom.h2,
+            visibility: "visible",
+            y: geom.exitBottom + 80,
+            clipPath: clipSlot2,
             opacity: 0,
             zIndex: 2
           });
           gsap.to($targetBottom, {
-            top: geom.top2,
+            y: geom.top2,
             opacity: 1,
             duration: dur,
             ease: ease,
@@ -900,19 +952,19 @@
         if (targetIndex === currentIndex - 1) {
           // Sequential backward:
           gsap.to($currBottom, {
-            top: geom.exitBottom,
+            y: geom.exitBottom,
             opacity: 0,
             duration: dur,
             ease: ease,
             overwrite: true,
             onComplete: function () {
-              $currBottom.css("display", "none");
+              $currBottom.css("visibility", "hidden");
             }
           });
 
           gsap.to($currTop, {
-            top: geom.top2,
-            height: geom.h2,
+            y: geom.top2,
+            clipPath: clipSlot2,
             zIndex: 2,
             duration: dur,
             ease: ease,
@@ -920,14 +972,14 @@
           });
 
           gsap.set($targetTop, {
-            display: "block",
-            top: geom.exitTop,
-            height: geom.h1,
+            visibility: "visible",
+            y: geom.exitTop,
+            clipPath: clipFull,
             opacity: 0,
             zIndex: 3
           });
           gsap.to($targetTop, {
-            top: geom.top1,
+            y: geom.top1,
             opacity: 1,
             duration: dur,
             ease: ease,
@@ -937,26 +989,26 @@
         } else {
           // Skipping backward:
           gsap.to([$currTop, $currBottom], {
-            top: geom.exitBottom,
+            y: geom.exitBottom,
             opacity: 0,
             duration: dur,
             ease: ease,
             overwrite: true,
             onComplete: function () {
-              $currTop.css("display", "none");
-              $currBottom.css("display", "none");
+              $currTop.css("visibility", "hidden");
+              $currBottom.css("visibility", "hidden");
             }
           });
 
           gsap.set($targetTop, {
-            display: "block",
-            top: geom.exitTop,
-            height: geom.h1,
+            visibility: "visible",
+            y: geom.exitTop,
+            clipPath: clipFull,
             opacity: 0,
             zIndex: 3
           });
           gsap.to($targetTop, {
-            top: geom.top1,
+            y: geom.top1,
             opacity: 1,
             duration: dur,
             ease: ease,
@@ -964,14 +1016,14 @@
           });
 
           gsap.set($targetBottom, {
-            display: "block",
-            top: geom.exitTop - 80,
-            height: geom.h2,
+            visibility: "visible",
+            y: geom.exitTop - 80,
+            clipPath: clipSlot2,
             opacity: 0,
             zIndex: 2
           });
           gsap.to($targetBottom, {
-            top: geom.top2,
+            y: geom.top2,
             opacity: 1,
             duration: dur,
             ease: ease,
@@ -992,7 +1044,6 @@
             end: "+=" + pinDistance,
             pin: true,
             pinSpacing: true,
-            anticipatePin: 1,
             invalidateOnRefresh: true,
             onUpdate: function (self) {
               if (isClickScrolling) return;
@@ -1282,7 +1333,9 @@
     var getShift = function (item) {
       var h = item.offsetHeight;
       var ratio = (h - bounds.min) / Math.max(1, bounds.max - bounds.min);
-      return Math.round(h * (0.15 + 0.13 * ratio));
+      // Balanced pixel travel (~42px on smallest cards up to ~90px on tallest),
+      // clamped within the image's 25% top/bottom overflow buffer.
+      return Math.round(Math.min(h * 0.23, 42 + 48 * ratio));
     };
 
     items.forEach(function (item) {
@@ -1492,17 +1545,17 @@
     function createTween() {
       gsap.fromTo(
         overlay,
-        { marginTop: -320 },
+        { y: 0 },
         {
-          marginTop: function () {
-            return -overlay.offsetHeight;
+          y: function () {
+            return -Math.max(0, overlay.offsetHeight - 320);
           },
           ease: "none",
           scrollTrigger: {
             trigger: media || section,
             start: "top 75%",
             end: "bottom 15%",
-            scrub: 0.3,
+            scrub: true,
             invalidateOnRefresh: true,
           },
         }
@@ -1708,10 +1761,9 @@
           },
           pin: true,
           pinSpacing: true,
-          scrub: 0.5,
+          scrub: true,
           animation: tween,
           invalidateOnRefresh: true,
-          anticipatePin: 1,
         });
 
         return function () {
@@ -1904,7 +1956,7 @@
 
       var wordIndex = 0;
       var currentText = "";
-      var isDeleting = false; // Start with typing animation on start
+      var isDeleting = false;
       var typingSpeed = 100;
       var deletingSpeed = 55;
       var pauseAfterWord = 2000;

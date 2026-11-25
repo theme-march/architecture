@@ -8,6 +8,9 @@
   align-items: stretch;
   background-color: var(--title-color);
   position: relative;
+  contain: layout style;
+  will-change: transform;
+  backface-visibility: hidden;
 
   @include respond(lg) {
     flex-direction: column;
@@ -245,6 +248,7 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
+    contain: strict;
   }
 
   &__img-item {
@@ -253,7 +257,8 @@
     left: 0;
     width: 100%;
     overflow: hidden;
-    will-change: transform, top, height, opacity;
+    transform: translateZ(0);
+    will-change: transform, clip-path, opacity;
 
     // Initial fallback layout before GSAP initializes
     &:first-child {
@@ -288,7 +293,8 @@
       top: 800px;
       height: 255px;
       opacity: 0;
-      display: none;
+      visibility: hidden;
+      pointer-events: none;
       z-index: 1;
     }
   }

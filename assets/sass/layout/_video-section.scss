@@ -45,7 +45,7 @@
     background-color: var(--primary-color);
     position: relative;
     z-index: 2;
-    will-change: margin-top;
+    will-change: transform;
 
     @include respond(xl) {
       width: 58%;

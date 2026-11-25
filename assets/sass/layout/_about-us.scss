@@ -72,6 +72,7 @@ About Us
     font-weight: 500;
     line-height: 26px;
     color: var(--body-color);
+    contain: layout style;
 
     .about-us__line {
       display: block;
@@ -194,6 +195,7 @@ About Us
     position: relative;
     z-index: 2;
     font-family: var(--heading-font-family);
+    font-variant-numeric: tabular-nums;
     font-size: 50px;
     font-weight: 600;
     line-height: 57px;
