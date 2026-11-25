@@ -166,18 +166,36 @@
       return;
     }
 
-    setTimeout(function () {
+    const percentEl = $preloader[0].querySelector(".ak-preloader__percent");
+    const duration = 1100;
+    const startTime = performance.now();
+
+    function finishPreloader() {
       $preloader.addClass("loaded");
-      $preloader.delay(850).fadeOut(500, function () {
-        $(this).remove();
+      setTimeout(function () {
+        $preloader.remove();
         if (typeof initHeroAnimations === "function") {
           initHeroAnimations();
         }
         if (typeof ScrollTrigger !== "undefined") {
           ScrollTrigger.refresh();
         }
-      });
-    }, 200);
+      }, 950);
+    }
+
+    function updateCounter(now) {
+      const progress = Math.min((now - startTime) / duration, 1);
+      if (percentEl) {
+        percentEl.textContent = Math.round(progress * 100) + "%";
+      }
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      } else {
+        finishPreloader();
+      }
+    }
+
+    requestAnimationFrame(updateCounter);
   }
 
   /*--------------------------------------------------------------

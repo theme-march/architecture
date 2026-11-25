@@ -2,3 +2,141 @@
   5. Preloader Content
 ----------------------------------------------------------------*/
 @use "../abstracts" as *;
+
+.ak-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::before,
+  &::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-color: var(--white-color);
+    z-index: 1;
+    transition: transform 0.75s cubic-bezier(0.77, 0, 0.175, 1) 0.2s;
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 34px;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  &.loaded {
+    pointer-events: none;
+
+    &::before {
+      transform: translateX(-100%);
+    }
+
+    &::after {
+      transform: translateX(100%);
+    }
+
+    .ak-preloader__inner {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+  }
+
+  &__circle {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__spinner {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid color-mix(in srgb, var(--heading-color) 12%, transparent);
+    border-top-color: var(--heading-color);
+    animation: ak-preloader-spin 0.9s linear infinite;
+  }
+
+  &__percent {
+    font-family: var(--heading-font-family);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--heading-color);
+    line-height: 1;
+  }
+
+  &__text {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    perspective: 400px;
+    font-family: var(--heading-font-family);
+    font-size: 46px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1;
+
+    span {
+      display: inline-block;
+      color: var(--heading-color);
+      opacity: 0.2;
+      transform: rotateY(-90deg);
+      transform-origin: center;
+      animation: ak-preloader-letter 2.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+      animation-delay: calc(var(--i) * 0.16s);
+    }
+
+    @media (max-width: 575px) {
+      font-size: 32px;
+      gap: 14px;
+    }
+  }
+}
+
+@keyframes ak-preloader-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ak-preloader-letter {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: rotateY(-90deg);
+  }
+  25%,
+  65% {
+    opacity: 1;
+    transform: rotateY(0deg);
+  }
+  90% {
+    opacity: 0.2;
+    transform: rotateY(90deg);
+  }
+}
