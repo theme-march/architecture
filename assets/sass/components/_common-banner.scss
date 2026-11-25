@@ -185,18 +185,18 @@
     .common-breadcrumb {
       opacity: 1;
       transform: translateY(0);
-      transition-delay: 0.15s;
+      transition-delay: 0s;
     }
 
     .common-banner__title {
       opacity: 1;
       transform: translateY(0);
-      transition-delay: 0.3s;
+      transition-delay: 0.15s;
     }
 
     .common-banner__element {
       clip-path: inset(0 0% 0 0);
-      transition-delay: 0.45s;
+      transition-delay: 0.3s;
     }
   }
 

@@ -41,6 +41,9 @@
     left: 0;
     z-index: 0;
     pointer-events: none;
+    transform: scale(1.1);
+    clip-path: inset(6% 6% 6% 6%);
+    will-change: transform, clip-path;
   }
 
   &__overlay {
@@ -111,9 +114,6 @@
     max-width: 855px;
     opacity: 0;
     transform: translateY(-35px);
-    transition:
-      opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1),
-      transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
     will-change: opacity, transform;
 
     @include respond(xl) {
@@ -143,48 +143,52 @@
     max-width: 100%;
     clip-path: inset(0 100% 0 0);
     will-change: clip-path;
-    transition: clip-path 0.85s cubic-bezier(0.25, 1, 0.5, 1);
-
-    &:nth-child(1) {
-      transition-delay: 1.2s;
-    }
-    &:nth-child(2) {
-      transition-delay: 1.45s;
-    }
-    &:nth-child(3) {
-      transition-delay: 1.7s;
-    }
   }
 
   &.is-visible,
   .is-visible,
   &:has(.is-visible) {
+    .hero-architecture__img {
+      animation: heroArchImgExpand 1.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
     .hero-architecture__subtitle-text {
-      animation: subtitleTextReveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+      animation: subtitleTextReveal 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
 
       &::after {
-        animation: subtitleBlockReveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+        animation: subtitleBlockReveal 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
       }
     }
 
     .hero-architecture__title {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.9s;
+      animation: heroArchTitleIn 0.85s cubic-bezier(0.25, 1, 0.5, 1) 0.25s both;
     }
 
     .hero-architecture__line {
-      clip-path: inset(0 0% 0 0);
+      animation: heroArchLineIn 0.75s cubic-bezier(0.25, 1, 0.5, 1) both;
+
+      &:nth-child(1) {
+        animation-delay: 0.45s;
+      }
+      &:nth-child(2) {
+        animation-delay: 0.6s;
+      }
+      &:nth-child(3) {
+        animation-delay: 0.75s;
+      }
     }
 
     .hero-architecture--bottom-text__title {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 2.2s;
+      animation: heroArchBottomIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.9s both;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .hero-architecture__img {
+      transform: none !important;
+      clip-path: none !important;
+      animation: none !important;
+    }
     .hero-architecture__subtitle-text {
       opacity: 1 !important;
       animation: none !important;
@@ -195,16 +199,16 @@
     .hero-architecture__title {
       opacity: 1 !important;
       transform: none !important;
-      transition: none !important;
+      animation: none !important;
     }
     .hero-architecture__line {
       clip-path: none !important;
-      transition: none !important;
+      animation: none !important;
     }
     .hero-architecture--bottom-text__title {
       opacity: 1 !important;
       transform: none !important;
-      transition: none !important;
+      animation: none !important;
     }
   }
 
@@ -281,9 +285,6 @@
       -webkit-text-fill-color: transparent;
       opacity: 0;
       transform: translateY(-40px);
-      transition:
-        opacity 1s cubic-bezier(0.25, 1, 0.5, 1),
-        transform 1s cubic-bezier(0.25, 1, 0.5, 1);
       will-change: opacity, transform;
 
       @include respond(md) {
@@ -306,5 +307,47 @@
   .hero-architecture__img {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@keyframes heroArchImgExpand {
+  from {
+    transform: scale(1.1);
+    clip-path: inset(6% 6% 6% 6%);
+  }
+  to {
+    transform: scale(1);
+    clip-path: inset(0% 0% 0% 0%);
+  }
+}
+
+@keyframes heroArchTitleIn {
+  from {
+    opacity: 0;
+    transform: translateY(-35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroArchLineIn {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0% 0 0);
+  }
+}
+
+@keyframes heroArchBottomIn {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

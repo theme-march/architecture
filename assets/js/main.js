@@ -153,6 +153,16 @@
   /*-------------------------------------------------
   1. Preloader  
   --------------------------------------------------------------*/
+  function revealAboveFoldHero() {
+    requestAnimationFrame(function () {
+      document
+        .querySelectorAll(".hero-architecture--animated, .hero-construction--animated, .common-banner--animated")
+        .forEach(function (el) {
+          el.classList.add("is-visible");
+        });
+    });
+  }
+
   function preloader() {
     const $preloader = $("#preloader");
 
@@ -163,6 +173,7 @@
       if (typeof ScrollTrigger !== "undefined") {
         ScrollTrigger.refresh();
       }
+      revealAboveFoldHero();
       return;
     }
 
@@ -172,15 +183,18 @@
 
     function finishPreloader() {
       $preloader.addClass("loaded");
+      if (typeof ScrollTrigger !== "undefined") {
+        ScrollTrigger.refresh();
+      }
       setTimeout(function () {
-        $preloader.remove();
         if (typeof initHeroAnimations === "function") {
           initHeroAnimations();
         }
-        if (typeof ScrollTrigger !== "undefined") {
-          ScrollTrigger.refresh();
-        }
-      }, 950);
+        revealAboveFoldHero();
+      }, 200);
+      setTimeout(function () {
+        $preloader.remove();
+      }, 750);
     }
 
     function updateCounter(now) {
@@ -531,7 +545,7 @@
   --------------------------------------------------------------*/
   function titleAnimation() {
     var titles = document.querySelectorAll(
-      ".begin-a-brief__title, .title-anim-blur, .section-heading--animated, .section-heading__subtitle--animated, .about-us__description, .about-architecture__description, .about-architecture--title, .our-approach__grid, .hero-architecture--animated, .hero-construction--animated, .about-construction__title, .about-construction__desc, .about-construction__circles-row--animated, .common-banner--animated"
+      ".begin-a-brief__title, .title-anim-blur, .section-heading--animated, .section-heading__subtitle--animated, .about-us__description, .about-architecture__description, .about-architecture--title, .our-approach__grid, .about-construction__title, .about-construction__desc, .about-construction__circles-row--animated"
     );
     if (!titles.length) return;
 
