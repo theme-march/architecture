@@ -114,7 +114,7 @@
   &__card {
     background-color: var(--smoke-bg-color-one);
     overflow: hidden;
-    @include transition;
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover {
       background-color: var(--primary-color);
@@ -422,6 +422,7 @@
     gap: 12px;
     font-size: 16px;
     font-weight: 500;
+    transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     @include respond(lg) {
       font-size: 15px;
     }
@@ -432,7 +433,7 @@
     height: 18px;
     display: inline-block;
     object-fit: contain;
-    @include transition;
+    transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
     @include respond(sm) {
       width: 15px;
@@ -450,7 +451,7 @@
       color: var(--heading-color-three);
       text-decoration: none;
       display: inline-block;
-      @include transition;
+      transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
       @include respond(md) {
         font-size: 24px;
@@ -465,6 +466,7 @@
     line-height: 26px;
     margin-bottom: 30px;
     max-width: 93%;
+    transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
     @include respond(md) {
       margin-bottom: 20px;
@@ -480,16 +482,23 @@
       font-weight: 500;
       line-height: 24px;
       text-transform: capitalize;
-      @include transition;
+      transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
       @include respond(md) {
         font-size: 14px;
       }
     }
 
-    &__arrow,
+    &__arrow {
+      transition:
+        transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
     &__bg {
-      @include transition;
+      transition:
+        transform 0.6s linear,
+        filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     &:hover {

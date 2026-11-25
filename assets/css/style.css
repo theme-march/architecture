@@ -1118,7 +1118,7 @@ kbd {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   padding: 0;
-  transition: opacity 0.3s ease;
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @media (max-width: 768px) {
   .read-more-btn {
@@ -1144,7 +1144,7 @@ kbd {
   position: absolute;
   width: 100%;
   height: 100%;
-  transition: transform 0.6s linear;
+  transition: transform 0.6s linear, filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .read-more-btn__arrow {
   position: relative;
@@ -1159,7 +1159,7 @@ kbd {
   }
 }
 .read-more-btn__arrow {
-  transition: transform 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .read-more-btn__label {
   font-family: var(--heading-font-family);
@@ -1167,6 +1167,7 @@ kbd {
   font-weight: 600;
   line-height: 22px;
   letter-spacing: 0.5px;
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .read-more-btn:hover .read-more-btn__arrow {
   transform: rotate(-45deg);
@@ -2404,7 +2405,7 @@ kbd {
   font-size: 20px;
   font-weight: 600;
   color: var(--heading-color);
-  transition: all 0.3s ease;
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @media (max-width: 768px) {
   .sidebar__category-link {
@@ -2431,7 +2432,7 @@ kbd {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: all 0.3s ease;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @media (max-width: 768px) {
   .sidebar__category-arrow {
@@ -2442,7 +2443,7 @@ kbd {
 .sidebar__category-arrow-icon {
   color: var(--white-color);
   font-size: 16px;
-  transition: all 0.3s ease;
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .sidebar__newsletter {
   background-color: var(--primary-color);
@@ -2513,7 +2514,7 @@ kbd {
   text-transform: uppercase;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   align-self: flex-start;
 }
 @media (max-width: 768px) {
@@ -2558,7 +2559,7 @@ kbd {
   border: none;
   cursor: pointer;
   align-self: flex-start;
-  transition: all 0.3s ease;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @media (max-width: 768px) {
   .sidebar__search-btn {
@@ -2836,12 +2837,7 @@ kbd {
 .tm-nav .tm-nav_list a:hover {
   color: var(--primary-color);
 }
-.tm-nav .tm-nav_list {
-  /*--------------------------------------------------------------
-    Staggered Rolling Text Hover Animation
-  ----------------------------------------------------------------*/
-}
-.tm-nav .tm-nav_list .roll-text {
+.tm-nav .tm-nav_list > li > a .roll-text {
   display: inline-flex;
   align-items: center;
   position: relative;
@@ -2850,7 +2846,7 @@ kbd {
   line-height: 1.3em;
   vertical-align: middle;
 }
-.tm-nav .tm-nav_list .roll-char {
+.tm-nav .tm-nav_list > li > a .roll-char {
   display: inline-block;
   position: relative;
   overflow: hidden;
@@ -2859,11 +2855,11 @@ kbd {
   vertical-align: middle;
   letter-spacing: inherit;
 }
-.tm-nav .tm-nav_list .roll-char.roll-char--space {
+.tm-nav .tm-nav_list > li > a .roll-char.roll-char--space {
   width: 0.28em;
 }
-.tm-nav .tm-nav_list .roll-char .char-top,
-.tm-nav .tm-nav_list .roll-char .char-bottom {
+.tm-nav .tm-nav_list > li > a .roll-char .char-top,
+.tm-nav .tm-nav_list > li > a .roll-char .char-bottom {
   display: block;
   height: 100%;
   line-height: inherit;
@@ -2873,11 +2869,11 @@ kbd {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
-.tm-nav .tm-nav_list .roll-char .char-top {
+.tm-nav .tm-nav_list > li > a .roll-char .char-top {
   transform: translateY(0%);
   color: inherit;
 }
-.tm-nav .tm-nav_list .roll-char .char-bottom {
+.tm-nav .tm-nav_list > li > a .roll-char .char-bottom {
   position: absolute;
   top: 100%;
   left: 0;
@@ -2887,10 +2883,8 @@ kbd {
   color: var(--primary-color);
 }
 .tm-nav .tm-nav_list > li:hover > a .roll-char .char-top,
-.tm-nav .tm-nav_list > li > a:hover .roll-char .char-top {
-  transform: translateY(-100%);
-}
 .tm-nav .tm-nav_list > li:hover > a .roll-char .char-bottom,
+.tm-nav .tm-nav_list > li > a:hover .roll-char .char-top,
 .tm-nav .tm-nav_list > li > a:hover .roll-char .char-bottom {
   transform: translateY(-100%);
 }
@@ -4106,7 +4100,6 @@ kbd {
 }
 .footer-dark__link:hover {
   color: var(--primary-color);
-  transform: translateX(4px);
 }
 .footer-dark__link-icon {
   font-size: 16px;
@@ -4288,7 +4281,6 @@ kbd {
 }
 .footer-dark__social-link:hover {
   color: var(--primary-color);
-  transform: translateY(-1px);
 }
 
 /*--------------------------------------------------------------
@@ -4418,7 +4410,6 @@ kbd {
 }
 .footer-architecture__list-link:hover {
   color: var(--primary-color);
-  transform: translateX(4px);
 }
 .footer-architecture__link-icon {
   font-size: 16px;
@@ -4712,7 +4703,6 @@ kbd {
 }
 .footer-construction__list-link:hover {
   color: var(--primary-color);
-  transform: translateX(4px);
 }
 .footer-construction__link-icon {
   font-size: 13px;
@@ -4899,13 +4889,152 @@ body.has-footer-parallax .footer-dark {
   width: 100%;
   z-index: 0;
 }
-body.has-footer-parallax {
-  /* Wrapper that slides over the fixed footer */
-}
 body.has-footer-parallax .page-reveal-wrap {
   position: relative;
   z-index: 1;
   background-color: var(--body-bg-color);
+}
+
+/*--------------------------------------------------------------
+  Footer Nav Links — Staggered Rolling Text Hover
+----------------------------------------------------------------*/
+.footer-dark__list a .roll-text,
+.footer-architecture__list a .roll-text,
+.footer-construction__list a .roll-text {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  height: 1.3em;
+  line-height: 1.3em;
+  vertical-align: middle;
+}
+.footer-dark__list a .roll-char,
+.footer-architecture__list a .roll-char,
+.footer-construction__list a .roll-char {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  height: 1.3em;
+  line-height: 1.3em;
+  vertical-align: middle;
+  letter-spacing: inherit;
+}
+.footer-dark__list a .roll-char.roll-char--space,
+.footer-architecture__list a .roll-char.roll-char--space,
+.footer-construction__list a .roll-char.roll-char--space {
+  width: 0.28em;
+}
+.footer-dark__list a .roll-char .char-top,
+.footer-dark__list a .roll-char .char-bottom,
+.footer-architecture__list a .roll-char .char-top,
+.footer-architecture__list a .roll-char .char-bottom,
+.footer-construction__list a .roll-char .char-top,
+.footer-construction__list a .roll-char .char-bottom {
+  display: block;
+  height: 100%;
+  line-height: inherit;
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), color 0.25s ease;
+  transition-delay: calc(var(--char-i, 0) * 0.026s);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.footer-dark__list a .roll-char .char-top,
+.footer-architecture__list a .roll-char .char-top,
+.footer-construction__list a .roll-char .char-top {
+  transform: translateY(0%);
+  color: inherit;
+}
+.footer-dark__list a .roll-char .char-bottom,
+.footer-architecture__list a .roll-char .char-bottom,
+.footer-construction__list a .roll-char .char-bottom {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(0%);
+  color: var(--primary-color);
+}
+.footer-dark__list a:hover .roll-char .char-top,
+.footer-dark__list a:hover .roll-char .char-bottom,
+.footer-architecture__list a:hover .roll-char .char-top,
+.footer-architecture__list a:hover .roll-char .char-bottom,
+.footer-construction__list a:hover .roll-char .char-top,
+.footer-construction__list a:hover .roll-char .char-bottom {
+  transform: translateY(-100%);
+}
+
+/*--------------------------------------------------------------
+  Footer Nav Links — Staggered Rolling Text Hover
+----------------------------------------------------------------*/
+.footer-dark__list a .roll-text,
+.footer-architecture__list a .roll-text,
+.footer-construction__list a .roll-text {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  height: 1.3em;
+  line-height: 1.3em;
+  vertical-align: middle;
+}
+.footer-dark__list a .roll-char,
+.footer-architecture__list a .roll-char,
+.footer-construction__list a .roll-char {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  height: 1.3em;
+  line-height: 1.3em;
+  vertical-align: middle;
+  letter-spacing: inherit;
+}
+.footer-dark__list a .roll-char.roll-char--space,
+.footer-architecture__list a .roll-char.roll-char--space,
+.footer-construction__list a .roll-char.roll-char--space {
+  width: 0.28em;
+}
+.footer-dark__list a .roll-char .char-top,
+.footer-dark__list a .roll-char .char-bottom,
+.footer-architecture__list a .roll-char .char-top,
+.footer-architecture__list a .roll-char .char-bottom,
+.footer-construction__list a .roll-char .char-top,
+.footer-construction__list a .roll-char .char-bottom {
+  display: block;
+  height: 100%;
+  line-height: inherit;
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), color 0.25s ease;
+  transition-delay: calc(var(--char-i, 0) * 0.026s);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.footer-dark__list a .roll-char .char-top,
+.footer-architecture__list a .roll-char .char-top,
+.footer-construction__list a .roll-char .char-top {
+  transform: translateY(0%);
+  color: inherit;
+}
+.footer-dark__list a .roll-char .char-bottom,
+.footer-architecture__list a .roll-char .char-bottom,
+.footer-construction__list a .roll-char .char-bottom {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(0%);
+  color: var(--primary-color);
+}
+.footer-dark__list a:hover .roll-char .char-top,
+.footer-dark__list a:hover .roll-char .char-bottom,
+.footer-architecture__list a:hover .roll-char .char-top,
+.footer-architecture__list a:hover .roll-char .char-bottom,
+.footer-construction__list a:hover .roll-char .char-top,
+.footer-construction__list a:hover .roll-char .char-bottom {
+  transform: translateY(-100%);
 }
 
 /*--------------------------------------------------------------
@@ -11723,10 +11852,10 @@ About Us
   font-size: 16px;
   font-weight: 600;
   color: var(--heading-color);
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .blog-construction__actions .read-more-btn__label:hover {
   color: var(--primary-color);
-  transition: color 0.3s ease;
 }
 .blog-construction__actions-divider {
   width: 2px;
@@ -12263,6 +12392,12 @@ About Us
   flex-direction: column;
   gap: 10px;
 }
+.team-details-section__skill-item:nth-child(2) .team-details-section__skill-progress {
+  transition-delay: 0.12s;
+}
+.team-details-section__skill-item:nth-child(3) .team-details-section__skill-progress {
+  transition-delay: 0.24s;
+}
 .team-details-section__skill-info {
   display: flex;
   justify-content: space-between;
@@ -12281,12 +12416,19 @@ About Us
   padding: 5px 3px;
   display: flex;
   align-items: center;
+  overflow: hidden;
 }
 .team-details-section__skill-progress {
   height: 6px;
   background-color: var(--primary-color);
   border-radius: 20px;
-  transition: width 1s ease-in-out;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.team-details-section__skills-wrap.is-visible .team-details-section__skill-progress {
+  transform: scaleX(1);
 }
 .team-details-section__form {
   margin-top: 15px;
@@ -12353,13 +12495,28 @@ About Us
   display: inline-flex;
   align-items: center;
   gap: 12px;
+  color: var(--white-color);
+}
+.team-details-section__submit-btn span {
+  position: relative;
+  z-index: 2;
+  color: var(--white-color);
+}
+.team-details-section__submit-btn:hover {
+  color: var(--white-color);
+}
+.team-details-section__submit-btn:hover span {
+  color: var(--white-color);
 }
 .team-details-section__btn-icon {
+  position: relative;
+  z-index: 2;
   font-size: 14px;
   transition: transform 0.3s ease;
 }
 .team-details-section__submit-btn:hover .team-details-section__btn-icon {
   transform: translateX(4px);
+  color: var(--white-color);
 }
 .team-details-section__card {
   background-color: var(--smoke-bg-color-one);
@@ -12509,6 +12666,7 @@ About Us
 .faq-item {
   background-color: var(--smoke-bg-color-one);
   border: 1px solid var(--border-color);
+  transition: border-color 0.4s ease;
 }
 .faq-item__header {
   display: flex;
@@ -12517,6 +12675,8 @@ About Us
   padding: 10px 30px;
   cursor: pointer;
   gap: 20px;
+  background-color: transparent;
+  transition: background-color 0.45s cubic-bezier(0.25, 1, 0.5, 1);
 }
 @media (max-width: 768px) {
   .faq-item__header {
@@ -12527,6 +12687,7 @@ About Us
   font-size: 20px;
   font-weight: 600;
   line-height: 26px;
+  transition: color 0.45s cubic-bezier(0.25, 1, 0.5, 1);
 }
 @media (max-width: 768px) {
   .faq-item__question {
@@ -12544,11 +12705,22 @@ About Us
   color: var(--primary-color);
   font-size: 16px;
   flex-shrink: 0;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.45s cubic-bezier(0.25, 1, 0.5, 1), color 0.45s cubic-bezier(0.25, 1, 0.5, 1), transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.faq-item__collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.faq-item__collapse-inner {
+  overflow: hidden;
 }
 .faq-item__body {
   background-color: var(--heading-color);
   padding: 25px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.45s cubic-bezier(0.25, 1, 0.5, 1), transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
 }
 @media (max-width: 768px) {
   .faq-item__body {
@@ -12559,6 +12731,7 @@ About Us
   color: var(--white-color);
   font-size: 16px;
   font-weight: 400;
+  margin: 0;
 }
 .faq-item--active .faq-item__header {
   background-color: var(--primary-color);
@@ -12568,6 +12741,14 @@ About Us
 }
 .faq-item--active .faq-item__icon {
   background-color: var(--white-color);
+  transform: rotate(180deg);
+}
+.faq-item--active .faq-item__collapse {
+  grid-template-rows: 1fr;
+}
+.faq-item--active .faq-item__body {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /*--------------------------------------------------------------
@@ -12686,7 +12867,7 @@ About Us
 .blog-standard__card {
   background-color: var(--smoke-bg-color-one);
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .blog-standard__card:hover {
   background-color: var(--primary-color);
@@ -12915,6 +13096,7 @@ About Us
   gap: 12px;
   font-size: 16px;
   font-weight: 500;
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @media (max-width: 992px) {
   .blog-standard__card-meta-item {
@@ -12926,7 +13108,7 @@ About Us
   height: 18px;
   display: inline-block;
   object-fit: contain;
-  transition: all 0.3s ease;
+  transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @media (max-width: 576px) {
   .blog-standard__card-meta-icon {
@@ -12944,7 +13126,7 @@ About Us
   color: var(--heading-color-three);
   text-decoration: none;
   display: inline-block;
-  transition: all 0.3s ease;
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @media (max-width: 768px) {
   .blog-standard__card-title a {
@@ -12958,6 +13140,7 @@ About Us
   line-height: 26px;
   margin-bottom: 30px;
   max-width: 93%;
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @media (max-width: 768px) {
   .blog-standard__card-desc {
@@ -12972,15 +13155,18 @@ About Us
   font-weight: 500;
   line-height: 24px;
   text-transform: capitalize;
-  transition: all 0.3s ease;
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @media (max-width: 768px) {
   .blog-standard .read-more-btn__label {
     font-size: 14px;
   }
 }
-.blog-standard .read-more-btn__arrow, .blog-standard .read-more-btn__bg {
-  transition: all 0.3s ease;
+.blog-standard .read-more-btn__arrow {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.blog-standard .read-more-btn__bg {
+  transition: transform 0.6s linear, filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .blog-standard .read-more-btn:hover .read-more-btn__label {
   color: var(--white-color);
@@ -13457,7 +13643,7 @@ About Us
   border: none;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @media (max-width: 768px) {
   .blog-details__reply-btn {
@@ -13578,7 +13764,7 @@ About Us
   border: none;
   cursor: pointer;
   margin-top: 10px;
-  transition: all 0.3s ease;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @media (max-width: 768px) {
   .blog-details__submit-btn {
@@ -13612,7 +13798,7 @@ About Us
   gap: 20px;
   padding: 30px;
   background-color: var(--smoke-bg-color-one);
-  transition: all 0.3s ease;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @media (max-width: 992px) {
   .contact-section__card {
@@ -13640,6 +13826,7 @@ About Us
   pointer-events: none;
   z-index: 0;
   filter: brightness(0);
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .contact-section__card-icon-wrap {
   flex-shrink: 0;
@@ -13651,7 +13838,7 @@ About Us
   border-radius: 50%;
   border: 2px solid var(--primary-color);
   background-color: var(--white-color);
-  transition: all 0.3s ease;
+  transition: border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   z-index: 1;
 }
@@ -13671,6 +13858,7 @@ About Us
   width: 40px;
   height: 40px;
   display: block;
+  transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @media (max-width: 768px) {
   .contact-section__card-icon {
@@ -13689,6 +13877,7 @@ About Us
   line-height: 36px;
   margin-bottom: 15px;
   color: var(--heading-color);
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @media (max-width: 992px) {
   .contact-section__card-title {
@@ -13700,6 +13889,7 @@ About Us
   font-size: 16px;
   font-weight: 500;
   line-height: 26px;
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .contact-section__card:hover, .contact-section__card--active {
   background-color: var(--primary-color);
@@ -13885,7 +14075,7 @@ About Us
   font-family: var(--heading-font-family);
   font-size: 16px;
   font-weight: 500;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @media (max-width: 768px) {
   .contact-section__submit-btn {

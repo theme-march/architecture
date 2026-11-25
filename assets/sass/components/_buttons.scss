@@ -167,7 +167,7 @@
     inset: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--black-color);
+    background-color: var(--white-color);
     transform: scaleX(0);
     transform-origin: left center;
     transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
@@ -196,11 +196,11 @@
     background-color: var(--white-color);
     z-index: 2;
     transition:
-      top 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-      right 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-      bottom 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-      width 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-      background-color 0.35s ease;
+      top 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      right 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 0.4s ease;
 
     svg {
       display: block;
@@ -228,7 +228,7 @@
       right: 0;
       bottom: 0;
       width: 55px;
-      background-color: var(--white-color);
+      background-color: var(--black-color);
 
       svg {
         transform: rotate(-45deg);
@@ -331,7 +331,9 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   padding: 0;
-  transition: opacity 0.3s ease;
+  transition:
+    color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   @include respond(md) {
     gap: 12px;
   }
@@ -354,7 +356,9 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    transition: transform 0.6s linear;
+    transition:
+      transform 0.6s linear,
+      filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &__arrow {
@@ -366,7 +370,9 @@
     @include respond(md) {
       width: 16px;
     }
-    transition: transform 0.3s ease;
+    transition:
+      transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &__label {
@@ -375,6 +381,7 @@
     font-weight: 600;
     line-height: 22px;
     letter-spacing: 0.5px;
+    transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &:hover &__arrow {

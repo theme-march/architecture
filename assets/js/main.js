@@ -108,6 +108,7 @@
     modalVideo();
     scrollUp();
     serviceAccordion();
+    faqAccordion();
     faqConstructionAccordion();
     testimonialSlider();
     howWeWorkHorizontalScroll();
@@ -131,6 +132,7 @@
     titleAnimation();
     typewriterAnimation();
     navRollingText();
+    teamSkillsAnimation();
   });
 
   $window.on("scroll", function () {
@@ -549,6 +551,30 @@
       $(".service__item").removeClass("service__item--active");
       if (!isActive) {
         $item.addClass("service__item--active");
+      }
+    });
+  }
+
+  /*--------------------------------------------------------------
+  13a. FAQ Accordion
+  --------------------------------------------------------------*/
+  function faqAccordion() {
+    $document.on("click", ".faq-item__header", function () {
+      var $item = $(this).closest(".faq-item");
+      var isActive = $item.hasClass("faq-item--active");
+
+      $(".faq-item")
+        .removeClass("faq-item--active")
+        .find(".faq-item__icon i")
+        .removeClass("fa-minus")
+        .addClass("fa-plus");
+
+      if (!isActive) {
+        $item
+          .addClass("faq-item--active")
+          .find(".faq-item__icon i")
+          .removeClass("fa-plus")
+          .addClass("fa-minus");
       }
     });
   }
@@ -1920,29 +1946,101 @@
   }
 
   /*--------------------------------------------------------------
-  Nav Rolling Text Hover Effect (Auto-enhancer for unrolled nav links)
+  Nav & Footer Rolling Text Hover Effect (Auto-enhancer)
   ----------------------------------------------------------------*/
-  function navRollingText() {
-    $(".tm-nav_list > li > a").each(function () {
-      var $link = $(this);
-      if ($link.find(".roll-text").length) return;
-      var text = $link.text().trim();
-      if (!text) return;
-      var html = '<span class="roll-text" aria-label="' + text + '">';
-      for (var i = 0; i < text.length; i++) {
-        var ch = text.charAt(i);
-        if (ch === " ") {
-          html += '<span class="roll-char roll-char--space" style="--char-i: ' + i + ';">&nbsp;</span>';
-        } else {
-          var isPlus = ch === "+";
-          html += '<span class="roll-char' + (isPlus ? ' roll-char--plus' : '') + '" style="--char-i: ' + i + ';">' +
-                  '<span class="char-top">' + ch + '</span>' +
-                  '<span class="char-bottom">' + ch + '</span>' +
-                  '</span>';
-        }
+  function createRollTextNode(text) {
+    var wrapper = document.createElement("span");
+    wrapper.className = "roll-text";
+    wrapper.setAttribute("aria-label", text);
+
+    for (var i = 0; i < text.length; i++) {
+      var ch = text.charAt(i);
+      var charWrap = document.createElement("span");
+      charWrap.style.setProperty("--char-i", i);
+
+      if (ch === " ") {
+        charWrap.className = "roll-char roll-char--space";
+        charWrap.innerHTML = "&nbsp;";
+      } else {
+        charWrap.className = "roll-char" + (ch === "+" ? " roll-char--plus" : "");
+        var topSpan = document.createElement("span");
+        topSpan.className = "char-top";
+        topSpan.textContent = ch;
+
+        var bottomSpan = document.createElement("span");
+        bottomSpan.className = "char-bottom";
+        bottomSpan.textContent = ch;
+
+        charWrap.appendChild(topSpan);
+        charWrap.appendChild(bottomSpan);
       }
-      html += '</span>';
-      $link.html(html);
+      wrapper.appendChild(charWrap);
+    }
+
+    return wrapper;
+  }
+
+  function navRollingText() {
+    var selectors = [
+      ".tm-nav_list > li > a",
+      ".footer-dark__list a",
+      ".footer-architecture__list a",
+      ".footer-construction__list a",
+    ];
+
+    $(selectors.join(", ")).each(function () {
+      var link = this;
+      if (link.querySelector(".roll-text")) return;
+
+      // Footer dark links wrap their label in a child <span> after the icon
+      var labelSpan = link.querySelector("span:not(.footer-dark__link-icon)");
+      if (labelSpan) {
+        var spanText = labelSpan.textContent.trim();
+        if (!spanText) return;
+        labelSpan.textContent = "";
+        labelSpan.appendChild(createRollTextNode(spanText));
+        return;
+      }
+
+      // Header links or footer links with a direct text node (e.g. after <i>)
+      var textNode = Array.prototype.find.call(link.childNodes, function (node) {
+        return node.nodeType === 3 && node.textContent.trim().length > 0;
+      });
+      if (!textNode) return;
+
+      var nodeText = textNode.textContent.trim();
+      link.replaceChild(createRollTextNode(nodeText), textNode);
+    });
+  }
+
+  /*--------------------------------------------------------------
+  Team Details Skill Bar Fill Animation
+  ----------------------------------------------------------------*/
+  function teamSkillsAnimation() {
+    var wraps = document.querySelectorAll(".team-details-section__skills-wrap");
+    if (!wraps.length) return;
+
+    if (!("IntersectionObserver" in window)) {
+      wraps.forEach(function (el) {
+        el.classList.add("is-visible");
+      });
+      return;
+    }
+
+    var observer = new IntersectionObserver(
+      function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    wraps.forEach(function (el) {
+      observer.observe(el);
     });
   }
 

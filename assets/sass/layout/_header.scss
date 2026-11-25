@@ -238,69 +238,14 @@
       }
     }
 
-    /*--------------------------------------------------------------
-      Staggered Rolling Text Hover Animation
-    ----------------------------------------------------------------*/
-    .roll-text {
-      display: inline-flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      height: 1.3em;
-      line-height: 1.3em;
-      vertical-align: middle;
-    }
-
-    .roll-char {
-      display: inline-block;
-      position: relative;
-      overflow: hidden;
-      height: 1.3em;
-      line-height: 1.3em;
-      vertical-align: middle;
-      letter-spacing: inherit;
-
-      &.roll-char--space {
-        width: 0.28em;
+    > li {
+      > a {
+        @include rolling-text;
       }
 
-      .char-top,
-      .char-bottom {
-        display: block;
-        height: 100%;
-        line-height: inherit;
-        transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), color 0.25s ease;
-        transition-delay: calc(var(--char-i, 0) * 0.026s);
-        will-change: transform;
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-      }
-
-      .char-top {
-        transform: translateY(0%);
-        color: inherit;
-      }
-
-      .char-bottom {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        transform: translateY(0%);
-        color: var(--primary-color);
-      }
-    }
-
-    > li:hover > a,
-    > li > a:hover {
-      .roll-char {
-        .char-top {
-          transform: translateY(-100%);
-        }
-        .char-bottom {
-          transform: translateY(-100%);
-        }
+      &:hover > a,
+      > a:hover {
+        @include rolling-text-active;
       }
     }
   }

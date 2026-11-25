@@ -77,7 +77,9 @@
     font-size: 20px;
     font-weight: 600;
     color: var(--heading-color);
-    @include transition;
+    transition:
+      color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     
     @include respond(md) {
       font-size: 18px;
@@ -105,7 +107,7 @@
     background-color: var(--primary-color);
     @include flex-center;
     flex-shrink: 0;
-    @include transition;
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
     @include respond(md) {
       width: 35px;
@@ -116,7 +118,7 @@
   &__category-arrow-icon {
     color: var(--white-color);
     font-size: 16px;
-    @include transition;
+    transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &__newsletter {
@@ -192,7 +194,9 @@
     text-transform: uppercase;
     border: none;
     cursor: pointer;
-    @include transition;
+    transition:
+      background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+      color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     align-self: flex-start;
 
     @include respond(md) {
@@ -240,7 +244,9 @@
     border: none;
     cursor: pointer;
     align-self: flex-start;
-    @include transition;
+    transition:
+      background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+      color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     
     @include respond(md) {
       font-size: 14px;

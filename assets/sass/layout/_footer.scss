@@ -161,7 +161,6 @@
 
     &:hover {
       color: var(--primary-color);
-      transform: translateX(4px);
     }
   }
 
@@ -353,7 +352,6 @@
 
     &:hover {
       color: var(--primary-color);
-      transform: translateY(-1px);
     }
   }
 }
@@ -492,7 +490,6 @@
 
     &:hover {
       color: var(--primary-color);
-      transform: translateX(4px);
     }
   }
 
@@ -800,7 +797,6 @@
 
     &:hover {
       color: var(--primary-color);
-      transform: translateX(4px);
     }
   }
 
@@ -1011,11 +1007,40 @@ body.has-footer-parallax {
     z-index: 0;
   }
 
-  /* Wrapper that slides over the fixed footer */
   .page-reveal-wrap {
     position: relative;
     z-index: 1;
     background-color: var(--body-bg-color);
+  }
+}
+
+/*--------------------------------------------------------------
+  Footer Nav Links — Staggered Rolling Text Hover
+----------------------------------------------------------------*/
+.footer-dark__list,
+.footer-architecture__list,
+.footer-construction__list {
+  a {
+    @include rolling-text;
+
+    &:hover {
+      @include rolling-text-active;
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+  Footer Nav Links — Staggered Rolling Text Hover
+----------------------------------------------------------------*/
+.footer-dark__list,
+.footer-architecture__list,
+.footer-construction__list {
+  a {
+    @include rolling-text;
+
+    &:hover {
+      @include rolling-text-active;
+    }
   }
 }
 

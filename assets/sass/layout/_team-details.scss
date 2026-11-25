@@ -124,6 +124,14 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    &:nth-child(2) .team-details-section__skill-progress {
+      transition-delay: 0.12s;
+    }
+
+    &:nth-child(3) .team-details-section__skill-progress {
+      transition-delay: 0.24s;
+    }
   }
 
   &__skill-info {
@@ -147,13 +155,21 @@
     padding: 5px 3px;
     display: flex;
     align-items: center;
+    overflow: hidden;
   }
 
   &__skill-progress {
     height: 6px;
     background-color: var(--primary-color);
     border-radius: 20px;
-    transition: width 1s ease-in-out;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+
+  &__skills-wrap.is-visible &__skill-progress {
+    transform: scaleX(1);
   }
 
   &__form {
@@ -226,15 +242,33 @@
     display: inline-flex;
     align-items: center;
     gap: 12px;
+    color: var(--white-color);
+
+    span {
+      position: relative;
+      z-index: 2;
+      color: var(--white-color);
+    }
+
+    &:hover {
+      color: var(--white-color);
+
+      span {
+        color: var(--white-color);
+      }
+    }
   }
 
   &__btn-icon {
+    position: relative;
+    z-index: 2;
     font-size: 14px;
     transition: transform 0.3s ease;
   }
 
   &__submit-btn:hover &__btn-icon {
     transform: translateX(4px);
+    color: var(--white-color);
   }
 
   &__card {
