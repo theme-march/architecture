@@ -544,6 +544,22 @@
   9. Title Animation
   --------------------------------------------------------------*/
   function titleAnimation() {
+    var aboutSplits = [];
+    function initAboutSplit() {
+      if (typeof SplitText === "undefined") return;
+      document.querySelectorAll(".about-us__description").forEach(function (el) {
+        if (el.classList.contains("is-visible") || el.querySelector(".about-us__line")) return;
+        var split = new SplitText(el, { type: "lines", linesClass: "about-us__line" });
+        aboutSplits.push({ el: el, split: split });
+      });
+    }
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(initAboutSplit);
+    } else {
+      initAboutSplit();
+    }
+
     var titles = document.querySelectorAll(
       ".begin-a-brief__title, .title-anim-blur, .section-heading--animated, .section-heading__subtitle--animated, .about-us__description, .about-architecture__description, .about-architecture--title, .our-approach__grid, .about-construction__title, .about-construction__desc, .about-construction__circles-row--animated"
     );
@@ -553,8 +569,25 @@
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
+            if (
+              entry.target.classList.contains("about-us__description") &&
+              !entry.target.querySelector(".about-us__line")
+            ) {
+              initAboutSplit();
+            }
             entry.target.classList.add("is-visible");
             observer.unobserve(entry.target);
+
+            // Revert SplitText after reveal finishes so resizing always flows as a single paragraph
+            if (entry.target.classList.contains("about-us__description")) {
+              setTimeout(function () {
+                aboutSplits.forEach(function (item) {
+                  if (item.el === entry.target && item.split) {
+                    item.split.revert();
+                  }
+                });
+              }, 2100);
+            }
           }
         });
       },

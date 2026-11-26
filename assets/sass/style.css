@@ -919,8 +919,9 @@ kbd {
   opacity: 0.2;
   transform: rotateY(-90deg);
   transform-origin: center;
-  animation: ak-preloader-letter 2.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
-  animation-delay: calc(var(--i) * 0.16s);
+  will-change: transform, opacity;
+  animation: ak-preloader-letter 1.6s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.14s);
 }
 @media (max-width: 575px) {
   .ak-preloader__text {
@@ -938,15 +939,15 @@ kbd {
   }
 }
 @keyframes ak-preloader-letter {
-  0%, 100% {
+  0% {
     opacity: 0.2;
     transform: rotateY(-90deg);
   }
-  25%, 65% {
+  50% {
     opacity: 1;
     transform: rotateY(0deg);
   }
-  90% {
+  100% {
     opacity: 0.2;
     transform: rotateY(90deg);
   }
@@ -1055,13 +1056,13 @@ kbd {
 }
 @media (max-width: 576px) {
   .primary-btn {
-    padding: 4px 48px 4px 14px;
+    padding: 13px 55px 13px 10px;
   }
   .primary-btn .icon-wrapper {
     top: 4px;
     right: 4px;
     bottom: 4px;
-    width: 36px;
+    width: 40px;
   }
   .primary-btn:hover .icon-wrapper {
     top: 0;
@@ -1176,13 +1177,13 @@ kbd {
 }
 @media (max-width: 576px) {
   .outline-btn {
-    padding: 4px 48px 4px 14px;
+    padding: 13px 55px 13px 10px;
   }
   .outline-btn .icon-wrapper {
     top: 4px;
     right: 4px;
     bottom: 4px;
-    width: 36px;
+    width: 40px;
   }
   .outline-btn:hover .icon-wrapper {
     top: 0;
@@ -1637,6 +1638,7 @@ kbd {
 @media (max-width: 768px) {
   .section-heading__subtitle-text {
     font-size: 16px;
+    line-height: 22px;
   }
 }
 .section-heading__title {
@@ -1658,8 +1660,8 @@ kbd {
 }
 @media (max-width: 576px) {
   .section-heading__title {
-    font-size: 30px;
-    line-height: 38px;
+    font-size: 28px;
+    line-height: 34px;
   }
 }
 .section-heading__title--light {
@@ -7222,7 +7224,12 @@ About Us
 }
 .about-us__description .about-us__line:nth-child(5) {
   transition-delay: 0.95s;
-  transition-duration: 0.5s;
+}
+.about-us__description .about-us__line:nth-child(6) {
+  transition-delay: 1.15s;
+}
+.about-us__description .about-us__line:nth-child(7) {
+  transition-delay: 1.35s;
 }
 @media (prefers-reduced-motion: reduce) {
   .about-us__description .about-us__line {
@@ -7605,9 +7612,9 @@ About Us
 }
 @media (max-width: 768px) {
   .service__item-title {
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 600;
-    line-height: 32px;
+    line-height: 26px;
   }
 }
 
@@ -7710,6 +7717,11 @@ About Us
     margin-bottom: 60px;
   }
 }
+@media (max-width: 576px) {
+  .our-approach__heading {
+    margin-bottom: 50px;
+  }
+}
 .our-approach__title {
   max-width: 800px;
 }
@@ -7796,7 +7808,7 @@ About Us
 }
 @media (max-width: 768px) {
   .our-approach__card {
-    padding: 25px;
+    padding: 20px;
     transform: translateY(35px);
   }
 }

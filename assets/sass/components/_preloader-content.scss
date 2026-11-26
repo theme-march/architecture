@@ -104,8 +104,9 @@
       opacity: 0.2;
       transform: rotateY(-90deg);
       transform-origin: center;
-      animation: ak-preloader-letter 2.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
-      animation-delay: calc(var(--i) * 0.16s);
+      will-change: transform, opacity;
+      animation: ak-preloader-letter 1.6s ease-in-out infinite;
+      animation-delay: calc(var(--i) * 0.14s);
     }
 
     @media (max-width: 575px) {
@@ -125,17 +126,15 @@
 }
 
 @keyframes ak-preloader-letter {
-  0%,
-  100% {
+  0% {
     opacity: 0.2;
     transform: rotateY(-90deg);
   }
-  25%,
-  65% {
+  50% {
     opacity: 1;
     transform: rotateY(0deg);
   }
-  90% {
+  100% {
     opacity: 0.2;
     transform: rotateY(90deg);
   }

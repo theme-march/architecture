@@ -96,7 +96,12 @@ About Us
       }
       &:nth-child(5) {
         transition-delay: 0.95s;
-        transition-duration: 0.5s;
+      }
+      &:nth-child(6) {
+        transition-delay: 1.15s;
+      }
+      &:nth-child(7) {
+        transition-delay: 1.35s;
       }
 
       @media (prefers-reduced-motion: reduce) {

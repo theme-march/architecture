@@ -123,13 +123,13 @@
   }
 
   @include respond(sm) {
-    padding: 4px 48px 4px 14px;
+    padding: 13px 55px 13px 10px;
 
     .icon-wrapper {
       top: 4px;
       right: 4px;
       bottom: 4px;
-      width: 36px;
+      width: 40px;
     }
 
     &:hover {
@@ -266,13 +266,13 @@
   }
 
   @include respond(sm) {
-    padding: 4px 48px 4px 14px;
+    padding: 13px 55px 13px 10px;
 
     .icon-wrapper {
       top: 4px;
       right: 4px;
       bottom: 4px;
-      width: 36px;
+      width: 40px;
     }
 
     &:hover {
