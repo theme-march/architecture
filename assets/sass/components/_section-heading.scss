@@ -22,8 +22,9 @@
     align-items: center;
     gap: 10px;
     margin-bottom: 15px;
+
     @include respond(lg) {
-      margin-bottom: 5px;
+      margin-bottom: 10px;
     }
 
     &--white {

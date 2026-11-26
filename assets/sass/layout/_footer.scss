@@ -995,9 +995,7 @@
   }
 }
 
-/*--------------------------------------------------------------
-  Footer Parallax — Fixed Reveal (Index page only)
-----------------------------------------------------------------*/
+//Footer Parallax — Fixed Reveal (Index page only)
 body.has-footer-parallax {
   .footer-dark {
     position: fixed !important;
@@ -1008,33 +1006,29 @@ body.has-footer-parallax {
     transform: translateZ(0);
     will-change: transform;
     contain: layout paint;
+
+    @include respond(md) {
+      position: relative !important;
+      bottom: auto;
+      left: auto;
+      transform: none;
+      will-change: auto;
+      contain: none;
+    }
   }
 
   .page-reveal-wrap {
     position: relative;
     z-index: 1;
     background-color: var(--body-bg-color);
-  }
-}
 
-/*--------------------------------------------------------------
-  Footer Nav Links — Staggered Rolling Text Hover
-----------------------------------------------------------------*/
-.footer-dark__list,
-.footer-architecture__list,
-.footer-construction__list {
-  a {
-    @include rolling-text;
-
-    &:hover {
-      @include rolling-text-active;
+    @include respond(md) {
+      margin-bottom: 0 !important;
     }
   }
 }
 
-/*--------------------------------------------------------------
-  Footer Nav Links — Staggered Rolling Text Hover
-----------------------------------------------------------------*/
+//Footer Nav Links — Staggered Rolling Text Hover
 .footer-dark__list,
 .footer-architecture__list,
 .footer-construction__list {

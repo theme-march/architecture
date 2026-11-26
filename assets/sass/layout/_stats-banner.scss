@@ -9,17 +9,12 @@
   color: var(--white-color);
 
   &__wrapper {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     border-top: 1px solid rgba(255, 255, 255, 0.12);
 
-    @include respond(xl) {
-      gap: 0;
-    }
-
     @include respond(lg) {
-      flex-wrap: wrap;
-      gap: 0;
+      grid-template-columns: repeat(2, 1fr);
       border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     }
   }
@@ -29,7 +24,7 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
-    flex: 1;
+    min-width: 0;
     position: relative;
     padding-top: 50px;
     padding-bottom: 40px;
@@ -45,7 +40,6 @@
     }
 
     @include respond(lg) {
-      flex: 0 0 50%;
       padding-top: 35px;
       padding-bottom: 35px;
 
@@ -65,21 +59,11 @@
     }
 
     @include respond(sm) {
-      flex: 0 0 50%;
-      justify-content: center;
-      padding: 20px 10px;
-
-      &:nth-child(2n)::after {
-        display: none;
-      }
-
-      &:nth-child(n + 3) {
-        border-top: 1px solid rgba(255, 255, 255, 0.12);
-      }
+      gap: 10px;
+      padding: 20px 8px;
     }
 
-    @media (max-width: 400px) {
-      flex: 0 0 100%;
+    @media (max-width: 399px) {
       justify-content: flex-start;
       padding: 20px 15px;
 
@@ -107,6 +91,10 @@
     @include respond(md) {
       font-size: 44px;
     }
+
+    @include respond(sm) {
+      font-size: 36px;
+    }
   }
 
   &__text {
@@ -119,6 +107,11 @@
     @include respond(md) {
       font-size: 15px;
       line-height: 22px;
+    }
+
+    @include respond(sm) {
+      font-size: 14px;
+      line-height: 20px;
     }
   }
 }

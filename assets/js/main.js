@@ -544,20 +544,27 @@
   9. Title Animation
   --------------------------------------------------------------*/
   function titleAnimation() {
-    var aboutSplits = [];
-    function initAboutSplit() {
+    var lineSplits = [];
+    var splitTargets = [
+      { selector: ".about-us__description", lineClass: "about-us__line" },
+      { selector: ".about-architecture__description", lineClass: "about-architecture__line" },
+    ];
+
+    function initLineSplits() {
       if (typeof SplitText === "undefined") return;
-      document.querySelectorAll(".about-us__description").forEach(function (el) {
-        if (el.classList.contains("is-visible") || el.querySelector(".about-us__line")) return;
-        var split = new SplitText(el, { type: "lines", linesClass: "about-us__line" });
-        aboutSplits.push({ el: el, split: split });
+      splitTargets.forEach(function (cfg) {
+        document.querySelectorAll(cfg.selector).forEach(function (el) {
+          if (el.classList.contains("is-visible") || el.querySelector("." + cfg.lineClass)) return;
+          var split = new SplitText(el, { type: "lines", linesClass: cfg.lineClass });
+          lineSplits.push({ el: el, split: split });
+        });
       });
     }
 
     if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(initAboutSplit);
+      document.fonts.ready.then(initLineSplits);
     } else {
-      initAboutSplit();
+      initLineSplits();
     }
 
     var titles = document.querySelectorAll(
@@ -569,19 +576,19 @@
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            if (
-              entry.target.classList.contains("about-us__description") &&
-              !entry.target.querySelector(".about-us__line")
-            ) {
-              initAboutSplit();
+            var matchedCfg = splitTargets.find(function (cfg) {
+              return entry.target.matches(cfg.selector);
+            });
+            if (matchedCfg && !entry.target.querySelector("." + matchedCfg.lineClass)) {
+              initLineSplits();
             }
             entry.target.classList.add("is-visible");
             observer.unobserve(entry.target);
 
             // Revert SplitText after reveal finishes so resizing always flows as a single paragraph
-            if (entry.target.classList.contains("about-us__description")) {
+            if (matchedCfg) {
               setTimeout(function () {
-                aboutSplits.forEach(function (item) {
+                lineSplits.forEach(function (item) {
                   if (item.el === entry.target && item.split) {
                     item.split.revert();
                   }
@@ -1846,7 +1853,7 @@
   }
 
   /*--------------------------------------------------------------
-  17. Vision To Structure — Cursor-follow Animation
+  17. Vision To Structure — Cursor-follow & Mobile Tap Animation
   --------------------------------------------------------------*/
   function visionToStructureHover() {
     if (typeof gsap === "undefined") return;
@@ -1854,22 +1861,77 @@
     var composition = document.querySelector(".vision-to-structure__composition");
     var textStack   = document.querySelector(".vision-to-structure__text-stack");
     var imageWrap   = document.querySelector(".vision-to-structure__image-wrap");
+    var textLines   = textStack ? [].slice.call(textStack.querySelectorAll(".vision-to-structure__text-line")) : [];
 
-    if (!composition || !textStack || !imageWrap) return;
+    if (!composition || !textStack || !imageWrap || !textLines.length) return;
+
+    var mobileQuery = window.matchMedia("(max-width: 768px)");
 
     function getInitialCoords() {
       var compRect = composition.getBoundingClientRect();
       var wrapWidth = imageWrap.offsetWidth || 420;
+      // Shift resting position further left as viewport narrows
+      var offsetFactor = window.innerWidth <= 992 ? 0.9 : window.innerWidth <= 1200 ? 0.75 : 0.55;
       return {
-        x: Math.max(0, compRect.width - wrapWidth * 0.55),
+        x: Math.max(wrapWidth * 0.5, compRect.width - wrapWidth * offsetFactor),
         y: Math.max(50, compRect.height * 0.18)
       };
     }
 
-    var initPos = getInitialCoords();
-    gsap.set(imageWrap, { x: initPos.x, y: initPos.y });
+    function getLineCoords(line) {
+      var compRect = composition.getBoundingClientRect();
+      var lineRect = line.getBoundingClientRect();
+      var wrapWidth = imageWrap.offsetWidth || 220;
+      var wrapHeight = imageWrap.offsetHeight || 195;
+      var minX = wrapWidth * 0.5;
+      var maxX = Math.max(minX, compRect.width - wrapWidth * 0.5);
+      var targetX = Math.min(maxX, Math.max(minX, compRect.width * 0.65));
+      var targetY = Math.max(wrapHeight * 0.5, (lineRect.top - compRect.top) + lineRect.height * 0.75);
+      return { x: targetX, y: targetY };
+    }
+
+    function activateLineOnMobile(line, animate) {
+      textLines.forEach(function (el) {
+        el.classList.toggle("is-active", el === line);
+      });
+      var coords = getLineCoords(line);
+      if (animate) {
+        gsap.to(imageWrap, {
+          x: coords.x,
+          y: coords.y,
+          duration: 0.55,
+          ease: "power3.out",
+          overwrite: "auto"
+        });
+      } else {
+        gsap.set(imageWrap, { x: coords.x, y: coords.y });
+      }
+    }
+
+    function syncLayoutMode() {
+      if (mobileQuery.matches) {
+        var activeLine = textStack.querySelector(".vision-to-structure__text-line.is-active") || textLines[0];
+        activateLineOnMobile(activeLine, false);
+      } else {
+        textLines.forEach(function (el) {
+          el.classList.remove("is-active");
+        });
+        var init = getInitialCoords();
+        gsap.set(imageWrap, { x: init.x, y: init.y });
+      }
+    }
+
+    syncLayoutMode();
+
+    textLines.forEach(function (line) {
+      line.addEventListener("click", function () {
+        if (!mobileQuery.matches) return;
+        activateLineOnMobile(line, true);
+      });
+    });
 
     textStack.addEventListener("mousemove", function (e) {
+      if (mobileQuery.matches) return;
       var compRect = composition.getBoundingClientRect();
       gsap.to(imageWrap, {
         x: e.clientX - compRect.left,
@@ -1881,6 +1943,7 @@
     });
 
     textStack.addEventListener("mouseleave", function () {
+      if (mobileQuery.matches) return;
       var init = getInitialCoords();
       gsap.to(imageWrap, {
         x: init.x,
@@ -1891,10 +1954,7 @@
       });
     });
 
-    window.addEventListener("resize", function () {
-      var init = getInitialCoords();
-      gsap.set(imageWrap, { x: init.x, y: init.y });
-    });
+    window.addEventListener("resize", syncLayoutMode);
   }
 
   /*--------------------------------------------------------------
@@ -1957,8 +2017,12 @@
     if (!$footer.length || !$wrap.length) return;
 
     function syncFooterHeight() {
-      var h = $footer.outerHeight();
-      $wrap.css("margin-bottom", h + "px");
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        $wrap.css("margin-bottom", "");
+      } else {
+        var h = $footer.outerHeight();
+        $wrap.css("margin-bottom", h + "px");
+      }
       if (typeof ScrollTrigger !== "undefined") {
         ScrollTrigger.refresh();
       }

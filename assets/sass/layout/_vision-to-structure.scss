@@ -24,9 +24,10 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-
+    
     @include respond(md) {
       flex-direction: column;
+      margin-top: 0;
     }
   }
 
@@ -125,7 +126,8 @@
     }
 
     &:hover,
-    &.is-hovered {
+    &.is-hovered,
+    &.is-active {
       color: var(--heading-color);
       z-index: 4;
     }
@@ -135,8 +137,8 @@
     }
   }
 
-  // 1st item active by default, but turns dim when user hovers any other line
-  &__text-stack:not(:has(.vision-to-structure__text-line:hover)):not(:has(.vision-to-structure__text-line.is-hovered)) .vision-to-structure__text-line:first-child {
+  // 1st item active by default, but turns dim when user hovers or activates any other line
+  &__text-stack:not(:has(.vision-to-structure__text-line:hover)):not(:has(.vision-to-structure__text-line.is-hovered)):not(:has(.vision-to-structure__text-line.is-active)) .vision-to-structure__text-line:first-child {
     color: var(--heading-color);
     z-index: 4;
   }
@@ -157,17 +159,23 @@
     will-change: transform;
 
     @include respond(xl) {
-      width: 380px;
-      height: 340px;
+      width: 340px;
+      height: 300px;
     }
 
     @include respond(lg) {
-      width: 280px;
-      height: 250px;
+      width: 260px;
+      height: 230px;
     }
 
     @include respond(md) {
-      display: none;
+      width: 220px;
+      height: 195px;
+    }
+
+    @include respond(sm) {
+      width: 170px;
+      height: 150px;
     }
   }
 
@@ -188,52 +196,19 @@
     }
   }
 
-  // Hover image-change based on hovered text-line
-  &:has(.vision-to-structure__text-line:nth-child(1):hover),
-  &:has(.vision-to-structure__text-line:nth-child(1).is-hovered) {
-    .vision-to-structure__image {
-      opacity: 0;
-      transform: scale(0.96);
-    }
-    .vision-to-structure__image--1 {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  &:has(.vision-to-structure__text-line:nth-child(2):hover),
-  &:has(.vision-to-structure__text-line:nth-child(2).is-hovered) {
-    .vision-to-structure__image {
-      opacity: 0;
-      transform: scale(0.96);
-    }
-    .vision-to-structure__image--2 {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  &:has(.vision-to-structure__text-line:nth-child(3):hover),
-  &:has(.vision-to-structure__text-line:nth-child(3).is-hovered) {
-    .vision-to-structure__image {
-      opacity: 0;
-      transform: scale(0.96);
-    }
-    .vision-to-structure__image--3 {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  &:has(.vision-to-structure__text-line:nth-child(4):hover),
-  &:has(.vision-to-structure__text-line:nth-child(4).is-hovered) {
-    .vision-to-structure__image {
-      opacity: 0;
-      transform: scale(0.96);
-    }
-    .vision-to-structure__image--4 {
-      opacity: 1;
-      transform: scale(1);
+  // Image-change based on hovered or active text-line
+  @for $i from 1 through 4 {
+    &:has(.vision-to-structure__text-line[data-image="#{$i}"]:hover),
+    &:has(.vision-to-structure__text-line[data-image="#{$i}"].is-hovered),
+    &:has(.vision-to-structure__text-line[data-image="#{$i}"].is-active) {
+      .vision-to-structure__image {
+        opacity: 0;
+        transform: scale(0.96);
+      }
+      .vision-to-structure__image--#{$i} {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
   }
 }

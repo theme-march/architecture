@@ -17,17 +17,12 @@
 
   @include respond(lg) {
     .primary-btn {
-      font-size: 14px;
-      padding: 4px 4px 4px 16px;
 
       .text {
         margin-right: 14px;
       }
 
       .icon-wrapper {
-        width: 42px;
-        height: 42px;
-
         svg {
           width: 14px;
           height: 14px;
